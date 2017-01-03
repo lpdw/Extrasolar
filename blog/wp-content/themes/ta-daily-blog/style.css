@@ -1,0 +1,910 @@
+/*
+Theme Name: TA DailyBlog
+Theme URI: http://themeart.co/free-theme/ta-dailyblog/
+Author: ThemeArt
+Author URI: http://themeart.co/
+Description: TA DailyBlog is an awesome free WordPress theme which brings lovely simple & clean design. It's built with Bootstrap 3 which optimized for smartphones, tablets, desktops and any other devices. It's ideal for blogging, especially for daily or hobby bloggers who love to share their stuff, whether it's about life, fashion, travel, or just a simple personal blog. It's very flexible, fully customizable and powered with Redux Options Framework. With pre-made 16 color schemes, you will love the smooth and fast user experience. What's more, the theme is SEO friendly with Schema compatible structure that will make Google love your website, and supports most of popular plugins such as Contact Form 7, SEO by Yoast, W3 Total Cache and much more.
+Version: 1.2.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: ta-dailyblog
+Domain Path: /languages/
+Tags: black, blue, brown, gray, green, orange, pink, purple, red, silver, tan, white, yellow, dark, light, one-column, two-columns, left-sidebar, right-sidebar, responsive-layout, accessibility-ready, custom-background, custom-header, custom-menu, editor-style, featured-images, full-width-template, rtl-language-support, sticky-post, sticky-post, translation-ready
+
+This theme, like WordPress, is licensed under the GPL. Use it to make something cool, have fun, and share what you've learned with others.
+
+TA DailyBlog is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+
+Resetting and rebuilding styles have been helped along thanks to the fine work of Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/ and Blueprint http://www.blueprintcss.org/
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+1.0 Typography
+2.0 Elements
+	2.1 Tag Cloud
+	2.2 Social Icons
+	2.3 Scroll to Top
+3.0 Alignments
+4.0 Widgets
+	4.1 Social Widget
+	4.2 About Me Widget
+	4.3 Post Tabs Widget
+5.0 Content
+	5.1 Posts and Pages
+	5.2 Post Meta
+	5.3 Asides
+	5.4 Comments
+	5.5 404
+6.0 Footer
+7.0 Jetpack
+	7.1 Infinite Scroll
+	7.2 Sharing
+	7.3 Related Posts
+8.0 Media
+	8.1 Captions
+	8.2 Galleries
+9.0 Contact Form 7 Style
+10.0 Media Queries
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+1.0 Typography
+--------------------------------------------------------------*/
+a:hover {
+	text-decoration: none;
+}
+
+#primary,
+#secondary {
+	-ms-word-wrap: break-word;
+	    word-wrap: break-word;
+}
+
+.fa,
+.glyphicon {
+	margin-right: 5px;
+}
+
+.btn {
+	margin-bottom: 10px;
+}
+
+table  {
+	margin-bottom: 1.5em;
+	width: 100%;
+	text-align: center;
+}
+
+table td  {
+	text-align: center;
+	padding: 5px;
+	vertical-align: middle;
+}
+
+table th  {
+	font-weight: 600;
+	text-align: center;
+	padding: 10px 5px;
+}
+
+/*--------------------------------------------------------------
+2.0 Elements
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+2.1 Tag Cloud
+--------------------------------------------------------------*/
+.tagcloud a {
+	margin: 0 5px 5px 0;
+}
+
+.tags-links .btn {
+	margin: 0 5px 5px 0;
+	font-size: 11px;
+}
+
+/*--------------------------------------------------------------
+2.2 Social Icons
+--------------------------------------------------------------*/
+.social-icons {
+	font-size: 32px;
+	padding: 20px 0;
+	text-align: center;
+}
+
+.social-icons a {
+	color: inherit;
+}
+
+.social-icons .fa {
+	margin-right: 15px;
+}
+
+.social-icons a.twitter:hover {
+	color: #00aced !important;
+}
+
+.social-icons a.facebook:hover {
+	color: #3b5998 !important;
+}
+
+.social-icons a.google-plus:hover {
+	color: #dd4b39 !important;
+}
+
+.social-icons a.instagram:hover {
+	color: #3f729b !important;
+}
+
+.social-icons a.linkedin:hover {
+	color: #3399cc !important;
+}
+
+.social-icons a.tumblr:hover {
+	color: #2c4762 !important;
+}
+
+.social-icons a.pinterest:hover {
+	color: #cb2027 !important;
+}
+
+.social-icons a.dribbble:hover {
+	color: #ea4c89 !important;
+}
+
+.social-icons a.flickr:hover {
+	color: #0063dc !important;
+}
+
+.social-icons a.deviantart:hover {
+	color: #4dc47d !important;
+}
+
+.social-icons a.skype:hover {
+	color: #00aff0 !important;
+}
+
+.social-icons a.youtube:hover {
+	color: #c4302b !important;
+}
+
+.social-icons a.vimeo:hover {
+	color: #44bbff !important;
+}
+
+.social-icons a.soundcloud:hover {
+	color: #f76700 !important;
+}
+
+.social-icons a.github:hover {
+	color: #000 !important;
+}
+
+.social-icons a.rss:hover {
+	color: #ff7900 !important;
+}
+
+/*--------------------------------------------------------------
+2.3 Scroll to Top
+--------------------------------------------------------------*/
+.scroll-to-top:hover {
+  opacity: 0.8;
+}
+
+.scroll-to-top {
+	bottom: 5%;
+	cursor: pointer;
+	display: none;
+	position: fixed;
+	right: 20px;
+	z-index: 999;
+	text-align: center;
+	-webkit-transition: background-color 0.3s linear;
+	   -moz-transition: background-color 0.3s linear;
+	     -o-transition: background-color 0.3s linear;
+	        transition: background-color 0.3s linear;
+}
+
+/*--------------------------------------------------------------
+3.0 Alignments
+--------------------------------------------------------------*/
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 1.5em;
+}
+
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: 1.5em;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin: 0 auto;
+}
+
+/*--------------------------------------------------------------
+4.0 Widgets
+--------------------------------------------------------------*/
+.widget {
+	clear: both;
+	margin: 0 0 1.5em;
+}
+
+.widget ul {
+	padding-left: 0;
+}
+
+.widget ul li {
+	list-style: none;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+}
+
+/* Make sure select elements fit in widgets */
+.widget select {
+	max-width: 100%;
+}
+
+/* Search widget */
+.widget_search .search-submit {
+	display: none;
+}
+
+/*--------------------------------------------------------------
+4.1 Social Widget
+--------------------------------------------------------------*/
+.widget .fa{ 
+	margin-right: 5px;
+}
+
+.social-widget .social-icons {
+	padding: 0;
+	text-align: left;
+	font-size: 28px;
+}
+
+.social-widget .social-icons .fa {
+	margin-right: 5px;
+}
+
+/*--------------------------------------------------------------
+4.2 About Me Widget
+--------------------------------------------------------------*/
+.about-me-thumb,
+.about-me-widget h5 {
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.about-me-widget img {
+	border-radius: 80%;
+}
+
+/*--------------------------------------------------------------
+4.3 Post Tabs Widget
+--------------------------------------------------------------*/
+.tabbed-widget ul li {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.tabbed-widget .fa {
+	margin-right: 5px;
+}
+
+.tabbed-widget .tab-content {
+	margin-top: 15px;
+	overflow: hidden;
+}
+
+.tabbed-widget .post-content {
+	clear: both;
+	float: left;
+	margin-bottom: 20px;
+}
+
+.tabbed-widget .post-content p {
+	margin: 0;
+}
+
+.tabbed-widget .tab-image {
+	width: 60px;
+	height: 60px;
+	float: left;
+	display: block;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: #dadada;
+	background-position: center center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+.tabbed-widget .tab-image img {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-transition: all 0.3s linear;
+	   -moz-transition: all 0.3s linear;
+	     -o-transition: all 0.3s linear;
+		    transition: all 0.3s linear;
+}
+
+.tabbed-widget .tab-image img:hover {
+  opacity: 0.8;
+}
+
+.tabbed-widget .post-title {
+	margin-left: 75px;
+}
+
+.widget_archive ul li:before,
+.widget_categories ul li:before,
+.widget_recent_entries ul li:before,
+.widget_recent_comments ul li:before {
+	font-family: FontAwesome;
+	margin-right: 5px;
+}
+
+.widget_archive ul li:before {
+	content: '\f073';
+}
+
+.widget_categories ul li:before {
+	content: '\f115';
+}
+
+.widget_recent_entries ul li:before {
+	content: '\f105';
+}
+
+.widget_recent_comments ul li:before {
+	content: '\f0e5';
+}
+
+/*--------------------------------------------------------------
+5.0 Content
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+5.1 Posts and Pages
+--------------------------------------------------------------*/
+#content {
+	margin-top: 50px;
+}
+
+article .well {
+	padding: 1px;
+}
+
+.sticky {
+	display: block;
+}
+
+.hentry {
+	margin: 0 0 1.5em;
+}
+
+.byline,
+.updated:not(.published) {
+	display: none;
+}
+
+.single .byline,
+.group-blog .byline {
+	display: inline;
+}
+
+.page-content,
+.entry-content,
+.entry-summary {
+	margin: 1.5em 0 0;
+}
+
+.post-thumbnail {
+	display: block;
+	position: relative;
+	width: 100%;
+}
+
+.post-thumbnail img {
+	border-top-left-radius: 0.175em;
+	border-top-right-radius: 0.175em;
+}
+
+.post-thumbnail .featured  {
+	display: block;
+	margin: 0 auto;
+	-webkit-transition: all 0.3s linear;
+	   -moz-transition: all 0.3s linear;
+         -o-transition: all 0.3s linear;
+		    transition: all 0.3s linear;
+}
+
+.post-thumbnail .featured:hover {
+	opacity: 0.8;
+}
+
+.page-links {
+	clear: both;
+	margin: 0 0 1.5em;
+}
+
+.author-meta {
+	margin-top: 40px;
+	text-align: center;
+}
+
+.author-meta .avatar {
+	border-radius: 50%;
+}
+
+.author-meta .media-object {
+	float: none;
+	margin: 0 0 15px;
+}
+
+.author-meta .fa {
+	font-size: 22px;
+	margin-right: 10px;
+}
+
+.pager li>a {
+	margin-bottom: 10px;
+}
+
+.more-link {
+	margin-top: 30px;
+}
+
+/*--------------------------------------------------------------
+5.2 Post Meta
+--------------------------------------------------------------*/
+.entry-meta span {
+	margin-right: 5px;
+}
+
+.entry-meta>span {
+	display: block;
+}
+
+.entry-meta span:last-child {
+	margin-right: 0;
+}
+
+.entry-meta span a {
+	text-decoration: none;
+}
+
+.entry-meta {
+	margin: 30px 0;
+}
+
+.entry-meta .fa {
+	margin-right: 3px;
+}
+
+.posted-on a, .byline a {
+	text-decoration: none;
+}
+
+/*--------------------------------------------------------------
+5.3 Asides
+--------------------------------------------------------------*/
+.blog .format-aside .entry-title,
+.archive .format-aside .entry-title {
+	display: none;
+}
+
+/*--------------------------------------------------------------
+5.4 Comments
+--------------------------------------------------------------*/
+.comment-content a {
+	-ms-word-wrap: break-word;
+	    word-wrap: break-word;
+}
+
+.bypostauthor {
+	display: block;
+}
+
+.comments-title, .comment-reply-title {
+	padding-bottom: 9px;
+	margin: 40px 0 20px 0;
+}
+
+ol.comment-list {
+	list-style:none;
+	padding-left: 0;
+}
+
+.comment-author .avatar {
+	margin: 5px 15px 0 0;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-transition: all 0.2s ease-in-out;
+	   -moz-transition: all 0.2s ease-in-out;
+	     -o-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+}
+
+.comment-meta {
+	margin-bottom: 5px;
+}
+
+.comment-details {
+	overflow: hidden;
+	zoom: 1;
+	margin-bottom: 25px;
+	padding-bottom: 25px;
+}
+
+.comment-details .reply {
+	margin-top: 10px;
+}
+
+.comment-date a {
+	margin-right: 10px;
+}
+
+#commentform #comment {
+	width: 100% !important;
+}
+
+/*--------------------------------------------------------------
+5.5 404
+--------------------------------------------------------------*/
+.error404 .input-group {
+	margin: 20px 0;
+}
+
+/*--------------------------------------------------------------
+6.0 Footer
+--------------------------------------------------------------*/
+#colophon {
+	margin-top: 30px;
+	margin-bottom: 0;
+}
+
+.footer-menu {
+	margin-left: 0;
+	padding: 0;
+}
+
+.footer-menu li {
+	display:inline;
+	list-style-type:none;
+}
+
+.footer-menu li a {
+	padding: 0 8px;
+}
+
+.footer-menu > li:first-child > a {
+	border-left:none;
+	padding:0 8px 0 0;
+}
+
+.copyright {
+	float: left;
+}
+
+/*--------------------------------------------------------------
+7.0 Jetpack
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+7.1 Infinite Scroll
+--------------------------------------------------------------*/
+/* Globally hidden elements when Infinite Scroll is supported and in use. */
+.infinite-scroll .paging-navigation, /* Older / Newer Posts Navigation (always hidden) */
+.infinite-scroll.neverending .site-footer { /* Theme Footer (when set to scrolling) */
+	display: none;
+}
+
+/* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before */
+.infinity-end.neverending .site-footer {
+	display: block;
+}
+
+#infinite-handle {
+	display: block;
+	margin-bottom: 20px;
+}
+
+.container #infinite-handle span {
+	background: none;
+	text-align: center;
+	color: inherit;
+	font-size: inherit;
+}
+
+/*--------------------------------------------------------------
+7.2 Sharing
+--------------------------------------------------------------*/
+.sd-sharing {
+	text-align: center;
+}
+
+div.sharedaddy h3.sd-title {
+	margin: 1em 0 !important;
+}
+
+/*--------------------------------------------------------------
+7.3 Related Posts
+--------------------------------------------------------------*/
+div#jp-relatedposts h3.jp-relatedposts-headline {
+	display: block !important;
+	text-align: center;
+	float: none !important;
+}
+
+div#jp-relatedposts h3.jp-relatedposts-headline {
+	display: block !important;
+	text-align: center;
+	float: none !important;
+}
+
+div#jp-relatedposts h3.jp-relatedposts-headline em {
+	border-top: 1px solid #ddd;
+	padding-top: 1em;
+}
+
+div#jp-relatedposts h3.jp-relatedposts-headline em:before {
+	border: none !important;
+}
+
+
+/*--------------------------------------------------------------
+8.0 Media
+--------------------------------------------------------------*/
+.page-content img.wp-smiley,
+.entry-content img.wp-smiley,
+.comment-content img.wp-smiley {
+	border: none;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 0;
+}
+
+/* Make sure embeds and iframes fit their containers */
+embed,
+iframe,
+object,
+img {
+	max-width: 100%;
+}
+
+img {
+	height: auto;
+}
+
+/*--------------------------------------------------------------
+8.1 Captions
+--------------------------------------------------------------*/
+.wp-caption {
+	margin-bottom: 1.5em;
+	max-width: 100%;
+}
+
+.wp-caption img[class*="wp-image-"] {
+	display: block;
+	margin: 0 auto;
+}
+
+.wp-caption-text {
+	text-align: center;
+}
+
+.wp-caption .wp-caption-text {
+	margin: 0.8075em 0;
+}
+
+/*--------------------------------------------------------------
+8.2 Galleries
+--------------------------------------------------------------*/
+.gallery {
+	margin-bottom: 1.5em;
+}
+
+.gallery-item {
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+	width: 100%;
+}
+
+.gallery-columns-2 .gallery-item {
+	max-width: 50%;
+}
+
+.gallery-columns-3 .gallery-item {
+	max-width: 33.33%;
+}
+
+.gallery-columns-4 .gallery-item {
+	max-width: 25%;
+}
+
+.gallery-columns-5 .gallery-item {
+	max-width: 20%;
+}
+
+.gallery-columns-6 .gallery-item {
+	max-width: 16.66%;
+}
+
+.gallery-columns-7 .gallery-item {
+	max-width: 14.28%;
+}
+
+.gallery-columns-8 .gallery-item {
+	max-width: 12.5%;
+}
+
+.gallery-columns-9 .gallery-item {
+	max-width: 11.11%;
+}
+
+.gallery-caption {
+	display: block;
+}
+
+/*--------------------------------------------------------------
+9.0 Contact Form 7 Style
+--------------------------------------------------------------*/
+.wpcf7-form {
+	padding: 10px 15px; 
+	margin-bottom:10px; 
+}
+
+.wpcf7-form .left{
+  float: left;
+  margin-right: 40px;
+}
+
+.wpcf7-form input,
+.wpcf7-form textarea { 
+	border:1px solid #dce4ec; 
+	border-radius:4px;
+    margin: 5px 0;
+    padding: 5px 10px;
+    font-size: 16px;
+	-webkit-box-shadow: inset 0 1px 1px rgba( 0,0,0,0.075 );
+	box-shadow: inset 0 1px 1px rgba( 0,0,0,0.075 );
+	-webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+	           -moz-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+	             -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+	                transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"] {
+	width: 100%;
+}
+
+.wpcf7-form input[name="your-subject"],
+.wpcf7-form textarea {
+	width: 100%;
+}
+
+.wpcf7 input:hover,
+.wpcf7 input:focus,
+.wpcf7 input:active,
+.wpcf7 textarea:hover,
+.wpcf7 textarea:focus,
+.wpcf7 textarea:active {
+	outline-color: #18bc9c;
+}
+
+.wpcf7-form .wpcf7-submit {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	float: right;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+}
+
+.wpcf7-form .wpcf7-submit:hover {
+	color: #fff;
+	background-color: #f66a5c;
+	border-color: #f66a5c;
+}
+
+.wpcf7 .wpcf7-validation-errors,
+.wpcf7 .wpcf7-mail-sent-ok,
+.wpcf7 .wpcf7-mail-sent-ng,
+.wpcf7 span.wpcf7-not-valid-tip {
+	border:2px solid #f66a5c;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.wpcf7-form .clear {
+  clear: both;
+}
+
+/*--------------------------------------------------------------
+10.0 Media Queries 
+--------------------------------------------------------------*/
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+	.entry-meta>span {
+		display: inline-block;
+	}
+	
+	.author-meta {
+	text-align: inherit;
+}
+
+	.author-meta .media-object {
+		float: left;
+		margin: 0 15px 15px 0;
+	}
+}
+
+@media only screen and (max-width: 640px){
+	div#jp-relatedposts div.jp-relatedposts-items .jp-relatedposts-post {
+		width: 100%!important;
+	}
+	
+	div#jp-relatedposts div.jp-relatedposts-items-visual .jp-relatedposts-post img.jp-relatedposts-post-img{
+		width: 100%!important;
+	}
+
+	div#jp-relatedposts div.jp-relatedposts-items-visual{
+		margin-right: 0!important;
+	}
+
+	div#jp-relatedposts div.jp-relatedposts-items-visual .jp-relatedposts-post{
+		padding-right: 0!important;
+	}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+	.post-inner-content {
+		padding: 15px 40px 30px;
+	}
+
+	.widget {
+		padding-left: 35px;
+		padding-right: 35px;
+	}
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+	.copyright {
+		float: right;
+	}
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
