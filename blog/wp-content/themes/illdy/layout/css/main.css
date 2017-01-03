@@ -123,7 +123,7 @@ input {
 }
 
 #header .top-header .header-logo:hover {
-	color: #f1d204;
+	color: #402d1f;
 	text-decoration: none;
 }
 
@@ -205,7 +205,7 @@ input {
 }
 
 #header .top-header .header-navigation ul li.menu-item-has-children .sub-menu li a:hover {
-	color: #f1d204;
+	color: #402d1f;
 }
 
 #header .top-header .header-navigation ul li.menu-item-has-children .sub-menu li a:after {
@@ -289,7 +289,7 @@ input {
 	width: auto;
 	height: 63px;
 	line-height: 63px;
-	background: #f1d204;
+	background: #402d1f;
 	margin: 0 15px;
 	padding: 0 70px;
 	display: inline-block;
@@ -680,7 +680,7 @@ input {
 }
 
 #latest-news .section-content .post .post-title:hover {
-	color: #f1d204;
+	color: #402d1f;
 	text-decoration: none;
 }
 
@@ -695,7 +695,7 @@ input {
 	line-height: 1.388;
 	padding: 0 30px;
 	font-size: 18px;
-	color: #f1d204;
+	color: #402d1f;
 	text-transform: uppercase;
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
@@ -716,7 +716,7 @@ input {
 	width: auto;
 	height: 56px;
 	line-height: 56px;
-	background: #f1d204;
+	background: #402d1f;
 	margin-bottom: 50px;
 	padding: 0 70px;
 	display: inline-block;
@@ -1217,7 +1217,7 @@ input {
 }
 
 #footer .widget ul li a:hover {
-	color: #f1d204;
+	color: #402d1f;
 }
 
 #footer .widget ul li:before {
@@ -1253,7 +1253,7 @@ input {
 
 #blog .blog-post .blog-post-title:hover {
 	text-decoration: none;
-	color: #f1d204;
+	color: #402d1f;
 }
 
 #blog .blog-post h2.blog-post-title:hover {
@@ -1280,12 +1280,12 @@ input {
 }
 
 #blog .blog-post .blog-post-meta .post-meta-author {
-	color: #f1d204;
+	color: #402d1f;
 }
 
 #blog .blog-post .blog-post-meta .post-meta-author .fa {
 	margin-right: 6px;
-	color: #f1d204;
+	color: #402d1f;
 }
 
 #blog .blog-post .blog-post-meta .post-meta-time,
@@ -1301,7 +1301,7 @@ input {
 #blog .blog-post .blog-post-meta .post-meta-time .fa,
 #blog .blog-post .blog-post-meta .post-meta-categories .fa {
 	margin-right: 6px;
-	color: #f1d204;
+	color: #402d1f;
 }
 
 #blog .blog-post .blog-post-meta .post-meta-comments {
@@ -1311,7 +1311,7 @@ input {
 
 #blog .blog-post .blog-post-meta .post-meta-comments .fa {
 	margin-right: 6px;
-	color: #f1d204;
+	color: #402d1f;
 }
 
 #blog .blog-post .blog-post-meta .post-meta-comments a {
@@ -1331,7 +1331,7 @@ input {
 #blog .blog-post .blog-post-button {
 	height: 45px;
 	line-height: 45px;
-	background-color: #f1d204;
+	background-color: #402d1f;
 	padding: 0 30px;
 	display: inline-block;
 	border-radius: 3px;
@@ -1436,7 +1436,7 @@ input {
 	margin: 10px 0 0 0;
 	display: inline-block;
 	font-size: 20px;
-	color: #f1d204;
+	color: #402d1f;
 }
 
 #blog .blog-post .blog-post-author p {
@@ -1504,7 +1504,7 @@ input {
 	content: "";
 	width: 41px;
 	height: 3px;
-	background-color: #f1d204;
+	background-color: #402d1f;
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -1550,7 +1550,7 @@ input {
 .widget ul li:before {
 	content: "\f105";
 	font-family: "FontAwesome";
-	color: #f1d204;
+	color: #402d1f;
 	position: absolute;
 	left: 0;
 }
@@ -1565,7 +1565,7 @@ input {
 }
 
 .widget ul li a:hover {
-	color: #f1d204;
+	color: #402d1f;
 	text-decoration: none;
 }
 
@@ -1694,6 +1694,7 @@ input {
 	color: #333;
 	text-transform: uppercase;
 	outline: 0;
+	position:absolute;
 }
 
 .widget .search-form .search-form-box #s::-webkit-input-placeholder {
@@ -1744,7 +1745,7 @@ input {
 .widget .widget-recent-post .recent-post-button {
 	width: 100%;
 	line-height: 1.466;
-	color: #f1d204;
+	color: #402d1f;
 	text-transform: lowercase;
 }
 
@@ -2059,7 +2060,7 @@ input {
 }
 
 .blog-post-related-articles .related-post:hover .related-post-title {
-	color: #f1d204;
+	color: #402d1f;
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	-o-transition: all 0.3s;
@@ -2126,7 +2127,7 @@ input {
 }
 
 #comments #comments-list ul.comments .comment .url {
-	color: #f1d204;
+	color: #402d1f;
 }
 
 #comments #comments-list ul.comments .comment .comment-entry p {
@@ -2134,7 +2135,7 @@ input {
 }
 
 #comments #comments-list ul.comments .comment .comment-reply-link {
-	color: #f1d204;
+	color: #402d1f;
 }
 
 #comments #comments-list ul.comments .comment ul.children {
@@ -2207,7 +2208,7 @@ input {
 input[type=submit] {
 	width: auto;
 	height: 36px;
-	background-color: #f1d204;
+	background-color: #402d1f;
 	padding: 0 40px;
 	display: inline-block;
 	color: #fff;
