@@ -12,6 +12,7 @@ class __TwigTemplate_95037066e25c238379d2683ef141d26d9c743b9e8fa6f9f69f4798984d6
         $this->blocks = array(
             'body' => array($this, 'block_body'),
             'stylesheets' => array($this, 'block_stylesheets'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -22,134 +23,290 @@ class __TwigTemplate_95037066e25c238379d2683ef141d26d9c743b9e8fa6f9f69f4798984d6
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_c8714f3968a66c2ac0165b331195014a04525c1a18158e9dd1c29c4d4c905351 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_c8714f3968a66c2ac0165b331195014a04525c1a18158e9dd1c29c4d4c905351->enter($__internal_c8714f3968a66c2ac0165b331195014a04525c1a18158e9dd1c29c4d4c905351_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/index.html.twig"));
+        $__internal_813e7e2e5d26b26f3ada8cb9b2a5137c00a646433916fcaf0e8276615fe24f97 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_813e7e2e5d26b26f3ada8cb9b2a5137c00a646433916fcaf0e8276615fe24f97->enter($__internal_813e7e2e5d26b26f3ada8cb9b2a5137c00a646433916fcaf0e8276615fe24f97_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/index.html.twig"));
 
-        $__internal_059b95f03e91a5126b81521ef3e37424e33cea5e61b9513f4bd7f3a56c7c01ee = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_059b95f03e91a5126b81521ef3e37424e33cea5e61b9513f4bd7f3a56c7c01ee->enter($__internal_059b95f03e91a5126b81521ef3e37424e33cea5e61b9513f4bd7f3a56c7c01ee_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/index.html.twig"));
+        $__internal_0804f2b1f45bd760cdcae53840c812aa9b3bae778e0b4bcef26e43a850d14a06 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_0804f2b1f45bd760cdcae53840c812aa9b3bae778e0b4bcef26e43a850d14a06->enter($__internal_0804f2b1f45bd760cdcae53840c812aa9b3bae778e0b4bcef26e43a850d14a06_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/index.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_c8714f3968a66c2ac0165b331195014a04525c1a18158e9dd1c29c4d4c905351->leave($__internal_c8714f3968a66c2ac0165b331195014a04525c1a18158e9dd1c29c4d4c905351_prof);
+        $__internal_813e7e2e5d26b26f3ada8cb9b2a5137c00a646433916fcaf0e8276615fe24f97->leave($__internal_813e7e2e5d26b26f3ada8cb9b2a5137c00a646433916fcaf0e8276615fe24f97_prof);
 
         
-        $__internal_059b95f03e91a5126b81521ef3e37424e33cea5e61b9513f4bd7f3a56c7c01ee->leave($__internal_059b95f03e91a5126b81521ef3e37424e33cea5e61b9513f4bd7f3a56c7c01ee_prof);
+        $__internal_0804f2b1f45bd760cdcae53840c812aa9b3bae778e0b4bcef26e43a850d14a06->leave($__internal_0804f2b1f45bd760cdcae53840c812aa9b3bae778e0b4bcef26e43a850d14a06_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_665a013d33573cbae11a2900eddb3dea774bd57b95fed2efa60166c7dce272a7 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_665a013d33573cbae11a2900eddb3dea774bd57b95fed2efa60166c7dce272a7->enter($__internal_665a013d33573cbae11a2900eddb3dea774bd57b95fed2efa60166c7dce272a7_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_70bcb2f1b5b7164ce531cebe469be90ba197826696c42362bf4427797696d6e8 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_70bcb2f1b5b7164ce531cebe469be90ba197826696c42362bf4427797696d6e8->enter($__internal_70bcb2f1b5b7164ce531cebe469be90ba197826696c42362bf4427797696d6e8_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        $__internal_353f500bc0b1eb2412df79cdbbfbcf8ad78dbed3353e2146ef1508184befeb01 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_353f500bc0b1eb2412df79cdbbfbcf8ad78dbed3353e2146ef1508184befeb01->enter($__internal_353f500bc0b1eb2412df79cdbbfbcf8ad78dbed3353e2146ef1508184befeb01_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_7cf6fc01f1b72562db23a2ac935a9010f342f54fd97769acf2b1f4e813f3440d = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_7cf6fc01f1b72562db23a2ac935a9010f342f54fd97769acf2b1f4e813f3440d->enter($__internal_7cf6fc01f1b72562db23a2ac935a9010f342f54fd97769acf2b1f4e813f3440d_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
-        echo "    <div id=\"wrapper\">
-        <div id=\"container\">
-            <div id=\"welcome\">
-                <h1><span>Welcome to</span> Symfony ";
-        // line 7
-        echo twig_escape_filter($this->env, twig_constant("Symfony\\Component\\HttpKernel\\Kernel::VERSION"), "html", null, true);
-        echo "</h1>
+        echo "<!DOCTYPE html>
+<html class=\"full\" lang=\"en\">
+<!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
+
+<head>
+
+    <meta charset=\"utf-8\">
+    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+    <meta name=\"description\" content=\"\">
+    <meta name=\"author\" content=\"\">
+
+    <title>ExtraSolar</title>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"></script>
+        <script src=\"https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js\"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class=\"navbar navbar-inverse \" role=\"navigation\">
+        <div class=\"container\">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class=\"navbar-header\">
+                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">
+                    <span class=\"sr-only\">Toggle navigation</span>
+
+                    <span class=\"icon-bar\"></span>
+                    <span class=\"icon-bar\"></span>
+                </button>
+                <a class=\"navbar-brand\" href=\"#\">ExtraSolar</a>
             </div>
-
-            <div id=\"status\">
-                <p>
-                    <svg id=\"icon-status\" width=\"1792\" height=\"1792\" viewBox=\"0 0 1792 1792\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z\" fill=\"#759E1A\"/></svg>
-
-                    Your application is now ready. You can start working on it at:
-                    <code>";
-        // line 15
-        echo twig_escape_filter($this->env, ($context["base_dir"] ?? $this->getContext($context, "base_dir")), "html", null, true);
-        echo "</code>
-                </p>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
+                <ul class=\"nav navbar-nav\">
+                    <li>
+                        <a href=\"#\">Accueil</a>
+                    </li>
+                    <li>
+                        <a href=\"#\">Catalogue</a>
+                    </li>
+                    <li>
+                        <a href=\"#\">Blog</a>
+                    </li>
+                </ul>
             </div>
-
-            <div id=\"next\">
-                <h2>What's next?</h2>
-                <p>
-                    <svg id=\"icon-book\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" viewBox=\"-12.5 9 64 64\" enable-background=\"new -12.5 9 64 64\" xml:space=\"preserve\">
-                        <path fill=\"#AAA\" d=\"M6.8,40.8c2.4,0.8,4.5-0.7,4.9-2.5c0.2-1.2-0.3-2.1-1.3-3.2l-0.8-0.8c-0.4-0.5-0.6-1.3-0.2-1.9
-                            c0.4-0.5,0.9-0.8,1.8-0.5c1.3,0.4,1.9,1.3,2.9,2.2c-0.4,1.4-0.7,2.9-0.9,4.2l-0.2,1c-0.7,4-1.3,6.2-2.7,7.5
-                            c-0.3,0.3-0.7,0.5-1.3,0.6c-0.3,0-0.4-0.3-0.4-0.3c0-0.3,0.2-0.3,0.3-0.4c0.2-0.1,0.5-0.3,0.4-0.8c0-0.7-0.6-1.3-1.3-1.3
-                            c-0.6,0-1.4,0.6-1.4,1.7s1,1.9,2.4,1.8c0.8,0,2.5-0.3,4.2-2.5c2-2.5,2.5-5.4,2.9-7.4l0.5-2.8c0.3,0,0.5,0.1,0.8,0.1
-                            c2.4,0.1,3.7-1.3,3.7-2.3c0-0.6-0.3-1.2-0.9-1.2c-0.4,0-0.8,0.3-1,0.8c-0.1,0.6,0.8,1.1,0.1,1.5c-0.5,0.3-1.4,0.6-2.7,0.4l0.3-1.3
-                            c0.5-2.6,1-5.7,3.2-5.8c0.2,0,0.8,0,0.8,0.4c0,0.2,0,0.2-0.2,0.5c-0.2,0.3-0.3,0.4-0.2,0.7c0,0.7,0.5,1.1,1.2,1.1
-                            c0.9,0,1.2-1,1.2-1.4c0-1.2-1.2-1.8-2.6-1.8c-1.5,0.1-2.8,0.9-3.7,2.1c-1.1,1.3-1.8,2.9-2.3,4.5c-0.9-0.8-1.6-1.8-3.1-2.3
-                            c-1.1-0.7-2.3-0.5-3.4,0.3c-0.5,0.4-0.8,1-1,1.6c-0.4,1.5,0.4,2.9,0.8,3.4l0.9,1c0.2,0.2,0.6,0.8,0.4,1.5c-0.3,0.8-1.2,1.3-2.1,1
-                            c-0.4-0.2-1-0.5-0.9-0.9c0.1-0.2,0.2-0.3,0.3-0.5s0.1-0.3,0.1-0.3c0.2-0.6-0.1-1.4-0.7-1.6c-0.6-0.2-1.2,0-1.3,0.8
-                            C4.3,38.4,4.7,40,6.8,40.8z M46.1,20.9c0-4.2-3.2-7.5-7.1-7.5h-3.8C34.8,10.8,32.7,9,30.2,9L-2.3,9.1c-2.8,0.1-4.9,2.4-4.9,5.4
-                            L-7,58.6c0,4.8,8.1,13.9,11.6,14.1l34.7-0.1c3.9,0,7-3.4,7-7.6L46.1,20.9z M-0.3,36.4c0-8.6,6.5-15.6,14.5-15.6
-                            c8,0,14.5,7,14.5,15.6S22.1,52,14.2,52C6.1,52-0.3,45-0.3,36.4z M42.1,65.1c0,1.8-1.5,3.1-3.1,3.1H4.6c-0.7,0-3-1.8-4.5-4.4h30.4
-                            c2.8,0,5-2.4,5-5.4V17.9h3.7c1.6,0,2.9,1.4,2.9,3.1V65.1L42.1,65.1z\"/>
-                    </svg>
-
-                    Read the documentation to learn
-                    <a href=\"http://symfony.com/doc/";
-        // line 39
-        echo twig_escape_filter($this->env, twig_slice($this->env, twig_constant("Symfony\\Component\\HttpKernel\\Kernel::VERSION"), 0, 3), "html", null, true);
-        echo "/page_creation.html\">
-                        How to create your first page in Symfony
-                    </a>
-                </p>
-            </div>
-
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class=\"container\">
+        <div class=\"row\">
+            <div class=\"col-md-6 col-sm-12\">
+                <h1>ExtraSolar</h1>
+                <p>Ici sera le système solaire qui gère de ouf</p>
+            </div>
+        </div>
+        <!-- /.row -->
     </div>
+    <!-- /.container -->
+
+    <!-- Page Content -->
+       <div class=\"container col-lg-6 col-lg-offset-1\">
+
+           <!-- Page Heading -->
+           <div class=\"row\">
+               <div class=\"col-lg-12\">
+                   <h1 class=\"page-header\">Dernières planètes ajoutées / Aléatoire
+                       <small>Coucou</small>
+                   </h1>
+               </div>
+           </div>
+           <!-- /.row -->
+
+           <!-- Projects Row -->
+           <div class=\"row\">
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"";
+        // line 90
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/p-uranus.png"), "html", null, true);
+        echo "\" alt=\"\">
+                   </a>
+               </div>
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"";
+        // line 95
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/p-jupiter.png"), "html", null, true);
+        echo "\" alt=\"\">
+                   </a>
+               </div>
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"";
+        // line 100
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/p-neptune.png"), "html", null, true);
+        echo "\" alt=\"\">
+                   </a>
+               </div>
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"";
+        // line 105
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/p-venus.png"), "html", null, true);
+        echo "\" alt=\"\">
+                   </a>
+               </div>
+           </div>
+           <!-- /.row -->
+
+
+
+           <!-- Projects Row -->
+           <div class=\"row\">
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"";
+        // line 117
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/p-neptune.png"), "html", null, true);
+        echo "\" alt=\"\">
+                   </a>
+               </div>
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"";
+        // line 122
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/p-mars.png"), "html", null, true);
+        echo "\" alt=\"\">
+                   </a>
+               </div>
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"";
+        // line 127
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/p-saturn.png"), "html", null, true);
+        echo "\" alt=\"\">
+                   </a>
+               </div>
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"";
+        // line 132
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img/p-earth.png"), "html", null, true);
+        echo "\" alt=\"\">
+                   </a>
+               </div>
+           </div>
+           <!-- /.row -->
+
+           <hr>
+
+           <!-- Pagination -->
+           <div class=\"row text-center\">
+               <div class=\"col-lg-12\">
+                   <ul class=\"pagination\">
+                       <li>
+                           <a href=\"#\">&laquo;</a>
+                       </li>
+                       <li class=\"active\">
+                           <a href=\"#\">1</a>
+                       </li>
+                       <li>
+                           <a href=\"#\">2</a>
+                       </li>
+                       <li>
+                           <a href=\"#\">3</a>
+                       </li>
+                       <li>
+                           <a href=\"#\">4</a>
+                       </li>
+                       <li>
+                           <a href=\"#\">5</a>
+                       </li>
+                       <li>
+                           <a href=\"#\">&raquo;</a>
+                       </li>
+                   </ul>
+               </div>
+           </div>
+           <!-- /.row -->
+
+
+</body>
+
+</html>
+
 ";
         
-        $__internal_353f500bc0b1eb2412df79cdbbfbcf8ad78dbed3353e2146ef1508184befeb01->leave($__internal_353f500bc0b1eb2412df79cdbbfbcf8ad78dbed3353e2146ef1508184befeb01_prof);
+        $__internal_7cf6fc01f1b72562db23a2ac935a9010f342f54fd97769acf2b1f4e813f3440d->leave($__internal_7cf6fc01f1b72562db23a2ac935a9010f342f54fd97769acf2b1f4e813f3440d_prof);
 
         
-        $__internal_665a013d33573cbae11a2900eddb3dea774bd57b95fed2efa60166c7dce272a7->leave($__internal_665a013d33573cbae11a2900eddb3dea774bd57b95fed2efa60166c7dce272a7_prof);
+        $__internal_70bcb2f1b5b7164ce531cebe469be90ba197826696c42362bf4427797696d6e8->leave($__internal_70bcb2f1b5b7164ce531cebe469be90ba197826696c42362bf4427797696d6e8_prof);
 
     }
 
-    // line 49
+    // line 177
     public function block_stylesheets($context, array $blocks = array())
     {
-        $__internal_cb661bfb1fa3c35e3a04010be380bc12c302c62966afde16a8bf9a87708fb83d = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_cb661bfb1fa3c35e3a04010be380bc12c302c62966afde16a8bf9a87708fb83d->enter($__internal_cb661bfb1fa3c35e3a04010be380bc12c302c62966afde16a8bf9a87708fb83d_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
+        $__internal_51b8409fce376e77a5293510f097e3b15278c76e3c4122a5e9a907e85c2bc03e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_51b8409fce376e77a5293510f097e3b15278c76e3c4122a5e9a907e85c2bc03e->enter($__internal_51b8409fce376e77a5293510f097e3b15278c76e3c4122a5e9a907e85c2bc03e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        $__internal_abecc55f857aabfdbc665b11a14b78415724817815b6725afb22d482358aac81 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_abecc55f857aabfdbc665b11a14b78415724817815b6725afb22d482358aac81->enter($__internal_abecc55f857aabfdbc665b11a14b78415724817815b6725afb22d482358aac81_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
+        $__internal_d7732ef1b8e39628b6de5327698d1836b53576a03bbf2802132bf77b7d20056e = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_d7732ef1b8e39628b6de5327698d1836b53576a03bbf2802132bf77b7d20056e->enter($__internal_d7732ef1b8e39628b6de5327698d1836b53576a03bbf2802132bf77b7d20056e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        // line 50
-        echo "<style>
-    body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
-    h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
-    h1 { font-size: 36px; }
-    h2 { font-size: 21px; margin-bottom: 1em; }
-    p { margin: 0 0 1em 0; }
-    a { color: #0000F0; }
-    a:hover { text-decoration: none; }
-    code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
-    #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
-    #container { padding: 2em; }
-    #welcome, #status { margin-bottom: 2em; }
-    #welcome h1 span { display: block; font-size: 75%; }
-    #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
-    #icon-book { display: none; }
-
-    @media (min-width: 768px) {
-        #wrapper { width: 80%; margin: 2em auto; }
-        #icon-book { display: inline-block; }
-        #status a, #next a { display: block; }
-
-        @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-        @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-        .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
-    }
-</style>
+        // line 178
+        echo "<!-- Bootstrap Core CSS -->
+  <link rel=\"stylesheet\" type=\"text/css\" href=\"";
+        // line 179
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("css/bootstrap.min.css"), "html", null, true);
+        echo "\">
+<!-- Custom CSS -->
+  <link rel=\"stylesheet\" type=\"text/css\" href=\"";
+        // line 181
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("css/the-big-picture.css"), "html", null, true);
+        echo "\">
 ";
         
-        $__internal_abecc55f857aabfdbc665b11a14b78415724817815b6725afb22d482358aac81->leave($__internal_abecc55f857aabfdbc665b11a14b78415724817815b6725afb22d482358aac81_prof);
+        $__internal_d7732ef1b8e39628b6de5327698d1836b53576a03bbf2802132bf77b7d20056e->leave($__internal_d7732ef1b8e39628b6de5327698d1836b53576a03bbf2802132bf77b7d20056e_prof);
 
         
-        $__internal_cb661bfb1fa3c35e3a04010be380bc12c302c62966afde16a8bf9a87708fb83d->leave($__internal_cb661bfb1fa3c35e3a04010be380bc12c302c62966afde16a8bf9a87708fb83d_prof);
+        $__internal_51b8409fce376e77a5293510f097e3b15278c76e3c4122a5e9a907e85c2bc03e->leave($__internal_51b8409fce376e77a5293510f097e3b15278c76e3c4122a5e9a907e85c2bc03e_prof);
+
+    }
+
+    // line 184
+    public function block_javascripts($context, array $blocks = array())
+    {
+        $__internal_20b4b7cf0eb5865d320016bb29d746bbe833f50f14195315c22981e71278ff23 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_20b4b7cf0eb5865d320016bb29d746bbe833f50f14195315c22981e71278ff23->enter($__internal_20b4b7cf0eb5865d320016bb29d746bbe833f50f14195315c22981e71278ff23_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
+
+        $__internal_f9ce63fcaf412fbbc3f90e58d8dad68e00a6b5cf59321aa250c46e804595d7c9 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_f9ce63fcaf412fbbc3f90e58d8dad68e00a6b5cf59321aa250c46e804595d7c9->enter($__internal_f9ce63fcaf412fbbc3f90e58d8dad68e00a6b5cf59321aa250c46e804595d7c9_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
+
+        // line 185
+        echo "<!-- jQuery -->
+<script src=\"";
+        // line 186
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/jquery.js"), "html", null, true);
+        echo "\"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src=\"";
+        // line 188
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/bootstrap.min.js"), "html", null, true);
+        echo "\"></script>
+";
+        
+        $__internal_f9ce63fcaf412fbbc3f90e58d8dad68e00a6b5cf59321aa250c46e804595d7c9->leave($__internal_f9ce63fcaf412fbbc3f90e58d8dad68e00a6b5cf59321aa250c46e804595d7c9_prof);
+
+        
+        $__internal_20b4b7cf0eb5865d320016bb29d746bbe833f50f14195315c22981e71278ff23->leave($__internal_20b4b7cf0eb5865d320016bb29d746bbe833f50f14195315c22981e71278ff23_prof);
 
     }
 
@@ -165,7 +322,7 @@ class __TwigTemplate_95037066e25c238379d2683ef141d26d9c743b9e8fa6f9f69f4798984d6
 
     public function getDebugInfo()
     {
-        return array (  121 => 50,  112 => 49,  93 => 39,  66 => 15,  55 => 7,  50 => 4,  41 => 3,  11 => 1,);
+        return array (  302 => 188,  297 => 186,  294 => 185,  285 => 184,  273 => 181,  268 => 179,  265 => 178,  256 => 177,  202 => 132,  194 => 127,  186 => 122,  178 => 117,  163 => 105,  155 => 100,  147 => 95,  139 => 90,  51 => 4,  42 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -181,78 +338,191 @@ class __TwigTemplate_95037066e25c238379d2683ef141d26d9c743b9e8fa6f9f69f4798984d6
         return new Twig_Source("{% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id=\"wrapper\">
-        <div id=\"container\">
-            <div id=\"welcome\">
-                <h1><span>Welcome to</span> Symfony {{ constant('Symfony\\\\Component\\\\HttpKernel\\\\Kernel::VERSION') }}</h1>
+<!DOCTYPE html>
+<html class=\"full\" lang=\"en\">
+<!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
+
+<head>
+
+    <meta charset=\"utf-8\">
+    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+    <meta name=\"description\" content=\"\">
+    <meta name=\"author\" content=\"\">
+
+    <title>ExtraSolar</title>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"></script>
+        <script src=\"https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js\"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class=\"navbar navbar-inverse \" role=\"navigation\">
+        <div class=\"container\">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class=\"navbar-header\">
+                <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\">
+                    <span class=\"sr-only\">Toggle navigation</span>
+
+                    <span class=\"icon-bar\"></span>
+                    <span class=\"icon-bar\"></span>
+                </button>
+                <a class=\"navbar-brand\" href=\"#\">ExtraSolar</a>
             </div>
-
-            <div id=\"status\">
-                <p>
-                    <svg id=\"icon-status\" width=\"1792\" height=\"1792\" viewBox=\"0 0 1792 1792\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z\" fill=\"#759E1A\"/></svg>
-
-                    Your application is now ready. You can start working on it at:
-                    <code>{{ base_dir }}</code>
-                </p>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
+                <ul class=\"nav navbar-nav\">
+                    <li>
+                        <a href=\"#\">Accueil</a>
+                    </li>
+                    <li>
+                        <a href=\"#\">Catalogue</a>
+                    </li>
+                    <li>
+                        <a href=\"#\">Blog</a>
+                    </li>
+                </ul>
             </div>
-
-            <div id=\"next\">
-                <h2>What's next?</h2>
-                <p>
-                    <svg id=\"icon-book\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" viewBox=\"-12.5 9 64 64\" enable-background=\"new -12.5 9 64 64\" xml:space=\"preserve\">
-                        <path fill=\"#AAA\" d=\"M6.8,40.8c2.4,0.8,4.5-0.7,4.9-2.5c0.2-1.2-0.3-2.1-1.3-3.2l-0.8-0.8c-0.4-0.5-0.6-1.3-0.2-1.9
-                            c0.4-0.5,0.9-0.8,1.8-0.5c1.3,0.4,1.9,1.3,2.9,2.2c-0.4,1.4-0.7,2.9-0.9,4.2l-0.2,1c-0.7,4-1.3,6.2-2.7,7.5
-                            c-0.3,0.3-0.7,0.5-1.3,0.6c-0.3,0-0.4-0.3-0.4-0.3c0-0.3,0.2-0.3,0.3-0.4c0.2-0.1,0.5-0.3,0.4-0.8c0-0.7-0.6-1.3-1.3-1.3
-                            c-0.6,0-1.4,0.6-1.4,1.7s1,1.9,2.4,1.8c0.8,0,2.5-0.3,4.2-2.5c2-2.5,2.5-5.4,2.9-7.4l0.5-2.8c0.3,0,0.5,0.1,0.8,0.1
-                            c2.4,0.1,3.7-1.3,3.7-2.3c0-0.6-0.3-1.2-0.9-1.2c-0.4,0-0.8,0.3-1,0.8c-0.1,0.6,0.8,1.1,0.1,1.5c-0.5,0.3-1.4,0.6-2.7,0.4l0.3-1.3
-                            c0.5-2.6,1-5.7,3.2-5.8c0.2,0,0.8,0,0.8,0.4c0,0.2,0,0.2-0.2,0.5c-0.2,0.3-0.3,0.4-0.2,0.7c0,0.7,0.5,1.1,1.2,1.1
-                            c0.9,0,1.2-1,1.2-1.4c0-1.2-1.2-1.8-2.6-1.8c-1.5,0.1-2.8,0.9-3.7,2.1c-1.1,1.3-1.8,2.9-2.3,4.5c-0.9-0.8-1.6-1.8-3.1-2.3
-                            c-1.1-0.7-2.3-0.5-3.4,0.3c-0.5,0.4-0.8,1-1,1.6c-0.4,1.5,0.4,2.9,0.8,3.4l0.9,1c0.2,0.2,0.6,0.8,0.4,1.5c-0.3,0.8-1.2,1.3-2.1,1
-                            c-0.4-0.2-1-0.5-0.9-0.9c0.1-0.2,0.2-0.3,0.3-0.5s0.1-0.3,0.1-0.3c0.2-0.6-0.1-1.4-0.7-1.6c-0.6-0.2-1.2,0-1.3,0.8
-                            C4.3,38.4,4.7,40,6.8,40.8z M46.1,20.9c0-4.2-3.2-7.5-7.1-7.5h-3.8C34.8,10.8,32.7,9,30.2,9L-2.3,9.1c-2.8,0.1-4.9,2.4-4.9,5.4
-                            L-7,58.6c0,4.8,8.1,13.9,11.6,14.1l34.7-0.1c3.9,0,7-3.4,7-7.6L46.1,20.9z M-0.3,36.4c0-8.6,6.5-15.6,14.5-15.6
-                            c8,0,14.5,7,14.5,15.6S22.1,52,14.2,52C6.1,52-0.3,45-0.3,36.4z M42.1,65.1c0,1.8-1.5,3.1-3.1,3.1H4.6c-0.7,0-3-1.8-4.5-4.4h30.4
-                            c2.8,0,5-2.4,5-5.4V17.9h3.7c1.6,0,2.9,1.4,2.9,3.1V65.1L42.1,65.1z\"/>
-                    </svg>
-
-                    Read the documentation to learn
-                    <a href=\"http://symfony.com/doc/{{ constant('Symfony\\\\Component\\\\HttpKernel\\\\Kernel::VERSION')[:3] }}/page_creation.html\">
-                        How to create your first page in Symfony
-                    </a>
-                </p>
-            </div>
-
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class=\"container\">
+        <div class=\"row\">
+            <div class=\"col-md-6 col-sm-12\">
+                <h1>ExtraSolar</h1>
+                <p>Ici sera le système solaire qui gère de ouf</p>
+            </div>
+        </div>
+        <!-- /.row -->
     </div>
+    <!-- /.container -->
+
+    <!-- Page Content -->
+       <div class=\"container col-lg-6 col-lg-offset-1\">
+
+           <!-- Page Heading -->
+           <div class=\"row\">
+               <div class=\"col-lg-12\">
+                   <h1 class=\"page-header\">Dernières planètes ajoutées / Aléatoire
+                       <small>Coucou</small>
+                   </h1>
+               </div>
+           </div>
+           <!-- /.row -->
+
+           <!-- Projects Row -->
+           <div class=\"row\">
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"{{ asset('img/p-uranus.png') }}\" alt=\"\">
+                   </a>
+               </div>
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"{{ asset('img/p-jupiter.png') }}\" alt=\"\">
+                   </a>
+               </div>
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"{{ asset('img/p-neptune.png') }}\" alt=\"\">
+                   </a>
+               </div>
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"{{ asset('img/p-venus.png') }}\" alt=\"\">
+                   </a>
+               </div>
+           </div>
+           <!-- /.row -->
+
+
+
+           <!-- Projects Row -->
+           <div class=\"row\">
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"{{ asset('img/p-neptune.png') }}\" alt=\"\">
+                   </a>
+               </div>
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"{{ asset('img/p-mars.png') }}\" alt=\"\">
+                   </a>
+               </div>
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"{{ asset('img/p-saturn.png') }}\" alt=\"\">
+                   </a>
+               </div>
+               <div class=\"col-md-3 portfolio-item\">
+                   <a href=\"#\">
+                       <img class=\"img-responsive\" src=\"{{ asset('img/p-earth.png') }}\" alt=\"\">
+                   </a>
+               </div>
+           </div>
+           <!-- /.row -->
+
+           <hr>
+
+           <!-- Pagination -->
+           <div class=\"row text-center\">
+               <div class=\"col-lg-12\">
+                   <ul class=\"pagination\">
+                       <li>
+                           <a href=\"#\">&laquo;</a>
+                       </li>
+                       <li class=\"active\">
+                           <a href=\"#\">1</a>
+                       </li>
+                       <li>
+                           <a href=\"#\">2</a>
+                       </li>
+                       <li>
+                           <a href=\"#\">3</a>
+                       </li>
+                       <li>
+                           <a href=\"#\">4</a>
+                       </li>
+                       <li>
+                           <a href=\"#\">5</a>
+                       </li>
+                       <li>
+                           <a href=\"#\">&raquo;</a>
+                       </li>
+                   </ul>
+               </div>
+           </div>
+           <!-- /.row -->
+
+
+</body>
+
+</html>
+
 {% endblock %}
 
 {% block stylesheets %}
-<style>
-    body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
-    h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
-    h1 { font-size: 36px; }
-    h2 { font-size: 21px; margin-bottom: 1em; }
-    p { margin: 0 0 1em 0; }
-    a { color: #0000F0; }
-    a:hover { text-decoration: none; }
-    code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
-    #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
-    #container { padding: 2em; }
-    #welcome, #status { margin-bottom: 2em; }
-    #welcome h1 span { display: block; font-size: 75%; }
-    #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
-    #icon-book { display: none; }
+<!-- Bootstrap Core CSS -->
+  <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ asset('css/bootstrap.min.css') }}\">
+<!-- Custom CSS -->
+  <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ asset('css/the-big-picture.css') }}\">
+{% endblock %}
 
-    @media (min-width: 768px) {
-        #wrapper { width: 80%; margin: 2em auto; }
-        #icon-book { display: inline-block; }
-        #status a, #next a { display: block; }
-
-        @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-        @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-        .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
-    }
-</style>
+{% block javascripts %}
+<!-- jQuery -->
+<script src=\"{{ asset('js/jquery.js') }}\"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src=\"{{ asset('js/bootstrap.min.js') }}\"></script>
 {% endblock %}
 ", "default/index.html.twig", "/Applications/MAMP/htdocs/Extrasolar/symfony/app/Resources/views/default/index.html.twig");
     }
