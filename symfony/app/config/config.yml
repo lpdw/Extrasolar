@@ -41,7 +41,7 @@ twig:
 
 # Doctrine Configuration
 doctrine:
-    dbal:
+    extrasolar:
         driver:   pdo_mysql
         host:     "%database_host%"
         port:     "%database_port%"
@@ -55,11 +55,47 @@ doctrine:
         #   2. Uncomment database_path in parameters.yml.dist
         #   3. Uncomment next line:
         #     path:     "%database_path%"
+    extrablog:
+        driver:   pdo_mysql
+        host:     "%database_host1%"
+        port:     "%database_port1%"
+        dbname:   "%database_name1%"
+        user:     "%database_user1%"
+        password: "%database_password1%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
 
     orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        # auto_generate_proxy_classes: "%kernel.debug%"
+        # naming_strategy: doctrine.orm.naming_strategy.underscore
+        # auto_mapping: true
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: extrasolar
+                mappings:
+                    YourBundle:
+                      # you must specify the type
+                      type:     "annotation"
+                      # The directory for entity (relative to bundle path)
+                      dir:      "Entity/Extrasolar"
+                      #the prefix
+                      prefix:   "Your\Bundle\Entity\Extrasolar"
+            customer:
+                connection: extrablog
+                mappings:
+                    YourBundle:
+                      # you must specify the type
+                      type:     "annotation"
+                      # The directory for entity (relative to bundle path)
+                      dir:      "Entity/Extrablog"
+                      #the prefix
+                      prefix:   "Your\Bundle\Entity\Extrablog"
 
 # Swiftmailer Configuration
 swiftmailer:
