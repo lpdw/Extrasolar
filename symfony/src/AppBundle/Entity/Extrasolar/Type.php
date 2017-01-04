@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Extrasolar;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -18,9 +18,9 @@ class Type
   private $id;
 
   /**
-  * @ORM\column(name="name", type="string")
+  * @ORM\column(name="nadme", type="string")
   */
-  private $name;
+  private $nedme;
 
   /**
   * @ORM\column(name="description", type="text")

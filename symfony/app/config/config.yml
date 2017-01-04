@@ -41,34 +41,37 @@ twig:
 
 # Doctrine Configuration
 doctrine:
-    extrasolar:
-        driver:   pdo_mysql
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
-        charset:  UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
-    extrablog:
-        driver:   pdo_mysql
-        host:     "%database_host1%"
-        port:     "%database_port1%"
-        dbname:   "%database_name1%"
-        user:     "%database_user1%"
-        password: "%database_password1%"
-        charset:  UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
+    dbal:
+          default_connection:   extrasolar
+          connections:
+              extrasolar:
+                  driver:   pdo_mysql
+                  host:     "%database_host%"
+                  port:     "%database_port%"
+                  dbname:   "%database_name%"
+                  user:     "%database_user%"
+                  password: "%database_password%"
+                  charset:  UTF8
+                  # if using pdo_sqlite as your database driver:
+                  #   1. add the path in parameters.yml
+                  #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+                  #   2. Uncomment database_path in parameters.yml.dist
+                  #   3. Uncomment next line:
+                  #     path:     "%database_path%"
+              extrablog:
+                  driver:   pdo_mysql
+                  host:     "%database_host1%"
+                  port:     "%database_port1%"
+                  dbname:   "%database_name1%"
+                  user:     "%database_user1%"
+                  password: "%database_password1%"
+                  charset:  UTF8
+                  # if using pdo_sqlite as your database driver:
+                  #   1. add the path in parameters.yml
+                  #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+                  #   2. Uncomment database_path in parameters.yml.dist
+                  #   3. Uncomment next line:
+                  #     path:     "%database_path%"
 
     orm:
         # auto_generate_proxy_classes: "%kernel.debug%"
@@ -79,23 +82,23 @@ doctrine:
             default:
                 connection: extrasolar
                 mappings:
-                    YourBundle:
+                    AppBundle:
                       # you must specify the type
                       type:     "annotation"
                       # The directory for entity (relative to bundle path)
                       dir:      "Entity/Extrasolar"
                       #the prefix
-                      prefix:   "Your\Bundle\Entity\Extrasolar"
-            customer:
+                      prefix:   AppBundle\Entity\Extrasolar
+            extrablog:
                 connection: extrablog
                 mappings:
-                    YourBundle:
+                    AppBundle:
                       # you must specify the type
                       type:     "annotation"
                       # The directory for entity (relative to bundle path)
                       dir:      "Entity/Extrablog"
                       #the prefix
-                      prefix:   "Your\Bundle\Entity\Extrablog"
+                      prefix:  AppBundle\Entity\Extrablog
 
 # Swiftmailer Configuration
 swiftmailer:
