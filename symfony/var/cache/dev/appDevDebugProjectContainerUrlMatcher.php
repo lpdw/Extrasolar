@@ -105,6 +105,68 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        if (0 === strpos($pathinfo, '/catalogue')) {
+            // catalogue_index
+            if (rtrim($pathinfo, '/') === '/catalogue') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_catalogue_index;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'catalogue_index');
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\BodieController::indexAction',  '_route' => 'catalogue_index',);
+            }
+            not_catalogue_index:
+
+            // catalogue_new
+            if ($pathinfo === '/catalogue/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_catalogue_new;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\BodieController::newAction',  '_route' => 'catalogue_new',);
+            }
+            not_catalogue_new:
+
+            // catalogue_show
+            if (preg_match('#^/catalogue/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_catalogue_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'catalogue_show')), array (  '_controller' => 'AppBundle\\Controller\\BodieController::showAction',));
+            }
+            not_catalogue_show:
+
+            // catalogue_edit
+            if (preg_match('#^/catalogue/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_catalogue_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'catalogue_edit')), array (  '_controller' => 'AppBundle\\Controller\\BodieController::editAction',));
+            }
+            not_catalogue_edit:
+
+            // catalogue_delete
+            if (preg_match('#^/catalogue/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_catalogue_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'catalogue_delete')), array (  '_controller' => 'AppBundle\\Controller\\BodieController::deleteAction',));
+            }
+            not_catalogue_delete:
+
+        }
+
         // homepage
         if ($pathinfo === '/homepage') {
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);

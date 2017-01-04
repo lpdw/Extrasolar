@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bodies list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Ra</th>
+                <th>Distance</th>
+                <th>Masse</th>
+                <th>Radius</th>
+                <th>Density</th>
+                <th>Age</th>
+                <th>Seff</th>
+                <th>Temperature</th>
+                <th>Molecules</th>
+                <th>Update_at</th>
+                <th>Discovery</th>
+                <th>Detection</th>
+                <th>Decl</th>
+                <th>Metallicity</th>
+                <th>Spectral_type</th>
+                <th>Vari</th>
+                <th>Axis</th>
+                <th>Period</th>
+                <th>Excentricity</th>
+                <th>Inclinaison</th>
+                <th>Omega</th>
+                <th>Tref</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bodie in bodies %}
+            <tr>
+                <td><a href="{{ path('catalogue_show', { 'id': bodie.id }) }}">{{ bodie.id }}</a></td>
+                <td>{{ bodie.name }}</td>
+                <td>{{ bodie.ra }}</td>
+                <td>{{ bodie.distance }}</td>
+                <td>{{ bodie.masse }}</td>
+                <td>{{ bodie.radius }}</td>
+                <td>{{ bodie.density }}</td>
+                <td>{{ bodie.age }}</td>
+                <td>{{ bodie.seff }}</td>
+                <td>{{ bodie.temperature }}</td>
+                <td>{{ bodie.molecules }}</td>
+                <td>{{ bodie.updateat }}</td>
+                <td>{% if bodie.discovery %}{{ bodie.discovery|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ bodie.detection }}</td>
+                <td>{{ bodie.decl }}</td>
+                <td>{{ bodie.metallicity }}</td>
+                <td>{{ bodie.spectraltype }}</td>
+                <td>{{ bodie.vari }}</td>
+                <td>{{ bodie.axis }}</td>
+                <td>{{ bodie.period }}</td>
+                <td>{{ bodie.excentricity }}</td>
+                <td>{{ bodie.inclinaison }}</td>
+                <td>{{ bodie.omega }}</td>
+                <td>{{ bodie.tref }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('catalogue_show', { 'id': bodie.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('catalogue_edit', { 'id': bodie.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('catalogue_new') }}">Create a new bodie</a>
+        </li>
+    </ul>
+{% endblock %}
