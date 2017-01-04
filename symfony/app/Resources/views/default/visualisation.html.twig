@@ -2,22 +2,24 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Visualisation spatiale{% endblock %}</title>
+        <title>{% block title %}Visualisation {% endblock %}</title>
         {% block stylesheets %}
-
-        <script src="{{ asset('css/style.css') }}"></script>
-        <script src="{{ asset('css/prefixfree.min.css') }}"></script>
-       {% endblock %}
+          <link href="{{ asset('/css/styles.css') }}"></script>
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable = no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title dir="ltr">System Solaire</title>
     </head>
     <body>
         {% block body %}
 
-
         <body class="opening hide-UI view-2D zoom-large data-close controls-close">
           <div id="navbar">
             <a id="toggle-data" href="#data"><i class="icon-data"></i>Data</a>
-            <h1>3D Solar System<br><span>by <a href="https://twitter.com/JulianGarnier" target="_blank">@JulianGarnier</a></span></h1>
+            <h1>System Solaire</h1>
             <a id="toggle-controls" href="#controls"><i class="icon-controls"></i>Controls</a>
           </div>
           <div id="data">
@@ -149,20 +151,18 @@
               </div>
             </div>
           </div>
-
+          <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+          <script type="text/javascript">
+          if (typeof jQuery == 'undefined') {
+            document.write(unescape("%3Cscript src='js/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+          }
+          </script>
         </body>
 
       {% endblock %}
         {% block javascripts %}
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-        <script type="text/javascript">
-        if (typeof jQuery == 'undefined') {
-          document.write(unescape("%3Cscript src='js/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
-        }
-        </script>
-        <script src="js/scripts.min.js"></script>
-
+        <script src="{{ asset('js/prefixfree.min.js') }}"></script>
+        <script src="{{ asset('js/scripts.min.js') }}"></script>
       {% endblock %}
     </body>
 </html>
