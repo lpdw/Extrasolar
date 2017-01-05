@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * WpPosts
  *
  * @ORM\Table(name="wp_posts", indexes={@ORM\Index(name="post_name", columns={"post_name"}), @ORM\Index(name="type_status_date", columns={"post_type", "post_status", "post_date", "ID"}), @ORM\Index(name="post_parent", columns={"post_parent"}), @ORM\Index(name="post_author", columns={"post_author"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Extrablog\WpPostsRepository")
  */
 class WpPosts
 {

@@ -37,8 +37,8 @@ class BodieType extends AbstractType
           ->add('inclinaison')
           ->add('omega')
           ->add('tref')
-          //->add('rotation_id')
-          //->add('type_id')
+          ->add('rotation_id')
+          ->add('type_id')
         ;
     }
 
