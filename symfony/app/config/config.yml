@@ -38,6 +38,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+        #- 'form/fields.html.twig'
+        - 'bootstrap_3_layout.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -60,11 +63,11 @@ doctrine:
                   #     path:     "%database_path%"
               extrablog:
                   driver:   pdo_mysql
-                  host:     "%database_host1%"
-                  port:     "%database_port1%"
-                  dbname:   "%database_name1%"
-                  user:     "%database_user1%"
-                  password: "%database_password1%"
+                  host:     "%database_host%"
+                  port:     "%database_port%"
+                  dbname:   extrablog
+                  user:     "%database_user%"
+                  password: "%database_password%"
                   charset:  UTF8
                   # if using pdo_sqlite as your database driver:
                   #   1. add the path in parameters.yml

@@ -32,6 +32,22 @@ class BodieController extends Controller
     }
 
     /**
+     *
+     * @Route("/bodie.json", name="bodiejson")
+     */
+    public function listejson()
+    {
+      $em = $this->getDoctrine()->getManager();
+
+      $bodies = $em->getRepository('AppBundle:Bodie')->findAll();
+
+      $serializer = $this->get('serializer');
+      $reports = $serializer->serialize($bodies, 'json');
+
+      return new \Symfony\Component\HttpFoundation\Response($reports);
+    }
+
+    /**
      * Creates a new bodie entity.
      *
      * @Route("/new", name="catalogue_new")

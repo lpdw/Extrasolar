@@ -121,6 +121,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
             not_catalogue_index:
 
+            // bodiejson
+            if ($pathinfo === '/catalogue/bodie.json') {
+                return array (  '_controller' => 'AppBundle\\Controller\\BodieController::listejson',  '_route' => 'bodiejson',);
+            }
+
             // catalogue_new
             if ($pathinfo === '/catalogue/new') {
                 if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
