@@ -1,2 +1,3 @@
-symfony/var
 .DS_Store
+symfony/.DS_Store
+symfony/var/
