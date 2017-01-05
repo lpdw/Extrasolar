@@ -10,7 +10,7 @@ use AppBundle\Entity\Extrablog\WpPosts;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/homepage", name="homepage")
+     * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     {
