@@ -6,9 +6,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
 * @ORM\Entity(repositoryClass="AppBundle\Repository\Extrasolar\BodiesRepository")
-* @ORM\Table(name="bodie")
+* @ORM\Table(name="body")
 */
-class Bodie
+class Body
 {
   /**
   * @ORM\Column(name="id", type="integer")
@@ -133,7 +133,7 @@ class Bodie
   private $tref;
 
   /**
- * @ORM\ManyToOne(targetEntity="Bodie")
+ * @ORM\ManyToOne(targetEntity="Body")
  * @ORM\JoinColumn(name="rotation_id", referencedColumnName="id")
  */
   private $rotation_id;

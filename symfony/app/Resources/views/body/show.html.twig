@@ -7,99 +7,99 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ bodie.id }}</td>
+                <td>{{ body.id }}</td>
             </tr>
             <tr>
                 <th>Name</th>
-                <td>{{ bodie.name }}</td>
+                <td>{{ body.name }}</td>
             </tr>
             <tr>
                 <th>Ra</th>
-                <td>{{ bodie.ra }}</td>
+                <td>{{ body.ra }}</td>
             </tr>
             <tr>
                 <th>Distance</th>
-                <td>{{ bodie.distance }}</td>
+                <td>{{ body.distance }}</td>
             </tr>
             <tr>
                 <th>Masse</th>
-                <td>{{ bodie.masse }}</td>
+                <td>{{ body.masse }}</td>
             </tr>
             <tr>
                 <th>Radius</th>
-                <td>{{ bodie.radius }}</td>
+                <td>{{ body.radius }}</td>
             </tr>
             <tr>
                 <th>Density</th>
-                <td>{{ bodie.density }}</td>
+                <td>{{ body.density }}</td>
             </tr>
             <tr>
                 <th>Age</th>
-                <td>{{ bodie.age }}</td>
+                <td>{{ body.age }}</td>
             </tr>
             <tr>
                 <th>Seff</th>
-                <td>{{ bodie.seff }}</td>
+                <td>{{ body.seff }}</td>
             </tr>
             <tr>
                 <th>Temperature</th>
-                <td>{{ bodie.temperature }}</td>
+                <td>{{ body.temperature }}</td>
             </tr>
             <tr>
                 <th>Molecules</th>
-                <td>{{ bodie.molecules }}</td>
+                <td>{{ body.molecules }}</td>
             </tr>
             <tr>
                 <th>Update_at</th>
-                <td>{{ bodie.updateat }}</td>
+                <td>{{ body.updateat }}</td>
             </tr>
             <tr>
                 <th>Discovery</th>
-                <td>{% if bodie.discovery %}{{ bodie.discovery|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if body.discovery %}{{ body.discovery|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Detection</th>
-                <td>{{ bodie.detection }}</td>
+                <td>{{ body.detection }}</td>
             </tr>
             <tr>
                 <th>Decl</th>
-                <td>{{ bodie.decl }}</td>
+                <td>{{ body.decl }}</td>
             </tr>
             <tr>
                 <th>Metallicity</th>
-                <td>{{ bodie.metallicity }}</td>
+                <td>{{ body.metallicity }}</td>
             </tr>
             <tr>
                 <th>Spectral_type</th>
-                <td>{{ bodie.spectraltype }}</td>
+                <td>{{ body.spectraltype }}</td>
             </tr>
             <tr>
                 <th>Vari</th>
-                <td>{{ bodie.vari }}</td>
+                <td>{{ body.vari }}</td>
             </tr>
             <tr>
                 <th>Axis</th>
-                <td>{{ bodie.axis }}</td>
+                <td>{{ body.axis }}</td>
             </tr>
             <tr>
                 <th>Period</th>
-                <td>{{ bodie.period }}</td>
+                <td>{{ body.period }}</td>
             </tr>
             <tr>
                 <th>Excentricity</th>
-                <td>{{ bodie.excentricity }}</td>
+                <td>{{ body.excentricity }}</td>
             </tr>
             <tr>
                 <th>Inclinaison</th>
-                <td>{{ bodie.inclinaison }}</td>
+                <td>{{ body.inclinaison }}</td>
             </tr>
             <tr>
                 <th>Omega</th>
-                <td>{{ bodie.omega }}</td>
+                <td>{{ body.omega }}</td>
             </tr>
             <tr>
                 <th>Tref</th>
-                <td>{{ bodie.tref }}</td>
+                <td>{{ body.tref }}</td>
             </tr>
         </tbody>
     </table>
@@ -109,7 +109,7 @@
             <a href="{{ path('catalogue_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('catalogue_edit', { 'id': bodie.id }) }}">Edit</a>
+            <a href="{{ path('catalogue_edit', { 'id': body.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

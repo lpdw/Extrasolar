@@ -1,5 +1,5 @@
 <?php
-// src/AppBundle/Repository/Extrablog/BodiesRepository.php
+// src/AppBundle/Repository/Extrablog/BodyRepository.php
 namespace AppBundle\Repository\Extrasolar;
 
 use Doctrine\ORM\EntityRepository;

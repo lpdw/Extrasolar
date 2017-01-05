@@ -19,7 +19,7 @@ class DefaultController extends Controller
         $posts = $em->getRepository('AppBundle:WpPosts')->findLastPosts();
         dump($posts);
         $em = $this->getDoctrine()->getManager();
-        $bodies = $em->getRepository('AppBundle:Bodie')->findLastBodies();
+        $bodies = $em->getRepository('AppBundle:Body')->findLastBodies();
         dump($bodies);
 
         return $this->render('default/index.html.twig', [

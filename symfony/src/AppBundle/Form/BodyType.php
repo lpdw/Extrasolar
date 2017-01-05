@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BodieType extends AbstractType
+class BodyType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -48,7 +48,7 @@ class BodieType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Extrasolar\Bodie'
+            'data_class' => 'AppBundle\Entity\Extrasolar\Body'
         ));
     }
 
@@ -57,7 +57,7 @@ class BodieType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_bodie';
+        return 'appbundle_body';
     }
 
 
