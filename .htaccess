@@ -1,0 +1,7 @@
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI}  !^/blog/?$
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ symfony/web/$1 [QSA,L]
+</IfModule>
