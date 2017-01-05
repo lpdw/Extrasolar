@@ -25,29 +25,29 @@ class __TwigTemplate_b65f24683505f29aee37a97cc25cb144b99d64acb20776a2b3736d9f3eb
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_d6b50289c7cdb2ccc9cc5a77010e9bc25b8d79c9160f036f49dfd27a0b2c07d4 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_d6b50289c7cdb2ccc9cc5a77010e9bc25b8d79c9160f036f49dfd27a0b2c07d4->enter($__internal_d6b50289c7cdb2ccc9cc5a77010e9bc25b8d79c9160f036f49dfd27a0b2c07d4_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/visualisation.html.twig"));
+        $__internal_53f223f79eaea2dd26734ecb21dc94af57836244961ff23cb61cf51c4f25f0d3 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_53f223f79eaea2dd26734ecb21dc94af57836244961ff23cb61cf51c4f25f0d3->enter($__internal_53f223f79eaea2dd26734ecb21dc94af57836244961ff23cb61cf51c4f25f0d3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/visualisation.html.twig"));
 
-        $__internal_5a1bd584874107cb9c204e6e0c25186d1d9ab064b1c260d567a1f2edd929bebf = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_5a1bd584874107cb9c204e6e0c25186d1d9ab064b1c260d567a1f2edd929bebf->enter($__internal_5a1bd584874107cb9c204e6e0c25186d1d9ab064b1c260d567a1f2edd929bebf_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/visualisation.html.twig"));
+        $__internal_efccc0ba4782610500f795ea7a6c2a048347ab6ee1013a845ca77067bd3e8a33 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_efccc0ba4782610500f795ea7a6c2a048347ab6ee1013a845ca77067bd3e8a33->enter($__internal_efccc0ba4782610500f795ea7a6c2a048347ab6ee1013a845ca77067bd3e8a33_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/visualisation.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_d6b50289c7cdb2ccc9cc5a77010e9bc25b8d79c9160f036f49dfd27a0b2c07d4->leave($__internal_d6b50289c7cdb2ccc9cc5a77010e9bc25b8d79c9160f036f49dfd27a0b2c07d4_prof);
+        $__internal_53f223f79eaea2dd26734ecb21dc94af57836244961ff23cb61cf51c4f25f0d3->leave($__internal_53f223f79eaea2dd26734ecb21dc94af57836244961ff23cb61cf51c4f25f0d3_prof);
 
         
-        $__internal_5a1bd584874107cb9c204e6e0c25186d1d9ab064b1c260d567a1f2edd929bebf->leave($__internal_5a1bd584874107cb9c204e6e0c25186d1d9ab064b1c260d567a1f2edd929bebf_prof);
+        $__internal_efccc0ba4782610500f795ea7a6c2a048347ab6ee1013a845ca77067bd3e8a33->leave($__internal_efccc0ba4782610500f795ea7a6c2a048347ab6ee1013a845ca77067bd3e8a33_prof);
 
     }
 
     // line 2
     public function block_solarsystem($context, array $blocks = array())
     {
-        $__internal_bcc84d6ae07798322c6d23e55b9b67d52ccf3d6455ff4f4f4541fcd77d1ecbdb = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_bcc84d6ae07798322c6d23e55b9b67d52ccf3d6455ff4f4f4541fcd77d1ecbdb->enter($__internal_bcc84d6ae07798322c6d23e55b9b67d52ccf3d6455ff4f4f4541fcd77d1ecbdb_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "solarsystem"));
+        $__internal_a05aedc5102a5570f086d27daed87be274c4d235799d12bbe506486cb5f47638 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_a05aedc5102a5570f086d27daed87be274c4d235799d12bbe506486cb5f47638->enter($__internal_a05aedc5102a5570f086d27daed87be274c4d235799d12bbe506486cb5f47638_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "solarsystem"));
 
-        $__internal_f80fc1c4564ab0382d410168bc72a282d2d9a54d3b391e7329a300af53829935 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_f80fc1c4564ab0382d410168bc72a282d2d9a54d3b391e7329a300af53829935->enter($__internal_f80fc1c4564ab0382d410168bc72a282d2d9a54d3b391e7329a300af53829935_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "solarsystem"));
+        $__internal_5d53a87c24b9a041c8f2d573b6436afca042aedad0576f072549be9f5af90b27 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_5d53a87c24b9a041c8f2d573b6436afca042aedad0576f072549be9f5af90b27->enter($__internal_5d53a87c24b9a041c8f2d573b6436afca042aedad0576f072549be9f5af90b27_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "solarsystem"));
 
         // line 3
         echo "<!DOCTYPE html>
@@ -75,247 +75,99 @@ class __TwigTemplate_b65f24683505f29aee37a97cc25cb144b99d64acb20776a2b3736d9f3eb
         ";
         // line 19
         $this->displayBlock('body', $context, $blocks);
-        // line 165
+        // line 25
         echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 169
+        // line 28
         echo "    </body>
 </html>
 ";
         
-        $__internal_f80fc1c4564ab0382d410168bc72a282d2d9a54d3b391e7329a300af53829935->leave($__internal_f80fc1c4564ab0382d410168bc72a282d2d9a54d3b391e7329a300af53829935_prof);
+        $__internal_5d53a87c24b9a041c8f2d573b6436afca042aedad0576f072549be9f5af90b27->leave($__internal_5d53a87c24b9a041c8f2d573b6436afca042aedad0576f072549be9f5af90b27_prof);
 
         
-        $__internal_bcc84d6ae07798322c6d23e55b9b67d52ccf3d6455ff4f4f4541fcd77d1ecbdb->leave($__internal_bcc84d6ae07798322c6d23e55b9b67d52ccf3d6455ff4f4f4541fcd77d1ecbdb_prof);
+        $__internal_a05aedc5102a5570f086d27daed87be274c4d235799d12bbe506486cb5f47638->leave($__internal_a05aedc5102a5570f086d27daed87be274c4d235799d12bbe506486cb5f47638_prof);
 
     }
 
     // line 7
     public function block_title($context, array $blocks = array())
     {
-        $__internal_24790c2c7356d24ff6b13f0f5b61a8217fda6aa4f7ce17e91dd18f030106d1fa = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_24790c2c7356d24ff6b13f0f5b61a8217fda6aa4f7ce17e91dd18f030106d1fa->enter($__internal_24790c2c7356d24ff6b13f0f5b61a8217fda6aa4f7ce17e91dd18f030106d1fa_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+        $__internal_45a21e72434c5d855b23bfc9af2251e8f2133aab69d85cb10fd355ff24c5274d = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_45a21e72434c5d855b23bfc9af2251e8f2133aab69d85cb10fd355ff24c5274d->enter($__internal_45a21e72434c5d855b23bfc9af2251e8f2133aab69d85cb10fd355ff24c5274d_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
-        $__internal_61a73d2c67e9d3983e55bbbfccb441a18e2cd9bfa72058ee6a153ca34dc5bfaa = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_61a73d2c67e9d3983e55bbbfccb441a18e2cd9bfa72058ee6a153ca34dc5bfaa->enter($__internal_61a73d2c67e9d3983e55bbbfccb441a18e2cd9bfa72058ee6a153ca34dc5bfaa_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+        $__internal_68aac2815fa86446e5830409d2d8c04fae6cd22441461cf773a1aeee32cea4b4 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_68aac2815fa86446e5830409d2d8c04fae6cd22441461cf773a1aeee32cea4b4->enter($__internal_68aac2815fa86446e5830409d2d8c04fae6cd22441461cf773a1aeee32cea4b4_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
         echo "Visualisation ";
         
-        $__internal_61a73d2c67e9d3983e55bbbfccb441a18e2cd9bfa72058ee6a153ca34dc5bfaa->leave($__internal_61a73d2c67e9d3983e55bbbfccb441a18e2cd9bfa72058ee6a153ca34dc5bfaa_prof);
+        $__internal_68aac2815fa86446e5830409d2d8c04fae6cd22441461cf773a1aeee32cea4b4->leave($__internal_68aac2815fa86446e5830409d2d8c04fae6cd22441461cf773a1aeee32cea4b4_prof);
 
         
-        $__internal_24790c2c7356d24ff6b13f0f5b61a8217fda6aa4f7ce17e91dd18f030106d1fa->leave($__internal_24790c2c7356d24ff6b13f0f5b61a8217fda6aa4f7ce17e91dd18f030106d1fa_prof);
+        $__internal_45a21e72434c5d855b23bfc9af2251e8f2133aab69d85cb10fd355ff24c5274d->leave($__internal_45a21e72434c5d855b23bfc9af2251e8f2133aab69d85cb10fd355ff24c5274d_prof);
 
     }
 
     // line 8
     public function block_stylesheets($context, array $blocks = array())
     {
-        $__internal_d88bead38413fdd290e4923c5dfcd3406e941bfa212b2064bed8e8c32e652f33 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_d88bead38413fdd290e4923c5dfcd3406e941bfa212b2064bed8e8c32e652f33->enter($__internal_d88bead38413fdd290e4923c5dfcd3406e941bfa212b2064bed8e8c32e652f33_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
+        $__internal_144c11e7fbc79c549037656a1af704f7521dced3208877e062f57ee6c8fc78da = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_144c11e7fbc79c549037656a1af704f7521dced3208877e062f57ee6c8fc78da->enter($__internal_144c11e7fbc79c549037656a1af704f7521dced3208877e062f57ee6c8fc78da_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        $__internal_c19336e2b478e336aecf232c1984580a206063dbd36a16cf194a976ad37632a8 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_c19336e2b478e336aecf232c1984580a206063dbd36a16cf194a976ad37632a8->enter($__internal_c19336e2b478e336aecf232c1984580a206063dbd36a16cf194a976ad37632a8_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
+        $__internal_fc84318b9a115a219442d1e645b923b0a84b3915ae60d20227a1f8183c836009 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_fc84318b9a115a219442d1e645b923b0a84b3915ae60d20227a1f8183c836009->enter($__internal_fc84318b9a115a219442d1e645b923b0a84b3915ae60d20227a1f8183c836009_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
 
         // line 9
-        echo "          <link rel=\"stylesheet\" type=\"text/css\" href=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("/css/styles.css"), "html", null, true);
-        echo "\">
+        echo "
         ";
         
-        $__internal_c19336e2b478e336aecf232c1984580a206063dbd36a16cf194a976ad37632a8->leave($__internal_c19336e2b478e336aecf232c1984580a206063dbd36a16cf194a976ad37632a8_prof);
+        $__internal_fc84318b9a115a219442d1e645b923b0a84b3915ae60d20227a1f8183c836009->leave($__internal_fc84318b9a115a219442d1e645b923b0a84b3915ae60d20227a1f8183c836009_prof);
 
         
-        $__internal_d88bead38413fdd290e4923c5dfcd3406e941bfa212b2064bed8e8c32e652f33->leave($__internal_d88bead38413fdd290e4923c5dfcd3406e941bfa212b2064bed8e8c32e652f33_prof);
+        $__internal_144c11e7fbc79c549037656a1af704f7521dced3208877e062f57ee6c8fc78da->leave($__internal_144c11e7fbc79c549037656a1af704f7521dced3208877e062f57ee6c8fc78da_prof);
 
     }
 
     // line 19
     public function block_body($context, array $blocks = array())
     {
-        $__internal_d13735da110465fe557fb0f844d0a72a7dc8da485ffa217eefff22a748fd7d0b = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_d13735da110465fe557fb0f844d0a72a7dc8da485ffa217eefff22a748fd7d0b->enter($__internal_d13735da110465fe557fb0f844d0a72a7dc8da485ffa217eefff22a748fd7d0b_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_f091e51653223c8c205fa6910583ae898b19e1977ec50802bf5c704ece9ed235 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_f091e51653223c8c205fa6910583ae898b19e1977ec50802bf5c704ece9ed235->enter($__internal_f091e51653223c8c205fa6910583ae898b19e1977ec50802bf5c704ece9ed235_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        $__internal_147072df0201f0057de5feaf692a393dc126a9ac6e6bce9c666e5fc30699aac0 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_147072df0201f0057de5feaf692a393dc126a9ac6e6bce9c666e5fc30699aac0->enter($__internal_147072df0201f0057de5feaf692a393dc126a9ac6e6bce9c666e5fc30699aac0_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_e0a02558ad69a82c85cbfd837eeafeb438ea1c7d8432174a825c7fc926748b01 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_e0a02558ad69a82c85cbfd837eeafeb438ea1c7d8432174a825c7fc926748b01->enter($__internal_e0a02558ad69a82c85cbfd837eeafeb438ea1c7d8432174a825c7fc926748b01_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 20
         echo "
-        <body class=\"opening hide-UI view-2D zoom-large data-close controls-close\">
-          <div id=\"navbar\">
-            <a id=\"toggle-data\" href=\"#data\"><i class=\"icon-data\"></i>Data</a>
-            <h1>System Solaire</h1>
-            <a id=\"toggle-controls\" href=\"#controls\"><i class=\"icon-controls\"></i>Controls</a>
-          </div>
-          <div id=\"data\">
-            <a class=\"sun\" title=\"sun\" href=\"#sunspeed\">Sun</a>
-            <a class=\"mercury\" title=\"mercury\" href=\"#mercuryspeed\">Mercury</a>
-            <a class=\"venus\" title=\"venus\" href=\"#venusspeed\">Venus</a>
-            <a class=\"earth active\" title=\"earth\" href=\"#earthspeed\">Earth</a>
-            <a class=\"mars\" title=\"mars\" href=\"#marsspeed\">Mars</a>
-            <a class=\"jupiter\" title=\"jupiter\" href=\"#jupiterspeed\">Jupiter</a>
-            <a class=\"saturn\" title=\"saturn\" href=\"#saturnspeed\">Saturn</a>
-            <a class=\"uranus\" title=\"uranus\" href=\"#uranusspeed\">Uranus</a>
-            <a class=\"neptune\" title=\"neptune\" href=\"#neptunespeed\">Neptune</a>
-          </div>
-          <div id=\"controls\">
-            <label class=\"set-view\">
-              <input type=\"checkbox\">
-            </label>
-            <label class=\"set-zoom\">
-              <input type=\"checkbox\">
-            </label>
-            <label>
-              <input type=\"radio\" class=\"set-speed\" name=\"scale\" checked>
-              <span>Speed</span>
-            </label>
-            <label>
-              <input type=\"radio\" class=\"set-size\" name=\"scale\">
-              <span>Size</span>
-            </label>
-            <label>
-              <input type=\"radio\" class=\"set-distance\" name=\"scale\">
-              <span>Distance</span>
-            </label>
-          </div>
-          <div id=\"universe\" class=\"scale-stretched\">
-            <div id=\"galaxy\">
-              <div id=\"solar-system\" class=\"earth\">
-                <div id=\"mercury\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Mercury</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"venus\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Venus</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"earth\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"orbit\">
-                      <div class=\"pos\">
-                        <div class=\"moon\"></div>
-                      </div>
-                    </div>
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Earth</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"mars\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Mars</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"jupiter\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Jupiter</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"saturn\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <div class=\"ring\"></div>
-                      <dl class=\"infos\">
-                        <dt>Saturn</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"uranus\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Uranus</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"sun\">
-                  <dl class=\"infos\">
-                    <dt>Sun</dt>
-                    <dd><span></span></dd>
-                  </dl>
-                </div>
-                <div id=\"neptune\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Neptune</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js\"></script>
-          <script type=\"text/javascript\">
-          if (typeof jQuery == 'undefined') {
-            document.write(unescape(\"%3Cscript src='js/jquery.min.js' type='text/javascript'%3E%3C/script%3E\"));
-          }
-          </script>
+
         </body>
 
       ";
         
-        $__internal_147072df0201f0057de5feaf692a393dc126a9ac6e6bce9c666e5fc30699aac0->leave($__internal_147072df0201f0057de5feaf692a393dc126a9ac6e6bce9c666e5fc30699aac0_prof);
+        $__internal_e0a02558ad69a82c85cbfd837eeafeb438ea1c7d8432174a825c7fc926748b01->leave($__internal_e0a02558ad69a82c85cbfd837eeafeb438ea1c7d8432174a825c7fc926748b01_prof);
 
         
-        $__internal_d13735da110465fe557fb0f844d0a72a7dc8da485ffa217eefff22a748fd7d0b->leave($__internal_d13735da110465fe557fb0f844d0a72a7dc8da485ffa217eefff22a748fd7d0b_prof);
+        $__internal_f091e51653223c8c205fa6910583ae898b19e1977ec50802bf5c704ece9ed235->leave($__internal_f091e51653223c8c205fa6910583ae898b19e1977ec50802bf5c704ece9ed235_prof);
 
     }
 
-    // line 165
+    // line 25
     public function block_javascripts($context, array $blocks = array())
     {
-        $__internal_65c1a4e428471df9fee61aa366155d86fabcf7bf73fc1ca12f1d8d41603b3c1a = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_65c1a4e428471df9fee61aa366155d86fabcf7bf73fc1ca12f1d8d41603b3c1a->enter($__internal_65c1a4e428471df9fee61aa366155d86fabcf7bf73fc1ca12f1d8d41603b3c1a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
+        $__internal_3430154ba067de91516dce9e1e596d0b2132cf0659d3090b03a10278ff68a107 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_3430154ba067de91516dce9e1e596d0b2132cf0659d3090b03a10278ff68a107->enter($__internal_3430154ba067de91516dce9e1e596d0b2132cf0659d3090b03a10278ff68a107_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
-        $__internal_65d503db4bf29be01be9612185aa40ae01eb5213a4fae6cdbde212dca16c5e90 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_65d503db4bf29be01be9612185aa40ae01eb5213a4fae6cdbde212dca16c5e90->enter($__internal_65d503db4bf29be01be9612185aa40ae01eb5213a4fae6cdbde212dca16c5e90_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
+        $__internal_2ef9443755a2ea7f29c04863fdcdfb881fd1843c93152ee453d18121d564b3c3 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_2ef9443755a2ea7f29c04863fdcdfb881fd1843c93152ee453d18121d564b3c3->enter($__internal_2ef9443755a2ea7f29c04863fdcdfb881fd1843c93152ee453d18121d564b3c3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 166
-        echo "        <script src=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/prefixfree.min.js"), "html", null, true);
-        echo "\"></script>
-        <script src=\"";
-        // line 167
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/scripts.min.js"), "html", null, true);
-        echo "\"></script>
+        // line 26
+        echo "
       ";
         
-        $__internal_65d503db4bf29be01be9612185aa40ae01eb5213a4fae6cdbde212dca16c5e90->leave($__internal_65d503db4bf29be01be9612185aa40ae01eb5213a4fae6cdbde212dca16c5e90_prof);
+        $__internal_2ef9443755a2ea7f29c04863fdcdfb881fd1843c93152ee453d18121d564b3c3->leave($__internal_2ef9443755a2ea7f29c04863fdcdfb881fd1843c93152ee453d18121d564b3c3_prof);
 
         
-        $__internal_65c1a4e428471df9fee61aa366155d86fabcf7bf73fc1ca12f1d8d41603b3c1a->leave($__internal_65c1a4e428471df9fee61aa366155d86fabcf7bf73fc1ca12f1d8d41603b3c1a_prof);
+        $__internal_3430154ba067de91516dce9e1e596d0b2132cf0659d3090b03a10278ff68a107->leave($__internal_3430154ba067de91516dce9e1e596d0b2132cf0659d3090b03a10278ff68a107_prof);
 
     }
 
@@ -331,7 +183,7 @@ class __TwigTemplate_b65f24683505f29aee37a97cc25cb144b99d64acb20776a2b3736d9f3eb
 
     public function getDebugInfo()
     {
-        return array (  311 => 167,  306 => 166,  297 => 165,  143 => 20,  134 => 19,  121 => 9,  112 => 8,  94 => 7,  82 => 169,  79 => 165,  77 => 19,  65 => 11,  63 => 8,  59 => 7,  53 => 3,  44 => 2,  11 => 1,);
+        return array (  164 => 26,  155 => 25,  141 => 20,  132 => 19,  121 => 9,  112 => 8,  94 => 7,  82 => 28,  79 => 25,  77 => 19,  65 => 11,  63 => 8,  59 => 7,  53 => 3,  44 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -352,7 +204,7 @@ class __TwigTemplate_b65f24683505f29aee37a97cc25cb144b99d64acb20776a2b3736d9f3eb
         <meta charset=\"UTF-8\" />
         <title>{% block title %}Visualisation {% endblock %}</title>
         {% block stylesheets %}
-          <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ asset('/css/styles.css') }}\">
+
         {% endblock %}
         <link rel=\"icon\" type=\"image/x-icon\" href=\"{{ asset('favicon.ico') }}\" />
         <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge;chrome=1\">
@@ -364,153 +216,12 @@ class __TwigTemplate_b65f24683505f29aee37a97cc25cb144b99d64acb20776a2b3736d9f3eb
     <body>
         {% block body %}
 
-        <body class=\"opening hide-UI view-2D zoom-large data-close controls-close\">
-          <div id=\"navbar\">
-            <a id=\"toggle-data\" href=\"#data\"><i class=\"icon-data\"></i>Data</a>
-            <h1>System Solaire</h1>
-            <a id=\"toggle-controls\" href=\"#controls\"><i class=\"icon-controls\"></i>Controls</a>
-          </div>
-          <div id=\"data\">
-            <a class=\"sun\" title=\"sun\" href=\"#sunspeed\">Sun</a>
-            <a class=\"mercury\" title=\"mercury\" href=\"#mercuryspeed\">Mercury</a>
-            <a class=\"venus\" title=\"venus\" href=\"#venusspeed\">Venus</a>
-            <a class=\"earth active\" title=\"earth\" href=\"#earthspeed\">Earth</a>
-            <a class=\"mars\" title=\"mars\" href=\"#marsspeed\">Mars</a>
-            <a class=\"jupiter\" title=\"jupiter\" href=\"#jupiterspeed\">Jupiter</a>
-            <a class=\"saturn\" title=\"saturn\" href=\"#saturnspeed\">Saturn</a>
-            <a class=\"uranus\" title=\"uranus\" href=\"#uranusspeed\">Uranus</a>
-            <a class=\"neptune\" title=\"neptune\" href=\"#neptunespeed\">Neptune</a>
-          </div>
-          <div id=\"controls\">
-            <label class=\"set-view\">
-              <input type=\"checkbox\">
-            </label>
-            <label class=\"set-zoom\">
-              <input type=\"checkbox\">
-            </label>
-            <label>
-              <input type=\"radio\" class=\"set-speed\" name=\"scale\" checked>
-              <span>Speed</span>
-            </label>
-            <label>
-              <input type=\"radio\" class=\"set-size\" name=\"scale\">
-              <span>Size</span>
-            </label>
-            <label>
-              <input type=\"radio\" class=\"set-distance\" name=\"scale\">
-              <span>Distance</span>
-            </label>
-          </div>
-          <div id=\"universe\" class=\"scale-stretched\">
-            <div id=\"galaxy\">
-              <div id=\"solar-system\" class=\"earth\">
-                <div id=\"mercury\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Mercury</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"venus\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Venus</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"earth\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"orbit\">
-                      <div class=\"pos\">
-                        <div class=\"moon\"></div>
-                      </div>
-                    </div>
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Earth</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"mars\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Mars</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"jupiter\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Jupiter</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"saturn\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <div class=\"ring\"></div>
-                      <dl class=\"infos\">
-                        <dt>Saturn</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"uranus\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Uranus</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-                <div id=\"sun\">
-                  <dl class=\"infos\">
-                    <dt>Sun</dt>
-                    <dd><span></span></dd>
-                  </dl>
-                </div>
-                <div id=\"neptune\" class=\"orbit\">
-                  <div class=\"pos\">
-                    <div class=\"planet\">
-                      <dl class=\"infos\">
-                        <dt>Neptune</dt>
-                        <dd><span></span></dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js\"></script>
-          <script type=\"text/javascript\">
-          if (typeof jQuery == 'undefined') {
-            document.write(unescape(\"%3Cscript src='js/jquery.min.js' type='text/javascript'%3E%3C/script%3E\"));
-          }
-          </script>
+
         </body>
 
       {% endblock %}
         {% block javascripts %}
-        <script src=\"{{ asset('js/prefixfree.min.js') }}\"></script>
-        <script src=\"{{ asset('js/scripts.min.js') }}\"></script>
+
       {% endblock %}
     </body>
 </html>
