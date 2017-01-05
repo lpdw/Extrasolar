@@ -1,14 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="http://issues.wenzhixin.net.cn/bootstrap-table/assets/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="http://issues.wenzhixin.net.cn/bootstrap-table/assets/bootstrap-table/src/bootstrap-table.css">
-<link rel="stylesheet" href="http://issues.wenzhixin.net.cn/bootstrap-table/assets/examples.css">
-<script src="http://issues.wenzhixin.net.cn/bootstrap-table/assets/jquery.min.js"></script>
-<script src="http://issues.wenzhixin.net.cn/bootstrap-table/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="http://issues.wenzhixin.net.cn/bootstrap-table/assets/bootstrap-table/src/bootstrap-table.js"></script>
-<script src="http://issues.wenzhixin.net.cn/bootstrap-table/assets/bootstrap-table/src/extensions/toolbar/bootstrap-table-toolbar.js"></script>
-<script src="http://issues.wenzhixin.net.cn/bootstrap-table/ga.js"></script>
+<link rel="stylesheet" href="{{ asset('css/themesite/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap-table.css') }}">
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-3-2.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-table.js') }}"></script>
+<script src="{{ asset('extensions/toolbar/bootstrap-table-toolbar.js') }}"></script>
 {% endblock %}
 
 {% block body %}
