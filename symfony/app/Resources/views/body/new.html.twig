@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Bodie creation</h1>
-
+<div class="col-lg-4 col-lg-offset-1">
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
@@ -13,4 +13,6 @@
             <a href="{{ path('catalogue_index') }}">Back to the list</a>
         </li>
     </ul>
+</div>
+
 {% endblock %}
