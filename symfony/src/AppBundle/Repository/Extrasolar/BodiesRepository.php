@@ -15,4 +15,12 @@ class BodiesRepository extends EntityRepository
               ->getResult()
               ;
     }
+    public function getParentType($id, $parent_id)
+    {
+      return $this->createQueryBuilder('b')
+            ->where('b.id',$id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

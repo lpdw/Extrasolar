@@ -25,7 +25,6 @@ class BodyController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $bodies = $em->getRepository('AppBundle:Body')->findAll();
-        dump($_COOKIE);
         return $this->render('body/index.html.twig', array(
             'bodies' => $bodies,
         ));
@@ -61,6 +60,15 @@ class BodyController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $datas = $request->request->all()['appbundle_body'];
+            $parent = $em->getRepository('AppBundle:Body')->getParentType($datas['rotation_id']);
+            dump($parent->getBy('type'));
+            if($parent === "point")
+            {
+
+            }
+            // $host = $em->getRepository('AppBundle:Body')->find($body->getRotationId());
+            // dump($host);
             $em->persist($body);
             $em->flush($body);
 
