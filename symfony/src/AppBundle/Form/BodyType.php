@@ -5,6 +5,8 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class BodyType extends AbstractType
 {
@@ -14,8 +16,15 @@ class BodyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('type_id')
-          ->add('rotation_id')
+          //->add('type_id')
+          ->add('type_id', EntityType::class, array(
+              'class' => 'AppBundle:Type',
+              'choice_label' => 'name',
+              'choice_attr' => function ($key, $index) {
+                  return ['data-categorie' => $key->getCategorie() ];
+              }
+          ))
+          ->add('rotation_id', TextType::class)
           ->add('name')
           ->add('ra')
           ->add('distance')
@@ -25,7 +34,6 @@ class BodyType extends AbstractType
           ->add('age')
           ->add('temperature')
           ->add('molecules')
-          ->add('update_at')
           ->add('discovery')
           ->add('detection')
           ->add('decl')
@@ -38,6 +46,7 @@ class BodyType extends AbstractType
           ->add('inclinaison')
           ->add('omega')
           ->add('tref')
+          ->add('seff')
         ;
     }
 

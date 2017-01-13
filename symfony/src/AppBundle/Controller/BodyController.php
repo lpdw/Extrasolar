@@ -6,6 +6,7 @@ use AppBundle\Entity\Extrasolar\Body;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Body controller.
@@ -32,13 +33,19 @@ class BodyController extends Controller
 
     /**
      *
-     * @Route("/body.json", name="bodyjson")
+     * @Route("/body.json/{name}", name="bodyjson")
      */
-    public function listejson()
+    public function listejson(Request $request)
     {
       $em = $this->getDoctrine()->getManager();
 
-      $bodies = $em->getRepository('AppBundle:Body')->findAll();
+      $term = trim(strip_tags($request->get('name')));
+
+      $bodies = $em->getRepository('AppBundle:Body')->createQueryBuilder('c')
+         ->where('c.name LIKE :name')
+         ->setParameter('name', '%'.$term.'%')
+         ->getQuery()
+         ->getResult();
 
       $serializer = $this->get('serializer');
       $reports = $serializer->serialize($bodies, 'json');
@@ -60,13 +67,13 @@ class BodyController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $datas = $request->request->all()['appbundle_body'];
-            $host = $em->getRepository('AppBundle:Body')->getParentType($datas['rotation_id']);
-            dump($parent->getBy('type'));
-            if($parent === "point")
-            {
-
-            }
+            // $datas = $request->request->all()['appbundle_body'];
+            // $host = $em->getRepository('AppBundle:Body')->getParentType($datas['rotation_id']);
+            // dump($parent->getBy('type'));
+            // if($parent === "point")
+            // {
+            //
+            // }
             // $host = $em->getRepository('AppBundle:Body')->find($body->getRotationId());
             // dump($host);
             $em->persist($body);
