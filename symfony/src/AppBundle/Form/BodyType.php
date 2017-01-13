@@ -14,6 +14,8 @@ class BodyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+          ->add('type_id')
+          ->add('rotation_id')
           ->add('name')
           ->add('ra')
           ->add('distance')
@@ -21,7 +23,6 @@ class BodyType extends AbstractType
           ->add('radius')
           ->add('density')
           ->add('age')
-          ->add('seff')
           ->add('temperature')
           ->add('molecules')
           ->add('update_at')
@@ -37,8 +38,6 @@ class BodyType extends AbstractType
           ->add('inclinaison')
           ->add('omega')
           ->add('tref')
-          ->add('rotation_id')
-          ->add('type_id')
         ;
     }
 
