@@ -133,9 +133,16 @@ class Body
   private $tref;
 
   /**
- * @ORM\ManyToOne(targetEntity="Body")
- * @ORM\JoinColumn(name="rotation_id", referencedColumnName="id")
- */
+   * One Body has Many Body.
+   * @ORM\OneToMany(targetEntity="Body", mappedBy="rotation_id")
+   */
+  private $satellites;
+
+  /**
+  * Many Body has many Body
+  * @ORM\ManyToOne(targetEntity="Body", inversedBy="satellites")
+  * @ORM\JoinColumn(name="rotation_id", referencedColumnName="id")
+  */
   private $rotation_id;
 
   /**
@@ -143,7 +150,9 @@ class Body
  * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
  */
   private $type_id;
-
+  public function __construct(){
+    $this->satellites = new \Doctrine\Common\Collections\ArrayCollection();
+  }
     /**
      * Get the value of Id
      *
@@ -772,4 +781,29 @@ class Body
     {
         return $this->name;
     }
+
+    /**
+     * Get the value of One Body has Many Body.
+     *
+     * @return mixed
+     */
+    public function getSatellites()
+    {
+        return $this->satellites;
+    }
+
+    /**
+     * Set the value of One Body has Many Body.
+     *
+     * @param mixed satellites
+     *
+     * @return self
+     */
+    public function setSatellites($satellites)
+    {
+        $this->satellites = $satellites;
+
+        return $this;
+    }
+
 }

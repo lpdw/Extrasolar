@@ -15,11 +15,14 @@ class BodiesRepository extends EntityRepository
               ->getResult()
               ;
     }
-    public function getHost($id_host)
+    public function getHost($host_id)
     {
-      $query = $em->createQuery("SELECT b, t FROM Body b JOIN u.type t WHERE b.id = :id");
-      $query->setParameter('id',$id_host);
-      return $query->getResult();
+      return $this->getEntityManager()
+                  ->createQuery("SELECT b, t FROM AppBundle:Body b JOIN b.type_id t WHERE b.id = :id")
+                  ->setParameter('id',$host_id)
+                  ->getSingleResult()
+                  ;
     }
+
 
 }
