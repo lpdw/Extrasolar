@@ -52,6 +52,31 @@ class BodyController extends Controller
 
       return new \Symfony\Component\HttpFoundation\Response($reports);
     }
+    /**
+     *
+     * @Route("/body.json/seff/{host_id}/{type_id}/{axis}", name="calculSeff")
+     */
+    public function calculSeff(Request $request){
+
+      $em = $this->getDoctrine()->getManager();
+      $type = $em->getRepository('AppBundle:Type')->find($request->get('type_id'));
+      if ($request->get('host_id') || $type->getCategorie() != "Point" || $type->getCategorie() != "Star" ){
+        $host = $em->getRepository('AppBundle:Body')->getHost($request->get('host_id'));
+        $seffDatas = array(0 => $host);
+        if($host->getTypeId()->getCategorie() === "Point")
+        {
+          $seffDatas = [];
+          foreach($host->getSatellites() as $satellite){
+            if ($satellite->getTypeId()->getCategorie() === "Star"){
+              array_push($seffDatas, $satellite);
+            }
+          }
+        }
+        $calculs = $this->get('app.calculs');
+        $seff = $calculs->calculSeff($request->get('axis'), $seffDatas);
+        return new \Symfony\Component\HttpFoundation\Response($seff);
+      }
+    }
 
     /**
      * Creates a new body entity.
@@ -67,24 +92,6 @@ class BodyController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $datas = $request->request->all()['appbundle_body'];
-            $type = $em->getRepository('AppBundle:Type')->find($datas['type_id']);
-            if ($datas['rotation_id'] || $type->getCategorie() != "point" || $type->getCategorie() != "star" ){
-              $host = $em->getRepository('AppBundle:Body')->getHost($datas['rotation_id']);
-              $seffDatas = array(0 => $host);
-              if($host->getTypeId()->getCategorie() === "Point")
-              {
-                $seffDatas = [];
-                foreach($host->getSatellites() as $satellite){
-                  if ($satellite->getTypeId()->getCategorie() === "Star"){
-                    array_push($seffDatas, $satellite);
-                  }
-                }
-              }
-              $calculs = $this->get('app.calculs');
-              $seff = $calculs->calculSeff($datas, $seffDatas);
-              $body->setSeff($seff);
-            }
             // $host = $em->getRepository('AppBundle:Body')->find($body->getRotationId());
             // dump($host);
             $em->persist($body);

@@ -35,4 +35,15 @@ $(function() {
                 },
                 minLength: 1
             });
-} );
+      $('#calculSeff').on('click',function(e){
+        e.defaultPrevented;
+        $.ajax({
+          url: "/catalogue/body.json/seff/"+$('#appbundle_body_rotation_id').val()+"/"+$('#appbundle_body_type_id').val()+"/"+$('#appbundle_body_axis').val(),
+          dataType: "json",
+          type: "POST",
+          success: function (data) {
+            $('#appbundle_body_seff').val(data);
+              }
+        })
+      });
+});

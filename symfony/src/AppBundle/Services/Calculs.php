@@ -19,14 +19,18 @@ class Calculs
   public function __construct()
   {
   }
-  public function calculSeff($body, $hosts)
+  public function calculSeff($axis, $hosts)
   {
       $val = 0;
       foreach($hosts as $host){
         $val .= $this->SIGMA*pow($host->getRA(), 2)*pow($this->Rt,2)*pow($host->getTemperature(),4);
       }
-      return $val/($this->SeffT*$body['axis']*$this->UA);
+      return $val/($this->SeffT*$axis*$this->UA);
       //'seff'=SIGMA*([host's radius1]^2*Rt^2*[host's temp1]^4+[host's radius2]^2*Rt^2*[host's temp2]^4)/(SeffT*'axis'*UA)
+  }
+  public function calculDensity($mass,$radius){
+    return 3*$mass*$this->Mt/(4000*pi()*pow($radius,3)*pow($this->Rt,3)) ;
+    // 'density'=3*'mass'*Mt/(4000*PI*'radius'^3*Rt^3)
   }
 }
 
