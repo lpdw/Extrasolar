@@ -1,5 +1,6 @@
 $(function() {
-  $('[data-toggle="dropdown"]').live('click', function() {
-    $('.btn-group.dropup').addClass( "open" );
+  $('[data-toggle="dropdown"]').live('click', function(e) {
+  $( this ).parent().addClass( "open" );
+    //$('.btn-group.dropup').addClass( "open" );
   });
 });

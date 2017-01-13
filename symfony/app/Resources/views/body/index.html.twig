@@ -13,12 +13,14 @@
 {% block body %}
   <div class="container">
     <h1>Bodies list</h1>
+      <a href="{{ path('catalogue_new') }}">Create a new body</a>
     <table id="table"
            data-toggle="table"
            data-pagination="true"
            data-search="true"
            data-advanced-search="true"
            data-id-table="advancedTable"
+           data-show-columns="true"
            data-expanded="true">
         <thead>
             <tr>
@@ -56,12 +58,5 @@
         {% endfor %}
         </tbody>
     </table>
-  </div>
-  <div class="col-lg-4 col-lg-offset-3">
-    <ul>
-        <li>
-            <a href="{{ path('catalogue_new') }}">Create a new body</a>
-        </li>
-    </ul>
   </div>
 {% endblock %}
