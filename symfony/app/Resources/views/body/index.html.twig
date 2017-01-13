@@ -7,73 +7,43 @@
 <script src="{{ asset('js/bootstrap-3-2.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap-table.js') }}"></script>
 <script src="{{ asset('extensions/toolbar/bootstrap-table-toolbar.js') }}"></script>
+<script src="{{ asset('js/javascript.js') }}"></script>
 {% endblock %}
 
 {% block body %}
   <div class="container">
     <h1>Bodies list</h1>
+      <a href="{{ path('catalogue_new') }}">Create a new body</a>
     <table id="table"
            data-toggle="table"
            data-pagination="true"
            data-search="true"
            data-advanced-search="true"
-           data-id-table="advancedTable">
+           data-id-table="advancedTable"
+           data-show-columns="true"
+           data-expanded="true">
         <thead>
             <tr>
-                <th data-field="id" data-sortable="true">Id</th>
-                <th>Name</th>
-                <th>Ra</th>
-                <th>Distance</th>
-                <th>Masse</th>
-                <th>Radius</th>
-                <th>Density</th>
-                <th>Age</th>
-                <th>Seff</th>
-                <th>Temperature</th>
-                <th>Molecules</th>
-                <th>Update_at</th>
-                <th>Discovery</th>
-                <th>Detection</th>
-                <th>Decl</th>
-                <th>Metallicity</th>
-                <th>Spectral_type</th>
-                <th>Vari</th>
-                <th>Axis</th>
-                <th>Period</th>
-                <th>Excentricity</th>
-                <th>Inclinaison</th>
-                <th>Omega</th>
-                <th>Tref</th>
+                <th data-field="name" data-sortable="true">Nom</th>
+                <th data-field="Spectral_type" data-sortable="true">Type de spectre</th>
+                <th data-field="Masse" data-sortable="true">Masse</th>
+                <th data-field="Radius" data-sortable="true">Rayon</th>
+                <th data-field="Period" data-sortable="true">Période</th>
+                <th data-field="Axis" data-sortable="true">Axe</th>
+                <th data-field="Excentricity" data-sortable="true">Excenticité</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for body in bodies %}
             <tr>
-                <td><a href="{{ path('catalogue_show', { 'id': body.id }) }}">{{ body.id }}</a></td>
-                <td>{{ body.name }}</td>
-                <td>{{ body.ra }}</td>
-                <td>{{ body.distance }}</td>
+                <td><a href="{{ path('catalogue_show', { 'id': body.id }) }}">{{ body.name }}</a></td>
+                <td>{{ body.spectraltype }}</td>
                 <td>{{ body.masse }}</td>
                 <td>{{ body.radius }}</td>
-                <td>{{ body.density }}</td>
-                <td>{{ body.age }}</td>
-                <td>{{ body.seff }}</td>
-                <td>{{ body.temperature }}</td>
-                <td>{{ body.molecules }}</td>
-                <td>{{ body.updateat }}</td>
-                <td>{% if body.discovery %}{{ body.discovery|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ body.detection }}</td>
-                <td>{{ body.decl }}</td>
-                <td>{{ body.metallicity }}</td>
-                <td>{{ body.spectraltype }}</td>
-                <td>{{ body.vari }}</td>
-                <td>{{ body.axis }}</td>
                 <td>{{ body.period }}</td>
+                <td>{{ body.axis }}</td>
                 <td>{{ body.excentricity }}</td>
-                <td>{{ body.inclinaison }}</td>
-                <td>{{ body.omega }}</td>
-                <td>{{ body.tref }}</td>
                 <td>
                     <ul>
                         <li>
@@ -88,12 +58,5 @@
         {% endfor %}
         </tbody>
     </table>
-  </div>
-  <div class="col-lg-4 col-lg-offset-3">
-    <ul>
-        <li>
-            <a href="{{ path('catalogue_new') }}">Create a new body</a>
-        </li>
-    </ul>
   </div>
 {% endblock %}

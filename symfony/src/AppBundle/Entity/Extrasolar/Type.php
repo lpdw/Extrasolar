@@ -23,6 +23,11 @@ class Type
   private $name;
 
   /**
+  * @ORM\column(name="categorie", type="string")
+  */
+  private $categorie;
+
+  /**
   * @ORM\column(name="description", type="text")
   */
   private $description;
@@ -104,5 +109,30 @@ class Type
         return $this->name;
     }
 
+
+
+    /**
+     * Get the value of Categorie
+     *
+     * @return mixed
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * Set the value of Categorie
+     *
+     * @param mixed categorie
+     *
+     * @return self
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
 
 }
