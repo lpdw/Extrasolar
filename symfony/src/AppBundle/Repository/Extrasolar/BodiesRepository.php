@@ -15,12 +15,11 @@ class BodiesRepository extends EntityRepository
               ->getResult()
               ;
     }
-    public function getParentType($id, $parent_id)
+    public function getHost($id_host)
     {
-      return $this->createQueryBuilder('b')
-            ->where('b.id',$id)
-            ->getQuery()
-            ->getResult()
-            ;
+      $query = $em->createQuery("SELECT b, t FROM Body b JOIN u.type t WHERE b.id = :id");
+      $query->setParameter('id',$id_host);
+      return $query->getResult();
     }
+
 }

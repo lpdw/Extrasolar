@@ -61,7 +61,7 @@ class BodyController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $datas = $request->request->all()['appbundle_body'];
-            $parent = $em->getRepository('AppBundle:Body')->getParentType($datas['rotation_id']);
+            $host = $em->getRepository('AppBundle:Body')->getParentType($datas['rotation_id']);
             dump($parent->getBy('type'));
             if($parent === "point")
             {
