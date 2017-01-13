@@ -67,13 +67,24 @@ class BodyController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            // $datas = $request->request->all()['appbundle_body'];
-            // $host = $em->getRepository('AppBundle:Body')->getParentType($datas['rotation_id']);
-            // dump($parent->getBy('type'));
-            // if($parent === "point")
-            // {
-            //
-            // }
+            $datas = $request->request->all()['appbundle_body'];
+            $type = $em->getRepository('AppBundle:Type')->find($datas['type_id']);
+            if ($datas['rotation_id'] || $type->getCategorie() != "point" || $type->getCategorie() != "star" ){
+              $host = $em->getRepository('AppBundle:Body')->getHost($datas['rotation_id']);
+              $seffDatas = array(0 => $host);
+              if($host->getTypeId()->getCategorie() === "Point")
+              {
+                $seffDatas = [];
+                foreach($host->getSatellites() as $satellite){
+                  if ($satellite->getTypeId()->getCategorie() === "Star"){
+                    array_push($seffDatas, $satellite);
+                  }
+                }
+              }
+              $calculs = $this->get('app.calculs');
+              $seff = $calculs->calculSeff($datas, $seffDatas);
+              $body->setSeff($seff);
+            }
             // $host = $em->getRepository('AppBundle:Body')->find($body->getRotationId());
             // dump($host);
             $em->persist($body);
