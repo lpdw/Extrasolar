@@ -1,4 +1,12 @@
-$(function() {
+$(document).ready(function() {
+  //variable declaration
+  var $hostinput = $('#appbundle_body_rotation_id'),
+  $typeinput = $('#appbundle_body_type_id'),
+  $axisinput = $('#appbundle_body_axis'),
+  $seffinput = $('#appbundle_body_seff');
+
+
+
   $('[data-toggle="dropdown"]').live('click', function(e) {
   $( this ).parent().addClass( "open" );
   });
@@ -37,13 +45,22 @@ $(function() {
             });
       $('#calculSeff').on('click',function(e){
         e.defaultPrevented;
-        $.ajax({
-          url: "/catalogue/body.json/seff/"+$('#appbundle_body_rotation_id').val()+"/"+$('#appbundle_body_type_id').val()+"/"+$('#appbundle_body_axis').val(),
-          dataType: "json",
-          type: "POST",
-          success: function (data) {
-            $('#appbundle_body_seff').val(data);
-              }
-        })
+        var host = $hostinput.val();
+        var type = $typeinput.val();
+        var axis = $axisinput.val();
+        if (host == null || host == "" || type == null || type == "" || axis == null || axis == ""){
+          window.alert("Il manque des infos pour calculer le Seff");
+        }
+        else{
+          setSeff(host,type,axis);
+        }
       });
+
+      function setSeff(host,type,axis){
+        $.getJSON( "/catalogue/body.json/seff/"+host+"/"+type+"/"+axis, function (data) {
+          console.log(data);
+          $seffinput.val(data);
+        })
+      }
+
 });
