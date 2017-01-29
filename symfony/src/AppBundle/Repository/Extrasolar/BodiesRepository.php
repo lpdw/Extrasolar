@@ -15,6 +15,14 @@ class BodiesRepository extends EntityRepository
               ->getResult()
               ;
     }
+    public function findAllBodies()
+    {
+        return $this->createQueryBuilder('b')
+              ->join('AppBundle:Type', 't', 'WITH', 't.id = b.type_id')
+              ->getQuery()
+              ->getResult()
+              ;
+    }
     public function getHost($host_id)
     {
       return $this->getEntityManager()

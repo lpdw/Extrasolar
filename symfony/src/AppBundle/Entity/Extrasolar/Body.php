@@ -770,7 +770,7 @@ class Body
      *
      * @return self
      */
-    public function setTypeId($type_id)
+    public function setTypeId(Type $type_id)
     {
         $this->type_id = $type_id;
 

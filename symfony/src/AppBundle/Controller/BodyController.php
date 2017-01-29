@@ -25,7 +25,7 @@ class BodyController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $bodies = $em->getRepository('AppBundle:Body')->findAll();
+        $bodies = $em->getRepository('AppBundle:Body')->findAllBodies();
         return $this->render('body/index.html.twig', array(
             'bodies' => $bodies,
         ));
