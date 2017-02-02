@@ -92,8 +92,48 @@ class BodyController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            // $host = $em->getRepository('AppBundle:Body')->find($body->getRotationId());
-            // dump($host);
+
+            //CALCUL DISTANCE
+            if($form['distance']->getData()){
+                $distance=$form['distance']->getData();
+                if($form['parsecs']->getData()==1){
+                  $distance=$form['distance']->getData()*(9.46E+15/3.09E+16);
+                  $body->setDistance($distance);
+                }
+            }
+
+            //CALCULE RADIUS
+            if($form['radius']->getData() && $form['Rt']->getData()==1){
+                $body->setDistance($form['radius']->getData()*(69911000/6371008));
+            }
+            elseif($form['radius']->getData() && $form['Rt']->getData()==2){
+                $body->setDistance($form['radius']->getData()*(696342000/6371008));
+            }
+
+            //CALCULE MASSE
+            if($form['masse']->getData() && $form['Mt']->getData()==1){
+                $body->setDistance($form['masse']->getData()*(69911000/6371008));
+            }
+            elseif($form['masse']->getData() && $form['Mt']->getData()==2){
+                $body->setDistance($form['masse']->getData()*(696342000/6371008));
+            }
+
+            //CALCUL DISTANCE
+            if($form['axis']->getData() && $form['UA']->getData()==1 && $form['distance']->getData()){
+                $body->setDistance($form['axis']->getData()*$distance);
+            }
+
+            //CALCULE ANNEE
+            if($form['period']->getData() && $form['jours']->getData()==1){
+                $body->setDistance($form['period']->getData()*365.25);
+            }
+            elseif($form['period']->getData() && $form['jours']->getData()==2){
+                $body->setDistance($form['period']->getData()/24);
+            }
+
+            $body_2 = $em->getRepository('AppBundle:Body')->find($form['rotation_id']->getData());
+            $body->setRotationId($body_2);
+
             $em->persist($body);
             $em->flush($body);
 

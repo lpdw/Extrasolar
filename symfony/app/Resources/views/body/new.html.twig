@@ -16,11 +16,11 @@
         <br>Position
         {{ form_row(form.ra) }}
         {{ form_row(form.decl) }}
-        {{ form_row(form.distance) }}
+        {{ form_row(form.distance) }} {{ form_row(form.parsecs) }}
 
         <br>Caractéristiques physiques
-        {{ form_row(form.radius) }}
-        {{ form_row(form.masse) }}
+        {{ form_row(form.radius) }} {{ form_row(form.Rt) }}
+        {{ form_row(form.masse) }} {{ form_row(form.Mt) }}
         {{ form_row(form.density) }}
         {{ form_row(form.molecules) }}
         {{ form_row(form.age) }}
@@ -35,8 +35,8 @@
           <label class="control-label" for="host_name">host name</label>
           <input type="text" id="host_name" name="host_name" class="form-control" readonly>
         </div>
-        {{ form_row(form.axis) }}
-        {{ form_row(form.period) }}
+        {{ form_row(form.axis) }} {{ form_row(form.UA) }}
+        {{ form_row(form.period) }} {{ form_row(form.jours) }}
         {{ form_row(form.excentricity) }}
         {{ form_row(form.inclinaison) }}
         {{ form_row(form.omega) }}
