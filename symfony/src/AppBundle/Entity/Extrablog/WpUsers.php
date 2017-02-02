@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Extrablog;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,8 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="wp_users", indexes={@ORM\Index(name="user_login_key", columns={"user_login"}), @ORM\Index(name="user_nicename", columns={"user_nicename"}), @ORM\Index(name="user_email", columns={"user_email"})})
  * @ORM\Entity
  */
-class WpUsers
+class WpUsers implements UserInterface
 {
+
     /**
      * @var integer
      *
@@ -83,6 +85,32 @@ class WpUsers
      * @ORM\Column(name="display_name", type="string", length=250, nullable=false)
      */
     private $displayName = '';
+
+    public function getUsername()
+    {
+        return $this->userLogin;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getPassword()
+    {
+        return $this->userPass;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_ADMIN');
+    }
+
+    public function eraseCredentials()
+    {
+    }
 
 
 }

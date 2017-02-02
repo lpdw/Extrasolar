@@ -14,5 +14,4 @@ symfony/var/logs/*
 symfony/var/sessions/*
 !symfony/var/sessions/.gitkeep
 !symfony/var/SymfonyRequirements.php
-symfony/vendor/
 symfony/web/bundles/

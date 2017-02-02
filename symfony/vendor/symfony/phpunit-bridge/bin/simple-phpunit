@@ -53,7 +53,10 @@ if (!file_exists("$PHPUNIT_DIR/phpunit-$PHPUNIT_VERSION/phpunit") || md5_file(__
         passthru("$COMPOSER require --no-update phpunit/phpunit-mock-objects \"~3.1.0\"");
     }
     passthru("$COMPOSER require --no-update symfony/phpunit-bridge \">=3.2@dev\"");
-    passthru("$COMPOSER install --no-dev --prefer-dist --no-progress --ansi", $exit);
+    $prevRoot = getenv('COMPOSER_ROOT_VERSION');
+    putenv("COMPOSER_ROOT_VERSION=$PHPUNIT_VERSION");
+    $exit = proc_close(proc_open("$COMPOSER install --no-dev --prefer-dist --no-progress --ansi", array(), $p, getcwd(), null, array('bypass_shell' => true)));
+    putenv('COMPOSER_ROOT_VERSION'.(false !== $prevRoot ? '='.$prevRoot : ''));
     if ($exit) {
         exit($exit);
     }
