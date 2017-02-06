@@ -15,4 +15,12 @@ class WpPostsRepository extends EntityRepository
               ->getResult()
               ;
     }
+    public function getArticle($name)
+    {
+        return $this->getEntityManager()
+                    ->createQuery("SELECT p FROM AppBundle:WpPosts p where p.postContent LIKE '%".$name."%' ORDER BY p.postDate DESC")
+                    ->setMaxResults(5)
+                    ->getResult()
+                    ;
+    }
 }

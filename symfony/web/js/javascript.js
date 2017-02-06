@@ -90,5 +90,8 @@ $(document).ready(function() {
         }
       })
 
+      var host_name = $('#host_name').data('id');
+      $('#appbundle_body_rotation_id').val(host_name);
+
 
 });
