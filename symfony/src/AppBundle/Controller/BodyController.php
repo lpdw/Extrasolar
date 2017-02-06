@@ -131,12 +131,14 @@ class BodyController extends Controller
                 $body->setDistance($form['period']->getData()/24);
             }
 
-            $body_2 = $em->getRepository('AppBundle:Body')->find($form['rotation_id']->getData());
-            $body->setRotationId($body_2);
+            if($form['rotation_id']->getData())
+            {
+                $body_2 = $em->getRepository('AppBundle:Body')->find($form['rotation_id']->getData());
+                $body->setRotationId($body_2);
+            }
 
             $em->persist($body);
             $em->flush($body);
-
             return $this->redirectToRoute('catalogue_show', array('id' => $body->getId()));
         }
 

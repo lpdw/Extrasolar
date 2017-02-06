@@ -31,10 +31,12 @@
 
         <br>Caractéristiques orbitales
         {{ form_row(form.rotation_id) }}
-        <div class="form-group" id="host_name_div">
-          <label class="control-label" for="host_name">host name</label>
-          <input type="text" id="host_name" name="host_name" class="form-control" readonly value='{{ body.RotationId.name }}' data-id="{{ body.RotationId.id }}">
-        </div>
+        {% if body.RotationId %}
+            <div class="form-group" id="host_name_div">
+              <label class="control-label" for="host_name">host name</label>
+              <input type="text" id="host_name" name="host_name" class="form-control" readonly value='{{ body.RotationId.name }}' data-id="{{ body.RotationId.id }}">
+            </div>
+        {% endif %}
         {{ form_row(form.axis) }} {{ form_row(form.UA) }}
         {{ form_row(form.period) }} {{ form_row(form.jours) }}
         {{ form_row(form.excentricity) }}
