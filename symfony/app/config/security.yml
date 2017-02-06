@@ -5,16 +5,34 @@ security:
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            memory:
+                users:
+                    alex:
+                        password: $2y$12$2GAwhwvazdOPlqqe4Sc5vuiaJojR8ve6D7dJO8AmG9cdWXzNNgeB2
+                        roles: 'ROLE_ADMIN'
+        # our_db_provider:
+        #       entity:
+        #           class: AppBundle\Entity\Extrablog\WpUsers
+        #           property: userLogin
+        #           manager_name: extrablog
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        main:
+        default:
             anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        #- { path: ^/type/new, roles: ROLE_ADMIN }
             # activate different ways to authenticate
 
             # http_basic: ~

@@ -5,6 +5,9 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class BodyType extends AbstractType
 {
@@ -14,8 +17,58 @@ class BodyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('type_id')
-          ->add('rotation_id')
+          //->add('type_id')
+          ->add('type_id', EntityType::class, array(
+              'class' => 'AppBundle:Type',
+              'choice_label' => 'name',
+              'choice_attr' => function ($key, $index) {
+                  return ['data-categorie' => $key->getCategorie() ];
+              }
+          ))
+          ->add('parsecs', ChoiceType::class, array(
+                'choices'  => array(
+                'parsecs' => 0,
+                'année lumière' => 1,
+              ),
+              'mapped' => false,
+              'label' => false
+          ))
+          ->add('Rt', ChoiceType::class, array(
+                'choices'  => array(
+                'Rt' => 0,
+                'Rj' => 1,
+                'Rs' => 2
+              ),
+              'mapped' => false,
+              'label' => false
+          ))
+          ->add('Mt', ChoiceType::class, array(
+                'choices'  => array(
+                'Rt' => 0,
+                'Rj' => 1,
+                'Rs' => 2
+              ),
+              'mapped' => false,
+              'label' => false
+          ))
+          ->add('UA', ChoiceType::class, array(
+                'choices'  => array(
+                'UA' => 0,
+                'arcsec' => 1,
+              ),
+              'mapped' => false,
+              'label' => false
+          ))
+          ->add('jours', ChoiceType::class, array(
+                'choices'  => array(
+                'jours' => 0,
+                'années' => 1,
+                'heures' => 2,
+              ),
+              'mapped' => false,
+              'label' => false
+          ))
+          ->add('rotation_id', TextType::class)
           ->add('name')
           ->add('ra')
           ->add('distance')
@@ -25,7 +78,6 @@ class BodyType extends AbstractType
           ->add('age')
           ->add('temperature')
           ->add('molecules')
-          ->add('update_at')
           ->add('discovery')
           ->add('detection')
           ->add('decl')
@@ -38,6 +90,7 @@ class BodyType extends AbstractType
           ->add('inclinaison')
           ->add('omega')
           ->add('tref')
+          ->add('seff')
         ;
     }
 

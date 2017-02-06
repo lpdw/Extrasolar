@@ -6,6 +6,7 @@ use AppBundle\Entity\Extrasolar\Body;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Body controller.
@@ -24,7 +25,7 @@ class BodyController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $bodies = $em->getRepository('AppBundle:Body')->findAll();
+        $bodies = $em->getRepository('AppBundle:Body')->findAllBodies();
         return $this->render('body/index.html.twig', array(
             'bodies' => $bodies,
         ));
@@ -32,18 +33,49 @@ class BodyController extends Controller
 
     /**
      *
-     * @Route("/body.json", name="bodyjson")
+     * @Route("/body.json/{name}", name="bodyjson")
      */
-    public function listejson()
+    public function listejson(Request $request)
     {
       $em = $this->getDoctrine()->getManager();
 
-      $bodies = $em->getRepository('AppBundle:Body')->findAll();
+      $term = trim(strip_tags($request->get('name')));
+
+      $bodies = $em->getRepository('AppBundle:Body')->createQueryBuilder('c')
+         ->where('c.name LIKE :name')
+         ->setParameter('name', '%'.$term.'%')
+         ->getQuery()
+         ->getResult();
 
       $serializer = $this->get('serializer');
       $reports = $serializer->serialize($bodies, 'json');
 
       return new \Symfony\Component\HttpFoundation\Response($reports);
+    }
+    /**
+     *
+     * @Route("/body.json/seff/{host_id}/{type_id}/{axis}", name="calculSeff")
+     */
+    public function calculSeff(Request $request){
+
+      $em = $this->getDoctrine()->getManager();
+      $type = $em->getRepository('AppBundle:Type')->find($request->get('type_id'));
+      if ($request->get('host_id') || $type->getCategorie() != "Point" || $type->getCategorie() != "Star" ){
+        $host = $em->getRepository('AppBundle:Body')->getHost($request->get('host_id'));
+        $seffDatas = array(0 => $host);
+        if($host->getTypeId()->getCategorie() === "Point")
+        {
+          $seffDatas = [];
+          foreach($host->getSatellites() as $satellite){
+            if ($satellite->getTypeId()->getCategorie() === "Star"){
+              array_push($seffDatas, $satellite);
+            }
+          }
+        }
+        $calculs = $this->get('app.calculs');
+        $seff = $calculs->calculSeff($request->get('axis'), $seffDatas);
+        return new \Symfony\Component\HttpFoundation\Response($seff);
+      }
     }
 
     /**
@@ -60,15 +92,48 @@ class BodyController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $datas = $request->request->all()['appbundle_body'];
-            $host = $em->getRepository('AppBundle:Body')->getParentType($datas['rotation_id']);
-            dump($parent->getBy('type'));
-            if($parent === "point")
-            {
 
+            //CALCUL DISTANCE
+            if($form['distance']->getData()){
+                $distance=$form['distance']->getData();
+                if($form['parsecs']->getData()==1){
+                  $distance=$form['distance']->getData()*(9.46E+15/3.09E+16);
+                  $body->setDistance($distance);
+                }
             }
-            // $host = $em->getRepository('AppBundle:Body')->find($body->getRotationId());
-            // dump($host);
+
+            //CALCULE RADIUS
+            if($form['radius']->getData() && $form['Rt']->getData()==1){
+                $body->setDistance($form['radius']->getData()*(69911000/6371008));
+            }
+            elseif($form['radius']->getData() && $form['Rt']->getData()==2){
+                $body->setDistance($form['radius']->getData()*(696342000/6371008));
+            }
+
+            //CALCULE MASSE
+            if($form['masse']->getData() && $form['Mt']->getData()==1){
+                $body->setDistance($form['masse']->getData()*(69911000/6371008));
+            }
+            elseif($form['masse']->getData() && $form['Mt']->getData()==2){
+                $body->setDistance($form['masse']->getData()*(696342000/6371008));
+            }
+
+            //CALCUL DISTANCE
+            if($form['axis']->getData() && $form['UA']->getData()==1 && $form['distance']->getData()){
+                $body->setDistance($form['axis']->getData()*$distance);
+            }
+
+            //CALCULE ANNEE
+            if($form['period']->getData() && $form['jours']->getData()==1){
+                $body->setDistance($form['period']->getData()*365.25);
+            }
+            elseif($form['period']->getData() && $form['jours']->getData()==2){
+                $body->setDistance($form['period']->getData()/24);
+            }
+
+            $body_2 = $em->getRepository('AppBundle:Body')->find($form['rotation_id']->getData());
+            $body->setRotationId($body_2);
+
             $em->persist($body);
             $em->flush($body);
 
