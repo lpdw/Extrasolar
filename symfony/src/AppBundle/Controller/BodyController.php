@@ -11,14 +11,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * Body controller.
  *
- * @Route("catalogue")
+ * @Route("/")
  */
 class BodyController extends Controller
 {
     /**
      * Lists all body entities.
      *
-     * @Route("/", name="catalogue_index")
+     * @Route("/catalogue", name="catalogue_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -33,7 +33,7 @@ class BodyController extends Controller
 
     /**
      *
-     * @Route("/body.json/{name}", name="bodyjson")
+     * @Route("catalogue/body.json/{name}", name="bodyjson")
      */
     public function listejson(Request $request)
     {
@@ -54,7 +54,7 @@ class BodyController extends Controller
     }
     /**
      *
-     * @Route("/body.json/seff/{host_id}/{type_id}/{axis}", name="calculSeff")
+     * @Route("catalogue/body.json/seff/{host_id}/{type_id}/{axis}", name="calculSeff")
      */
     public function calculSeff(Request $request){
 
@@ -81,7 +81,7 @@ class BodyController extends Controller
     /**
      * Creates a new body entity.
      *
-     * @Route("/new", name="catalogue_new")
+     * @Route("admin/catalogue/new", name="catalogue_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -151,7 +151,7 @@ class BodyController extends Controller
     /**
      * Finds and displays a body entity.
      *
-     * @Route("/{id}", name="catalogue_show")
+     * @Route("catalogue/{id}", name="catalogue_show")
      * @Method("GET")
      */
     public function showAction(Body $body)
@@ -170,7 +170,7 @@ class BodyController extends Controller
     /**
      * Displays a form to edit an existing body entity.
      *
-     * @Route("/{id}/edit", name="catalogue_edit")
+     * @Route("admin/catalogue/{id}/edit", name="catalogue_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Body $body)
@@ -239,7 +239,7 @@ class BodyController extends Controller
     /**
      * Deletes a body entity.
      *
-     * @Route("/{id}", name="catalogue_delete")
+     * @Route("admin/catalogue/{id}", name="catalogue_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Body $body)

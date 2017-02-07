@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Type controller.
  *
- * @Route("type")
+ * @Route("admin/type")
  */
 class TypeController extends Controller
 {
