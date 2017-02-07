@@ -1,0 +1,28 @@
+.displayBlock {
+    display: block;
+}
+
+.margin0-auto {
+    margin: 0 auto;
+}
+
+/** MARGIN **/
+
+.mTop5 {
+    margin-top: 5px;
+}
+.mTop10 {
+    margin-top: 10px;
+}
+.mTop15 {
+    margin-top: 15px;
+}
+.mTop20 {
+    margin-top: 20px;
+}
+.mTop25 {
+    margin-top: 25px;
+}
+.mTop30 {
+    margin-top: 30px;
+}
