@@ -29,7 +29,7 @@ class Calculs
       //'seff'=SIGMA*([host's radius1]^2*Rt^2*[host's temp1]^4+[host's radius2]^2*Rt^2*[host's temp2]^4)/(SeffT*'axis'*UA)
   }
   public function calculDensity($mass,$radius){
-    return 3*$mass*$this->Mt/(4000*pi()*pow($radius,3)*pow($this->Rt,3)) ;
+    return 3*$mass*$this->Mt/(4000*pi()*pow($radius,3)*pow($this->Rt,3));
     // 'density'=3*'mass'*Mt/(4000*PI*'radius'^3*Rt^3)
   }
 }

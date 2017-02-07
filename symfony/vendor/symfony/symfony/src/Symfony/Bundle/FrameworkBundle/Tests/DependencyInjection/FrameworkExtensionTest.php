@@ -440,12 +440,15 @@ abstract class FrameworkExtensionTest extends TestCase
         $container = $this->createContainerFromFile('full');
 
         $this->assertEquals($container->getParameter('kernel.cache_dir').'/annotations', $container->getDefinition('annotations.filesystem_cache')->getArgument(0));
-        $this->assertSame('annotations.cached_reader', (string) $container->getAlias('annotation_reader'));
         $this->assertSame('annotations.filesystem_cache', (string) $container->getDefinition('annotations.cached_reader')->getArgument(1));
     }
 
     public function testFileLinkFormat()
     {
+        if (ini_get('xdebug.file_link_format') || get_cfg_var('xdebug.file_link_format')) {
+            $this->markTestSkipped('A custom file_link_format is defined.');
+        }
+
         $container = $this->createContainerFromFile('full');
 
         $this->assertEquals('file%link%format', $container->getParameter('debug.file_link_format'));
