@@ -18,7 +18,7 @@ class BodyController extends Controller
     /**
      * Lists all body entities.
      *
-     * @Route("/catalogue", name="catalogue_index")
+     * @Route("catalogue/", name="catalogue_index")
      * @Method("GET")
      */
     public function indexAction()
