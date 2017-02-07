@@ -6,6 +6,7 @@
         {% block stylesheets %}
         <!-- Bootstrap Core CSS -->
           <link rel="stylesheet" type="text/css" href="{{ asset('/css/themesite/bootstrap.min.css') }}">
+          <link rel="stylesheet" href="{{ asset('../../../../../blog/wp-content/themes/illdy/layout/css/main.css') }}">
           {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% block javascripts %}
@@ -27,7 +28,51 @@
     </head>
     <body>
         {% block body %}
-        
+        <header id="header" class="header-blog" style="background-image: url(http://localhost:8888/blog/wp-content/themes/illdy/layout/images/blog/blog-header.png);background-attachment: fixed;">
+            <div class="top-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-2 col-xs-8">
+
+                            <a href="http://localhost:8888/blog" title="Extrasolar" class="header-logo">Extrasolar</a>
+
+                        </div><!--/.col-sm-2-->
+                        <div class="col-sm-10 col-xs-4">
+                            <nav class="header-navigation">
+                                <ul class="clearfix">
+                                    <li id="menu-item-1157" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://localhost:8888"><span>Portail</span></a></li>
+                                    <li id="menu-item-1156" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://localhost:8888/catalogue"><span>Catalogue</span></a></li>
+                                    <li id="menu-item-1146" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home active"><a href="http://localhost:8888/blog/"><span>Blog</span></a></li>
+                                    <li id="menu-item-1147" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://localhost:8888/blog/communaute/"><span>Communauté</span></a></li>
+                                    <li id="menu-item-1148" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://localhost:8888/blog/contact/"><span>Contact</span></a></li>
+                                </ul><!--/.clearfix-->
+                            </nav><!--/.header-navigation-->
+                            <button class="open-responsive-menu"><i class="fa fa-bars"></i></button>
+                        </div><!--/.col-sm-10-->
+                    </div><!--/.row-->
+                </div><!--/.container-->
+            </div><!--/.top-header-->
+            <nav class="responsive-menu">
+                <ul>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://localhost:8888"><span>Portail</span></a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://localhost:8888"><span>Catalogue</span></a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home active"><a href="http://localhost:8888/blog/"><span>Blog</span></a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://localhost:8888/blog/communaute/"><span>Communauté</span></a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://localhost:8888/blog/contact/"><span>Contact</span></a></li>
+                </ul>
+            </nav><!--/.responsive-menu-->
+            <div class="bottom-header blog">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2>Archives</h2>				</div><!--/.col-sm-12-->
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <p>Blog</p>									</div><!--/.col-sm-8.col-sm-offset-2-->
+                            </div><!--/.row-->
+                        </div><!--/.container-->
+                    </div><!--/.bottom-header.blog-->
+                </header><!--/#header-->
+
         {% endblock %}
 
     </body>
