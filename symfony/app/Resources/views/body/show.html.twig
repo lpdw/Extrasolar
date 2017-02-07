@@ -3,6 +3,16 @@
 {% block body %}
     <h1>Bodie</h1>
 
+    {% if body.RotationId %}
+        {{ body.RotationId.name }}
+    {% endif %}
+
+    {{ body.TypeId.name }}
+
+    {% for article in articles %}
+        {{ article.postTitle }}<br /><br />
+    {% endfor %}
+
     <table>
         <tbody>
             <tr>

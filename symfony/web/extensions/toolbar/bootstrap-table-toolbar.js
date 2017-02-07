@@ -13,6 +13,9 @@
     var sprintf = $.fn.bootstrapTable.utils.sprintf;
 
     var showAvdSearch = function(pColumns, searchTitle, searchText, that) {
+        if(searchTitle=='Advanced search'){
+          searchTitle='Recherche avancée';
+        }
         if (!$("#avdSearchModal" + "_" + that.options.idTable).hasClass("modal")) {
             var vModal = sprintf("<div id=\"avdSearchModal%s\"  class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"mySmallModalLabel\" aria-hidden=\"true\">", "_" + that.options.idTable);
             vModal += "<div class=\"modal-dialog modal-xs\">";
@@ -54,6 +57,9 @@
     };
 
     var createFormAvd = function(pColumns, searchText, that) {
+        if(searchText=='Close'){
+          searchText='Fermer';
+        }
         var htmlForm = [];
         htmlForm.push(sprintf('<form class="form-horizontal" id="%s" action="%s" >', that.options.idForm, that.options.actionForm));
         for (var i in pColumns) {
@@ -108,7 +114,7 @@
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales);
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
-        _initToolbar = BootstrapTable.prototype.initToolbar,        
+        _initToolbar = BootstrapTable.prototype.initToolbar,
         _load = BootstrapTable.prototype.load,
         _initSearch = BootstrapTable.prototype.initSearch;
 

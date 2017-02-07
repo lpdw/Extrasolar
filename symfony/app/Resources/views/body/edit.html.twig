@@ -1,12 +1,52 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+{% endblock %}
+
 {% block body %}
     <h1>Body edit</h1>
 <div class="col-lg-4 col-lg-offset-1">
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
+    {{ form_start(form) }}
+        {{ form_row(form.type_id) }}
+
+        {{ form_row(form.name) }}
+        {{ form_row(form.detection) }}
+        {{ form_row(form.discovery) }}
+
+        <br>Position
+        {{ form_row(form.ra) }}
+        {{ form_row(form.decl) }}
+        {{ form_row(form.distance) }} {{ form_row(form.parsecs) }}
+
+        <br>Caractéristiques physiques
+        {{ form_row(form.radius) }} {{ form_row(form.Rt) }}
+        {{ form_row(form.masse) }} {{ form_row(form.Mt) }}
+        {{ form_row(form.density) }}<div id="calculDensity">Calculer</div>
+        {{ form_row(form.molecules) }}
+        {{ form_row(form.age) }}
+        {{ form_row(form.metallicity) }}
+        {{ form_row(form.temperature) }}
+        {{ form_row(form.spectral_type) }}
+        {{ form_row(form.vari) }}
+
+        <br>Caractéristiques orbitales
+        {{ form_row(form.rotation_id) }}
+        {% if body.RotationId %}
+            <div class="form-group" id="host_name_div">
+              <label class="control-label" for="host_name">host name</label>
+              <input type="text" id="host_name" name="host_name" class="form-control" readonly value='{{ body.RotationId.name }}' data-id="{{ body.RotationId.id }}">
+            </div>
+        {% endif %}
+        {{ form_row(form.axis) }} {{ form_row(form.UA) }}
+        {{ form_row(form.period) }} {{ form_row(form.jours) }}
+        {{ form_row(form.excentricity) }}
+        {{ form_row(form.inclinaison) }}
+        {{ form_row(form.omega) }}
+        {{ form_row(form.tref) }}
+        {{ form_row(form.seff) }}<div id="calculSeff">Calculer</div>
+        {{ form_widget(form) }}
         <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    {{ form_end(form) }}
 </div>
     <ul>
         <li>
@@ -18,4 +58,7 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="{{ asset('js/javascript.js') }}"></script>
 {% endblock %}

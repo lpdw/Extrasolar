@@ -32,5 +32,4 @@ class BodiesRepository extends EntityRepository
                   ;
     }
 
-
 }

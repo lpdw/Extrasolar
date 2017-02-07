@@ -131,12 +131,14 @@ class BodyController extends Controller
                 $body->setDistance($form['period']->getData()/24);
             }
 
-            $body_2 = $em->getRepository('AppBundle:Body')->find($form['rotation_id']->getData());
-            $body->setRotationId($body_2);
+            if($form['rotation_id']->getData())
+            {
+                $body_2 = $em->getRepository('AppBundle:Body')->find($form['rotation_id']->getData());
+                $body->setRotationId($body_2);
+            }
 
             $em->persist($body);
             $em->flush($body);
-
             return $this->redirectToRoute('catalogue_show', array('id' => $body->getId()));
         }
 
@@ -155,10 +157,13 @@ class BodyController extends Controller
     public function showAction(Body $body)
     {
         $deleteForm = $this->createDeleteForm($body);
+        $em = $this->getDoctrine()->getManager('extrablog');
+        $posts = $em->getRepository('AppBundle:WpPosts')->getArticle($body->getName());
 
         return $this->render('body/show.html.twig', array(
             'body' => $body,
             'delete_form' => $deleteForm->createView(),
+            'articles' => $posts
         ));
     }
 
@@ -175,14 +180,58 @@ class BodyController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
 
-            return $this->redirectToRoute('catalogue_edit', array('id' => $body->getId()));
+            //CALCUL DISTANCE
+            if($editForm['distance']->getData()){
+                $distance=$editForm['distance']->getData();
+                if($editForm['parsecs']->getData()==1){
+                  $distance=$editForm['distance']->getData()*(9.46E+15/3.09E+16);
+                  $body->setDistance($distance);
+                }
+            }
+
+            //CALCULE RADIUS
+            if($editForm['radius']->getData() && $editForm['Rt']->getData()==1){
+                $body->setDistance($editForm['radius']->getData()*(69911000/6371008));
+            }
+            elseif($editForm['radius']->getData() && $editForm['Rt']->getData()==2){
+                $body->setDistance($editForm['radius']->getData()*(696342000/6371008));
+            }
+
+            //CALCULE MASSE
+            if($editForm['masse']->getData() && $editForm['Mt']->getData()==1){
+                $body->setDistance($editForm['masse']->getData()*(69911000/6371008));
+            }
+            elseif($editForm['masse']->getData() && $editForm['Mt']->getData()==2){
+                $body->setDistance($editForm['masse']->getData()*(696342000/6371008));
+            }
+
+            //CALCUL DISTANCE
+            if($editForm['axis']->getData() && $editForm['UA']->getData()==1 && $editForm['distance']->getData()){
+                $body->setDistance($editForm['axis']->getData()*$distance);
+            }
+
+            //CALCULE ANNEE
+            if($editForm['period']->getData() && $editForm['jours']->getData()==1){
+                $body->setDistance($editForm['period']->getData()*365.25);
+            }
+            elseif($editForm['period']->getData() && $editForm['jours']->getData()==2){
+                $body->setDistance($editForm['period']->getData()/24);
+            }
+
+            $body_2 = $em->getRepository('AppBundle:Body')->find($editForm['rotation_id']->getData());
+            $body->setRotationId($body_2);
+
+            $em->persist($body);
+            $em->flush($body);
+
+            return $this->redirectToRoute('catalogue_show', array('id' => $body->getId()));
         }
 
         return $this->render('body/edit.html.twig', array(
             'body' => $body,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

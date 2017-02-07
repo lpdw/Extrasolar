@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints\Blank;
 
 class BodyType extends AbstractType
 {
@@ -68,7 +69,8 @@ class BodyType extends AbstractType
               'mapped' => false,
               'label' => false
           ))
-          ->add('rotation_id', TextType::class)
+          ->add('rotation_id', TextType::class,
+          [ 'required' => false ])
           ->add('name')
           ->add('ra')
           ->add('distance')
