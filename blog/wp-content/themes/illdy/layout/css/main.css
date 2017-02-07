@@ -221,7 +221,7 @@ input {
 }
 
 #header .top-header .header-navigation ul li a:hover {
-	color: #ffde00;
+	color: #0e1821;
 	text-decoration: none;
 }
 
@@ -1331,7 +1331,7 @@ input {
 #blog .blog-post .blog-post-button {
 	height: 45px;
 	line-height: 45px;
-	background-color: #402d1f;
+	background-color: #0e1821;
 	padding: 0 30px;
 	display: inline-block;
 	border-radius: 3px;
