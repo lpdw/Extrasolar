@@ -1,6 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h1>Bodie</h1>
+
+    {% if body.RotationId %}
+        {{ body.RotationId.name }}
+    {% endif %}
+
+    {{ body.TypeId.name }}
+
+    {% for article in articles %}
+        {{ article.postTitle }}<br /><br />
+    {% endfor %}
+
 
 <header id="header" class="header-blog" style="background-image: url(http://localhost:8888/blog/wp-content/themes/illdy/layout/images/blog/blog-header.png);background-attachment: fixed;">
     <div class="top-header">
@@ -46,17 +58,26 @@
     </div><!--/.bottom-header.blog-->
 </header><!--/#header-->
 
-    <h1>Bodie</h1>
+<div class="container mTop30">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="{{ asset('img/sun.png') }}" class="img-responsive displayBlock margin0-auto"  alt="" style="width: 90%">
+        </div>
+        <div class="col-md-7">
+            <h2>{{ body.typeId }}</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    Distance : {{ body.distance }}<br />
+                    Age : {{ body.age }}
+                </div>
+                <div class="col-md-6">
+                    Masse : {{ body.masse }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    {% if body.RotationId %}
-        {{ body.RotationId.name }}
-    {% endif %}
-
-    {{ body.TypeId.name }}
-
-    {% for article in articles %}
-        {{ article.postTitle }}<br /><br />
-    {% endfor %}
 
     <table>
         <tbody>
@@ -172,4 +193,22 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+
+    {% if body.RotationId %}
+        {{ body.RotationId.name }} <br />
+    {% endif %}
+
+    {{ body.TypeId.name }} <br />
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    Les articles<br />
+
+    {% for article in articles %}
+        {{ article.postTitle }}<br /><br />
+    {% endfor %}
+
 {% endblock %}
