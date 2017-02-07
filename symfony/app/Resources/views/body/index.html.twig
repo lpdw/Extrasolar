@@ -11,54 +11,57 @@
 {% endblock %}
 
 {% block body %}
-  <div class="container">
+
+{{ parent() }}
+
+<div class="container">
     <h1>Bodies list</h1>
-      <a href="{{ path('catalogue_new') }}">Create a new body</a>
+    <a href="{{ path('catalogue_new') }}">Create a new body</a>
     <table id="table"
-           data-toggle="table"
-           data-pagination="true"
-           data-search="true"
-           data-advanced-search="true"
-           data-id-table="advancedTable"
-           data-show-columns="true"
-           data-expanded="true">
-        <thead>
-            <tr>
-                <th data-field="name" data-sortable="true">Nom</th>
-                <th data-field="categorie" data-sortable="true">categorie</th>
-                <th data-field="Spectral_type" data-sortable="true">Type de spectre</th>
-                <th data-field="Masse" data-sortable="true">Masse</th>
-                <th data-field="Radius" data-sortable="true">Rayon</th>
-                <th data-field="Period" data-sortable="true">Période</th>
-                <th data-field="Axis" data-sortable="true">Axe</th>
-                <th data-field="Excentricity" data-sortable="true">Excenticité</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for body in bodies %}
-            <tr>
-                <td><a href="{{ path('catalogue_show', { 'id': body.id }) }}">{{ body.name }}</a></td>
-                <td>{{ body.TypeId.name }}</td>
-                <td>{{ body.spectraltype }}</td>
-                <td>{{ body.masse }}</td>
-                <td>{{ body.radius }}</td>
-                <td>{{ body.period }}</td>
-                <td>{{ body.axis }}</td>
-                <td>{{ body.excentricity }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('catalogue_show', { 'id': body.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('catalogue_edit', { 'id': body.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-  </div>
+    data-toggle="table"
+    data-pagination="true"
+    data-search="true"
+    data-advanced-search="true"
+    data-id-table="advancedTable"
+    data-show-columns="true"
+    data-expanded="true">
+    <thead>
+        <tr>
+            <th data-field="name" data-sortable="true">Nom</th>
+            <th data-field="categorie" data-sortable="true">categorie</th>
+            <th data-field="Spectral_type" data-sortable="true">Type de spectre</th>
+            <th data-field="Masse" data-sortable="true">Masse</th>
+            <th data-field="Radius" data-sortable="true">Rayon</th>
+            <th data-field="Period" data-sortable="true">Période</th>
+            <th data-field="Axis" data-sortable="true">Axe</th>
+            <th data-field="Excentricity" data-sortable="true">Excenticité</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for body in bodies %}
+    <tr>
+        <td><a href="{{ path('catalogue_show', { 'id': body.id }) }}">{{ body.name }}</a></td>
+        <td>{{ body.TypeId.name }}</td>
+        <td>{{ body.spectraltype }}</td>
+        <td>{{ body.masse }}</td>
+        <td>{{ body.radius }}</td>
+        <td>{{ body.period }}</td>
+        <td>{{ body.axis }}</td>
+        <td>{{ body.excentricity }}</td>
+        <td>
+            <ul>
+                <li>
+                    <a href="{{ path('catalogue_show', { 'id': body.id }) }}">show</a>
+                </li>
+                <li>
+                    <a href="{{ path('catalogue_edit', { 'id': body.id }) }}">edit</a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
 {% endblock %}

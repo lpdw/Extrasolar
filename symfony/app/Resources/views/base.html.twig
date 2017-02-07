@@ -4,13 +4,8 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-        <!-- CSS SYSTEME SOLAIRE -->
-          <link rel="stylesheet" type="text/css" href="{{ asset('/css/solarsystem/styles.css') }}">
         <!-- Bootstrap Core CSS -->
-
           <link rel="stylesheet" type="text/css" href="{{ asset('/css/themesite/bootstrap.min.css') }}">
-        <!-- Custom CSS -->
-          <link rel="stylesheet" type="text/css" href="{{ asset('/css/themesite/the-big-picture.css') }}">
           {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% block javascripts %}
@@ -26,14 +21,13 @@
           document.write(unescape("%3Cscript src='js/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
         }
         </script>
-        <script src="{{ asset('js/prefixfree.min.js') }}"></script>
-        <script src="{{ asset('js/scripts.min.js') }}"></script>
+
 
         {% endblock %}
     </head>
     <body>
         {% block body %}
-
+        
         {% endblock %}
 
     </body>
