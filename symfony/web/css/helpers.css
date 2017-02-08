@@ -1,3 +1,9 @@
+/** BACKGROUND **/
+
+.bgBlack {
+    background-color: #000;
+}
+
 .displayBlock {
     display: block;
 }
@@ -25,4 +31,20 @@
 }
 .mTop30 {
     margin-top: 30px;
+}
+
+.paddingX5 {
+    padding: 0 5px;
+}
+.paddingX10 {
+    padding: 0 10px; 
+}
+.paddingX15 {
+    padding: 0 15px;
+}
+.paddingX20 {
+    padding: 0 20px;
+}
+.paddingX25 {
+    padding: 0 25px;
 }
