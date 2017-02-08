@@ -86,11 +86,13 @@
                     <hr class="hr w80"/>
                     <div class="row">
                         <div class="col-md-4">
-                            {% for item in body.rotationId.satellites %}
-                                {% if item.name != body.name %}
-                                    <a href="{{  path('catalogue_show', { 'id': item.id }) }}">{{ item.name }}</a>
-                                {% endif %}
-                            {% endfor %}
+                            {% if body.rotationId %}
+                                {% for item in body.rotationId.satellites %}
+                                    {% if item.name != body.name %}
+                                        <a href="{{  path('catalogue_show', { 'id': item.id }) }}">{{ item.name }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
