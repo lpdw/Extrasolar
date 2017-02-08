@@ -8,6 +8,10 @@
     width: 80%;
 }
 
+.hr.w100 {
+    width: 100%;
+}
+
 /** COLOR **/
 
 .blackColor {
@@ -30,6 +34,10 @@
 
 .displayBlock {
     display: block;
+}
+
+.displayInlineBlock {
+    display: inline-block;
 }
 
 .margin0-auto {

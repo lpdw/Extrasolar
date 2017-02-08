@@ -83,16 +83,21 @@
             <div class="row mTop30">
                 <div class="col-md-12">
                     <p class="text-center blackColor">Planètes associées</p>
-                    <hr class="hr w80"/>
                     <div class="row">
                         <div class="col-md-4">
                             {% if body.rotationId %}
                                 {% for item in body.rotationId.satellites %}
                                     {% if item.name != body.name %}
-                                        <a href="{{  path('catalogue_show', { 'id': item.id }) }}">{{ item.name }}</a>
+                                        <img class="displayBlock margin0-auto img-responsive" src="{{ asset('/img/p-mars.png') }}" alt="">
+                                        <a class="mTop10 displayBlock text-center" href="{{  path('catalogue_show', { 'id': item.id }) }}">{{ item.name }}</a>
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <hr class="hr w100"/>
                         </div>
                     </div>
                 </div>
