@@ -1,8 +1,32 @@
+/** HR **/
+
+.hr {
+    border-bottom: 1px solid black;
+}
+
+.hr.w80 {
+    width: 80%;
+}
+
+/** COLOR **/
+
+.blackColor {
+    color: #000;
+}
+
 /** BACKGROUND **/
 
 .bgBlack {
     background-color: #000;
 }
+.bgWhite {
+    background-color: #FFF;
+}
+.bgWhite.bgWhiteHover:hover {
+    background-color: #EEE;
+}
+
+/** DIVERS **/
 
 .displayBlock {
     display: block;
@@ -33,11 +57,13 @@
     margin-top: 30px;
 }
 
+/** PADDING **/
+
 .paddingX5 {
     padding: 0 5px;
 }
 .paddingX10 {
-    padding: 0 10px; 
+    padding: 0 10px;
 }
 .paddingX15 {
     padding: 0 15px;
@@ -47,4 +73,20 @@
 }
 .paddingX25 {
     padding: 0 25px;
+}
+
+.paddingY5 {
+    padding: 5px 0px;
+}
+.paddingY10 {
+    padding: 10px 0px;
+}
+.paddingY15 {
+    padding: 15px 0px;
+}
+.paddingY20 {
+    padding: 20px 0px;
+}
+.paddingY25 {
+    padding: 25px 0px;
 }
