@@ -61,7 +61,7 @@
 <div class="container mTop30">
     <div class="row">
         <div class="col-md-5">
-            <img src="{{ asset('img/sun.png') }}" class="img-responsive displayBlock margin0-auto"  alt="" style="width: 90%">
+            <img src="{{ asset('img/sun.png') }}" class="img-responsive displayBlock margin0-auto"  alt="" style="width: 50%">
         </div>
         <div class="col-md-7">
             <h2>{{ body.typeId }}</h2>
@@ -74,10 +74,39 @@
                     Masse : {{ body.masse }}
                 </div>
             </div>
+            <div style="width: 100%; height: 2px; background-color: #000;"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    Planètes associées
+                    <div class="row">
+                        <div class="col-md-4">
+                            {% for item in body.rotationId.satellites %}
+                                {% if item.name != body.name %}
+                                    {{ item.name }}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<<<<<<< HEAD
+<div class="container">
+    <div class="row">
+        {% for article in articles %}
+            <div data-mh="my-group" class="col-md-6 mTop10">
+                <h4>{{ article.postTitle }}</h4>
+                <p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>
+                <a href="{{ article.guid }}" class="buttonLink">Lire l'article</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+=======
+>>>>>>> 35c82be2bb0679934a0ce9557c2986a51837b628
 
     <table>
         <tbody>
@@ -207,8 +236,6 @@
 
     Les articles<br />
 
-    {% for article in articles %}
-        {{ article.postTitle }}<br /><br />
-    {% endfor %}
+
 
 {% endblock %}

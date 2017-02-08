@@ -160,7 +160,6 @@ class BodyController extends Controller
         $deleteForm = $this->createDeleteForm($body);
         $em = $this->getDoctrine()->getManager('extrablog');
         $posts = $em->getRepository('AppBundle:WpPosts')->getArticle($body->getName());
-
         return $this->render('body/show.html.twig', array(
             'body' => $body,
             'delete_form' => $deleteForm->createView(),
