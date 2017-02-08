@@ -45,9 +45,9 @@ class BodyType extends AbstractType
           ))
           ->add('Mt', ChoiceType::class, array(
                 'choices'  => array(
-                'Rt' => 0,
-                'Rj' => 1,
-                'Rs' => 2
+                'Mt' => 0,
+                'Mj' => 1,
+                'Ms' => 2
               ),
               'mapped' => false,
               'label' => false
