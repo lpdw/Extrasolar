@@ -27,7 +27,7 @@ if ( current_user_can( 'edit_theme_options' ) ) {
 				'after_title'   => '</h3></div>',
 			);
 			?>
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<?php
 				if ( is_active_sidebar( 'footer-sidebar-1' ) ):
 					dynamic_sidebar( 'footer-sidebar-1' );
@@ -36,7 +36,7 @@ if ( current_user_can( 'edit_theme_options' ) ) {
 				endif;
 				?>
 			</div><!--/.col-sm-3-->
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<?php
 				if ( is_active_sidebar( 'footer-sidebar-2' ) ):
 					dynamic_sidebar( 'footer-sidebar-2' );
@@ -45,7 +45,7 @@ if ( current_user_can( 'edit_theme_options' ) ) {
 				endif;
 				?>
 			</div><!--/.col-sm-3-->
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<?php
 				if ( is_active_sidebar( 'footer-sidebar-3' ) ):
 					dynamic_sidebar( 'footer-sidebar-3' );
@@ -54,14 +54,10 @@ if ( current_user_can( 'edit_theme_options' ) ) {
 				endif;
 				?>
 			</div><!--/.col-sm-3-->
-			<div class="col-sm-3">
-				<?php if ( $img_footer_logo ): ?>
-					<a href="<?php echo esc_url( home_url() ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="footer-logo"><img src="<?php echo esc_url( $img_footer_logo ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" /></a>
-				<?php endif; ?>
-				<p class="copyright">
-					<span data-customizer="copyright-credit"><?php printf( '%s <a href="%s" title="%s" target="_blank">%s</a>.', __( 'Theme:', 'illdy' ), esc_url( 'http://colorlib.com/wp/themes/illdy' ), __( 'Illdy', 'illdy' ), __( 'Illdy', 'illdy' ) ); ?></span>
-				</p>
-				<span><?php echo illdy_sanitize_html( $footer_copyright ); ?></span>
+			<div class="col-sm-12">
+				<p>
+			    <span>Extrasolar.fr de <a href="http://www.extrasolar.fr/">Alexandre Lomaev</a> est mis à disposition selon les termes de la <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">licence Creative Commons Attribution - Partage dans les Mêmes Conditions 4.0 International. Licence Creative Commons</a><span>
+			  </p>
 			</div><!--/.col-sm-3-->
 		</div><!--/.row-->
 	</div><!--/.container-->

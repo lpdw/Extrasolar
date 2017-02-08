@@ -18,7 +18,7 @@
 <div class="container">
     <h1>Bodies list</h1>
     {% if app.user %}
-      <a href="{{ path('catalogue_new') }}">Créer un nouvelle astre</a>
+      <a href="{{ path('catalogue_new') }}">Créer un nouvel astre</a>
     {% endif %}
     <table id="table"
     data-toggle="table"
@@ -57,9 +57,11 @@
                 <li>
                     <a href="{{ path('catalogue_show', { 'id': body.id }) }}">Détails</a>
                 </li>
-                <li>
-                    <a href="{{ path('catalogue_edit', { 'id': body.id }) }}">Modifier</a>
-                </li>
+                {% if app.user %}
+                  <li>
+                      <a href="{{ path('catalogue_edit', { 'id': body.id }) }}">Modifier</a>
+                  </li>
+                {% endif %}
             </ul>
         </td>
     </tr>
