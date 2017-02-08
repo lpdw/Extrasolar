@@ -1,18 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Bodie</h1>
-
-    {% if body.RotationId %}
-        {{ body.RotationId.name }}
-    {% endif %}
-
-    {{ body.TypeId.name }}
-
-    {% for article in articles %}
-        {{ article.postTitle }}<br /><br />
-    {% endfor %}
-
 
 <header id="header" class="header-blog" style="background-image: url(http://localhost:8888/blog/wp-content/themes/illdy/layout/images/blog/blog-header.png);background-attachment: fixed;">
     <div class="top-header">
@@ -61,130 +49,96 @@
 <div class="container mTop30">
     <div class="row">
         <div class="col-md-5">
-            <img src="{{ asset('img/sun.png') }}" class="img-responsive displayBlock margin0-auto"  alt="" style="width: 90%">
+            <img src="{{ asset('img/sun.png') }}" class="img-responsive displayBlock margin0-auto"  alt="" style="width: 50%">
         </div>
         <div class="col-md-7">
-            <h2>{{ body.typeId }}</h2>
-            <div class="row">
+            <h2 class="blackColor">{{ body.typeId }}, découverte en {% if body.discovery %}{{ body.discovery|date('Y') }}{% endif %}</h2>
+            <div>Partager sur <span id="share"></span></div>
+            <div class="row mTop20">
                 <div class="col-md-6">
-                    Distance : {{ body.distance }}<br />
-                    Age : {{ body.age }}
+                    <p class="text-center blackColor">Caractéristiques physiques</p>
+                    <hr class="hr w80"/>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Rayon :</span> {{ body.radius }} Rt</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Masse :</span> {{ body.masse }} Mt</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Densité :</span> {{ body.density }}</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Age :</span> {{ body.age }}</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Metallicité :</span> {{ body.metallicity }}</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Température :</span> {{ body.temperature }}</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Type spectral :</span> {{ body.spectralType }}</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Variabilité :</span> {{ body.vari }}</span>
                 </div>
                 <div class="col-md-6">
-                    Masse : {{ body.masse }}
+                    <p class="text-center blackColor">Caractéristiques orbitales</p>
+                    <hr class="hr w80"/>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Hôte :</span> {{ body.rotationId }}</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Demi-grand-axe :</span> {{ body.axis }} UA</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Seff :</span> {{ body.seff }}</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Période :</span> {{ body.period }} jour(s)</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Excentricité :</span> {{ body.excentricity }}</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Inclinaison :</span> {{ body.inclinaison }}</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Omega :</span> {{ body.omega }}</span>
+                    <span class="displayBlock bgWhite bgWhiteHover paddingY5"><span class="blackColor">Tref :</span> {{ body.tref }}</span>
+                </div>
+            </div>
+            <div style="width: 100%; height: 1px; background-color: #000;" class="mTop30"></div>
+            <div class="row mTop30">
+                <div class="col-md-12">
+                    <p class="text-center blackColor">Planètes associées</p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            {% if body.rotationId %}
+                                {% for item in body.rotationId.satellites %}
+                                    {% if item.name != body.name %}
+                                        <img class="displayBlock margin0-auto img-responsive" src="{{ asset('/img/p-mars.png') }}" alt="">
+                                        <a class="mTop10 displayBlock text-center" href="{{  path('catalogue_show', { 'id': item.id }) }}">{{ item.name }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <hr class="hr w100"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+{% if articles %}
+<div class="container-fluid pTop15 pBottom30">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="blackColor">Derniers articles liés</h2>
+            </div>
+        </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ body.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ body.name }}</td>
-            </tr>
-            <tr>
-                <th>Ra</th>
-                <td>{{ body.ra }}</td>
-            </tr>
-            <tr>
-                <th>Distance</th>
-                <td>{{ body.distance }}</td>
-            </tr>
-            <tr>
-                <th>Masse</th>
-                <td>{{ body.masse }}</td>
-            </tr>
-            <tr>
-                <th>Radius</th>
-                <td>{{ body.radius }}</td>
-            </tr>
-            <tr>
-                <th>Density</th>
-                <td>{{ body.density }}</td>
-            </tr>
-            <tr>
-                <th>Age</th>
-                <td>{{ body.age }}</td>
-            </tr>
-            <tr>
-                <th>Seff</th>
-                <td>{{ body.seff }}</td>
-            </tr>
-            <tr>
-                <th>Temperature</th>
-                <td>{{ body.temperature }}</td>
-            </tr>
-            <tr>
-                <th>Molecules</th>
-                <td>{{ body.molecules }}</td>
-            </tr>
-            <tr>
-                <th>Update_at</th>
-                <td>{{ body.updateat }}</td>
-            </tr>
-            <tr>
-                <th>Discovery</th>
-                <td>{% if body.discovery %}{{ body.discovery|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Detection</th>
-                <td>{{ body.detection }}</td>
-            </tr>
-            <tr>
-                <th>Decl</th>
-                <td>{{ body.decl }}</td>
-            </tr>
-            <tr>
-                <th>Metallicity</th>
-                <td>{{ body.metallicity }}</td>
-            </tr>
-            <tr>
-                <th>Spectral_type</th>
-                <td>{{ body.spectraltype }}</td>
-            </tr>
-            <tr>
-                <th>Vari</th>
-                <td>{{ body.vari }}</td>
-            </tr>
-            <tr>
-                <th>Axis</th>
-                <td>{{ body.axis }}</td>
-            </tr>
-            <tr>
-                <th>Period</th>
-                <td>{{ body.period }}</td>
-            </tr>
-            <tr>
-                <th>Excentricity</th>
-                <td>{{ body.excentricity }}</td>
-            </tr>
-            <tr>
-                <th>Inclinaison</th>
-                <td>{{ body.inclinaison }}</td>
-            </tr>
-            <tr>
-                <th>Omega</th>
-                <td>{{ body.omega }}</td>
-            </tr>
-            <tr>
-                <th>Tref</th>
-                <td>{{ body.tref }}</td>
-            </tr>
-        </tbody>
-    </table>
+            {% for article in articles %}
+                <div class="row">
+                    <div data-mh="my-group" class="col-md-8 mTop30">
+                        <h4 class="blackColor ft18 text-uppercase"><b>{{ article.postTitle }}</b></h4>
+                        <p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>
+                        {% if article.postContent %}
+                            <p>{{ article.postContent|striptags[:300] }}...</p>
+                        {% endif %}
+                        <a href="{{ article.guid }}" class="buttonLink mTop5">Lire l'article</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+    </div>
+</div>
+{% endif %}
 
     <ul>
         <li>
             <a href="{{ path('catalogue_index') }}">Back to the list</a>
         </li>
         <li>
+            {% if app.user %}
             <a href="{{ path('catalogue_edit', { 'id': body.id }) }}">Edit</a>
         </li>
         <li>
@@ -192,23 +146,16 @@
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
+        {% endif %}
     </ul>
 
-    {% if body.RotationId %}
-        {{ body.RotationId.name }} <br />
-    {% endif %}
+<script type="text/javascript">
+    $("#share").jsSocials({
+        shareIn: "popup",
+        showLabel: false,
+        shares: ["email", "facebook", "twitter"]
+    });
+</script>
 
-    {{ body.TypeId.name }} <br />
-
-    <br />
-    <br />
-    <br />
-    <br />
-
-    Les articles<br />
-
-    {% for article in articles %}
-        {{ article.postTitle }}<br /><br />
-    {% endfor %}
 
 {% endblock %}

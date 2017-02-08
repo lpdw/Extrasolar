@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class TypeType extends AbstractType
 {
@@ -15,7 +16,14 @@ class TypeType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('categorie')
+            ->add('categorie', ChoiceType::class, array(
+                  'choices'  => array(
+                  'Point' => 'Point',
+                  'Solar' => 'Solar' ,
+                  'Planet' => 'Solar' ,
+                  'Moon' => 'Moon' ,
+                )
+            ))
             ->add('description')
                 ;
     }

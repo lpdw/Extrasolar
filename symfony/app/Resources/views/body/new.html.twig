@@ -30,11 +30,11 @@
         {{ form_row(form.vari) }}
 
         <br>Caractéristiques orbitales
-        {{ form_row(form.rotation_id) }}
-        <div class="form-group" id="host_name_div" style="display:none;">
+        <div class="form-group" id="host_name_div" style="display">
           <label class="control-label" for="host_name">host name</label>
-          <input type="text" id="host_name" name="host_name" class="form-control" readonly>
+          <input type="text" id="host_name" name="host_name" class="form-control">
         </div>
+        {{ form_row(form.rotation_id, { 'attr': { 'readonly': 'true' } }) }}
         {{ form_row(form.axis) }} {{ form_row(form.UA) }}
         {{ form_row(form.period) }} {{ form_row(form.jours) }}
         {{ form_row(form.excentricity) }}
