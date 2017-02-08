@@ -53,6 +53,7 @@
         </div>
         <div class="col-md-7">
             <h2 class="blackColor">{{ body.typeId }}, découverte en {% if body.discovery %}{{ body.discovery|date('Y') }}{% endif %}</h2>
+            <div>Partager sur <span id="share"></span></div>
             <div class="row mTop20">
                 <div class="col-md-6">
                     <p class="text-center blackColor">Caractéristiques physiques</p>
@@ -106,124 +107,38 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        {% for article in articles %}
-            <div data-mh="my-group" class="col-md-6 mTop10">
-                <h4>{{ article.postTitle }}</h4>
-                <p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>
-                <a href="{{ article.guid }}" class="buttonLink">Lire l'article</a>
+{% if articles %}
+<div class="container-fluid pTop15 pBottom30">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="blackColor">Derniers articles liés</h2>
             </div>
-        {% endfor %}
+        </div>
+
+            {% for article in articles %}
+                <div class="row">
+                    <div data-mh="my-group" class="col-md-8 mTop30">
+                        <h4 class="blackColor ft18 text-uppercase"><b>{{ article.postTitle }}</b></h4>
+                        <p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>
+                        {% if article.postContent %}
+                            <p>{{ article.postContent|striptags[:300] }}...</p>
+                        {% endif %}
+                        <a href="{{ article.guid }}" class="buttonLink mTop5">Lire l'article</a>
+                    </div>
+                </div>
+            {% endfor %}
+
     </div>
 </div>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ body.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ body.name }}</td>
-            </tr>
-            <tr>
-                <th>Ra</th>
-                <td>{{ body.ra }}</td>
-            </tr>
-            <tr>
-                <th>Distance</th>
-                <td>{{ body.distance }}</td>
-            </tr>
-            <tr>
-                <th>Masse</th>
-                <td>{{ body.masse }}</td>
-            </tr>
-            <tr>
-                <th>Radius</th>
-                <td>{{ body.radius }}</td>
-            </tr>
-            <tr>
-                <th>Density</th>
-                <td>{{ body.density }}</td>
-            </tr>
-            <tr>
-                <th>Age</th>
-                <td>{{ body.age }}</td>
-            </tr>
-            <tr>
-                <th>Seff</th>
-                <td>{{ body.seff }}</td>
-            </tr>
-            <tr>
-                <th>Temperature</th>
-                <td>{{ body.temperature }}</td>
-            </tr>
-            <tr>
-                <th>Molecules</th>
-                <td>{{ body.molecules }}</td>
-            </tr>
-            <tr>
-                <th>Update_at</th>
-                <td>{{ body.updateat }}</td>
-            </tr>
-            <tr>
-                <th>Discovery</th>
-                <td>{% if body.discovery %}{{ body.discovery|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Detection</th>
-                <td>{{ body.detection }}</td>
-            </tr>
-            <tr>
-                <th>Decl</th>
-                <td>{{ body.decl }}</td>
-            </tr>
-            <tr>
-                <th>Metallicity</th>
-                <td>{{ body.metallicity }}</td>
-            </tr>
-            <tr>
-                <th>Spectral_type</th>
-                <td>{{ body.spectraltype }}</td>
-            </tr>
-            <tr>
-                <th>Vari</th>
-                <td>{{ body.vari }}</td>
-            </tr>
-            <tr>
-                <th>Axis</th>
-                <td>{{ body.axis }}</td>
-            </tr>
-            <tr>
-                <th>Period</th>
-                <td>{{ body.period }}</td>
-            </tr>
-            <tr>
-                <th>Excentricity</th>
-                <td>{{ body.excentricity }}</td>
-            </tr>
-            <tr>
-                <th>Inclinaison</th>
-                <td>{{ body.inclinaison }}</td>
-            </tr>
-            <tr>
-                <th>Omega</th>
-                <td>{{ body.omega }}</td>
-            </tr>
-            <tr>
-                <th>Tref</th>
-                <td>{{ body.tref }}</td>
-            </tr>
-        </tbody>
-    </table>
+{% endif %}
 
     <ul>
         <li>
             <a href="{{ path('catalogue_index') }}">Back to the list</a>
         </li>
         <li>
+            {% if app.user %}
             <a href="{{ path('catalogue_edit', { 'id': body.id }) }}">Edit</a>
         </li>
         <li>
@@ -231,21 +146,16 @@
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
+        {% endif %}
     </ul>
 
-    {% if body.RotationId %}
-        {{ body.RotationId.name }} <br />
-    {% endif %}
-
-    {{ body.TypeId.name }} <br />
-
-    <br />
-    <br />
-    <br />
-    <br />
-
-    Les articles<br />
-
+<script type="text/javascript">
+    $("#share").jsSocials({
+        shareIn: "popup",
+        showLabel: false,
+        shares: ["email", "facebook", "twitter"]
+    });
+</script>
 
 
 {% endblock %}

@@ -1,3 +1,27 @@
+/** FONT SIZE **/
+
+.ft10 {
+    font-size: 10px;
+}
+.ft12 {
+    font-size: 12px;
+}
+.ft14 {
+    font-size: 14px;
+}
+.ft16 {
+    font-size: 16px;
+}
+.ft18 {
+    font-size: 18px;
+}
+.ft20 {
+    font-size: 20px;
+}
+.ft22 {
+    font-size: 22px;
+}
+
 /** HR **/
 
 .hr {
@@ -25,6 +49,9 @@
 }
 .bgWhite {
     background-color: #FFF;
+}
+.bgGrey {
+    background-color: #E6EAF2;
 }
 .bgWhite.bgWhiteHover:hover {
     background-color: #EEE;
@@ -65,7 +92,64 @@
     margin-top: 30px;
 }
 
+.mBottom5 {
+    margin-bottom: 5px;
+}
+.mBottom10 {
+    margin-bottom: 10px;
+}
+.mBottom15 {
+    margin-bottom: 15px;
+}
+.mBottom20 {
+    margin-bottom: 20px;
+}
+.mBottom25 {
+    margin-bottom: 25px;
+}
+.mBottom30 {
+    margin-bottom: 30px;
+}
+
 /** PADDING **/
+
+.pTop5 {
+    padding-top: 5px;
+}
+.pTop10 {
+    padding-top: 10px;
+}
+.pTop15 {
+    padding-top: 15px;
+}
+.pTop20 {
+    padding-top: 20px;
+}
+.pTop25 {
+    padding-top: 25px;
+}
+.pTop30 {
+    padding-top: 30px;
+}
+
+.pBottom5 {
+    padding-bottom: 5px;
+}
+.pBottom10 {
+    padding-bottom: 10px;
+}
+.pBottom15 {
+    padding-bottom: 15px;
+}
+.pBottom20 {
+    padding-bottom: 20px;
+}
+.pBottom25 {
+    padding-bottom: 25px;
+}
+.pBottom30 {
+    padding-bottom: 30px;
+}
 
 .paddingX5 {
     padding: 0 5px;

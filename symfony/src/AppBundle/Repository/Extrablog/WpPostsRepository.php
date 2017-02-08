@@ -18,7 +18,7 @@ class WpPostsRepository extends EntityRepository
     public function getArticle($name)
     {
         return $this->getEntityManager()
-                    ->createQuery("SELECT p.postTitle, p.postDate, p.guid, u.userLogin FROM AppBundle:WpPosts p JOIN AppBundle:WpUsers u WITH u.id = p.postAuthor where p.postContent LIKE '%".$name."%' ORDER BY p.postDate DESC")
+                    ->createQuery("SELECT p.postTitle, p.postDate, p.guid, p.postContent, u.userLogin FROM AppBundle:WpPosts p JOIN AppBundle:WpUsers u WITH u.id = p.postAuthor where p.postContent LIKE '%".$name."%' ORDER BY p.postDate DESC")
                     ->setMaxResults(5)
                     ->getResult()
                     ;
