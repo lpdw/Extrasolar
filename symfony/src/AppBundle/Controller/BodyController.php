@@ -156,6 +156,7 @@ class BodyController extends Controller
      */
     public function showAction(Body $body)
     {
+        dump($body->getSatellites());
         $deleteForm = $this->createDeleteForm($body);
         $em = $this->getDoctrine()->getManager('extrablog');
         $posts = $em->getRepository('AppBundle:WpPosts')->getArticle($body->getName());

@@ -464,37 +464,37 @@
 
     BootstrapTable.LOCALES['en-US'] = BootstrapTable.LOCALES.en = {
         formatLoadingMessage: function () {
-            return 'Loading, please wait...';
+            return 'Chargement en cours, patientez, s´il vous plaît ...';
         },
         formatRecordsPerPage: function (pageNumber) {
-            return sprintf('%s rows per page', pageNumber);
+            return sprintf('%s lignes par page', pageNumber);
         },
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
-            return sprintf('Showing %s to %s of %s rows', pageFrom, pageTo, totalRows);
+            return sprintf('Affichage des lignes %s à %s sur %s lignes au total', pageFrom, pageTo, totalRows);
         },
         formatDetailPagination: function (totalRows) {
             return sprintf('Showing %s rows', totalRows);
         },
         formatSearch: function () {
-            return 'Search';
+            return 'Rechercher';
         },
         formatNoMatches: function () {
-            return 'No matching records found';
+            return 'Aucun résultat trouvé';
         },
         formatPaginationSwitch: function () {
             return 'Hide/Show pagination';
         },
         formatRefresh: function () {
-            return 'Refresh';
+            return 'Rafraîchir';
         },
         formatToggle: function () {
-            return 'Toggle';
+            return 'Alterner';
         },
         formatColumns: function () {
-            return 'Columns';
+            return 'Colonnes';
         },
         formatAllRows: function () {
-            return 'All';
+            return 'Tous';
         }
     };
 

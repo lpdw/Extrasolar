@@ -142,7 +142,6 @@ class Body
   * Many Body has many Body
   * @ORM\ManyToOne(targetEntity="Body", inversedBy="satellites")
   * @ORM\JoinColumn(name="rotation_id", referencedColumnName="id", nullable=true)
-  * @Assert\Blank()
   */
   private $rotation_id;
 
@@ -784,7 +783,7 @@ class Body
     }
 
     /**
-     * Get the value of One Body has Many Body.
+     * Get the value of satellites.
      *
      * @return mixed
      */
@@ -794,7 +793,7 @@ class Body
     }
 
     /**
-     * Set the value of One Body has Many Body.
+     * Set the value of Osatellites.
      *
      * @param mixed satellites
      *

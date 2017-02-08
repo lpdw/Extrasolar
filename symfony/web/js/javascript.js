@@ -14,10 +14,15 @@ $(document).ready(function() {
   //variable declaration
   var $hostinput = $('#appbundle_body_rotation_id'),
   $typeinput = $('#appbundle_body_type_id'),
+  $distanceinput = $('#appbundle_body_distance'),
+  $distanceUnit = $('#appbundle_body_parsecs'),
   $axisinput = $('#appbundle_body_axis'),
+  $axisUnit = $('#appbundle_body_UA'),
   $seffinput = $('#appbundle_body_seff'),
   $radiusinput = $('#appbundle_body_radius'),
+  $radiusUnit = $('#appbundle_body_Rt'),
   $massinput = $('#appbundle_body_masse'),
+  $massUnit = $('#appbundle_body_Mt'),
   $densityinput = $('#appbundle_body_density'),
   $seffbutton = $('#calculSeff'),
   $densitybutton = $('#calculDensity');
@@ -58,40 +63,66 @@ $(document).ready(function() {
                 },
                 minLength: 1
             });
-      $seffbutton.on('click',function(e){
-        e.defaultPrevented;
-        var host = $hostinput.val();
-        var type = $typeinput.val();
-        var axis = $axisinput.val();
-        if (host == null || host == "" || type == null || type == "" || axis == null || axis == ""){
-          window.alert("Il manque des infos pour calculer le Seff");
-        }
-        else{
-          setSeff(host,type,axis);
-        }
-      });
+    $seffbutton.on('click',function(e){
+      e.defaultPrevented;
+      var host = $hostinput.val(),
+      type = $typeinput.val(),
+      axis = $axisinput.val(),
+      axisUnit = $axisUnit.val();
 
-      function setSeff(host,type,axis){
-        $.getJSON( "/catalogue/body.json/seff/"+host+"/"+type+"/"+axis, function (data) {
-          console.log(data);
-          $seffinput.val(data);
-        })
+      if (IsNullOrEmpty(host) || IsNullOrEmpty(type) || IsNullOrEmpty(axis)){
+        window.alert("Il manque des infos pour calculer le Seff");
       }
+      else{
+        if (axisUnit == 1){
+          var distance = $distanceinput.val();
+          if (IsNullOrEmpty(distance)){
+            window.alert("Il manque la distance, pour convertir l'axe");
+          }
+          else{
+            if($distanceUnit.val() == 1){
+              distance = (distance * al)/pc;
+            }
+            axis = axis * distance;
+          }
+        }
+        setSeff(host,type,axis);
+      }
+    });
 
-      $densitybutton.on('click',function(e){
-        e.defaultPrevented;
-        var mass = $massinput.val();
-        var radius = $radiusinput.val();
-        if (mass == null || mass == "" || radius == null || radius == ""){
-          window.alert("Il manque des infos pour calculer la densité");
-        }
-        else{
-        $densityinput.val(3*mass*Mt/(4000*Math.PI*Math.pow(radius,3)*Math.pow(Rt,3))) ;
-        }
+    function setSeff(host,type,axis){
+      $.getJSON( "/catalogue/body.json/seff/"+host+"/"+type+"/"+axis, function (data) {
+        $seffinput.val(data);
       })
+    }
 
-      var host_name = $('#host_name').data('id');
-      $('#appbundle_body_rotation_id').val(host_name);
+    $densitybutton.on('click',function(e){
+      e.defaultPrevented;
+      var mass = $massinput.val(),
+      radius = $radiusinput.val(),
+      massUnit = $massUnit.val(),
+      radiusUnit = $radiusUnit.val();
+      if (IsNullOrEmpty(mass) || IsNullOrEmpty(radius)){
+        window.alert("Il manque des infos pour calculer la densité");
+      }
+      else{
+        if(radiusUnit == 1){
+          radius = radius*(Rj/Rt);
+        }else if (radiusUnit == 2) {
+          radius = radius*(Rs/Rt);
+        }
+        if(massUnit == 1){
+          mass = mass*(Mj/Mt);
+        }else if (radiusUnit == 2) {
+          mass = mass*(Ms/Mt);
+        }
+      $densityinput.val(3*mass*Mt/(4000*Math.PI*Math.pow(radius,3)*Math.pow(Rt,3))) ;
+      }
+    })
 
+
+    function IsNullOrEmpty(value){
+      return (value == null || value == "");
+    }
 
 });
