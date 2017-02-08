@@ -32,6 +32,48 @@ class Calculs
     return 3*$mass*$this->Mt/(4000*pi()*pow($radius,3)*pow($this->Rt,3));
     // 'density'=3*'mass'*Mt/(4000*PI*'radius'^3*Rt^3)
   }
+
+  public function convertRadius($radius, $radiusUnit)
+  {
+    if( $radiusUnit == 1){
+        return $radius*($Rj/$Rt);
+    }
+    elseif($radiusUnit == 2){
+        return $radius*($Rs/$Rt);
+    }
+    else{
+      return $radius;
+    }
+  }
+
+  public function convertMasse($masse,$masseUnit)
+  {
+    if($masseUnit == 1){
+      return $masse*($Mj/$Mt);
+    }
+    elseif($masseUnit == 2){
+      return $masse*($Ms/$Mt);
+    }
+    else{
+      return $masse;
+    }
+  }
+
+  public function convertDistance($distance, $distanceUnit){
+    if($distanceUnit == 1){
+      return $distance*($al/$pc);
+    }
+    else{
+      return $distance;
+    }
+
+  }
+
+  // public function convertAxis($axis,$axisUnit,$distance){
+  //   if($axisUnit == 1){
+  //     if ($distance == )
+  //   }
+  // }
 }
 
 

@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Extrasolar\Body;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -25,9 +26,12 @@ class BodyController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $rootURL = $this->get('app.wpconstantes')->getRootURL();
+
         $bodies = $em->getRepository('AppBundle:Body')->findAllBodies();
         return $this->render('body/index.html.twig', array(
             'bodies' => $bodies,
+            'rootURL' => $rootURL
         ));
     }
 
@@ -90,40 +94,44 @@ class BodyController extends Controller
         $form = $this->createForm('AppBundle\Form\BodyType', $body);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted() && $form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
 
-            //CALCUL DISTANCE
-            if($form['distance']->getData()){
-                $distance=$form['distance']->getData();
-                if($form['parsecs']->getData()==1){
-                  $distance=$form['distance']->getData()*(9.46E+15/3.09E+16);
-                  $body->setDistance($distance);
-                }
+            $calculs = $this->get('app.calculs');
+
+            //CONVERT DISTANCE
+            if(!empty($form['distance']->getData()))
+            {
+              $distance = $calculs->getDistance($form['distance']->getData(), $form['parsecs']->getData());
+              $body->setDistance($distance);
             }
 
-            //CALCULE RADIUS
-            if($form['radius']->getData() && $form['Rt']->getData()==1){
-                $body->setDistance($form['radius']->getData()*(69911000/6371008));
-            }
-            elseif($form['radius']->getData() && $form['Rt']->getData()==2){
-                $body->setDistance($form['radius']->getData()*(696342000/6371008));
-            }
-
-            //CALCULE MASSE
-            if($form['masse']->getData() && $form['Mt']->getData()==1){
-                $body->setDistance($form['masse']->getData()*(69911000/6371008));
-            }
-            elseif($form['masse']->getData() && $form['Mt']->getData()==2){
-                $body->setDistance($form['masse']->getData()*(696342000/6371008));
+            //CONVERT RADIUS
+            if(!empty($form['radius']->getData()))
+            {
+              $radius = $calculs->convertRadius($form['radius']->getData(), $form['Rt']->getData());
+              $body->setRadius($radius);
             }
 
-            //CALCUL DISTANCE
+            //CONVERT MASSE
+            if(!empty($form['masse']->getData()))
+            {
+              $masse = $calculs->convertRadius($form['masse']->getData(), $form['Mt']->getData());
+              $body->setMasse($masse);
+            }
+
+            //CONVERT AXIS
+            if(!empty($form['axis']->getData()))
+            {
+                $axis = $calculs->convertAxis($form['axis']->getData(), $form['UA']->getData(), $distance );
+                $body->setAxis($axis);
+            }
             if($form['axis']->getData() && $form['UA']->getData()==1 && $form['distance']->getData()){
                 $body->setDistance($form['axis']->getData()*$distance);
             }
 
-            //CALCULE ANNEE
+            //CONVERT ANNEE
             if($form['period']->getData() && $form['jours']->getData()==1){
                 $body->setDistance($form['period']->getData()*365.25);
             }

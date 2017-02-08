@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * WpOptions
  *
  * @ORM\Table(name="wp_options", uniqueConstraints={@ORM\UniqueConstraint(name="option_name", columns={"option_name"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Extrablog\WpOptionsRepository")
  */
 class WpOptions
 {

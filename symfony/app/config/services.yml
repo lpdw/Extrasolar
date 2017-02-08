@@ -11,3 +11,6 @@ services:
           class: AppBundle\Services\Calculs
       app.security.phpassencoder:
           class: AppBundle\Security\PhpassEncoder
+      app.wpconstantes:
+          class: AppBundle\Services\WpConstantes
+          arguments: ['@doctrine']
