@@ -2367,11 +2367,11 @@ input[type=submit] {
 		text-align: left;
 	}
 
-	#footer .col-sm-3 {
+	#footer .col-sm-4, #footer .col-sm-12 {
 		margin-top: 40px;
 	}
 
-	#footer .col-sm-3:first-child {
+	#footer .col-sm-4:first-child {
 		margin-top: 0;
 	}
 
