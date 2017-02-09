@@ -10,10 +10,13 @@ $(document).ready(function() {
             if ($(this).hasClass('fa-chevron-down')) {
                 $(this).removeClass('fa-chevron-down');
                 $(this).addClass('fa-chevron-left');
-                var toggle = $(this).closest('div.toggleInput');
+                var toggle = $(this).closest('.toggleInput');
+                toggle.find('.row').not('.control').slideUp();
             } else {
                 $(this).addClass('fa-chevron-down');
                 $(this).removeClass('fa-chevron-left');
+                var toggle = $(this).closest('.toggleInput');
+                toggle.find('.row').not('.control').slideDown();
             }
 
         });

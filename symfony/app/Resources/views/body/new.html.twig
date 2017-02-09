@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 
-
 {% block body %}
 
 {{ parent() }}
@@ -9,35 +8,35 @@
 <div class="container mTop30 blackColor">
     {{ form_start(form) }}
     <div class="caracGenerales toggleInput">
-        <div class="row">
+        <div class="row control">
             <div class="col-md-12 mBottom15 bgLightDark whiteColor">
                 <i class="chevronForm fa fa-chevron-down fa-2x" aria-hidden="true"></i>
-                <h3 class="text-right">Caractéristiques générales</h3>
+                <h3 class="text-right bandeauForm">Caractéristiques générales</h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 formCustom">
+            <div class="col-md-6 formCustom" data-id="1">
                 {{ form_row(form.type_id) }}
             </div>
-            <div class="col-md-6 formCustom">
+            <div class="col-md-6 formCustom" data-id="2">
                 {{ form_row(form.name) }}
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 formCustom">
+            <div class="col-md-6 formCustom" data-id="3">
                 {{ form_row(form.detection) }}
             </div>
-            <div class="col-md-6 formCustom">
+            <div class="col-md-6 formCustom" data-id="4">
                 {{ form_row(form.discovery) }}
             </div>
         </div>
     </div>
 
     <div class="caracPosition toggleInput">
-        <div class="row">
+        <div class="row control">
             <div class="col-md-12 mTop15 mBottom15 bgLightDark whiteColor">
                 <i class="chevronForm fa fa-chevron-down fa-2x" aria-hidden="true"></i>
-                <h3 class="text-right">Position de l'astre</h3>
+                <h3 class="text-right bandeauForm">Position de l'astre</h3>
             </div>
         </div>
         <div class="row">
@@ -63,10 +62,10 @@
     </div>
 
     <div class="caracPhysique toggleInput">
-        <div class="row">
+        <div class="row control">
             <div class="col-md-12 mTop15 mBottom15 bgLightDark whiteColor">
                 <i class="chevronForm fa fa-chevron-down fa-2x" aria-hidden="true"></i>
-                <h3 class="text-right">Caractéristiques physiques</h3>
+                <h3 class="text-right bandeauForm">Caractéristiques physiques</h3>
             </div>
         </div>
         <div class="row">
@@ -125,10 +124,10 @@
 
 
     <div class="caracOrbitales toggleInput">
-        <div class="row">
+        <div class="row control">
             <div class="col-md-12 mTop15 mBottom15 bgLightDark whiteColor">
                 <i class="chevronForm fa fa-chevron-down fa-2x" aria-hidden="true"></i>
-                <h3 class="text-right">Caractéristiques orbitales</h3>
+                <h3 class="text-right bandeauForm">Caractéristiques orbitales</h3>
             </div>
         </div>
         <div class="row">

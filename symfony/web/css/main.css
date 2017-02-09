@@ -61,6 +61,12 @@ a.buttonLink, div.buttonLink {
 
 .chevronForm {
     position: absolute;
-    top: 15px;
+    top: 10px;
     cursor: pointer;
+}
+
+.bandeauForm {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 10px 0;
 }
