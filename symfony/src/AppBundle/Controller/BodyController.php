@@ -183,33 +183,33 @@ class BodyController extends Controller
 
             $calculs = $this->get('app.calculs');
             //CONVERT DISTANCE
-            if(!empty($form['distance']->getData()))
+            if(!empty($editForm['distance']->getData()))
             {
-              $distance = $calculs->convertDistance($form['distance']->getData(), $form['parsecs']->getData());
+              $distance = $calculs->convertDistance($editForm['distance']->getData(), $editForm['parsecs']->getData());
               $body->setDistance($distance);
             }
             //CONVERT AXIS
-            if(!empty($form['axis']->getData()))
+            if(!empty($editForm['axis']->getData()))
             {
-                $axis = $calculs->convertAxis($form['axis']->getData(), $form['UA']->getData(), $distance );
+                $axis = $calculs->convertAxis($editForm['axis']->getData(), $editForm['UA']->getData(), $distance );
                 $body->setAxis($axis);
             }
 
             //CONVERT RADIUS
-            if(!empty($form['radius']->getData()))
+            if(!empty($editForm['radius']->getData()))
             {
-              $radius = $calculs->convertRadius($form['radius']->getData(), $form['Rt']->getData());
+              $radius = $calculs->convertRadius($editForm['radius']->getData(), $editForm['Rt']->getData());
               $body->setRadius($radius);
             }
             //CONVERT MASSE
-            if(!empty($form['masse']->getData()))
+            if(!empty($editForm['masse']->getData()))
             {
-              $masse = $calculs->convertMasse($form['masse']->getData(), $form['Mt']->getData());
+              $masse = $calculs->convertMasse($editForm['masse']->getData(), $editForm['Mt']->getData());
               $body->setMasse($masse);
             }
             //CONVERT ANNEE
-            if(!empty($form['period']->getData())){
-              $period = $calculs->convertPeriod($form['period']->getData(), $form['jours']->getData());
+            if(!empty($editForm['period']->getData())){
+              $period = $calculs->convertPeriod($editForm['period']->getData(), $editForm['jours']->getData());
               $body->setPeriod($distance);
             }
 
