@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * WpPostmeta
  *
  * @ORM\Table(name="wp_postmeta", indexes={@ORM\Index(name="post_id", columns={"post_id"}), @ORM\Index(name="meta_key", columns={"meta_key"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Extrablog\WpPostmetaRepository")
  */
 class WpPostmeta
 {

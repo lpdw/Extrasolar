@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/helpers.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('../../../../../blog/wp-content/themes/illdy/layout/css/main.css') }}">
+    <link rel="stylesheet" href="{{ getRootURL()}}/wp-content/themes/illdy/layout/css/main.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-minima.css" />
 {% endblock %}
@@ -81,6 +81,5 @@ if (typeof jQuery == 'undefined') {
 </header><!--/#header-->
 
     {% endblock %}
-
 </body>
 </html>

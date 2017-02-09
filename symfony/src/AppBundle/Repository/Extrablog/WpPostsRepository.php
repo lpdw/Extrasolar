@@ -23,4 +23,14 @@ class WpPostsRepository extends EntityRepository
                     ->getResult()
                     ;
     }
+    public function findPostContent($id)
+    {
+      return $this->createQueryBuilder('p')
+            ->Select('p.postContent')
+            ->Where("p.id = {$id}")
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
 }
