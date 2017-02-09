@@ -1,22 +1,27 @@
 body {
     background-color: #F8F8F8 !important;
+    overflow-x: hidden !important;
 }
 
-a.buttonLink, div.buttonLink {
-    height: 45px;
-    line-height: 45px;
-    background-color: #402d1f;
-    padding: 0 30px;
-    display: inline-block;
-    border-radius: 3px;
-    font-weight: 700;
-    font-size: 18px;
-    color: #fff;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-    text-transform: uppercase;
+a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
+    border: 0 !important;
+    border-radius: 0 !important !important;
+    height: 45px !important;
+    line-height: 45px !important;
+    background-color: #402d1f !important;
+    padding: 0 30px !important;
+    display: inline-block !important;
+    border-radius: 3px !important;
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    color: #fff !important;
+    -webkit-transition: all 0.3s !important;
+    -moz-transition: all 0.3s !important;
+    -o-transition: all 0.3s !important;
+    transition: all 0.3s !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    font-weight: normal !important;
 }
 
 .jssocials-share-logo {
@@ -38,6 +43,11 @@ a.buttonLink, div.buttonLink {
     border-bottom: 1px solid black !important;
     box-shadow: none !important;
     border-radius: 0 !important;
+}
+
+.formCustom .form-group {
+    margin-bottom: 20px !important;
+    margin-top: 20px !important;
 }
 
 .formCustom .w70 .form-group .form-control {

@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div class="caracPosition toggleInput">
+    <div class="caracPosition toggleInput mTop30">
         <div class="row control">
             <div class="col-md-12 mTop15 mBottom15 bgLightDark whiteColor">
                 <i class="chevronForm fa fa-chevron-down fa-2x" aria-hidden="true"></i>
@@ -61,7 +61,7 @@
         </div>
     </div>
 
-    <div class="caracPhysique toggleInput">
+    <div class="caracPhysique toggleInput mTop30">
         <div class="row control">
             <div class="col-md-12 mTop15 mBottom15 bgLightDark whiteColor">
                 <i class="chevronForm fa fa-chevron-down fa-2x" aria-hidden="true"></i>
@@ -96,7 +96,11 @@
             </div>
         </div>
 
-             <div class="buttonLink mBottom20 mTop15" id="calculDensity">Calculer la densité</div>
+        <div class="row">
+            <div class="col-md-12">
+                 <div class="buttonLink mBottom20 mTop15" id="calculDensity">Calculer la densité</div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-4 formCustom">
@@ -123,7 +127,7 @@
     </div>
 
 
-    <div class="caracOrbitales toggleInput">
+    <div class="caracOrbitales toggleInput mTop30">
         <div class="row control">
             <div class="col-md-12 mTop15 mBottom15 bgLightDark whiteColor">
                 <i class="chevronForm fa fa-chevron-down fa-2x" aria-hidden="true"></i>
@@ -133,7 +137,7 @@
         <div class="row">
             <div class="col-md-4 formCustom">
                 <div class="form-group" id="host_name_div" style="display">
-                  <label class="control-label" for="host_name">host name</label>
+                  <label class="control-label" for="host_name">Nom de l'hôte</label>
                   <input type="text" id="host_name" name="host_name" class="form-control">
                 </div>
                 {{ form_row(form.rotation_id, { 'attr': { 'readonly': 'true' } }) }}
@@ -185,17 +189,18 @@
     </div>
 
     {{ form_widget(form) }}
-    <input type="submit" value="Create" />
+
+    <div class="row">
+        <div class="col-md-12 text-center mTop30 mBottom30">
+            <input class="buttonLink" type="submit" value="Ajouter cet astre" />
+            <a class="buttonLink" href="{{ path('catalogue_index') }}">Retour</a>
+        </div>
+    </div>
+
 {{ form_end(form) }}
 </div>
 
 
-
-    <ul>
-        <li>
-            <a href="{{ path('catalogue_index') }}">Back to the list</a>
-        </li>
-    </ul>
 </div>
 <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

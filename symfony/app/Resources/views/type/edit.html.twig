@@ -3,21 +3,40 @@
 {% block body %}
 
     {{ parent() }}
-    <h1>Type edit</h1>
+    <div class="container mTop30 blackColor">
+        {{ form_start(edit_form) }}
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    {{ form_row(edit_form.name) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    {{ form_row(edit_form.categorie) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6 ">
+                    {{ form_row(edit_form.description) }}
+                </div>
+            </div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+            {{ form_widget(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('type_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+            <div class="row">
+                <div class="col-md-12 text-center mTop30">
+                    <input class="mBottom20 buttonLink" type="submit" value="Modifier ce type" /><br />
+        {{ form_end(edit_form) }}
+                    {{ form_start(delete_form, { 'attr' : { 'class': 'displayInlineBlock' } }) }}
+                        <input class="buttonLink" type="submit" value="Supprimer">
+                    {{ form_end(delete_form) }}
+                    <a class="ft14 buttonLink mTop15 mBottom30" href="{{ path('type_index') }}">Retour</a>
+                </div>
+            </div>
+
+
+    </div>
+
+
 {% endblock %}

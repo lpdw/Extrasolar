@@ -99,6 +99,7 @@ class TypeController extends Controller
             'type' => $type,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'title' => 'Editer un type'
         ));
     }
 

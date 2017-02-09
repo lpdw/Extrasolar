@@ -1,42 +1,51 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-table.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
+    <script src="{{ asset('extensions/toolbar/bootstrap-table-toolbar.js') }}"></script>
+    <script src="{{ asset('js/javascript.js') }}"></script>
+{% endblock %}
+
 {% block body %}
 
 {{ parent() }}
-    <h1>Type</h1>
 
-    <table>
+    <div class="container">
+        <table id="table"
+        data-toggle="table"
+        data-show-columns="true">
+        <thead>
+            <tr>
+                <th class="text-center" data-field="name" data-sortable="true">ID</th>
+                <th data-field="categorie" data-sortable="true">Nom</th>
+                <th data-field="Spectral_type" data-sortable="true">Catégorie</th>
+                <th data-field="Masse" data-sortable="true">Description</th>
+            </tr>
+        </thead>
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ type.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ type.name }}</td>
-            </tr>
-            <tr>
-                <th>Categorie</th>
-                <td>{{ type.categorie }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ type.description }}</td>
-            </tr>
+        <tr>
+            <td class="titleBootstrap"><a href="{{ path('type_show', { 'id': type.id }) }}">{{ type.id }}</a></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ type.name }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ type.categorie }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ type.description }}</span></td>
+        </tr>
         </tbody>
-    </table>
+        </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('type_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('type_edit', { 'id': type.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        <a class="ft14 buttonLink mTop15 mBottom30" href="{{ path('type_edit', { 'id': type.id }) }}">Editer</a>
+
+        {{ form_start(delete_form, { 'attr' : { 'class': 'displayInlineBlock' } }) }}
+            <input class="buttonLink" type="submit" value="Supprimer">
+        {{ form_end(delete_form) }}
+
+        <a class="ft14 buttonLink mTop15 mBottom30" href="{{ path('type_index') }}">Retour</a>
+
+    </div>
+
 {% endblock %}
