@@ -1,4 +1,8 @@
-a.buttonLink {
+body {
+    background-color: #F8F8F8 !important;
+}
+
+a.buttonLink, div.buttonLink {
     height: 45px;
     line-height: 45px;
     background-color: #402d1f;
@@ -26,4 +30,37 @@ a.buttonLink {
     position: relative;
     bottom: 5px;
     left: 5px;
+}
+
+.formCustom input {
+    border: 0 !important;
+    background: none !important;
+    border-bottom: 1px solid black !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.formCustom .w70 .form-group .form-control {
+    width: 70% !important;
+}
+
+.formCustom .w30 .form-group .form-control {
+    width: 30% !important;
+}
+
+.posSelectForm {
+    position: relative;
+    top: 28px;
+}
+
+@media (max-width: 991px) {
+    .posSelectForm {
+        top: 0 !important;
+    }
+}
+
+.chevronForm {
+    position: absolute;
+    top: 15px;
+    cursor: pointer;
 }

@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('css/themesite/bootstrap.css') }}">
-<link rel="stylesheet" href="{{ asset('css/bootstrap-table.css') }}">
-<link rel="stylesheet" href="{{ asset('../../../../../blog/wp-content/themes/illdy/layout/css/main.css') }}">
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap-3-2.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap-table.js') }}"></script>
-<script src="{{ asset('extensions/toolbar/bootstrap-table-toolbar.js') }}"></script>
-<script src="{{ asset('js/javascript.js') }}"></script>
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-table.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
+    <script src="{{ asset('extensions/toolbar/bootstrap-table-toolbar.js') }}"></script>
+    <script src="{{ asset('js/javascript.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -16,9 +17,10 @@
 {{ parent() }}
 
 <div class="container">
-    <h1>Bodies list</h1>
     {% if app.user %}
-      <a href="{{ path('catalogue_new') }}">Créer un nouvel astre</a>
+        <div class="text-right">
+            <a class="buttonLink mTop30" href="{{ path('catalogue_new') }}">Ajouter un astre</a>
+        </div>
     {% endif %}
     <table id="table"
     data-toggle="table"
@@ -30,39 +32,32 @@
     data-expanded="true">
     <thead>
         <tr>
-            <th data-field="name" data-sortable="true">Nom</th>
-            <th data-field="categorie" data-sortable="true">categorie</th>
+            <th class="text-center" data-field="name" data-sortable="true">Nom</th>
+            <th data-field="categorie" data-sortable="true">Catégorie</th>
             <th data-field="Spectral_type" data-sortable="true">Type de spectre</th>
             <th data-field="Masse" data-sortable="true">Masse</th>
             <th data-field="Radius" data-sortable="true">Rayon</th>
             <th data-field="Period" data-sortable="true">Période</th>
             <th data-field="Axis" data-sortable="true">Axe</th>
             <th data-field="Excentricity" data-sortable="true">Excenticité</th>
-            <th>Actions</th>
+            <th data-field="Actions" data-sortable="false">Actions</th>
         </tr>
     </thead>
     <tbody>
     {% for body in bodies %}
     <tr>
-        <td><a href="{{ path('catalogue_show', { 'id': body.id }) }}">{{ body.name }}</a></td>
-        <td>{{ body.TypeId.name }}</td>
-        <td>{{ body.spectraltype }}</td>
-        <td>{{ body.masse }}</td>
-        <td>{{ body.radius }}</td>
-        <td>{{ body.period }}</td>
-        <td>{{ body.axis }}</td>
-        <td>{{ body.excentricity }}</td>
-        <td>
-            <ul>
-                <li>
-                    <a href="{{ path('catalogue_show', { 'id': body.id }) }}">Détails</a>
-                </li>
-                {% if app.user %}
-                  <li>
-                      <a href="{{ path('catalogue_edit', { 'id': body.id }) }}">Modifier</a>
-                  </li>
-                {% endif %}
-            </ul>
+        <td class="titleBootstrap"><a href="{{ path('catalogue_show', { 'id': body.id }) }}">{{ body.name }}</a></td>
+        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.TypeId.name }}</span></td>
+        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.spectraltype }}</span></td>
+        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.masse }}</span></td>
+        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.radius }}</span></td>
+        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.period }}</span></td>
+        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.axis }}</span></td>
+        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.excentricity }}</span></td>
+        <td class="titleBootstrap">
+            {% if app.user %}
+                  <a class="posTdBootstrap" href="{{ path('catalogue_edit', { 'id': body.id }) }}">Modifier</a>
+            {% endif %}
         </td>
     </tr>
 {% endfor %}

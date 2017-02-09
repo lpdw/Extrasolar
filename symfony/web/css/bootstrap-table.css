@@ -81,6 +81,8 @@
 
 .fixed-table-container thead th .th-inner,
 .fixed-table-container tbody td .th-inner {
+    background-color: #323232;
+    color: #FFF;
     padding: 8px;
     line-height: 24px;
     vertical-align: top;
@@ -122,6 +124,22 @@
 
 .fixed-table-container tbody td:first-child {
     border-left: none;
+    padding: 14px 0 !important;
+}
+
+.titleBootstrap {
+    text-align: center;
+    color: #232323;
+}
+
+.posTdBootstrap {
+    position: relative;
+    top: 6px;
+}
+
+.titleBootstrap a {
+    color: #232323 !important;
+    font-weight: bold;
 }
 
 /* the same color with .active */
@@ -232,6 +250,7 @@
 /* support bootstrap 2 */
 .fixed-table-body thead th .th-inner {
     box-sizing: border-box;
+    font-weight: normal;
 }
 
 .table th, .table td {

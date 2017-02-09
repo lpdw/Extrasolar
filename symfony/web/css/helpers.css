@@ -41,6 +41,9 @@
 .blackColor {
     color: #000;
 }
+.whiteColor {
+    color: #FFF;
+}
 
 /** BACKGROUND **/
 
@@ -53,7 +56,10 @@
 .bgGrey {
     background-color: #E6EAF2;
 }
-.bgWhite.bgWhiteHover:hover {
+.bgLightDark {
+    background-color: #323232;
+}
+.bgInfos:hover {
     background-color: #EEE;
 }
 
