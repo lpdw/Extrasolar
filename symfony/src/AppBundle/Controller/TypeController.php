@@ -29,6 +29,7 @@ class TypeController extends Controller
 
         return $this->render('type/index.html.twig', array(
             'types' => $types,
+            'title' => 'Back Office : Type'
         ));
     }
 
@@ -55,6 +56,7 @@ class TypeController extends Controller
         return $this->render('type/new.html.twig', array(
             'type' => $type,
             'form' => $form->createView(),
+            'title'=> 'Back Office : Ajouter un Type'
         ));
     }
 
@@ -71,6 +73,7 @@ class TypeController extends Controller
         return $this->render('type/show.html.twig', array(
             'type' => $type,
             'delete_form' => $deleteForm->createView(),
+            'title' => 'Back Office : '.$type->getName()
         ));
     }
 

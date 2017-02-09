@@ -25,6 +25,7 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', [
           'bodies' => $bodies,
           'posts' => $posts,
+          'title' => 'Extrasolar'
         ]);
     }
 
