@@ -58,12 +58,14 @@ class BodyController extends Controller
     }
     /**
      *
-     * @Route("catalogue/body.json/seff/{host_id}/{type_id}/{axis}", name="calculSeff")
+     * @Route("catalogue/body.json/seff", name="calculSeff")
+     *@Method("POST")
      */
     public function calculSeff(Request $request){
 
       $em = $this->getDoctrine()->getManager();
       $type = $em->getRepository('AppBundle:Type')->find($request->get('type_id'));
+      dump($request->request->all());
       if ($request->get('host_id') || $type->getCategorie() != "Point" || $type->getCategorie() != "Star" ){
         $host = $em->getRepository('AppBundle:Body')->getHost($request->get('host_id'));
         $seffDatas = array(0 => $host);
@@ -99,14 +101,12 @@ class BodyController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $calculs = $this->get('app.calculs');
-
             //CONVERT DISTANCE
             if(!empty($form['distance']->getData()))
             {
               $distance = $calculs->convertDistance($form['distance']->getData(), $form['parsecs']->getData());
               $body->setDistance($distance);
             }
-
             //CONVERT AXIS
             if(!empty($form['axis']->getData()))
             {
@@ -120,21 +120,17 @@ class BodyController extends Controller
               $radius = $calculs->convertRadius($form['radius']->getData(), $form['Rt']->getData());
               $body->setRadius($radius);
             }
-
             //CONVERT MASSE
             if(!empty($form['masse']->getData()))
             {
               $masse = $calculs->convertMasse($form['masse']->getData(), $form['Mt']->getData());
               $body->setMasse($masse);
             }
-
-
             //CONVERT ANNEE
             if(!empty($form['period']->getData())){
               $period = $calculs->convertPeriod($form['period']->getData(), $form['jours']->getData());
               $body->setPeriod($distance);
             }
-
             if($form['rotation_id']->getData())
             {
                 $body_2 = $em->getRepository('AppBundle:Body')->find($form['rotation_id']->getData());
@@ -186,42 +182,36 @@ class BodyController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            //CALCUL DISTANCE
-            if($editForm['distance']->getData()){
-                $distance=$editForm['distance']->getData();
-                if($editForm['parsecs']->getData()==1){
-                  $distance=$editForm['distance']->getData()*(9.46E+15/3.09E+16);
-                  $body->setDistance($distance);
-                }
+            $calculs = $this->get('app.calculs');
+            //CONVERT DISTANCE
+            if(!empty($form['distance']->getData()))
+            {
+              $distance = $calculs->convertDistance($form['distance']->getData(), $form['parsecs']->getData());
+              $body->setDistance($distance);
+            }
+            //CONVERT AXIS
+            if(!empty($form['axis']->getData()))
+            {
+                $axis = $calculs->convertAxis($form['axis']->getData(), $form['UA']->getData(), $distance );
+                $body->setAxis($axis);
             }
 
-            //CALCULE RADIUS
-            if($editForm['radius']->getData() && $editForm['Rt']->getData()==1){
-                $body->setDistance($editForm['radius']->getData()*(69911000/6371008));
+            //CONVERT RADIUS
+            if(!empty($form['radius']->getData()))
+            {
+              $radius = $calculs->convertRadius($form['radius']->getData(), $form['Rt']->getData());
+              $body->setRadius($radius);
             }
-            elseif($editForm['radius']->getData() && $editForm['Rt']->getData()==2){
-                $body->setDistance($editForm['radius']->getData()*(696342000/6371008));
+            //CONVERT MASSE
+            if(!empty($form['masse']->getData()))
+            {
+              $masse = $calculs->convertMasse($form['masse']->getData(), $form['Mt']->getData());
+              $body->setMasse($masse);
             }
-
-            //CALCULE MASSE
-            if($editForm['masse']->getData() && $editForm['Mt']->getData()==1){
-                $body->setDistance($editForm['masse']->getData()*(69911000/6371008));
-            }
-            elseif($editForm['masse']->getData() && $editForm['Mt']->getData()==2){
-                $body->setDistance($editForm['masse']->getData()*(696342000/6371008));
-            }
-
-            //CALCUL DISTANCE
-            if($editForm['axis']->getData() && $editForm['UA']->getData()==1 && $editForm['distance']->getData()){
-                $body->setDistance($editForm['axis']->getData()*$distance);
-            }
-
-            //CALCULE ANNEE
-            if($editForm['period']->getData() && $editForm['jours']->getData()==1){
-                $body->setDistance($editForm['period']->getData()*365.25);
-            }
-            elseif($editForm['period']->getData() && $editForm['jours']->getData()==2){
-                $body->setDistance($editForm['period']->getData()/24);
+            //CONVERT ANNEE
+            if(!empty($form['period']->getData())){
+              $period = $calculs->convertPeriod($form['period']->getData(), $form['jours']->getData());
+              $body->setPeriod($distance);
             }
 
             $body_2 = $em->getRepository('AppBundle:Body')->find($editForm['rotation_id']->getData());
