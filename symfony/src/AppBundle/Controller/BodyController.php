@@ -103,8 +103,15 @@ class BodyController extends Controller
             //CONVERT DISTANCE
             if(!empty($form['distance']->getData()))
             {
-              $distance = $calculs->getDistance($form['distance']->getData(), $form['parsecs']->getData());
+              $distance = $calculs->convertDistance($form['distance']->getData(), $form['parsecs']->getData());
               $body->setDistance($distance);
+            }
+
+            //CONVERT AXIS
+            if(!empty($form['axis']->getData()))
+            {
+                $axis = $calculs->convertAxis($form['axis']->getData(), $form['UA']->getData(), $distance );
+                $body->setAxis($axis);
             }
 
             //CONVERT RADIUS
@@ -117,26 +124,15 @@ class BodyController extends Controller
             //CONVERT MASSE
             if(!empty($form['masse']->getData()))
             {
-              $masse = $calculs->convertRadius($form['masse']->getData(), $form['Mt']->getData());
+              $masse = $calculs->convertMasse($form['masse']->getData(), $form['Mt']->getData());
               $body->setMasse($masse);
             }
 
-            //CONVERT AXIS
-            if(!empty($form['axis']->getData()))
-            {
-                $axis = $calculs->convertAxis($form['axis']->getData(), $form['UA']->getData(), $distance );
-                $body->setAxis($axis);
-            }
-            if($form['axis']->getData() && $form['UA']->getData()==1 && $form['distance']->getData()){
-                $body->setDistance($form['axis']->getData()*$distance);
-            }
 
             //CONVERT ANNEE
-            if($form['period']->getData() && $form['jours']->getData()==1){
-                $body->setDistance($form['period']->getData()*365.25);
-            }
-            elseif($form['period']->getData() && $form['jours']->getData()==2){
-                $body->setDistance($form['period']->getData()/24);
+            if(!empty($form['period']->getData())){
+              $period = $calculs->convertPeriod($form['period']->getData(), $form['jours']->getData());
+              $body->setPeriod($distance);
             }
 
             if($form['rotation_id']->getData())

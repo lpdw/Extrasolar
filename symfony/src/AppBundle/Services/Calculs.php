@@ -36,10 +36,10 @@ class Calculs
   public function convertRadius($radius, $radiusUnit)
   {
     if( $radiusUnit == 1){
-        return $radius*($Rj/$Rt);
+        return $radius*($this->Rj/$this->Rt);
     }
     elseif($radiusUnit == 2){
-        return $radius*($Rs/$Rt);
+        return $radius*($this->Rs/$this->Rt);
     }
     else{
       return $radius;
@@ -49,10 +49,10 @@ class Calculs
   public function convertMasse($masse,$masseUnit)
   {
     if($masseUnit == 1){
-      return $masse*($Mj/$Mt);
+      return $masse*($this->Mj/$this->Mt);
     }
     elseif($masseUnit == 2){
-      return $masse*($Ms/$Mt);
+      return $masse*($this->Ms/$this->Mt);
     }
     else{
       return $masse;
@@ -61,7 +61,7 @@ class Calculs
 
   public function convertDistance($distance, $distanceUnit){
     if($distanceUnit == 1){
-      return $distance*($al/$pc);
+      return $distance*($this->al/$this->pc);
     }
     else{
       return $distance;
@@ -69,11 +69,25 @@ class Calculs
 
   }
 
-  // public function convertAxis($axis,$axisUnit,$distance){
-  //   if($axisUnit == 1){
-  //     if ($distance == )
-  //   }
-  // }
+  public function convertAxis($axis,$axisUnit,$distance){
+    if($axisUnit == 1){
+      if ($distance != null ){
+        return $axis*$distance;
+      }else{
+        return null;
+      }
+    }
+  }
+
+  public function convertPeriod($period, $periodUnit){
+    if($periodUnit == 1){
+      return $period*365.25;
+    }elseif($periodUnit == 2){
+      return $period/24;
+    }else{
+      return $period;
+    }
+  }
 }
 
 
