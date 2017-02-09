@@ -14,3 +14,9 @@ services:
       app.wpconstantes:
           class: AppBundle\Services\WpConstantes
           arguments: ['@doctrine']
+      app.twig_function:
+          class: AppBundle\Twig\AppExtension
+          public: true
+          tags:
+              - { name: twig.extension }
+          arguments: ['@app.wpconstantes']

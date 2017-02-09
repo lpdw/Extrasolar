@@ -93,9 +93,16 @@ $(document).ready(function() {
     });
 
     function setSeff(host,type,axis){
-      $.getJSON( "/catalogue/body.json/seff/"+host+"/"+type+"/"+axis, function (data) {
-        $seffinput.val(data);
-      })
+      console.log("Seff");
+      $.getJSON( "/catalogue/body.json/seff",
+                {
+                host:host,
+                type:type,
+                axis:axis
+                },
+             function (data) {
+              $seffinput.val(data);
+            })
     }
 
     $densitybutton.on('click',function(e){
