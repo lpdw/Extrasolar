@@ -25,13 +25,9 @@ class BodyController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $rootURL = $this->get('app.wpconstantes')->getRootURL();
-
         $bodies = $em->getRepository('AppBundle:Body')->findAllBodies();
         return $this->render('body/index.html.twig', array(
             'bodies' => $bodies,
-            'rootURL' => $rootURL,
             'title' => 'Catalogue'
         ));
     }

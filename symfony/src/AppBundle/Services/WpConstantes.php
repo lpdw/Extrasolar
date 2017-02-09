@@ -22,4 +22,17 @@ class WpConstantes
             ->getRepository('AppBundle:WpOptions')
             ->getRootURL();
   }
+
+  public function getBackgroundImage()
+  {
+    $id = $this->doctrine
+            ->getManager('extrablog')
+            ->getRepository('AppBundle:WpPostmeta')
+            ->getBackgroundImagePostId();
+            
+    return $this->doctrine
+            ->getManager('extrablog')
+            ->getRepository('AppBundle:WpPosts')
+            ->findPostContent($id);
+  }
 }
