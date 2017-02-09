@@ -31,7 +31,8 @@ class BodyController extends Controller
         $bodies = $em->getRepository('AppBundle:Body')->findAllBodies();
         return $this->render('body/index.html.twig', array(
             'bodies' => $bodies,
-            'rootURL' => $rootURL
+            'rootURL' => $rootURL,
+            'title' => 'Catalogue'
         ));
     }
 
@@ -153,6 +154,7 @@ class BodyController extends Controller
         return $this->render('body/new.html.twig', array(
             'body' => $body,
             'form' => $form->createView(),
+            'title'=> 'Ajouter un astre'
         ));
     }
 
@@ -171,7 +173,8 @@ class BodyController extends Controller
         return $this->render('body/show.html.twig', array(
             'body' => $body,
             'delete_form' => $deleteForm->createView(),
-            'articles' => $posts
+            'articles' => $posts,
+            'title' => $body->getName()
         ));
     }
 
@@ -241,6 +244,7 @@ class BodyController extends Controller
             'body' => $body,
             'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'title' => 'Editer un astre'
         ));
     }
 

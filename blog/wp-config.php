@@ -26,7 +26,7 @@ define('DB_NAME', 'extrablog');
 define('DB_USER', 'root');
 
 /** Mot de passe de la base de données MySQL. */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'root');
 
 /** Adresse de l’hébergement MySQL. */
 define('DB_HOST', 'localhost');
