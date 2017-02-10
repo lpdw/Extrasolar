@@ -21,7 +21,8 @@ class AppExtension extends \Twig_Extension
     {
       return array(
         new \Twig_SimpleFunction('getRootURL', array($this,'getRootURL')),
-        new \Twig_SimpleFunction('getBackgroundImage', array($this,'getBackgroundImage')),
+        new \Twig_SimpleFunction('getBackgroundImageData', array($this,'getBackgroundImageData')),
+        new \Twig_SimpleFunction('getBackgroundImageURL', array($this,'getBackgroundImageURL')),
       );
     }
 
@@ -43,7 +44,6 @@ class AppExtension extends \Twig_Extension
     public function getBackgroundImageData(){
       if ($this->backgroundImageInfo == null){
         $this->backgroundImageInfo =  json_decode($this->wpConstantes->getBackgroundimage(), true);
-        dump($this->backgroundImageInfo);
       }
       return "src='{$this->backgroundImageInfo['illdy::header_image']['value']}'
               width='{$this->backgroundImageInfo['illdy::header_image_data']['value']['width']}'
@@ -51,7 +51,13 @@ class AppExtension extends \Twig_Extension
               alt='{$this->backgroundImageInfo['illdy::header_image']['value']['height']}'";
     }
 
-
+    public function getBackgroundImageURL(){
+        dump($this->backgroundImageInfo);
+      if ($this->backgroundImageInfo == null){
+        $this->backgroundImageInfo =  json_decode($this->wpConstantes->getBackgroundimage(), true);
+      }
+      return $this->backgroundImageInfo['illdy::header_image']['value'];
+    }
     public function getName()
     {
         return 'app_extension';

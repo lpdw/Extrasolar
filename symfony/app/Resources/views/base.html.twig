@@ -18,15 +18,14 @@
 
     {% block javascripts %}
 
-        <script src="{{ asset('js/jquery.js') }}"></script>
-
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
         <script type="text/javascript">
         if (typeof jQuery == 'undefined') {
             document.write(unescape("%3Cscript src='js/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
         }
         </script>
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/equalHeight.js') }}"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
         <script type="text/javascript" src="{{ asset('/js/scripts.js') }}"></script>
@@ -36,7 +35,7 @@
 
 <body>
 {% block body %}
-<header id="header" class="header-blog" style="background-image: url({{ getRootURL() }}/wp-content/uploads/2017/02/background-space.jpg);background-attachment: fixed;">
+<header id="header" class="header-blog" style="background-image: url(http://localhost:8888/blog/wp-content/uploads/2017/02/background-space.jpg);background-attachment: fixed;">
     <div class="top-header">
         <div class="container">
             <div class="row">
@@ -79,7 +78,6 @@
         </div><!--/.container-->
     </div><!--/.bottom-header.blog-->
 </header><!--/#header-->
-
 
 {% endblock %}
 
