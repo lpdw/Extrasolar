@@ -3,6 +3,7 @@ namespace AppBundle\Entity\Extrasolar;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Validator\Constraints as AcmeAssert;
 
 /**
 * @ORM\Entity(repositoryClass="AppBundle\Repository\Extrasolar\BodiesRepository")
@@ -104,6 +105,7 @@ class Body
 
   /**
   * @ORM\column(name="axis", type="float", nullable=true)
+  * @AcmeAssert\AxisCanBeConverted
   */
   private $axis;
 
