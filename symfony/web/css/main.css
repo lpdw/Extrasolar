@@ -1,6 +1,7 @@
 body {
     background-color: #F8F8F8 !important;
     overflow-x: hidden !important;
+<<<<<<< HEAD
     font-family: "Source Sans Pro", sans-serif !important;
 }
 
@@ -11,6 +12,9 @@ input[placeholder="Rechercher"], .bootstrap-table .dropdown-toggle, .bootstrap-t
 
 .bootstrap-table button:hover {
     border-color: black !important;
+=======
+    position: relative;
+>>>>>>> 78f21d6aa01e3a603c5f969c6a165d7eb3301aa8
 }
 
 a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
@@ -89,4 +93,12 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     padding: 10px 0;
+}
+
+#footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
 }
