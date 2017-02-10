@@ -221,7 +221,7 @@ input {
 }
 
 #header .top-header .header-navigation ul li a:hover {
-	color: #0e1821;
+	color: #CACACA;
 	text-decoration: none;
 }
 
@@ -233,7 +233,7 @@ input {
 }
 
 #header .bottom-header.blog {
-	padding: 130px 0;
+	padding: 60px 0;
 }
 
 #header .bottom-header.blog p {
@@ -241,10 +241,10 @@ input {
 }
 
 #header .bottom-header h2 {
-	margin: 0 0 50px 0;
+	margin: 0 0 30px 0;
 	line-height: 0.74;
 	font-weight: 900;
-	font-size: 81px;
+	font-size: 62px;
 	color: #fff;
 	text-transform: uppercase;
 }

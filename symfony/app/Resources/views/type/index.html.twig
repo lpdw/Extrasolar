@@ -42,8 +42,8 @@
     <tbody>
     {% for type in types %}
     <tr>
-        <td class="titleBootstrap"><a href="{{ path('type_show', { 'id': type.id }) }}">{{ type.id }}</a></td>
-        <td class="titleBootstrap"><span class="posTdBootstrap">{{ type.name }}</span></td>
+        <td class="titleBootstrap"><span>{{ type.id }}</span></td>
+        <td class="titleBootstrap"><a class="posTdBootstrap" href="{{ path('type_show', { 'id': type.id }) }}">{{ type.name }}</a></td>
         <td class="titleBootstrap"><span class="posTdBootstrap">{{ type.categorie }}</span></td>
         <td class="titleBootstrap"><span class="posTdBootstrap">{{ type.description }}</span></td>
         <td class="titleBootstrap">
