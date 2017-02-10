@@ -9,5 +9,5 @@ use Symfony\Component\Validator\Constraint;
  */
 class AxisCanBeConverted extends Constraint
 {
-    public $message = 'The axis : "%string%" , cannot be converted, the distance is missing.';
+    public $message = 'The axis : "%string%" , cannot be converted to UA, the distance is missing.';
 }

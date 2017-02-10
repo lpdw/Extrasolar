@@ -71,7 +71,7 @@ class Calculs
 
   public function convertAxis($axis,$axisUnit,$distance){
     if($axisUnit == 1){
-      if ($distance != null ){
+      if (!empty($distance)){
         return $axis*$distance;
       }else{
         return null;

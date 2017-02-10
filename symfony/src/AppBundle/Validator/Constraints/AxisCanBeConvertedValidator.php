@@ -10,7 +10,7 @@ class AxisCanBeConvertedValidator extends ConstraintValidator
     {
 
       $axisUnit = $this->context->getRoot()->get('UA')->getData();
-      $disance = $this->context->getRoot()->get('distance')->getData();
+      $distance = $this->context->getRoot()->get('distance')->getData();
       if ($axisUnit == 1 && empty($distance)){
         $this->context->buildViolation($constraint->message)
             ->setParameter('%string%', $value)
