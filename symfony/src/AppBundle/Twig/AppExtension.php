@@ -52,7 +52,6 @@ class AppExtension extends \Twig_Extension
     }
 
     public function getBackgroundImageURL(){
-        dump($this->backgroundImageInfo);
       if ($this->backgroundImageInfo == null){
         $this->backgroundImageInfo =  json_decode($this->wpConstantes->getBackgroundimage(), true);
       }

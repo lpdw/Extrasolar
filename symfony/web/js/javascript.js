@@ -27,7 +27,7 @@ $(document).ready(function() {
   $seffbutton = $('#calculSeff'),
   $densitybutton = $('#calculDensity');
 
-  $('[data-toggle="dropdown"]').live('click', function(e) {
+  $('[data-toggle="dropdown"]').on('click', function(e) {
   $( this ).parent().addClass( "open" );
   });
   $('#appbundle_body_rotation_id').parent().hide();
@@ -66,6 +66,7 @@ $(document).ready(function() {
                 minLength: 1
             });
     $seffbutton.on('click',function(e){
+      console.log('coucou');
       e.defaultPrevented;
       var host = $hostinput.val(),
       type = $typeinput.val(),
