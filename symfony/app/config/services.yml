@@ -20,3 +20,13 @@ services:
           tags:
               - { name: twig.extension }
           arguments: ['@app.wpconstantes']
+      app.picture_uploader:
+        class: AppBundle\FileUploader
+        arguments: ['%pictures_directory%']
+      app.doctrine_picture_listener:
+        class: AppBundle\EventListener\PictureUploadListener
+        arguments: ['@app.picture_uploader']
+        tags:
+          - { name: doctrine.event_listener, event: prePersist}
+          - { name: doctrine.event_listener, event: preUpdate}
+          - { name: doctrine.event_listener, event: postLoad}

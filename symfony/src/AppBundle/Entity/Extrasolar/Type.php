@@ -32,6 +32,12 @@ class Type
   */
   private $description;
 
+  /**
+  * @ORM\column(name="picture", type="text")
+  * @Assert\File(mimeTypes={ "image/gif", "image/jpeg", "image/png" })
+  */
+  private $picture;
+
     /**
      * Get the value of Id
      *
@@ -131,6 +137,29 @@ class Type
     public function setCategorie($categorie)
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+    /**
+     * Get the value of Picture
+     *
+     * @return mixed
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set the value of Picture
+     *
+     * @param mixed categorie
+     *
+     * @return self
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
 
         return $this;
     }

@@ -86,6 +86,11 @@ class TypeController extends Controller
     public function editAction(Request $request, Type $type)
     {
         $deleteForm = $this->createDeleteForm($type);
+        if ($type->getPicture()){
+          $type->setPicture(
+            new File($this->getParameter('pictures_directory').'/'.$type->getPicture())
+          );
+        }
         $editForm = $this->createForm('AppBundle\Form\TypeType', $type, ['types' => $this->getParameter('types')]);
         $editForm->handleRequest($request);
 
