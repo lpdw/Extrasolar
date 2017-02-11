@@ -17,13 +17,8 @@ class TypeType extends AbstractType
         $builder
             ->add('name')
             ->add('categorie', ChoiceType::class, array(
-                  'choices'  => array(
-                  'Point' => 'Point',
-                  'Solar' => 'Solar' ,
-                  'Planet' => 'Solar' ,
-                  'Moon' => 'Moon' ,
-                )
-            ))
+              'choices'  => $options['types']
+              ))
             ->add('description')
                 ;
     }
@@ -34,7 +29,8 @@ class TypeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Extrasolar\Type'
+            'data_class' => 'AppBundle\Entity\Extrasolar\Type',
+            'types' => []
         ));
     }
 
