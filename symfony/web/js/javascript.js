@@ -35,7 +35,7 @@ $(document).ready(function() {
                 source: function (request, response) {
                     console.log(request);
                     $.ajax({
-                        url: "/catalogue/body.json/" + request.term,
+                        url: "/admin/catalogue/body.json/" + request.term,
                         dataType: "json",
                         type: "POST",
                         success: function (data) {
@@ -95,12 +95,7 @@ $(document).ready(function() {
 
     function setSeff(host,type,axis){
       console.log("Seff");
-      $.getJSON( "/catalogue/body.json/seff",
-                {
-                host:host,
-                type:type,
-                axis:axis
-                },
+      $.getJSON( "/admin/catalogue/body.json/seff/"+host+"/"+type+"/"+axis,
              function (data) {
               $seffinput.val(data);
             })
