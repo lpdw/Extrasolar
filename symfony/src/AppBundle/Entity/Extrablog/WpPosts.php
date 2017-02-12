@@ -24,6 +24,7 @@ class WpPosts
     /**
      * @var integer
      *
+     * @ORM\ManyToOne(targetEntity="WpUsers")
      * @ORM\Column(name="post_author", type="bigint", nullable=false)
      */
     private $postAuthor = '0';

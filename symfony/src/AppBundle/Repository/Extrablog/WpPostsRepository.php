@@ -8,10 +8,9 @@ class WpPostsRepository extends EntityRepository
 {
     public function findLastPosts()
     {
-        return $this->createQueryBuilder('p')
-              ->OrderBy('p.postDate','DESC')
+        return $this->getEntityManager()
+              ->createQuery("SELECT p.postTitle, p.postDate, p.guid, p.postContent, u.userLogin FROM AppBundle:WpPosts p JOIN AppBundle:WpUsers u WITH u.id = p.postAuthor WHERE p.postStatus = 'publish' AND p.pingStatus = 'open' ORDER BY p.postDate DESC")
               ->setMaxResults(5)
-              ->getQuery()
               ->getResult()
               ;
     }

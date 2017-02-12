@@ -16,15 +16,15 @@ class DefaultController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager('extrablog');
-        $posts = $em->getRepository('AppBundle:WpPosts')->findLastPosts();
-        dump($posts);
+        $articles = $em->getRepository('AppBundle:WpPosts')->findLastPosts();
+        dump($articles);
         $em = $this->getDoctrine()->getManager();
         $bodies = $em->getRepository('AppBundle:Body')->findLastBodies();
         dump($bodies);
 
         return $this->render('default/index.html.twig', [
           'bodies' => $bodies,
-          'posts' => $posts,
+          'articles' => $articles,
           'title' => 'Extrasolar'
         ]);
     }
