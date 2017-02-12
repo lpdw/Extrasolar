@@ -10,7 +10,7 @@
             <img src="{{ asset('img/sun.png') }}" class="img-responsive displayBlock margin0-auto"  alt="" style="width: 50%">
         </div>
         <div class="col-md-7">
-            <h2 class="blackColor">{{ body.typeId }}, découverte en {% if body.discovery %}{{ body.discovery|date('Y') }}{% endif %}</h2>
+            <h2 class="blackColor">{{ body.typeId.name }}{% if body.discovery %}, découverte en {{ body.discovery|date('Y') }}{% endif %}</h2>
             <div>Partager sur <span id="share"></span></div>
             <div class="row mTop20">
                 <div class="col-md-6">
@@ -94,6 +94,7 @@
 <div class="row">
     <div class="col-md-12 text-center mTop30 mBottom30">
         {% if app.user %}
+            <a class="buttonLink mTop30" href="{{ path('catalogue_new') }}">Ajouter un astre</a>
             <a class="buttonLink" href="{{ path('catalogue_edit', { 'id': body.id }) }}">Editer</a>
             {{ form_start(delete_form, { 'attr' : { 'class': 'displayInlineBlock' } }) }}
                 <input class="buttonLink" type="submit" value="Supprimer">

@@ -40,7 +40,7 @@
             <th data-field="Period" data-sortable="true">Période</th>
             <th data-field="Axis" data-sortable="true">Axe</th>
             <th data-field="Excentricity" data-sortable="true">Excenticité</th>
-            <th data-field="Actions" data-sortable="false">Actions</th>
+            {% if app.user %}<th data-field="Actions" data-sortable="false">Actions</th>{% endif %}
         </tr>
     </thead>
     <tbody>
