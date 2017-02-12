@@ -34,7 +34,7 @@ class PictureUploadListener
     {
         $entity = $args->getEntity();
         // upload only works for Type entities
-        if (!$entity instanceof Type) {
+        if (!$entity instanceof Type || empty($entity->getPicture())) {
             return;
         }
         $fileName = $entity->getPicture();
@@ -43,7 +43,7 @@ class PictureUploadListener
     private function uploadFile($entity)
     {
         // upload only works for Type entities
-        if (!$entity instanceof Type) {
+        if (!$entity instanceof Type || empty($entity->getPicture())) {
             return;
         }
 

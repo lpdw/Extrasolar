@@ -28,12 +28,12 @@ class Type
   private $categorie;
 
   /**
-  * @ORM\column(name="description", type="text")
+  * @ORM\column(name="description", type="text", nullable=true)
   */
   private $description;
 
   /**
-  * @ORM\column(name="picture", type="text")
+  * @ORM\column(name="picture", type="text", nullable=true)
   * @Assert\File(mimeTypes={ "image/gif", "image/jpeg", "image/png" })
   */
   private $picture;

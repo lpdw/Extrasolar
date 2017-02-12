@@ -21,7 +21,7 @@ class TypeType extends AbstractType
               'choices'  => $options['types']
               ))
             ->add('description')
-            ->add('picture', FileType::class)
+            ->add('picture', FileType::class,[ 'required' => false ])
                 ;
     }
 

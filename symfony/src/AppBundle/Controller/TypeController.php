@@ -97,7 +97,7 @@ class TypeController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('type_edit', array('id' => $type->getId()));
+            return $this->redirectToRoute('type_show', array('id' => $type->getId()));
         }
 
         return $this->render('type/edit.html.twig', array(
