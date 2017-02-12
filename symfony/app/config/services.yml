@@ -30,3 +30,8 @@ services:
           - { name: doctrine.event_listener, event: prePersist}
           - { name: doctrine.event_listener, event: preUpdate}
           - { name: doctrine.event_listener, event: postLoad}
+      app.form.type.body:
+        class: AppBundle\Form\BodyType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }

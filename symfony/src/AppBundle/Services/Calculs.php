@@ -77,6 +77,9 @@ class Calculs
         return null;
       }
     }
+    else{
+      return $axis;
+    }
   }
 
   public function convertPeriod($period, $periodUnit){

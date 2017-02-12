@@ -184,13 +184,13 @@ class BodyController extends Controller
 
             $calculs = $this->get('app.calculs');
             //CONVERT DISTANCE
+            $distance = null;
             if(!empty($editForm['distance']->getData()))
             {
               $distance = $calculs->convertDistance($editForm['distance']->getData(), $editForm['parsecs']->getData());
               $body->setDistance($distance);
             }
             //CONVERT AXIS
-            $distance = null;
             if(!empty($editForm['axis']->getData()))
             {
                 $axis = $calculs->convertAxis($editForm['axis']->getData(), $editForm['UA']->getData(), $distance );

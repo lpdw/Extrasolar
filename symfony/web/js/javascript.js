@@ -30,8 +30,8 @@ $(document).ready(function() {
   $('[data-toggle="dropdown"]').on('click', function(e) {
   $( this ).parent().addClass( "open" );
   });
-  $('#appbundle_body_rotation_id').parent().hide();
-  $('#host_name').autocomplete({
+
+  $hostinput.autocomplete({
                 source: function (request, response) {
                     console.log(request);
                     $.ajax({
@@ -55,13 +55,11 @@ $(document).ready(function() {
                     });
                 },
                 select : function(event, ui){
-                  $('#appbundle_body_distance').val(ui.item.distance);
+                  $distanceinput.val(ui.item.distance);
                   $('#appbundle_body_ra').val(ui.item.ra);
                   $('#appbundle_body_decl').val(ui.item.decl);
                   $('#appbundle_body_age').val(ui.item.age);
-                  $('#host_name').val(ui.item.name);
-                  $('#appbundle_body_rotation_id').val(ui.item.id).parent().show();
-
+                  $hostinput.val(ui.item.id).parent();
                 },
                 minLength: 1
             });

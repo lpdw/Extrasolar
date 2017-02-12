@@ -9,9 +9,17 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Blank;
+use AppBundle\Form\DataTransformer\BodyToNameTransformer;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class BodyType extends AbstractType
 {
+    private $manager;
+
+    public function __construct(ObjectManager $manager)
+    {
+        $this->manager = $manager;
+    }
     /**
      * {@inheritdoc}
      */
@@ -69,8 +77,11 @@ class BodyType extends AbstractType
               'mapped' => false,
               'label' => false
           ))
-          ->add('rotation_id', TextType::class,
-          [ 'required' => false ])
+          ->add('rotation_id', TextType::class,array(
+            'required' => false,
+            'invalid_message' => 'Ce n\'est pas un nom de hôte valide',
+            'label' => "Nom de l'hôte"
+          ))
           ->add('name')
           ->add('ra')
           ->add('distance')
@@ -94,6 +105,8 @@ class BodyType extends AbstractType
           ->add('tref')
           ->add('seff')
         ;
+        $builder->get('rotation_id')
+            ->addModelTransformer(new BodyToNameTransformer($this->manager));
     }
 
     /**
