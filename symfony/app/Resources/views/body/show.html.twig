@@ -13,7 +13,16 @@
             <h2 class="blackColor">{{ body.typeId.name }}{% if body.discovery %}, découverte en {{ body.discovery|date('Y') }}{% endif %}</h2>
             <div>Partager sur <span id="share"></span></div>
             <div class="row mTop20">
-                <div class="col-md-6">
+              <div class="col-md-12">
+                <p class="text-center blackColor">Coordonnées célestes</p>
+                <hr class="hr w80"/>
+                <div class="flexParent">
+                  <span class="displayBlock bgInfos flexChild"><span class="blackColor">RA :</span> {{ body.ra }} Rt</span>
+                  <span class="bgInfos flexChilds"><span class="blackColor">RA :</span> {{ body.decl }} Rt</span>
+                  <span class="bgInfos flexChild"><span class="blackColor">RA :</span> {{ body.distance }} Rt</span>
+                </div>
+              </div>
+                <div class="col-md-6 mTop20">
                     <p class="text-center blackColor">Caractéristiques physiques</p>
                     <hr class="hr w80"/>
                     <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Rayon :</span> {{ body.radius }} Rt</span>
@@ -25,7 +34,7 @@
                     <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Type spectral :</span> {{ body.spectralType }}</span>
                     <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Variabilité :</span> {{ body.vari }}</span>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mTop20">
                     <p class="text-center blackColor">Caractéristiques orbitales</p>
                     <hr class="hr w80"/>
                     <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Hôte :</span> {{ body.rotationId }}</span>

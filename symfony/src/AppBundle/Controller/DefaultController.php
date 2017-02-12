@@ -17,10 +17,8 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager('extrablog');
         $articles = $em->getRepository('AppBundle:WpPosts')->findLastPosts();
-        dump($articles);
         $em = $this->getDoctrine()->getManager();
         $bodies = $em->getRepository('AppBundle:Body')->findLastBodies();
-        dump($bodies);
 
         return $this->render('default/index.html.twig', [
           'bodies' => $bodies,

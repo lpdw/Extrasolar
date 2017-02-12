@@ -114,6 +114,10 @@ text-transform: uppercase;
   text-align: justify;
 }
 
+.flexParent{
+  display:flex;
+  justify-content: space-around;
+}
 
 
 .full {
