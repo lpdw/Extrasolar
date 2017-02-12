@@ -115,11 +115,25 @@ text-transform: uppercase;
 }
 
 .flexParent{
-  display:flex;
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-justify-content: space-around;
   justify-content: space-around;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-align-items: stretch;
+  align-items: stretch;
 }
 
-
+.flexParent .flexItem{
+  flex-grow: 1;
+}
 .full {
   background: url(http://placehold.it/1920x1080) no-repeat center center fixed;
   -webkit-background-size: cover;
