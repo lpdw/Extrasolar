@@ -2,6 +2,9 @@
 // src/AppBundle/Twig/AppExtension.php
 namespace AppBundle\Twig;
 
+use Doctrine\ORM\PersistentCollection;
+use Doctrine\Common\Collections\ArrayCollection;
+
 class AppExtension extends \Twig_Extension
 {
 
@@ -57,6 +60,7 @@ class AppExtension extends \Twig_Extension
       }
       return $this->backgroundImageInfo['illdy::header_image']['value'];
     }
+
     public function getName()
     {
         return 'app_extension';

@@ -137,6 +137,7 @@ class Body
   /**
    * One Body has Many Body.
    * @ORM\OneToMany(targetEntity="Body", mappedBy="rotation_id")
+   * @ORM\OrderBy({"axis" = "ASC"})
    */
   private $satellites;
 
