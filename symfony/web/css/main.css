@@ -91,3 +91,35 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     margin-bottom: 0 !important;
     padding: 10px 0;
 }
+
+.randomstar img {
+    display: inline-block !important;
+}
+
+.randomstar h5 {
+  top:50% !important;
+  float: right !important;
+  width: 80% !important;
+}
+
+.randomstar h3 {
+  font-size: 24px;
+  color: red !important;
+text-align: right;
+text-transform: uppercase;
+}
+
+
+.randomstar p {
+  text-align: justify;
+}
+
+
+
+.full {
+  background: url(http://placehold.it/1920x1080) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
