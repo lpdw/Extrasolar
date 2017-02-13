@@ -15,6 +15,7 @@ class BodiesRepository extends EntityRepository
               ->getResult()
               ;
     }
+
     public function findAllBodies()
     {
         return $this->createQueryBuilder('b')

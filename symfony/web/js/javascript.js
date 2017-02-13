@@ -27,15 +27,15 @@ $(document).ready(function() {
   $seffbutton = $('#calculSeff'),
   $densitybutton = $('#calculDensity');
 
-  $('[data-toggle="dropdown"]').live('click', function(e) {
+  $(document).on('click','[data-toggle="dropdown"]', function(e) {
   $( this ).parent().addClass( "open" );
   });
-  $('#appbundle_body_rotation_id').parent().hide();
-  $('#host_name').autocomplete({
+
+  $hostinput.autocomplete({
                 source: function (request, response) {
                     console.log(request);
                     $.ajax({
-                        url: "/catalogue/body.json/" + request.term,
+                        url: "/admin/catalogue/body.json/" + request.term,
                         dataType: "json",
                         type: "POST",
                         success: function (data) {
@@ -55,17 +55,16 @@ $(document).ready(function() {
                     });
                 },
                 select : function(event, ui){
-                  $('#appbundle_body_distance').val(ui.item.distance);
+                  $distanceinput.val(ui.item.distance);
                   $('#appbundle_body_ra').val(ui.item.ra);
                   $('#appbundle_body_decl').val(ui.item.decl);
                   $('#appbundle_body_age').val(ui.item.age);
-                  $('#host_name').val(ui.item.name);
-                  $('#appbundle_body_rotation_id').val(ui.item.id).parent().show();
-
+                  $hostinput.val(ui.item.id).parent();
                 },
                 minLength: 1
             });
     $seffbutton.on('click',function(e){
+      console.log('coucou');
       e.defaultPrevented;
       var host = $hostinput.val(),
       type = $typeinput.val(),
@@ -94,12 +93,7 @@ $(document).ready(function() {
 
     function setSeff(host,type,axis){
       console.log("Seff");
-      $.getJSON( "/catalogue/body.json/seff",
-                {
-                host:host,
-                type:type,
-                axis:axis
-                },
+      $.getJSON( "/admin/catalogue/body.json/seff/"+host+"/"+type+"/"+axis,
              function (data) {
               $seffinput.val(data);
             })

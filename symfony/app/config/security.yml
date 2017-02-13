@@ -29,6 +29,9 @@ security:
             form_login:
                 login_path: login
                 check_path: login
+            logout:
+                    path:   /logout
+                    target: /catalogue
     access_control:
         # require ROLE_ADMIN for /admin*
         - { path: ^/admin, roles: ROLE_ADMIN }

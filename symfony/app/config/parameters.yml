@@ -10,3 +10,12 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: ce286f5dcfd7e865a5ac9082ed49c37e945ea3fc
+
+    types:
+      point: 'Point'
+      star: 'Etoile'
+      planet: 'Planète'
+      moon: 'Lune'
+      asteroid: 'Asteroide'
+      comet: 'Comète'
+    pictures_directory: "%kernel.root_dir%/../web/uploads/pictures"

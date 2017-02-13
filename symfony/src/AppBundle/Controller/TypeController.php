@@ -42,7 +42,7 @@ class TypeController extends Controller
     public function newAction(Request $request)
     {
         $type = new Type();
-        $form = $this->createForm('AppBundle\Form\TypeType', $type);
+        $form = $this->createForm('AppBundle\Form\TypeType', $type, ['types' => $this->getParameter('types')]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -86,13 +86,18 @@ class TypeController extends Controller
     public function editAction(Request $request, Type $type)
     {
         $deleteForm = $this->createDeleteForm($type);
-        $editForm = $this->createForm('AppBundle\Form\TypeType', $type);
+        if ($type->getPicture()){
+          $type->setPicture(
+            new File($this->getParameter('pictures_directory').'/'.$type->getPicture())
+          );
+        }
+        $editForm = $this->createForm('AppBundle\Form\TypeType', $type, ['types' => $this->getParameter('types')]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('type_edit', array('id' => $type->getId()));
+            return $this->redirectToRoute('type_show', array('id' => $type->getId()));
         }
 
         return $this->render('type/edit.html.twig', array(

@@ -3,6 +3,7 @@ namespace AppBundle\Entity\Extrasolar;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Validator\Constraints as AcmeAssert;
 
 /**
 * @ORM\Entity(repositoryClass="AppBundle\Repository\Extrasolar\BodiesRepository")
@@ -18,7 +19,7 @@ class Body
   private $id;
 
   /**
-  * @ORM\column(name="name", type="string", nullable=true)
+  * @ORM\column(name="name", type="string", unique=true)
   */
   private $name;
 
@@ -104,6 +105,7 @@ class Body
 
   /**
   * @ORM\column(name="axis", type="float", nullable=true)
+  * @AcmeAssert\AxisCanBeConverted
   */
   private $axis;
 
@@ -135,6 +137,7 @@ class Body
   /**
    * One Body has Many Body.
    * @ORM\OneToMany(targetEntity="Body", mappedBy="rotation_id")
+   * @ORM\OrderBy({"axis" = "ASC"})
    */
   private $satellites;
 

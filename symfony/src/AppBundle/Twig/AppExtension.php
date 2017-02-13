@@ -2,6 +2,9 @@
 // src/AppBundle/Twig/AppExtension.php
 namespace AppBundle\Twig;
 
+use Doctrine\ORM\PersistentCollection;
+use Doctrine\Common\Collections\ArrayCollection;
+
 class AppExtension extends \Twig_Extension
 {
 
@@ -23,17 +26,24 @@ class AppExtension extends \Twig_Extension
         new \Twig_SimpleFunction('getRootURL', array($this,'getRootURL')),
         new \Twig_SimpleFunction('getBackgroundImageData', array($this,'getBackgroundImageData')),
         new \Twig_SimpleFunction('getBackgroundImageURL', array($this,'getBackgroundImageURL')),
+        new \Twig_SimpleFunction('getPub', array($this,'getPub')),
       );
     }
 
     /**
-     * @var RatingService
+     * @var WpConstantesService
      */
     protected $wpConstantes;
 
-    public function __construct($wpConstantes)
+    /**
+     * @var publicityRepository
+     */
+    protected $em;
+
+    public function __construct($wpConstantes, $em)
     {
       $this->wpConstantes = $wpConstantes;
+      $this->em = $em;
     }
 
     public function getRootURL(){
@@ -52,11 +62,16 @@ class AppExtension extends \Twig_Extension
     }
 
     public function getBackgroundImageURL(){
-        dump($this->backgroundImageInfo);
       if ($this->backgroundImageInfo == null){
         $this->backgroundImageInfo =  json_decode($this->wpConstantes->getBackgroundimage(), true);
       }
       return $this->backgroundImageInfo['illdy::header_image']['value'];
+    }
+
+    public function getPub($location){
+        return $this->em
+                    ->getRepository('AppBundle:Publicity')
+                    ->findByLocation($location);
     }
     public function getName()
     {

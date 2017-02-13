@@ -33,8 +33,7 @@ class BodyController extends Controller
     }
 
     /**
-     *
-     * @Route("catalogue/body.json/{name}", name="bodyjson")
+     * @Route("admin/catalogue/body.json/{name}", name="bodyjson")
      */
     public function listejson(Request $request)
     {
@@ -55,22 +54,23 @@ class BodyController extends Controller
     }
     /**
      *
-     * @Route("catalogue/body.json/seff", name="calculSeff")
-     *@Method("POST")
+     * @Route("admin/catalogue/body.json/seff/{host}/{typeID}/{axis}", name="calculSeff")
+     *@Method("GET")
      */
     public function calculSeff(Request $request){
 
       $em = $this->getDoctrine()->getManager();
-      $type = $em->getRepository('AppBundle:Type')->find($request->get('type_id'));
-      dump($request->request->all());
-      if ($request->get('host_id') || $type->getCategorie() != "Point" || $type->getCategorie() != "Star" ){
+      $type = $em->getRepository('AppBundle:Type')->find($request->get('typeID'));
+
+      $types = $this->getParameter('types');
+      if ($request->get('host_id') || $type->getCategorie() != $types['point'] || $type->getCategorie() != $types['star'] ){
         $host = $em->getRepository('AppBundle:Body')->getHost($request->get('host_id'));
         $seffDatas = array(0 => $host);
-        if($host->getTypeId()->getCategorie() === "Point")
+        if($host->getTypeId()->getCategorie() === $types['point'])
         {
           $seffDatas = [];
           foreach($host->getSatellites() as $satellite){
-            if ($satellite->getTypeId()->getCategorie() === "Star"){
+            if ($satellite->getTypeId()->getCategorie() === $types['star']){
               array_push($seffDatas, $satellite);
             }
           }
@@ -85,6 +85,7 @@ class BodyController extends Controller
      * Creates a new body entity.
      *
      * @Route("admin/catalogue/new", name="catalogue_new")
+     * @Route("admin/catalogue/")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -99,6 +100,7 @@ class BodyController extends Controller
 
             $calculs = $this->get('app.calculs');
             //CONVERT DISTANCE
+            $distance = null;
             if(!empty($form['distance']->getData()))
             {
               $distance = $calculs->convertDistance($form['distance']->getData(), $form['parsecs']->getData());
@@ -154,7 +156,6 @@ class BodyController extends Controller
      */
     public function showAction(Body $body)
     {
-        dump($body->getSatellites());
         $deleteForm = $this->createDeleteForm($body);
         $em = $this->getDoctrine()->getManager('extrablog');
         $posts = $em->getRepository('AppBundle:WpPosts')->getArticle($body->getName());
@@ -183,6 +184,7 @@ class BodyController extends Controller
 
             $calculs = $this->get('app.calculs');
             //CONVERT DISTANCE
+            $distance = null;
             if(!empty($editForm['distance']->getData()))
             {
               $distance = $calculs->convertDistance($editForm['distance']->getData(), $editForm['parsecs']->getData());

@@ -1,5 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+{{ parent() }}
+<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="{{ asset('js/javascript.js') }}"></script>
+{% endblock %}
 
 {% block body %}
 
@@ -136,11 +146,7 @@
         </div>
         <div class="row">
             <div class="col-md-4 formCustom">
-                <div class="form-group" id="host_name_div" style="display">
-                  <label class="control-label" for="host_name">Nom de l'hôte</label>
-                  <input type="text" id="host_name" name="host_name" class="form-control">
-                </div>
-                {{ form_row(form.rotation_id, { 'attr': { 'readonly': 'true' } }) }}
+              {{ form_row(form.rotation_id) }}
             </div>
             <div class="col-md-4 formCustom">
                 <div class="row">
@@ -209,7 +215,4 @@
         </li>
     </ul>
 </div>
-<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="{{ asset('js/javascript.js') }}"></script>
 {% endblock %}

@@ -7,13 +7,23 @@
 <div class="container mTop30">
     <div class="row">
         <div class="col-md-5">
-            <img src="{{ asset('img/sun.png') }}" class="img-responsive displayBlock margin0-auto"  alt="" style="width: 50%">
+            <img src="{% if body.typeId.picture %}{{asset(body.type.picture)}}{% else %}{{ asset('img/sun.png') }}{% endif %}" class="img-responsive displayBlock margin0-auto"  alt="" style="width: 50%">
         </div>
         <div class="col-md-7">
-            <h2 class="blackColor">{{ body.typeId }}, découverte en {% if body.discovery %}{{ body.discovery|date('Y') }}{% endif %}</h2>
+            <h2 class="blackColor">{{ body.typeId.name }}{% if body.discovery %}, découverte en {{ body.discovery|date('Y') }}{% endif %}</h2>
             <div>Partager sur <span id="share"></span></div>
             <div class="row mTop20">
-                <div class="col-md-6">
+              <div class="col-md-12">
+                <p class="text-center blackColor">Coordonnées célestes</p>
+                <hr class="hr w80"/>
+                <div class="flexParent">
+                  <span class="bgInfos flexItem"><span class="blackColor">RA :</span> {{ body.ra }} Rt</span>
+                  <span class="bgInfos flexItem"><span class="blackColor">DECL :</span> {{ body.decl }} Rt</span>
+                  <span class="bgInfos flexItem"><span class="blackColor">Distance :</span> {{ body.distance }} parsecs</span>
+                </div>
+              </div>
+              {% if body.typeId.categorie != types.point %}
+                <div class="col-md-6 mTop20">
                     <p class="text-center blackColor">Caractéristiques physiques</p>
                     <hr class="hr w80"/>
                     <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Rayon :</span> {{ body.radius }} Rt</span>
@@ -25,10 +35,12 @@
                     <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Type spectral :</span> {{ body.spectralType }}</span>
                     <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Variabilité :</span> {{ body.vari }}</span>
                 </div>
-                <div class="col-md-6">
+              {% endif %}
+              {% if body.rotationId %}
+                <div class="col-md-6 mTop20">
                     <p class="text-center blackColor">Caractéristiques orbitales</p>
                     <hr class="hr w80"/>
-                    <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Hôte :</span> {{ body.rotationId }}</span>
+                    <a class="displayBlock bgInfos paddingY5" href="{{  path('catalogue_show', { 'id': body.rotationId.id }) }}"><span class="blackColor">Hôte :</span> {{ body.rotationId }}</a>
                     <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Demi-grand-axe :</span> {{ body.axis }} UA</span>
                     <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Seff :</span> {{ body.seff }}</span>
                     <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Période :</span> {{ body.period }} jour(s)</span>
@@ -37,63 +49,55 @@
                     <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Omega :</span> {{ body.omega }}</span>
                     <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Tref :</span> {{ body.tref }}</span>
                 </div>
+              {% endif %}
             </div>
             <div style="width: 100%; height: 1px; background-color: #000;" class="mTop30"></div>
-            <div class="row mTop30">
-                <div class="col-md-12">
-                    <p class="text-center blackColor">Planètes associées</p>
-                    <div class="row">
-                        <div class="col-md-4">
-                            {% if body.rotationId %}
-                                {% for item in body.rotationId.satellites %}
-                                    {% if item.name != body.name %}
-                                        <img class="displayBlock margin0-auto img-responsive" src="{{ asset('/img/p-mars.png') }}" alt="">
-                                        <a class="mTop10 displayBlock text-center" href="{{  path('catalogue_show', { 'id': item.id }) }}">{{ item.name }}</a>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <hr class="hr w100"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+          </div>
+          <!-- SYSTEM REPRESENTATION -->
+          <div class="row mTop30">
+              <div class="col-md-12">
+                  <p class="text-center blackColor">Système</p>
+                  <div class="row">
+                      <div class="col-md-12">
+                          {% if body.rotationId is null %}
+                            {% set host = body %}
+                          {% else %}
+                            {% set host = body.rotationId %}
+                          {% endif %}
+                            <div class="flexParent">
+                              <a class="flexItem bgInfos" href="{{  path('catalogue_show', { 'id': host.id }) }}">
+
+                                <img class="displayBlock margin0-auto img-responsive" src="{% if host.typeId.picture %}{{host.typeId.picture}}{% else %}{{ asset('/img/p-mars.png') }}{% endif %}" alt="" />
+
+                                <span class="mTop10 displayBlock text-center" >{{ host.name }}</span>
+                                <span class="mTop10 displayBlock text-center" >{{ host.typeId.name }}</span>
+                              </a>
+                              {% for item in host.satellites %}
+                                    <a class="flexItem bgInfos" href="{{  path('catalogue_show', { 'id': item.id }) }}">
+
+                                      <img class="displayBlock margin0-auto img-responsive" src="{% if item.typeId.picture %}{{item.typeId.picture}}{% else %}{{ asset('/img/p-mars.png') }}{% endif %}" alt="" />
+
+                                      <span class="mTop10 displayBlock text-center" >{{ item.name }}</span>
+                                      <span class="mTop10 displayBlock text-center" >{{ item.typeId.name }}</span>
+                                    </a>
+                              {% endfor %}
+                            </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <hr class="hr w100"/>
+                      </div>
+                  </div>
+              </div>
+          </div>
     </div>
 </div>
-
-{% if articles %}
-<div class="container-fluid pTop15 pBottom30">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="blackColor">Derniers articles liés</h2>
-            </div>
-        </div>
-
-            {% for article in articles %}
-                <div class="row">
-                    <div data-mh="my-group" class="col-md-8 mTop30">
-                        <h4 class="blackColor ft18 text-uppercase"><b>{{ article.postTitle }}</b></h4>
-                        <p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>
-                        {% if article.postContent %}
-                            <p>{{ article.postContent|striptags[:300] }}...</p>
-                        {% endif %}
-                        <a href="{{ article.guid }}" class="buttonLink mTop5">Lire l'article</a>
-                    </div>
-                </div>
-            {% endfor %}
-
-    </div>
-</div>
-{% endif %}
 
 <div class="row">
     <div class="col-md-12 text-center mTop30 mBottom30">
         {% if app.user %}
+            <a class="buttonLink mTop30" href="{{ path('catalogue_new') }}">Ajouter un astre</a>
             <a class="buttonLink" href="{{ path('catalogue_edit', { 'id': body.id }) }}">Editer</a>
             {{ form_start(delete_form, { 'attr' : { 'class': 'displayInlineBlock' } }) }}
                 <input class="buttonLink" type="submit" value="Supprimer">
@@ -102,6 +106,48 @@
         {% endif %}
     </div>
 </div>
+{% if articles %}
+<div class="container-fluid pTop15 pBottom30">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+              <div class="col-md-12">
+                  <h2 class="blackColor">Derniers articles liés</h2>
+              </div>
+          </div>
+          {% for article in articles %}
+              <div class="row">
+                  <div data-mh="my-group" class="col-md-12 mTop30">
+                      <h4 class="blackColor ft18 text-uppercase"><b>{{ article.postTitle }}</b></h4>
+                      <p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>
+                      {% if article.postContent %}
+                          <p>{{ article.postContent|striptags[:300] }}...</p>
+                      {% endif %}
+                      <a href="{{ article.guid }}" class="buttonLink mTop5">Lire l'article</a>
+                  </div>
+              </div>
+          {% endfor %}
+        </div>
+
+        <!--- PUB -->
+        <hr class="hr"/>
+        <p class="">Liens sponsorisés:</p>
+        {% for pub in getPub(2) %}
+          <a href="{{ pub.link }}"class="col-md-6 mBottom10">
+            <img class="img-responsive margin0-auto" src="{{asset(pub.picturePath)}}"/>
+          </a>
+        {% endfor %}
+        {% if app.user %}
+          <div class='txtAlign'>
+            <a href="{{ path('publicity_index') }}" class="buttonLink mTop5">Emplacement n°2</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+</div>
+{% endif %}
+
 
 
 <script type="text/javascript">

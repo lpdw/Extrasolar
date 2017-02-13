@@ -1,7 +1,33 @@
+.big-header{
+  height: 100vh;
+}
+
 body {
-    background-color: #F8F8F8 !important;
+    background-color: #0b1821 !important;
     overflow-x: hidden !important;
     font-family: "Source Sans Pro", sans-serif !important;
+    color: #FFFFFF !important;
+
+}
+
+body a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+body a:before{
+  text-decoration: none !important;
+  color: inherit;
+}
+
+body a:hover{
+  text-decoration: none !important;
+  color: inherit;
+}
+
+body a:after{
+  text-decoration: none !important;
+  color: inherit;
 }
 
 input[placeholder="Rechercher"], .bootstrap-table .dropdown-toggle, .bootstrap-table button {
@@ -11,27 +37,31 @@ input[placeholder="Rechercher"], .bootstrap-table .dropdown-toggle, .bootstrap-t
 
 .bootstrap-table button:hover {
     border-color: black !important;
+<<<<<<< HEAD
+=======
+    position: relative;
+>>>>>>> 78e072d07f6586fec3915c99bb9ad8a19cb3c60f
 }
 
 a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
-    border: 0 !important;
-    border-radius: 0 !important !important;
-    height: 45px !important;
-    line-height: 45px !important;
-    background-color: #402d1f !important;
-    padding: 0 30px !important;
-    display: inline-block !important;
-    border-radius: 3px !important;
-    font-weight: 700 !important;
-    font-size: 18px !important;
-    color: #fff !important;
-    -webkit-transition: all 0.3s !important;
-    -moz-transition: all 0.3s !important;
-    -o-transition: all 0.3s !important;
-    transition: all 0.3s !important;
-    text-transform: uppercase !important;
-    cursor: pointer !important;
-    font-weight: normal !important;
+  border: solid #ffffff !important;
+border-radius: 0 !important !important;
+height: 45px !important;
+line-height: 45px !important;
+background-color: #0b1821 !important;
+padding: 0 30px !important;
+display: inline-block !important;
+border-radius: 3px !important;
+font-weight: 700 !important;
+font-size: 18px !important;
+/* color: #0b1821 !important; */
+-webkit-transition: all 0.3s !important;
+-moz-transition: all 0.3s !important;
+-o-transition: all 0.3s !important;
+transition: all 0.3s !important;
+text-transform: uppercase !important;
+cursor: pointer !important;
+font-weight: normal !important;
 }
 
 .jssocials-share-logo {
@@ -45,6 +75,11 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     position: relative;
     bottom: 5px;
     left: 5px;
+}
+
+#table>tbody>tr>.titleBootstrap{
+  text-align: center;
+  vertical-align: middle;
 }
 
 .formCustom input {
@@ -91,12 +126,187 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     padding: 10px 0;
 }
 
-#footer {
+.randomstar img {
+    display: inline-block !important;
+}
+
+
+
+.randomstar:hover {
+    margin-left: 100px !important;
+}
+
+.planet-informations {
+  float: right;
+  width: 80% !important;
+  margin-top:20px !important;
+  padding-left: 20px;
+  line-height: 0.2em;
+}
+
+
+.randomstar .planet-informations p {
+  opacity: 0;
+  line-height: 1em;
+}
+
+.randomstar .planet-informations h5 {
+  opacity: 1;
+}
+
+
+.randomstar:hover .planet-informations p {
+  animation: fadein 2s;
+  -moz-animation: fadein 2s forwards; /* Firefox */
+  -webkit-animation: fadein 2s forwards; /* Safari et Chrome */
+  -o-animation: fadein 2s forwards; /* Opera */
+}
+
+
+
+
+
+    @keyframes fadein {
+      from { opacity   : 0; }
+      to   { opacity   : 1; }
+    }
+    @-moz-keyframes fadein { /* sur Firefox */
+      from { opacity   : 0; }
+      to   { opacity   : 1; }
+    }
+    @-webkit-keyframes fadein { /* sur Safari et Chrome */
+      from { opacity   : 0; }
+      to   { opacity   : 1; }
+        }
+    }
+    @-o-keyframes fadein { /* sur Opera */
+      from { opacity   : 0; }
+        to   { opacity   : 1; }
+    }
+
+
+    @keyframes fadeout {
+      from { opacity   : 1; }
+      to   { opacity   : 0; }
+    }
+    @-moz-keyframes fadeout { /* sur Firefox */
+      from { opacity   : 1; }
+      to   { opacity   : 0; }
+    }
+    @-webkit-keyframes fadeout { /* sur Safari et Chrome */
+      from { opacity   : 1; }
+      to   { opacity   : 0; }
+        }
+    }
+    @-o-keyframes fadeout { /* sur Opera */
+      from { opacity   : 1; }
+      to   { opacity   : 0; }
+    }
+
+.randomstar h3 {
+  font-size: 24px;
+  color: red !important;
+text-align: right;
+text-transform: uppercase;
+}
+
+
+.randomstar p {
+  text-align: justify;
+}
+
+.
+
+.lined {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-size: 40px;
+  line-height: 46px;
+  padding: 0 0 6px;
+}
+
+.lined:after {
+  content: "";
   position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
+  bottom: 50%;
+  left: -200%;
+  width: 80%;
+  height: 3px;
+  background: #FFFFFF;
+  transition: left .8s;
+}
+
+.lined:hover:after {
+  left: -500px;
+}
+
+.more{
+  text-align: right !important;
+  margin-left: -400px!important;
+  /* margin-bottom: 10% !important; */
+  margin-top: -10% !important;
+  z-index: 0;
+  position: absolute;
+  background-color: red;
+  padding-left: 10px;
+  display: inline;
+  width: 20%;
+  opacity: 0;
+  animation: fadein 1s;
+  -moz-animation: fadein 1s forwards;
+  -webkit-animation: fadein 1s forwards;
+  -o-animation: fadein 1s forwards;
+  z-index: 1;
+  background-color: #0b1821 !important;
+}
+
+
+.recent-post{
+  text-align: justify;
+}
+
+.recent-post h4{
+  text-transform: uppercase;
+  text-align: right;
+}
+
+
+
+
+.flexParent{
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+.flexParent .flexItem{
+  flex-grow: 1;
+  min-width:20%;
+}
+
+.vignette{
+  width:100px;
+  height: auto;
+}
+
+.full {
+  background: url(http://placehold.it/1920x1080) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 /** CHANGE MODAL BOOTSTRAP **/

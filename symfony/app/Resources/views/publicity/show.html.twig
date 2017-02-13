@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-table.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
+    <script src="{{ asset('extensions/toolbar/bootstrap-table-toolbar.js') }}"></script>
+    <script src="{{ asset('js/javascript.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+{{ parent() }}
+
+<div class="container">
+    <table id="table"
+    data-toggle="table"
+    data-show-columns="true">
+    <thead>
+        <tr>
+          <th class="text-center" data-field="name" data-sortable="true">ID</th>
+          <th data-field="Nom" data-sortable="true">Nom</th>
+          <th data-field="lien" data-sortable="true">Lien</th>
+          <th data-field="Image" data-sortable="true">Image</th>
+          <th data-field="Location" data-sortable="true">Emplacement</th>
+          <th data-field="Activé" data-sortable="true">Activé</th>
+          <th data-field="Actions" data-sortable="false">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td class="titleBootstrap"><span>{{ publicity.id }}</span></td>
+      <td class="titleBootstrap"><a class="posTdBootstrap" href="{{ path('publicity_show', { 'id': publicity.id }) }}">{{ publicity.name }}</a></td>
+      <td class="titleBootstrap">{% if publicity.link %}<a class="posTdBootstrap" href="{{publicity.link}}">{{ publicity.link }}</a>{% endif %}</td>
+      <td class="titleBootstrap"><span class="posTdBootstrap">{% if publicity.picturePath %}<img class="img-responsive vignette" src='{{ asset(publicity.picturePath) }}' />{% endif %}</span></td>
+      <td class="titleBootstrap"><span class="posTdBootstrap">{{ publicity.location }}</span></td>
+      <td class="titleBootstrap"><span class="posTdBootstrap">{% if publicity.disable %}Non{% else %}Oui{% endif %}</span></td>
+      <td class="titleBootstrap">
+          {% if app.user %}
+              <a class="posTdBootstrap" href="{{ path('publicity_edit', { 'id': publicity.id }) }}">Modifier</a>
+          {% endif %}
+      </td>
+    </tr>
+    </tbody>
+    </table>
+
+    <a class="ft14 buttonLink mTop15 mBottom30" href="{{ path('publicity_edit', { 'id': publicity.id }) }}">Editer</a>
+    <a class="buttonLink mTop30" href="{{ path('publicity_new') }}">Ajouter une pub</a>
+    <a class="ft14 buttonLink mTop15 mBottom30" href="{{ path('publicity_index') }}">Retour</a>
+
+</div>
+{% endblock %}

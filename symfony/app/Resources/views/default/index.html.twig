@@ -1,5 +1,158 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    {% block stylesheets %}
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/themesite/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/helpers.css') }}">
+        <link rel="stylesheet" href="{{ getRootURL() }}/wp-content/themes/illdy/layout/css/main.css">
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+        <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-minima.css" />
+        <link rel='stylesheet' id='font-awesome-css'  href="{{ getRootURL() }}/wp-content/themes/illdy/layout/css/font-awesome.min.css?ver=4.5.0" type='text/css' media='all' />
+    {% endblock %}
+
+    {% block javascripts %}
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+        <script type="text/javascript">
+        if (typeof jQuery == 'undefined') {
+            document.write(unescape("%3Cscript src='js/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+        }
+        </script>
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/equalHeight.js') }}"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+        <script type="text/javascript" src="{{ asset('/js/scripts.js') }}"></script>
+
+    {% endblock %}
+</head>
+
+<body>
 {% block body %}
-{{ parent() }}
+<header id="header" class="header-blog big-header" style="background-image: url({{getBackgroundImageURL()}});background-attachment: fixed;">
+    <div class="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2 col-xs-8">
+
+                    <a href="/" title="Extrasolar" class="header-logo">Extrasolar</a>
+
+                </div><!--/.col-sm-2-->
+                <div class="col-sm-10 col-xs-4">
+                    <nav class="header-navigation">
+                        <ul class="clearfix">
+                            <li id="menu-item-1157" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/"><span>Accueil</span></a></li>
+                            <li id="menu-item-1156" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/catalogue"><span>Catalogue</span></a></li>
+                            <li id="menu-item-1146" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home active"><a href="{{ getRootURL() }}"><span>Blog</span></a></li>
+                            <li id="menu-item-1147" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/communaute/"><span>Communauté</span></a></li>
+                            <li id="menu-item-1148" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/contact/"><span>Contact</span></a></li>
+                        </ul><!--/.clearfix-->
+                    </nav><!--/.header-navigation-->
+                    <button class="open-responsive-menu"><i class="fa fa-bars"></i></button>
+                </div><!--/.col-sm-10-->
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </div><!--/.top-header-->
+    <nav class="responsive-menu">
+        <ul>
+            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ getRootURL() }}"><span>Portail</span></a></li>
+            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ getRootURL() }}"><span>Catalogue</span></a></li>
+            <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home active"><a href="{{ getRootURL() }}/blog/"><span>Blog</span></a></li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/blog/communaute/"><span>Communauté</span></a></li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/blog/contact/"><span>Contact</span></a></li>
+        </ul>
+    </nav><!--/.responsive-menu-->
+    <div class="bottom-header blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>{{ title }}</h2>
+                </div><!--/.col-sm-12-->
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </div><!--/.bottom-header.blog-->
+</header><!--/#header-->
 
 {% endblock %}
+
+
+<!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="page-header">Dernières planètes ajoutées
+                </h1>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="page-header">Derniers articles du blog
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+        <!-- Projects Row -->
+        <div class="row col-md-6 col-xs-12">
+          <div class="col-md-12 col-xs-12 portfolio-item randomstar lined">
+              <a href="#" >
+                  <img class="img-responsive moved" src="http://placehold.it/100x100" alt="">
+
+              <div class="planet-informations">
+                <h5>NOM PLANETES</h5>
+                <p>Infos un peu plus détaillées qui<br>donnent trop envie</p>
+                <div class="more">
+                  <p>en savoir plus</p>
+                </div>
+                </a>
+            </div>
+          </div>
+
+          {% for body in bodies %}
+            <div class="col-md-12 col-xs-12 portfolio-item randomstar ">
+                <a href="{{ path('catalogue_show', { 'id': body.id }) }}">
+                    <img class="img-responsive" src="{% if body.typeID.picture %}{{body.typeID.picture}}{% endif %}http://placehold.it/100x100" alt="">
+                </a>
+                  <h5>{{body.name}}</h5>
+            </div>
+          {% endfor %}
+
+        </div>
+        <div class="row col-md-6">
+
+          {% for article in articles %}
+            <div data-mh="my-group" class="col-md-16 mTop30 recent-post">
+                <h4 class=""><b>{{ article.postTitle }}</b></h4>
+                <!--<p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>-->
+                {% if article.postContent %}
+                    <p>{{ article.postContent|striptags[:300] }}...</p>
+                {% endif %}
+                <a href="{{ article.guid }}" class="buttonLink mTop5">Lire l'article</a>
+            </div>
+          {% endfor %}
+        </div>
+        <!-- /.row -->
+</div>
+
+
+<footer id="footer">
+  {% block footer %}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <p>
+            <span>Extrasolar.fr de <a href="http://www.extrasolar.fr/">Alexandre Lomaev</a> est mis à disposition selon les termes de la <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">licence Creative Commons Attribution - Partage dans les Mêmes Conditions 4.0 International. Licence Creative Commons</a><span>
+          </p>
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+</footer>
+
+</body>
+</html>

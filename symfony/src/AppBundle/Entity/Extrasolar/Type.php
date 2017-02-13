@@ -23,15 +23,35 @@ class Type
   private $name;
 
   /**
+  * @var string
+  *
   * @ORM\column(name="categorie", type="string")
   */
   private $categorie;
 
   /**
-  * @ORM\column(name="description", type="text")
+  * @var string
+  *
+  * @ORM\column(name="description", type="text", nullable=true)
   */
   private $description;
 
+  /**
+  * @var string
+  *
+  * @ORM\column(name="picture", type="text", nullable=true)
+  */
+  private $picture;
+
+  /**
+  * @Assert\Image(minWidth = 50,
+  *     maxWidth = 600,
+  *     minHeight = 50,
+  *     maxHeight = 600)
+   */
+   private $file;
+
+   private $picturePath;
     /**
      * Get the value of Id
      *
@@ -131,6 +151,78 @@ class Type
     public function setCategorie($categorie)
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+    /**
+     * Get the value of Picture
+     *
+     * @return mixed
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set the value of Picture
+     *
+     * @param mixed categorie
+     *
+     * @return self
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of File
+     *
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Set the value of File
+     *
+     * @param mixed categorie
+     *
+     * @return self
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of Picture Path
+     *
+     * @return mixed
+     */
+    public function getPicturePath()
+    {
+        return $this->picturePath;
+    }
+
+    /**
+     * Set the value of Picture Path
+     *
+     * @param mixed picturePath
+     *
+     * @return self
+     */
+    public function setPicturePath($picturePath)
+    {
+        $this->picturePath = $picturePath;
 
         return $this;
     }
