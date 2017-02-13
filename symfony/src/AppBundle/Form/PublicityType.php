@@ -8,6 +8,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 
 class PublicityType extends AbstractType
@@ -17,14 +20,24 @@ class PublicityType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')
-                ->add('link', UrlType::class)
-                ->add('file', FileType::class, array(
-                  "required" => false
+        $builder->add('name', TextType::class, array(
+                  'label' => 'Nom'
                 ))
-                //->add('picture', HiddenType::class)
-                ->add('disable')
-                ->add('location')
+                ->add('link', UrlType::class, array(
+                  'label' => 'Lien'
+                ))
+                ->add('file', FileType::class, array(
+                  'label'=> 'Uploader une nouvelle image',
+                  'required' => false
+                ))
+                ->add('picture', HiddenType::class)
+                ->add('disable', CheckboxType::class, array(
+                  'label'=> 'Désactiver la publicité',
+                  'required' => false
+                ))
+                ->add('location', NumberType::class, array(
+                  'label' => 'Emplacement'
+                ))
                 ;
     }
 
@@ -34,7 +47,10 @@ class PublicityType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Extrasolar\Publicity'
+            'data_class' => 'AppBundle\Entity\Extrasolar\Publicity',
+            'error_mapping' => array(
+            'picture' => 'file',
+            ),
         ));
     }
 
