@@ -42,6 +42,63 @@
         </div>
     </div>
 
+    <div class="caracOrbitales toggleInput mTop30">
+        <div class="row control">
+            <div class="col-md-12 mTop15 mBottom15 bgLightDark whiteColor">
+                <i class="chevronForm fa fa-chevron-down fa-2x" aria-hidden="true"></i>
+                <h3 class="text-right bandeauForm">Caractéristiques orbitales</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 formCustom">
+                {{ form_row(form.rotation_id) }}
+            </div>
+            <div class="col-md-4 formCustom">
+                <div class="row">
+                    <div class="col-md-8">
+                        {{ form_row(form.axis) }}
+                    </div>
+                    <div class="col-md-4 posSelectForm">
+                        {{ form_row(form.UA) }}
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4 formCustom">
+                <div class="row">
+                    <div class="col-md-8">
+                        {{ form_row(form.period) }}
+                    </div>
+                    <div class="col-md-4 posSelectForm">
+                        {{ form_row(form.jours) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 formCustom">
+                {{ form_row(form.excentricity) }}
+            </div>
+            <div class="col-md-4 formCustom">
+                {{ form_row(form.inclinaison) }}
+            </div>
+            <div class="col-md-4 formCustom">
+                {{ form_row(form.omega) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 formCustom">
+                {{ form_row(form.tref) }}
+            </div>
+            <div class="col-md-4 formCustom">
+                {{ form_row(form.seff) }}
+            </div>
+            <div class="col-md-4">
+                <div class="buttonLink" id="calculSeff">Calcul du Seff</div>
+            </div>
+        </div>
+    </div>
+
     <div class="caracPosition toggleInput mTop30">
         <div class="row control">
             <div class="col-md-12 mTop15 mBottom15 bgLightDark whiteColor">
@@ -137,62 +194,7 @@
     </div>
 
 
-    <div class="caracOrbitales toggleInput mTop30">
-        <div class="row control">
-            <div class="col-md-12 mTop15 mBottom15 bgLightDark whiteColor">
-                <i class="chevronForm fa fa-chevron-down fa-2x" aria-hidden="true"></i>
-                <h3 class="text-right bandeauForm">Caractéristiques orbitales</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 formCustom">
-                {{ form_row(form.rotation_id) }}
-            </div>
-            <div class="col-md-4 formCustom">
-                <div class="row">
-                    <div class="col-md-8">
-                        {{ form_row(form.axis) }}
-                    </div>
-                    <div class="col-md-4 posSelectForm">
-                        {{ form_row(form.UA) }}
-                    </div>
-                </div>
 
-            </div>
-            <div class="col-md-4 formCustom">
-                <div class="row">
-                    <div class="col-md-8">
-                        {{ form_row(form.period) }}
-                    </div>
-                    <div class="col-md-4 posSelectForm">
-                        {{ form_row(form.jours) }}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 formCustom">
-                {{ form_row(form.excentricity) }}
-            </div>
-            <div class="col-md-4 formCustom">
-                {{ form_row(form.inclinaison) }}
-            </div>
-            <div class="col-md-4 formCustom">
-                {{ form_row(form.omega) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 formCustom">
-                {{ form_row(form.tref) }}
-            </div>
-            <div class="col-md-4 formCustom">
-                {{ form_row(form.seff) }}
-            </div>
-            <div class="col-md-4">
-                <div class="buttonLink" id="calculSeff">Calcul du Seff</div>
-            </div>
-        </div>
-    </div>
 
     {{ form_widget(form) }}
 

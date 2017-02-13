@@ -33,7 +33,7 @@
     {% endblock %}
 </head>
 
-<body>
+<body class="homeBg">
 {% block body %}
 <header id="header" class="header-blog big-header" style="background-image: url({{getBackgroundImageURL()}});background-attachment: fixed;">
     <div class="top-header">
@@ -83,60 +83,43 @@
 
 
 <!-- Page Content -->
-    <div class="container">
-
-        <!-- Page Header -->
-        <div class="row">
-            <div class="col-lg-6">
-                <h1 class="page-header">Dernières planètes ajoutées
-                </h1>
-            </div>
-            <div class="col-lg-6">
-                <h1 class="page-header">Derniers articles du blog
-                </h1>
-            </div>
-        </div>
-        <!-- /.row -->
+    <div class="container mBottom30">
         <!-- Projects Row -->
-        <div class="row col-md-6 col-xs-12">
-          <div class="col-md-12 col-xs-12 portfolio-item randomstar lined">
-              <a href="#" >
-                  <img class="img-responsive moved" src="http://placehold.it/100x100" alt="">
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <h1 class="page-header whiteColor">Dernières planètes ajoutées</h1>
+                {% for body in bodies %}
+                    <div class="col-md-12 col-xs-12 portfolio-item randomstar lined">
+                        <a class="linkHoverHome" href="{{ path('catalogue_show', { 'id': body.id }) }}">
+                            <img class="img-responsive" src="{% if body.typeID.picture %}{{body.typeID.picture}}{% endif %}http://placehold.it/100x100" alt="">
+                            <div class="planet-informations">
+                                <h5>{{ body.name }}</h5>
+                                <p class="textBody">{{ body.typeID.categorie }}<br>Découverte en {{ body.discovery|date("Y") }}</p>
+                                <div class="more">
+                                    <p>en savoir plus</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
 
-              <div class="planet-informations">
-                <h5>NOM PLANETES</h5>
-                <p>Infos un peu plus détaillées qui<br>donnent trop envie</p>
-                <div class="more">
-                  <p>en savoir plus</p>
+            <div class="col-md-6 col-xs-12">
+                <h1 class="page-header whiteColor">Derniers articles du blog</h1>
+              {% for article in articles %}
+                <div data-mh="my-group" class="col-md-16 mTop30 recent-post">
+                    <h4 class=""><b>{{ article.postTitle }}</b></h4>
+                    <!--<p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>-->
+                    {% if article.postContent %}
+                        <p>{{ article.postContent|striptags[:300] }}...</p>
+                    {% endif %}
+                    <a href="{{ article.guid }}" class="buttonLink mTop5">Lire l'article</a>
                 </div>
-                </a>
+              {% endfor %}
             </div>
-          </div>
-
-          {% for body in bodies %}
-            <div class="col-md-12 col-xs-12 portfolio-item randomstar ">
-                <a href="{{ path('catalogue_show', { 'id': body.id }) }}">
-                    <img class="img-responsive" src="{% if body.typeID.picture %}{{body.typeID.picture}}{% endif %}http://placehold.it/100x100" alt="">
-                </a>
-                  <h5>{{body.name}}</h5>
-            </div>
-          {% endfor %}
-
+            <!-- /.row -->
         </div>
-        <div class="row col-md-6">
 
-          {% for article in articles %}
-            <div data-mh="my-group" class="col-md-16 mTop30 recent-post">
-                <h4 class=""><b>{{ article.postTitle }}</b></h4>
-                <!--<p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>-->
-                {% if article.postContent %}
-                    <p>{{ article.postContent|striptags[:300] }}...</p>
-                {% endif %}
-                <a href="{{ article.guid }}" class="buttonLink mTop5">Lire l'article</a>
-            </div>
-          {% endfor %}
-        </div>
-        <!-- /.row -->
 </div>
 
 
