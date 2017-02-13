@@ -1,3 +1,7 @@
+.big-header{
+  height: 100vh;
+}
+
 body {
     background-color: #0b1821 !important;
     overflow-x: hidden !important;
