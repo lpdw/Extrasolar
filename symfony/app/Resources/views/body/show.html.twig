@@ -52,44 +52,45 @@
               {% endif %}
             </div>
             <div style="width: 100%; height: 1px; background-color: #000;" class="mTop30"></div>
-            <div class="row mTop30">
-                <div class="col-md-12">
-                    <p class="text-center blackColor">Système</p>
-                    <div class="row">
-                        <div class="col-md-12">
-                            {% if body.rotationId is null %}
-                              {% set host = body %}
-                            {% else %}
-                              {% set host = body.rotationId %}
-                            {% endif %}
-                              <div class="flexParent">
-                                <a class="flexItem bgInfos" href="{{  path('catalogue_show', { 'id': host.id }) }}">
+          </div>
+          <!-- SYSTEM REPRESENTATION -->
+          <div class="row mTop30">
+              <div class="col-md-12">
+                  <p class="text-center blackColor">Système</p>
+                  <div class="row">
+                      <div class="col-md-12">
+                          {% if body.rotationId is null %}
+                            {% set host = body %}
+                          {% else %}
+                            {% set host = body.rotationId %}
+                          {% endif %}
+                            <div class="flexParent">
+                              <a class="flexItem bgInfos" href="{{  path('catalogue_show', { 'id': host.id }) }}">
 
-                                  <img class="displayBlock margin0-auto img-responsive" src="{% if host.typeId.picture %}{{host.typeId.picture}}{% else %}{{ asset('/img/p-mars.png') }}{% endif %}" alt="" />
+                                <img class="displayBlock margin0-auto img-responsive" src="{% if host.typeId.picture %}{{host.typeId.picture}}{% else %}{{ asset('/img/p-mars.png') }}{% endif %}" alt="" />
 
-                                  <span class="mTop10 displayBlock text-center" >{{ host.name }}</span>
-                                  <span class="mTop10 displayBlock text-center" >{{ host.typeId.name }}</span>
-                                </a>
-                                {% for item in host.satellites %}
-                                      <a class="flexItem bgInfos" href="{{  path('catalogue_show', { 'id': item.id }) }}">
+                                <span class="mTop10 displayBlock text-center" >{{ host.name }}</span>
+                                <span class="mTop10 displayBlock text-center" >{{ host.typeId.name }}</span>
+                              </a>
+                              {% for item in host.satellites %}
+                                    <a class="flexItem bgInfos" href="{{  path('catalogue_show', { 'id': item.id }) }}">
 
-                                        <img class="displayBlock margin0-auto img-responsive" src="{% if item.typeId.picture %}{{item.typeId.picture}}{% else %}{{ asset('/img/p-mars.png') }}{% endif %}" alt="" />
+                                      <img class="displayBlock margin0-auto img-responsive" src="{% if item.typeId.picture %}{{item.typeId.picture}}{% else %}{{ asset('/img/p-mars.png') }}{% endif %}" alt="" />
 
-                                        <span class="mTop10 displayBlock text-center" >{{ item.name }}</span>
-                                        <span class="mTop10 displayBlock text-center" >{{ item.typeId.name }}</span>
-                                      </a>
-                                {% endfor %}
-                              </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <hr class="hr w100"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                      <span class="mTop10 displayBlock text-center" >{{ item.name }}</span>
+                                      <span class="mTop10 displayBlock text-center" >{{ item.typeId.name }}</span>
+                                    </a>
+                              {% endfor %}
+                            </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <hr class="hr w100"/>
+                      </div>
+                  </div>
+              </div>
+          </div>
     </div>
 </div>
 
@@ -137,9 +138,11 @@
             <img class="img-responsive margin0-auto" src="{{asset(pub.picturePath)}}"/>
           </a>
         {% endfor %}
-        <div class='txtAlign'>
-          <a href="{{ path('publicity_index') }}" class="buttonLink mTop5">Emplacement n°2</a>
-        </div>
+        {% if app.user %}
+          <div class='txtAlign'>
+            <a href="{{ path('publicity_index') }}" class="buttonLink mTop5">Emplacement n°2</a>
+          </div>
+        {% endif %}
       </div>
     </div>
 </div>

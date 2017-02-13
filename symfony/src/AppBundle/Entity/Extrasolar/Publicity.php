@@ -32,7 +32,6 @@ class Publicity
 
     /**
      * @var string
-     *
      * @ORM\Column(name="banner", type="string", length=255, nullable=true)
      */
     private $picture;
@@ -65,7 +64,9 @@ class Publicity
      *@ORM\Column(name="link", type="string")
      */
      private $link;
-
+     /**
+      *  @var string
+      */
      private $picturePath;
     /**
      * Get id

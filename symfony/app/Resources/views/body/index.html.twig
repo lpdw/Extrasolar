@@ -54,11 +54,11 @@
             <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.period }}</span></td>
             <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.axis }}</span></td>
             <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.excentricity }}</span></td>
-            <td class="titleBootstrap">
-                {% if app.user %}
-                      <a class="posTdBootstrap" href="{{ path('catalogue_edit', { 'id': body.id }) }}">Modifier</a>
-                {% endif %}
-            </td>
+            {% if app.user %}
+              <td class="titleBootstrap">
+                <a class="posTdBootstrap" href="{{ path('catalogue_edit', { 'id': body.id }) }}">Modifier</a>
+              </td>
+            {% endif %}
         </tr>
       {% endfor %}
     </tbody>
@@ -73,9 +73,11 @@
       </a>
     {% endfor %}
   </div>
+  {% if app.user %}
   <div class='txtAlign'>
     <a href="{{ path('publicity_index') }}" class="buttonLink mTop5">Emplacement n°1</a>
   </div>
+  {% endif %}
 
 </div>
 {% endblock %}

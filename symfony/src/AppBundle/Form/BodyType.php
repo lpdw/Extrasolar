@@ -32,12 +32,13 @@ class BodyType extends AbstractType
               'choice_label' => 'name',
               'choice_attr' => function ($key, $index) {
                   return ['data-categorie' => $key->getCategorie() ];
-              }
+              },
+              'label' => "Type d'astre"
           ))
           ->add('parsecs', ChoiceType::class, array(
                 'choices'  => array(
                 'parsecs' => 0,
-                'année lumière' => 1,
+                'années lumières' => 1,
               ),
               'mapped' => false,
               'label' => false

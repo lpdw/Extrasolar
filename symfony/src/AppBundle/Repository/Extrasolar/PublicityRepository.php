@@ -16,7 +16,8 @@ class PublicityRepository extends \Doctrine\ORM\EntityRepository
   public function findByLocation($location)
   {
       return $this->createQueryBuilder('p')
-            ->Where("p.location = {$location}")
+            ->Where('p.location = :loc AND p.disable = false')
+            ->SetParameter('loc',$location)
             ->getQuery()
             ->getResult()
             ;
