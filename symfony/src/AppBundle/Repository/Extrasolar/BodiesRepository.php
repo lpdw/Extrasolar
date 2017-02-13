@@ -10,7 +10,9 @@ class BodiesRepository extends EntityRepository
     {
         return $this->createQueryBuilder('b')
               ->OrderBy('b.update_at','DESC')
-              ->setMaxResults(10)
+              ->join('AppBundle:Type', 't', 'WITH', 't.id = b.type_id')
+              ->Where('t.categorie != \'point\'')
+              ->setMaxResults(5)
               ->getQuery()
               ->getResult()
               ;
@@ -20,6 +22,14 @@ class BodiesRepository extends EntityRepository
     {
         return $this->createQueryBuilder('b')
               ->join('AppBundle:Type', 't', 'WITH', 't.id = b.type_id')
+              ->Where('t.categorie != \'point\'')
+              ->getQuery()
+              ->getResult()
+              ;
+    }
+
+    public function findAllBodiesAdmin(){
+        return $this->createQueryBuilder('b')
               ->getQuery()
               ->getResult()
               ;
