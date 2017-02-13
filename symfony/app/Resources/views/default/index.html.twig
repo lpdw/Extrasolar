@@ -21,12 +21,17 @@
           <div class="col-md-12 col-xs-12 portfolio-item randomstar lined">
               <a href="#" >
                   <img class="img-responsive moved" src="http://placehold.it/100x100" alt="">
-              </a>
+
               <div class="planet-informations">
                 <h5>NOM PLANETES</h5>
                 <p>Infos un peu plus détaillées qui<br>donnent trop envie</p>
+                <div class="more">
+                  <p>en savoir plus</p>
+                </div>
+                </a>
             </div>
           </div>
+
           {% for body in bodies %}
             <div class="col-md-12 col-xs-12 portfolio-item randomstar ">
                 <a href="{{ path('catalogue_show', { 'id': body.id }) }}">
@@ -40,9 +45,9 @@
         <div class="row col-md-6">
 
           {% for article in articles %}
-            <div data-mh="my-group" class="col-md-16 mTop30">
-                <h4 class="blackColor ft18 text-uppercase"><b>{{ article.postTitle }}</b></h4>
-                <p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>
+            <div data-mh="my-group" class="col-md-16 mTop30 recent-post">
+                <h4 class=""><b>{{ article.postTitle }}</b></h4>
+                <!--<p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>-->
                 {% if article.postContent %}
                     <p>{{ article.postContent|striptags[:300] }}...</p>
                 {% endif %}
