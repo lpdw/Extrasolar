@@ -7,7 +7,7 @@
 <div class="container mTop30">
     <div class="row">
         <div class="col-md-5">
-            <img src="{% if body.typeId.picture %}{{body.type.picture}}{% else %}{{ asset('img/sun.png') }}{% endif %}" class="img-responsive displayBlock margin0-auto"  alt="" style="width: 50%">
+            <img src="{% if body.typeId.picture %}{{asset(body.type.picture)}}{% else %}{{ asset('img/sun.png') }}{% endif %}" class="img-responsive displayBlock margin0-auto"  alt="" style="width: 50%">
         </div>
         <div class="col-md-7">
             <h2 class="blackColor">{{ body.typeId.name }}{% if body.discovery %}, découverte en {{ body.discovery|date('Y') }}{% endif %}</h2>
@@ -108,25 +108,39 @@
 {% if articles %}
 <div class="container-fluid pTop15 pBottom30">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="blackColor">Derniers articles liés</h2>
-            </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+              <div class="col-md-12">
+                  <h2 class="blackColor">Derniers articles liés</h2>
+              </div>
+          </div>
+          {% for article in articles %}
+              <div class="row">
+                  <div data-mh="my-group" class="col-md-12 mTop30">
+                      <h4 class="blackColor ft18 text-uppercase"><b>{{ article.postTitle }}</b></h4>
+                      <p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>
+                      {% if article.postContent %}
+                          <p>{{ article.postContent|striptags[:300] }}...</p>
+                      {% endif %}
+                      <a href="{{ article.guid }}" class="buttonLink mTop5">Lire l'article</a>
+                  </div>
+              </div>
+          {% endfor %}
         </div>
 
-            {% for article in articles %}
-                <div class="row">
-                    <div data-mh="my-group" class="col-md-8 mTop30">
-                        <h4 class="blackColor ft18 text-uppercase"><b>{{ article.postTitle }}</b></h4>
-                        <p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>
-                        {% if article.postContent %}
-                            <p>{{ article.postContent|striptags[:300] }}...</p>
-                        {% endif %}
-                        <a href="{{ article.guid }}" class="buttonLink mTop5">Lire l'article</a>
-                    </div>
-                </div>
-            {% endfor %}
-
+        <!--- PUB -->
+        <hr class="hr"/>
+        <p class="">Liens sponsorisés:</p>
+        {% for pub in getPub(2) %}
+          <a href="{{ pub.link }}"class="col-md-6 mBottom10">
+            <img class="img-responsive margin0-auto" src="{{asset(pub.picturePath)}}"/>
+          </a>
+        {% endfor %}
+        <div class='txtAlign'>
+          <a href="{{ path('publicity_index') }}" class="buttonLink mTop5">Emplacement n°2</a>
+        </div>
+      </div>
     </div>
 </div>
 {% endif %}

@@ -47,12 +47,18 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     bottom: 5px;
     left: 5px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6ee66c64a73f0ce346babb38f76a74e32a1d9c45
 #table>tbody>tr>.titleBootstrap{
   text-align: center;
   vertical-align: middle;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6ee66c64a73f0ce346babb38f76a74e32a1d9c45
 .formCustom input {
     border: 0 !important;
     background: none !important;
@@ -234,11 +240,18 @@ text-transform: uppercase;
   flex-grow: 1;
   min-width:20%;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6ee66c64a73f0ce346babb38f76a74e32a1d9c45
 .vignette{
   width:100px;
   height: auto;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6ee66c64a73f0ce346babb38f76a74e32a1d9c45
 .full {
   background: url(http://placehold.it/1920x1080) no-repeat center center fixed;
   -webkit-background-size: cover;

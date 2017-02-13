@@ -40,28 +40,42 @@
             <th data-field="Period" data-sortable="true">Période</th>
             <th data-field="Axis" data-sortable="true">Axe</th>
             <th data-field="Excentricity" data-sortable="true">Excenticité</th>
-            {% if app.user %}<th data-field="Actions" data-sortable="false">Actions</th>{% endif %}
+            {% if app.user %}<th data-sortable="false">Actions</th>{% endif %}
         </tr>
     </thead>
     <tbody>
-    {% for body in bodies %}
-    <tr>
-        <td class="titleBootstrap"><a href="{{ path('catalogue_show', { 'id': body.id }) }}">{{ body.name }}</a></td>
-        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.TypeId.name }}</span></td>
-        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.spectraltype }}</span></td>
-        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.masse }}</span></td>
-        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.radius }}</span></td>
-        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.period }}</span></td>
-        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.axis }}</span></td>
-        <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.excentricity }}</span></td>
-        <td class="titleBootstrap">
-            {% if app.user %}
-                  <a class="posTdBootstrap" href="{{ path('catalogue_edit', { 'id': body.id }) }}">Modifier</a>
-            {% endif %}
-        </td>
-    </tr>
-{% endfor %}
-</tbody>
-</table>
+      {% for body in bodies %}
+        <tr>
+            <td class="titleBootstrap"><a href="{{ path('catalogue_show', { 'id': body.id }) }}">{{ body.name }}</a></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.TypeId.name }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.spectraltype }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.masse }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.radius }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.period }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.axis }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.excentricity }}</span></td>
+            <td class="titleBootstrap">
+                {% if app.user %}
+                      <a class="posTdBootstrap" href="{{ path('catalogue_edit', { 'id': body.id }) }}">Modifier</a>
+                {% endif %}
+            </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <!--- PUB -->
+  <hr class="hr"/>
+  <p class="">Liens sponsorisés:</p>
+  <div class="row">
+    {% for pub in getPub(1) %}
+      <a href="{{ pub.link }}"class="col-md-6 mBottom10">
+        <img class="img-responsive margin0-auto" src="{{asset(pub.picturePath)}}"/>
+      </a>
+    {% endfor %}
+  </div>
+  <div class='txtAlign'>
+    <a href="{{ path('publicity_index') }}" class="buttonLink mTop5">Emplacement n°1</a>
+  </div>
+
 </div>
 {% endblock %}

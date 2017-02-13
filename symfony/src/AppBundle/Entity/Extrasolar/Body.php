@@ -19,7 +19,7 @@ class Body
   private $id;
 
   /**
-  * @ORM\column(name="name", type="string", nullable=true)
+  * @ORM\column(name="name", type="string", unique=true)
   */
   private $name;
 

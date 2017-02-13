@@ -27,7 +27,7 @@ $(document).ready(function() {
   $seffbutton = $('#calculSeff'),
   $densitybutton = $('#calculDensity');
 
-  $('[data-toggle="dropdown"]').on('click', function(e) {
+  $(document).on('click','[data-toggle="dropdown"]', function(e) {
   $( this ).parent().addClass( "open" );
   });
 
