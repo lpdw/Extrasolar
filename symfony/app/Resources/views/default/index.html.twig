@@ -18,14 +18,17 @@
         <!-- /.row -->
         <!-- Projects Row -->
         <div class="row col-md-6 col-xs-12">
-          <div class="col-md-12 col-xs-12 portfolio-item randomstar">
-              <a href="#">
-                  <img class="img-responsive" src="http://placehold.it/100x100" alt="">
+          <div class="col-md-12 col-xs-12 portfolio-item randomstar lined">
+              <a href="#" >
+                  <img class="img-responsive moved" src="http://placehold.it/100x100" alt="">
               </a>
-              <h5>Nom planète + infos</h5>
+              <div class="planet-informations">
+                <h5>NOM PLANETES</h5>
+                <p>Infos un peu plus détaillées qui<br>donnent trop envie</p>
+            </div>
           </div>
           {% for body in bodies %}
-            <div class="col-md-12 col-xs-12 portfolio-item randomstar">
+            <div class="col-md-12 col-xs-12 portfolio-item randomstar ">
                 <a href="{{ path('catalogue_show', { 'id': body.id }) }}">
                     <img class="img-responsive" src="{% if body.typeID.picture %}{{body.typeID.picture}}{% endif %}http://placehold.it/100x100" alt="">
                 </a>
@@ -35,16 +38,9 @@
 
         </div>
         <div class="row col-md-6">
-          <div class="col-md-12 portfolio-item randomstar">
-              <h3>
-                  <a href="#">Article 3</a>
-              </h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
+
           {% for article in articles %}
-            <div data-mh="my-group" class="col-md-8 mTop30">
+            <div data-mh="my-group" class="col-md-16 mTop30">
                 <h4 class="blackColor ft18 text-uppercase"><b>{{ article.postTitle }}</b></h4>
                 <p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>
                 {% if article.postContent %}
