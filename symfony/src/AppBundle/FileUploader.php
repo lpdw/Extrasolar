@@ -13,17 +13,24 @@ class FileUploader
         $this->targetDir = $targetDir;
     }
 
-    public function upload(UploadedFile $file)
+    public function upload($entity, UploadedFile $file)
     {
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-        $file->move($this->targetDir, $fileName);
+        $file->move($this->targetDir.'/'.$this->getSpecificDir($entity), $fileName);
 
         return $fileName;
     }
 
-    public function getTargetDir(){
-      return $this->targetDir;
+    public function getTargetDir($entity){
+      return $this->targetDir.'/'.$this->getSpecificDir($entity);
+    }
+
+    public function getSpecificDir($entity){
+      $array = explode('\\',get_class($entity));
+      return end($array);
+    }
+    public function getAssetPath($entity){
+      return 'uploads/pictures/'.$this->getSpecificDir($entity);
     }
 }
  ?>

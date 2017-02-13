@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use AppBundle\Entity\Extrasolar\Type;
+use AppBundle\Entity\Extrasolar\Publicity;
 use AppBundle\FileUploader;
 
 class PictureUploadListener
@@ -20,6 +21,7 @@ class PictureUploadListener
 
     public function prePersist(LifecycleEventArgs $args)
     {
+
         $entity = $args->getEntity();
         $this->uploadFile($entity);
     }
@@ -27,35 +29,36 @@ class PictureUploadListener
     public function preUpdate(PreUpdateEventArgs $args)
     {
         $entity = $args->getEntity();
-
         $this->uploadFile($entity);
     }
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        // upload only works for Type entities
-        if (!$entity instanceof Type || empty($entity->getPicture())) {
+        // upload only works for Type entities or Publicity
+        if (!method_exists($entity,'getPicture') ) {
             return;
         }
-        $fileName = $entity->getPicture();
-        $entity->setPicture(new File($this->uploader->getTargetDir().'/'.$fileName));
+        if (empty($fileName = $entity->getPicture())){
+          return;
+        };
+
+        $entity->setPicturePath(new File($this->uploader->getAssetPath($entity).'/'.$fileName));
+
     }
     private function uploadFile($entity)
     {
-        // upload only works for Type entities
-        if (!$entity instanceof Type || empty($entity->getPicture())) {
+        // upload only when a getPicture method
+        if (!method_exists($entity,'getFile') ) {
             return;
         }
-
-        $file = $entity->getPicture();
-
+        $file = $entity->getFile();
         // only upload new files
-        if (!$file instanceof UploadedFile) {
+        if (!$file instanceof UploadedFile || empty($file)) {
             return;
         }
-
-        $fileName = $this->uploader->upload($file);
+        $fileName = $this->uploader->upload($entity, $file);
         $entity->setPicture($fileName);
+
     }
 }
  ?>

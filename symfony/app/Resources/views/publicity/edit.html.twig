@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<div class="container mTop30 blackColor">
+    {{ form_start(edit_form) }}
+        <div class="row">
+            <div class="col-md-offset-3 col-md-3">
+                {{ form_row(edit_form.name) }}
+            </div>
+            <div class="col-md-3 ">
+                {{ form_row(edit_form.disable) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+                {{ form_row(edit_form.link) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+                {{ form_row(edit_form.location) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6 ">
+                {{ form_row(edit_form.file) }}
+            </div>
+        </div>
+        {{ form_widget(edit_form) }}
+
+
+        <div class="row">
+            <div class="col-md-12 text-center mTop30">
+                <input class="mBottom20 buttonLink" type="submit" value="Modifier cette pub" /><br />
+    {{ form_end(edit_form) }}
+                {{ form_start(delete_form, { 'attr' : { 'class': 'displayInlineBlock' } }) }}
+                    <input class="buttonLink" type="submit" value="Supprimer">
+                {{ form_end(delete_form) }}
+                <a class="ft14 buttonLink mTop15 mBottom30" href="{{ path('publicity_index') }}">Retour</a>
+            </div>
+        </div>
+
+
+</div>
+{% endblock %}

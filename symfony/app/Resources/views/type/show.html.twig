@@ -22,19 +22,24 @@
         data-show-columns="true">
         <thead>
             <tr>
-                <th class="text-center" data-field="name" data-sortable="true">ID</th>
-                <th data-field="categorie" data-sortable="true">Nom</th>
-                <th data-field="Spectral_type" data-sortable="true">Catégorie</th>
-                <th data-field="Masse" data-sortable="true">Description</th>
+                <th class="text-center" data-field="image" data-sortable="true">Image</th>
+                <th class="text-center" data-field="ID" data-sortable="true">ID</th>
+                <th data-field="name" data-sortable="true">Nom</th>
+                <th data-field="catégorie" data-sortable="true">Catégorie</th>
+                <th data-field="description" data-sortable="true">Description</th>
+                <th data-field="Actions" data-sortable="false">Actions</th>
             </tr>
         </thead>
         <tbody>
         <tr>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{% if type.picturePath %}<img class="img-responsive margin0-auto vignette" src="{{ asset(type.picturePath) }}" alt='Image représentant la catégorie'/>{% endif %}</span></td>
             <td class="titleBootstrap"><a href="{{ path('type_show', { 'id': type.id }) }}">{{ type.id }}</a></td>
             <td class="titleBootstrap"><span class="posTdBootstrap">{{ type.name }}</span></td>
             <td class="titleBootstrap"><span class="posTdBootstrap">{{ type.categorie }}</span></td>
             <td class="titleBootstrap"><span class="posTdBootstrap">{{ type.description }}</span></td>
-            <td class="titleBootstrap"><span class="posTdBootstrap"><img src="{{ type.picture }}" alt='Image représentant la catégorie'/></span></td>
+            <td class="titleBootstrap">
+              <a class="posTdBootstrap" href="{{ path('publicity_edit', { 'id': type.id }) }}">Modifier</a>
+            </td>
         </tr>
         </tbody>
         </table>

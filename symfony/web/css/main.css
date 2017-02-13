@@ -47,7 +47,10 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     bottom: 5px;
     left: 5px;
 }
-
+#table>tbody>tr>.titleBootstrap{
+  text-align: center;
+  vertical-align: middle;
+}
 .formCustom input {
     border: 0 !important;
     background: none !important;
@@ -133,6 +136,11 @@ text-transform: uppercase;
   flex-grow: 1;
   min-width:20%;
 }
+.vignette{
+  width:100px;
+  height: auto;
+}
+
 .full {
   background: url(http://placehold.it/1920x1080) no-repeat center center fixed;
   -webkit-background-size: cover;
