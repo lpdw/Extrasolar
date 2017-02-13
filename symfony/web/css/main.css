@@ -48,6 +48,11 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     left: 5px;
 }
 
+#table>tbody>tr>.titleBootstrap{
+  text-align: center;
+  vertical-align: middle;
+}
+
 .formCustom input {
     border: 0 !important;
     background: none !important;
@@ -96,11 +101,76 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     display: inline-block !important;
 }
 
-.randomstar h5 {
-  top:50% !important;
-  float: right !important;
-  width: 80% !important;
+.randomstar:hover {
+    margin-left: 100px !important;
 }
+
+.planet-informations {
+  float: right;
+  width: 80% !important;
+  margin-top:20px !important;
+  padding-left: 20px;
+  line-height: 0.2em;
+}
+
+
+.randomstar .planet-informations p {
+  opacity: 0;
+  line-height: 1em;
+}
+
+.randomstar .planet-informations h5 {
+  opacity: 1;
+}
+
+
+.randomstar:hover .planet-informations p {
+  animation: fadein 2s;
+  -moz-animation: fadein 2s forwards; /* Firefox */
+  -webkit-animation: fadein 2s forwards; /* Safari et Chrome */
+  -o-animation: fadein 2s forwards; /* Opera */
+}
+
+
+
+
+
+    @keyframes fadein {
+      from { opacity   : 0; }
+      to   { opacity   : 1; }
+    }
+    @-moz-keyframes fadein { /* sur Firefox */
+      from { opacity   : 0; }
+      to   { opacity   : 1; }
+    }
+    @-webkit-keyframes fadein { /* sur Safari et Chrome */
+      from { opacity   : 0; }
+      to   { opacity   : 1; }
+        }
+    }
+    @-o-keyframes fadein { /* sur Opera */
+      from { opacity   : 0; }
+        to   { opacity   : 1; }
+    }
+
+
+    @keyframes fadeout {
+      from { opacity   : 1; }
+      to   { opacity   : 0; }
+    }
+    @-moz-keyframes fadeout { /* sur Firefox */
+      from { opacity   : 1; }
+      to   { opacity   : 0; }
+    }
+    @-webkit-keyframes fadeout { /* sur Safari et Chrome */
+      from { opacity   : 1; }
+      to   { opacity   : 0; }
+        }
+    }
+    @-o-keyframes fadeout { /* sur Opera */
+      from { opacity   : 1; }
+      to   { opacity   : 0; }
+    }
 
 .randomstar h3 {
   font-size: 24px;
@@ -113,6 +183,37 @@ text-transform: uppercase;
 .randomstar p {
   text-align: justify;
 }
+
+.
+
+.lined {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+  font-size: 40px;
+  line-height: 46px;
+  padding: 0 0 6px;
+}
+
+.lined:after {
+  content: "";
+  position: absolute;
+  bottom: 50%;
+  left: -200%;
+  width: 80%;
+  height: 3px;
+  background: #333;
+  transition: left .8s;
+}
+
+.lined:hover:after {
+  left: -500px;
+}
+
+
+
 
 .flexParent{
   -ms-box-orient: horizontal;
@@ -132,6 +233,11 @@ text-transform: uppercase;
 .flexParent .flexItem{
   flex-grow: 1;
   min-width:20%;
+}
+
+.vignette{
+  width:100px;
+  height: auto;
 }
 .full {
   background: url(http://placehold.it/1920x1080) no-repeat center center fixed;
