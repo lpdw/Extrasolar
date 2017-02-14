@@ -25,7 +25,14 @@ class BodyController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
+        $bodies = $em->getRepository('AppBundle:Body')->findAllBodiesAdmin();
+        }
+        else{
         $bodies = $em->getRepository('AppBundle:Body')->findAllBodies();
+        }
+
         return $this->render('body/index.html.twig', array(
             'bodies' => $bodies,
             'title' => 'Catalogue'
