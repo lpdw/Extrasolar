@@ -108,10 +108,10 @@
                 <h1 class="page-header whiteColor">Derniers articles du blog</h1>
               {% for article in articles %}
                 <div data-mh="my-group" class="col-md-16 mTop30 recent-post">
-                    <h4 class=""><b>{{ article.postTitle }}</b></h4>
+                    <h4 class="greyColor"><b>{{ article.postTitle }}</b></h4>
                     <!--<p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>-->
                     {% if article.postContent %}
-                        <p>{{ article.postContent|striptags[:300] }}...</p>
+                        <p class="greyColor">{{ article.postContent|striptags[:300] }}...</p>
                     {% endif %}
                     <a href="{{ article.guid }}" class="buttonLink mTop5">Lire l'article</a>
                 </div>

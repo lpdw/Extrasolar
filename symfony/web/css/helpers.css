@@ -44,6 +44,9 @@
 .whiteColor {
     color: #FFF;
 }
+.greyColor {
+    color: #DADADA;
+}
 
 /** BACKGROUND **/
 
@@ -198,4 +201,8 @@
 input.w500 {
     width: 500px;
     max-width: 80%;
+}
+
+.activeClass {
+    text-decoration: underline !important;
 }
