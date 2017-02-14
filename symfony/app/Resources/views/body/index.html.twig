@@ -64,8 +64,10 @@
     </tbody>
   </table>
   <!--- PUB -->
-  <hr class="hr"/>
-  <p class="">Liens sponsorisés:</p>
+  {% if getPub(1) %}
+      <hr class="hr"/>
+      <p class="">Liens sponsorisés:</p>
+  {% endif %}
   <div class="row">
     {% for pub in getPub(1) %}
       <a href="{{ pub.link }}"class="col-md-6 mBottom10">

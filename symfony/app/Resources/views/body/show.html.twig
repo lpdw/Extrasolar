@@ -131,8 +131,10 @@
         </div>
 
         <!--- PUB -->
+        {% if getPub(2) %}
         <hr class="hr"/>
         <p class="">Liens sponsorisés:</p>
+        {% endif %}
         {% for pub in getPub(2) %}
           <a href="{{ pub.link }}"class="col-md-6 mBottom10">
             <img class="img-responsive margin0-auto" src="{{asset(pub.picturePath)}}"/>

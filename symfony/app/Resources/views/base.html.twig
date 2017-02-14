@@ -47,8 +47,8 @@
                 <div class="col-sm-10 col-xs-4">
                     <nav class="header-navigation">
                         <ul class="clearfix">
-                            <li id="menu-item-1157" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/"><span>Accueil</span></a></li>
-                            <li id="menu-item-1156" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/catalogue"><span>Catalogue</span></a></li>
+                            <li id="menu-item-1157" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ path('homepage') }}"><span>Accueil</span></a></li>
+                            <li id="menu-item-1156" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ path('catalogue_index') }}"><span>Catalogue</span></a></li>
                             <li id="menu-item-1146" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home active"><a href="{{ getRootURL() }}"><span>Blog</span></a></li>
                             <li id="menu-item-1147" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/communaute/"><span>Communauté</span></a></li>
                             <li id="menu-item-1148" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/contact/"><span>Contact</span></a></li>
@@ -61,11 +61,11 @@
     </div><!--/.top-header-->
     <nav class="responsive-menu">
         <ul>
-            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ getRootURL() }}"><span>Portail</span></a></li>
-            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ getRootURL() }}"><span>Catalogue</span></a></li>
-            <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home active"><a href="{{ getRootURL() }}/blog/"><span>Blog</span></a></li>
-            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/blog/communaute/"><span>Communauté</span></a></li>
-            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/blog/contact/"><span>Contact</span></a></li>
+            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ path('homepage') }}"><span>Portail</span></a></li>
+            <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ path('catalogue_index') }}"><span>Catalogue</span></a></li>
+            <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home active"><a href="{{ getRootURL() }}"><span>Blog</span></a></li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/communaute/"><span>Communauté</span></a></li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/contact/"><span>Contact</span></a></li>
         </ul>
     </nav><!--/.responsive-menu-->
     <div class="bottom-header blog">
