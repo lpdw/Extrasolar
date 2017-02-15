@@ -1,5 +1,19 @@
 {% extends 'base.html.twig' %}
+{% block title %}Présentation d'astre{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="http://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css" />
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript" src="http://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:1, target: "11 Comae Berenices" });
+})
 
+</script>
+{% endblock %}
 {% block body %}
 
 {{ parent() }}
@@ -13,19 +27,18 @@
               {% set host = body.rotationId %}
             {% endif %}
               <div class="flexParent">
-                <a class="flexItem" href="{{  path('catalogue_show', { 'id': host.id }) }}">
+                {% if host.typeId.categorie != types.point %}
+                  <a class="flexItem" href="{{  path('catalogue_show', { 'id': host.id }) }}">
 
-                  <img class="displayBlock margin0-auto img-responsive" src="{% if host.typeId.picture %}{{host.typeId.picture}}{% else %}{{ asset('/img/p-mars.png') }}{% endif %}" alt="" />
+                    <img class="displayBlock margin0-auto img-responsive" src="{% if host.typeId.picture %}{{host.typeId.picture}}{% else %}{{ asset('/img/p-mars.png') }}{% endif %}" alt="" />
 
-                  <span class="mTop10 displayBlock text-center whiteColor {% if host == body %} activeClass {% endif %}">{{ host.name }}</span>
-                  <span class="mTop10 displayBlock text-center whiteColor {% if host == body %} activeClass {% endif %}">{{ host.typeId.name }}</span>
-                </a>
+                    <span class="mTop10 displayBlock text-center whiteColor {% if host == body %} activeClass {% endif %}">{{ host.name }}</span>
+                    <span class="mTop10 displayBlock text-center whiteColor {% if host == body %} activeClass {% endif %}">{{ host.typeId.name }}</span>
+                  </a>
+                {% endif %}
                 {% for item in host.satellites %}
-
                       <a class="flexItem" href="{{  path('catalogue_show', { 'id': item.id }) }}">
-
-                        <img class="displayBlock margin0-auto img-responsive" src="{% if item.typeId.picture %}{{item.typeId.picture}}{% else %}{{ asset('/img/p-mars.png') }}{% endif %}" alt="" />
-
+                        <img class="displayBlock margin0-auto img-responsive" src="{% if item.typeId.picturePath %}{{  asset(item.typeId.picturePath) }}{% else %}{{ asset('/img/p-mars.png') }}{% endif %}" alt="" />
                         <span class="mTop10 displayBlock text-center whiteColor {% if item == body %} activeClass {% endif %}">{{ item.name }}</span>
                         <span class="mTop10 displayBlock text-center whiteColor {% if item == body %} activeClass {% endif %}">{{ item.typeId.name }}</span>
                       </a>
@@ -37,7 +50,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <h2 class="blackColor">Astre de type {{ body.typeId.name }}{% if body.discovery %}, découverte en {{ body.discovery|date('Y') }}{% endif %}</h2>
             <div>Partager sur <span id="share"></span></div>
             <div class="row mTop20">
@@ -92,6 +105,9 @@
                   </div>
               </div>
               {% endif %}
+            </div>
+            <div class='col-md-3 pTop20'>
+              <div id="aladin-lite-div" style="width:270px;height:270px;"></div>
             </div>
           </div>
     </div>
