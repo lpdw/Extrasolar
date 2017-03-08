@@ -12,8 +12,8 @@ class Calculs
   protected $Rs = 696342000;
   protected $Mt = 5.97E+24;
   protected $Mj = 1.90E+27;
-  protected $SeffT = 1.37E+03;
   protected $Ms = 1.99E+30;
+  protected $SeffT = 1.37E+03;
   protected $SIGMA = 5.67E-08;
 
   public function __construct()
@@ -90,6 +90,74 @@ class Calculs
     }else{
       return $period;
     }
+  }
+
+  public function ChooseUnitAxis($axis, $distance){
+    if(empty($axis) || !is_numeric($axis)){
+      return;
+    }
+    elseif(($arsec = $axis/$distance) > 1 ){
+      $axis = $arsec;
+      $axis .= " arsecs";
+    }
+    else{
+      $axis .= " UA";
+    }
+    return $axis;
+  }
+  public function ChooseUnitPeriod($period){
+    if(empty($period) || !is_numeric($period)){
+      return;
+    }
+    if ($period > 362.25){
+      $period = $period / 362.25;
+      $period .= " années";
+    }
+    else if($period < 1 ){
+      $period = $period*24;
+      $period .= " heures";
+    }
+    else{
+      $period .= " jours";
+    }
+    return $period;
+
+  }
+  public function ChooseUnitMass($mass){
+    if(empty($mass) || !is_numeric($mass)){
+      return;
+    }
+    elseif($mass > ($this->Ms/$this->Mt)){
+      $mass = $mass / ($this->Mt/$this->Ms);
+      $mass .= " Ms";
+    }
+    elseif($mass > ($this->Mj/$this->Mt)){
+      $mass = $mass / ($this->Mt/$this->Mj);
+      $mass .= " Mj";
+    }
+    else{
+      $mass .= " Mt";
+    }
+    return $mass;
+
+
+  }
+  public function ChooseUnitRadius($radius){
+    if(empty($radius) || !is_numeric($radius)){
+      return;
+    }
+    elseif($radius > ($this->Rs/$this->Rt)){
+        $radius = $radius / ($this->Rs/$this->Rt);
+        $radius .= " Rs";
+    }
+    elseif( $radius > ($this->Rj/$this->Rt)){
+        $radius = $radius / ($this->Rj/$this->Rt);
+        $radius .= " Rj";
+    }
+    else{
+      $radius .= " Rt";
+    }
+    return $radius;
   }
 }
 

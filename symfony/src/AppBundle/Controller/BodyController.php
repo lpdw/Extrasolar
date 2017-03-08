@@ -137,11 +137,11 @@ class BodyController extends Controller
               $period = $calculs->convertPeriod($form['period']->getData(), $form['jours']->getData());
               $body->setPeriod($distance);
             }
-            if($form['rotation_id']->getData())
-            {
-                $body_2 = $em->getRepository('AppBundle:Body')->find($form['rotation_id']->getData());
-                $body->setRotationId($body_2);
-            }
+            // if($form['rotation_id']->getData())
+            // {
+            //     $body_2 = $em->getRepository('AppBundle:Body')->find($form['rotation_id']->getData());
+            //     $body->setRotationId($body_2);
+            // }
 
             $em->persist($body);
             $em->flush($body);
@@ -222,15 +222,16 @@ class BodyController extends Controller
               $body->setPeriod($distance);
             }
 
-            $body_2 = $em->getRepository('AppBundle:Body')->find($editForm['rotation_id']->getData());
-            $body->setRotationId($body_2);
+            // if($form['rotation_id']->getData())
+            // {
+            //     $body_2 = $em->getRepository('AppBundle:Body')->find($form['rotation_id']->getData());
+            //     $body->setRotationId($body_2);
+            // }
 
             $em->persist($body);
             $em->flush($body);
-
             return $this->redirectToRoute('catalogue_show', array('id' => $body->getId()));
         }
-
         return $this->render('body/edit.html.twig', array(
             'body' => $body,
             'form' => $editForm->createView(),

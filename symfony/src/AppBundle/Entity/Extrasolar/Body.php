@@ -74,7 +74,7 @@ class Body
   private $update_at;
 
   /**
-  * @ORM\column(name="discovery", type="date", nullable=true)
+  * @ORM\column(name="discovery", type="string", nullable=true)
   */
   private $discovery;
 
@@ -141,6 +141,10 @@ class Body
    */
   private $satellites;
 
+  /**
+   * @ORM\column(name="assoc", type="string", nullable=true)
+   */
+  private $assoc;
   /**
   * Many Body has many Body
   * @ORM\ManyToOne(targetEntity="Body", inversedBy="satellites")

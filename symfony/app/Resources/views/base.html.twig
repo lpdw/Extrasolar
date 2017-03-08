@@ -41,6 +41,9 @@
 
     {% block body %}
     <header id="header" class="header-blog" style="background-image: url({{getBackgroundImageURL()}});background-attachment: fixed;">
+      {% if app.user %}
+          <a class="buttonLink posAbsolute" href="{{ path('logout') }}">Déconnexion</a>
+      {% endif %}
         <div class="top-header">
             <div class="container">
                 <div class="row">

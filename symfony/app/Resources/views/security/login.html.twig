@@ -14,9 +14,9 @@
 
 <form action="{{ path('login') }}" method="post" class="mBottom30">
     <div class="text-center">
-        <input class="w500 displayBlock margin0-auto mTop30" type="text" id="username" name="_username" value="{{ last_username }}" />
+        <input class="w500 displayBlock margin0-auto mTop30" type="text" id="username" name="_username" placeholder="Nom d'utilisateur" value="{{ last_username }}" />
 
-        <input class="w500 displayBlock margin0-auto mTop30" type="password" id="password" name="_password" />
+        <input class="w500 displayBlock margin0-auto mTop30" type="password" id="password" name="_password" placeholder="Mot de passe"/>
 
         <button class="buttonLink mTop30" type="submit">Se connecter</button>
     </div>

@@ -57,54 +57,53 @@ $(document).ready(function(){
                 <div class="col-md-12">
                     <div class="row control">
                         <div class="col-md-12 mBottom15 bgLightDark whiteColor">
-                            <h3 class="text-right bandeauForm">Coordonnées célestes</h3>
+                            <h3 class="text-center bandeauForm">Coordonnées célestes</h3>
                         </div>
                     </div>
                     <div class="flexParent">
-                        <span class="bgInfos flexItem"><span class="blackColor">RA :</span> {{ body.ra }} Rt</span>
-                        <span class="bgInfos flexItem"><span class="blackColor">DECL :</span> {{ body.decl }} Rt</span>
-                        <span class="bgInfos flexItem"><span class="blackColor">Distance :</span> {{ body.distance }} parsecs</span>
+                        {% if body.ra %}<span class="bgInfos flexItem"><span class="blackColor">RA :</span> {{ body.ra }}</span>{% endif %}
+                        {% if body.decl %}<span class="bgInfos flexItem"><span class="blackColor">DECL :</span> {{ body.decl }}</span>{% endif %}
+                        {% if body.distance %}<span class="bgInfos flexItem"><span class="blackColor">Distance :</span> {{ body.distance }} parsecs</span>{% endif %}
                     </div>
                 </div>
             </div>
-            {% if body.typeId.categorie != types.point %}
             <div class="row">
-                <div class="col-md-12 mTop30">
+              {% if body.typeId.categorie != types.point %}
+                <div class="col-md-5 mTop30">
                     <div class="row control">
                         <div class="col-md-12 mBottom15 bgLightDark whiteColor">
-                            <h3 class="text-right bandeauForm">Caractéristiques générales</h3>
+                            <h3 class="text-center bandeauForm">Caractéristiques générales</h3>
                         </div>
                     </div>
-                    <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Rayon :</span> {{ body.radius }} Rt</span>
-                    <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Masse :</span> {{ body.masse }} Mt</span>
-                    <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Densité :</span> {{ body.density }}</span>
-                    <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Age :</span> {{ body.age }}</span>
-                    <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Metallicité :</span> {{ body.metallicity }}</span>
-                    <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Température :</span> {{ body.temperature }}</span>
-                    <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Type spectral :</span> {{ body.spectralType }}</span>
-                    <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Variabilité :</span> {{ body.vari }}</span>
+                    {% if body.radius %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Rayon :</span> {{ ChooseUnitRadius(body.radius) }}</span>{% endif %}
+                    {% if body.masse %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Masse :</span> {{ ChooseUnitMass(body.masse) }}</span>{% endif %}
+                    {% if body.density %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Densité :</span> {{ body.density }}</span>{% endif %}
+                    {% if body.age %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Age :</span> {{ body.age }}</span>{% endif %}
+                    {% if body.metallicity %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Metallicité :</span> {{ body.metallicity }}</span>{% endif %}
+                    {% if body.temperature %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Température :</span> {{ body.temperature }}</span>{% endif %}
+                    {% if body.spectralType %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Type spectral :</span> {{ body.spectralType }}</span>{% endif %}
+                    {% if body.vari %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Variabilité :</span> {{ body.vari }}</span>{% endif %}
                 </div>
-            </div>
-            {% endif %}
+              {% endif %}
               {% if body.rotationId %}
-              <div class="row">
-                  <div class="col-md-12 mTop30">
+                  <div class="col-md-6 col-md-offset-1 mTop30">
                       <div class="row control">
                           <div class="col-md-12 mBottom15 bgLightDark whiteColor">
-                              <h3 class="text-right bandeauForm">Caractéristiques orbitales</h3>
+                              <h3 class="text-center bandeauForm">Caractéristiques orbitales</h3>
                           </div>
                       </div>
                       <a class="displayBlock bgInfos paddingY5" href="{{  path('catalogue_show', { 'id': body.rotationId.id }) }}"><span class="blackColor">Hôte :</span> {{ body.rotationId }}</a>
-                      <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Demi-grand-axe :</span> {{ body.axis }} UA</span>
-                      <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Seff :</span> {{ body.seff }}</span>
-                      <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Période :</span> {{ body.period }} jour(s)</span>
-                      <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Excentricité :</span> {{ body.excentricity }}</span>
-                      <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Inclinaison :</span> {{ body.inclinaison }}</span>
-                      <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Omega :</span> {{ body.omega }}</span>
-                      <span class="displayBlock bgInfos paddingY5"><span class="blackColor">Tref :</span> {{ body.tref }}</span>
+                      {% if body.axis %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Demi-grand-axe :</span> {{ ChooseUnitAxis(body.axis, body.distance) }}</span>{% endif %}
+                      {% if body.seff %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Seff :</span> {{ body.seff }}</span>{% endif %}
+                      {% if body.period %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Période :</span> {{ ChooseUnitPeriod(body.period) }}</span>{% endif %}
+                      {% if body.excentricity %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Excentricité :</span> {{ body.excentricity }}</span>{% endif %}
+                      {% if body.inclinaison %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Inclinaison :</span> {{ body.inclinaison }}</span>{% endif %}
+                      {% if body.omega %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Omega :</span> {{ body.omega }}</span>{% endif %}
+                      {% if body.tref %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Tref :</span> {{ body.tref }}</span>{% endif %}
                   </div>
-              </div>
               {% endif %}
+            </div>
+
             </div>
             <div class='col-md-3 pTop20'>
               <div id="aladin-lite-div" style="width:270px;height:270px;"></div>

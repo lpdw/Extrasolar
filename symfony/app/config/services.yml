@@ -19,7 +19,7 @@ services:
           public: true
           tags:
               - { name: twig.extension }
-          arguments: ['@app.wpconstantes', '@doctrine.orm.entity_manager']
+          arguments: ['@app.wpconstantes', '@doctrine.orm.entity_manager', '@app.calculs']
       app.picture_uploader:
         class: AppBundle\FileUploader
         arguments: ['%pictures_directory%']

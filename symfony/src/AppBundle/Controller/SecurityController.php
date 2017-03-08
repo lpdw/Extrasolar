@@ -5,11 +5,22 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class SecurityController extends Controller
 {
+
     /**
-     * @Route("/login", name="login")
+      * @Route("/admin/", name="admin")
+      * @Method("GET")
+      */
+    public function adminAction(Request $request){
+      return $this->render('security/admin.html.twig', array(
+        'title' => 'Administration'
+      ));
+    }
+    /**
+     * @Route("/login/", name="login")
      */
     public function loginAction(Request $request)
     {

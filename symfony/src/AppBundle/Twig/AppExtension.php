@@ -26,6 +26,10 @@ class AppExtension extends \Twig_Extension
         new \Twig_SimpleFunction('getRootURL', array($this,'getRootURL')),
         new \Twig_SimpleFunction('getBackgroundImageData', array($this,'getBackgroundImageData')),
         new \Twig_SimpleFunction('getBackgroundImageURL', array($this,'getBackgroundImageURL')),
+        new \Twig_SimpleFunction('ChooseUnitAxis', array($this,'ChooseUnitAxis')),
+        new \Twig_SimpleFunction('ChooseUnitPeriod', array($this,'ChooseUnitPeriod')),
+        new \Twig_SimpleFunction('ChooseUnitMass', array($this,'ChooseUnitMass')),
+        new \Twig_SimpleFunction('ChooseUnitRadius', array($this,'ChooseUnitRadius')),
         new \Twig_SimpleFunction('getPub', array($this,'getPub')),
       );
     }
@@ -36,14 +40,20 @@ class AppExtension extends \Twig_Extension
     protected $wpConstantes;
 
     /**
+     * @var Calculservice
+     */
+    protected $calculs;
+
+    /**
      * @var publicityRepository
      */
     protected $em;
 
-    public function __construct($wpConstantes, $em)
+    public function __construct($wpConstantes, $em, $calculs)
     {
       $this->wpConstantes = $wpConstantes;
       $this->em = $em;
+      $this->calculs = $calculs;
     }
 
     public function getRootURL(){
@@ -76,6 +86,19 @@ class AppExtension extends \Twig_Extension
     public function getName()
     {
         return 'app_extension';
+    }
+
+    public function ChooseUnitAxis($axis, $distance){
+      return $this->calculs->ChooseUnitAxis($axis, $distance);
+    }
+    public function ChooseUnitPeriod($period){
+      return $this->calculs->ChooseUnitPeriod($period);
+    }
+    public function ChooseUnitMass($mass){
+      return $this->calculs->ChooseUnitMass($mass);
+    }
+    public function ChooseUnitRadius($radius){
+      return $this->calculs->ChooseUnitRadius($radius);
     }
 }
 ?>

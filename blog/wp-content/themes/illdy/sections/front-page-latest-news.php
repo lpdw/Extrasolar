@@ -81,7 +81,7 @@ if ( $post_query->have_posts() || $general_title != '' || $general_entry != '' |
 									<div class="post-entry">
 										<?php the_excerpt(); ?>
 									</div><!--/.post-entry-->
-									<a href="<?php the_permalink(); ?>" title="<?php _e( 'Read more', 'illdy' ); ?>" class="post-button"><i class="fa fa-chevron-circle-right"></i><?php _e( 'Read more', 'illdy' ); ?>
+									<a href="<?php the_permalink(); ?>" title="<?php _e( "Lire l'article", 'illdy' ); ?>" class="post-button"><i class="fa fa-chevron-circle-right"></i><?php _e( "Lire l'article", 'illdy' ); ?>
 									</a>
 								</div><!--/.post-->
 							</div><!--/.col-sm-4-->
