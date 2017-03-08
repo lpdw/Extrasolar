@@ -1673,6 +1673,7 @@ input {
 	height: 39px;
 	padding: 0 20px;
 	border: 1px solid #000;
+	position: relative;
 }
 
 .widget .search-form .search-form-box #searchsubmit {
@@ -1695,6 +1696,7 @@ input {
 	text-transform: uppercase;
 	outline: 0;
 	position:absolute;
+	left: 0;
 }
 
 .widget .search-form .search-form-box #s::-webkit-input-placeholder {
