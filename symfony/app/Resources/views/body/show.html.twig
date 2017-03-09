@@ -93,7 +93,7 @@ $(document).ready(function(){
                           </div>
                       </div>
                       <a class="displayBlock bgInfos paddingY5" href="{{  path('catalogue_show', { 'id': body.rotationId.id }) }}"><span class="blackColor">Hôte :</span> {{ body.rotationId }}</a>
-                      {% if body.axis %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Demi-grand-axe :</span> {{ ChooseUnitAxis(body.axis, body.distance) }}</span>{% endif %}
+                      {% if body.axis %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Demi-grand-axe :</span> {{ body.axis }}</span>{% endif %}
                       {% if body.seff %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Seff :</span> {{ body.seff }}</span>{% endif %}
                       {% if body.period %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Période :</span> {{ ChooseUnitPeriod(body.period) }}</span>{% endif %}
                       {% if body.excentricity %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Excentricité :</span> {{ body.excentricity }}</span>{% endif %}
