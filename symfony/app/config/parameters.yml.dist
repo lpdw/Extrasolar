@@ -17,3 +17,12 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    types:
+      point: 'Point'
+      star: 'Etoile'
+      planet: 'Planète'
+      moon: 'Lune'
+      asteroid: 'Asteroide'
+      comet: 'Comète'
+    pictures_directory: "%kernel.root_dir%/../web/uploads/pictures"
