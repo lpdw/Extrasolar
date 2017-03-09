@@ -23,9 +23,9 @@ class Calculs
   {
       $val = 0;
       foreach($hosts as $host){
-        $val .= $this->SIGMA*pow($host->getRA(), 2)*pow($this->Rt,2)*pow($host->getTemperature(),4);
+        $val .= pow($host->getRadius(), 2)*pow($this->Rt,2)*pow($host->getTemperature(),4);
       }
-      return $val/($this->SeffT*$axis*$this->UA);
+      return $this->SIGMA*$val/($this->SeffT*$axis*$this->UA);
       //'seff'=SIGMA*([host's radius1]^2*Rt^2*[host's temp1]^4+[host's radius2]^2*Rt^2*[host's temp2]^4)/(SeffT*'axis'*UA)
   }
   public function calculDensity($mass,$radius){

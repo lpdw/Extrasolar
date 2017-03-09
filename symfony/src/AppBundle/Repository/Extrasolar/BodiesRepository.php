@@ -34,11 +34,11 @@ class BodiesRepository extends EntityRepository
               ->getResult()
               ;
     }
-    public function getHost($host_id)
+    public function getHost($host_name)
     {
       return $this->getEntityManager()
-                  ->createQuery("SELECT b, t FROM AppBundle:Body b JOIN b.type_id t WHERE b.id = :id")
-                  ->setParameter('id',$host_id)
+                  ->createQuery("SELECT b, t FROM AppBundle:Body b JOIN b.type_id t WHERE b.name = :name")
+                  ->setParameter('name',$host_name)
                   ->getSingleResult()
                   ;
     }

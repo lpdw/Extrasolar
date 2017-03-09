@@ -70,8 +70,8 @@ class BodyController extends Controller
       $type = $em->getRepository('AppBundle:Type')->find($request->get('typeID'));
 
       $types = $this->getParameter('types');
-      if ($request->get('host_id') || $type->getCategorie() != $types['point'] || $type->getCategorie() != $types['star'] ){
-        $host = $em->getRepository('AppBundle:Body')->getHost($request->get('host_id'));
+      if ($request->get('host') || $type->getCategorie() != $types['point'] || $type->getCategorie() != $types['star'] ){
+        $host = $em->getRepository('AppBundle:Body')->getHost($request->get('host'));
         $seffDatas = array(0 => $host);
         if($host->getTypeId()->getCategorie() === $types['point'])
         {
