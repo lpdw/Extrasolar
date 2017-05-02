@@ -34,6 +34,7 @@ class BodiesRepository extends EntityRepository
               ->getResult()
               ;
     }
+
     public function getHost($host_name)
     {
       return $this->getEntityManager()
@@ -42,5 +43,25 @@ class BodiesRepository extends EntityRepository
                   ->getSingleResult()
                   ;
     }
+
+    public function getListPlaneteByName($name="") {
+      if($name != "") {
+        return $this->getEntityManager()
+                    ->createQuery('SELECT n.name, n.id FROM AppBundle:Body n WHERE n.name LIKE :name')
+                    ->setParameter('name', '%' . $name . '%')
+                    ->getResult();
+      }
+
+    }
+
+    public function getPlaneteById($id="") {
+      if($id != "") {
+        return $this->getEntityManager()
+                    ->createQuery('SELECT n.name FROM AppBundle:Body n WHERE n.id = :id')
+                    ->setParameter('id', (int)$id)
+                    ->getResult();
+      }
+    }
+
 
 }
