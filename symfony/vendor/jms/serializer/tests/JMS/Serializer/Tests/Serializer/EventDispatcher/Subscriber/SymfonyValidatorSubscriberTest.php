@@ -35,9 +35,6 @@ class SymfonyValidatorSubscriberTest extends \PHPUnit_Framework_TestCase
     /** @var SymfonyValidatorSubscriber */
     private $subscriber;
 
-    /** @var Context */
-    private $context;
-
     public function testValidate()
     {
         $obj = new \stdClass;
@@ -103,6 +100,10 @@ class SymfonyValidatorSubscriberTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+        if (!interface_exists('Symfony\Component\Validator\ValidatorInterface')) {
+            $this->markTestSkipped('Symfony\Component\Validator\ValidatorInterface is not available');
+        }
+
         $this->validator = $this->getMock('Symfony\Component\Validator\ValidatorInterface');
         $this->subscriber = new SymfonyValidatorSubscriber($this->validator);
     }

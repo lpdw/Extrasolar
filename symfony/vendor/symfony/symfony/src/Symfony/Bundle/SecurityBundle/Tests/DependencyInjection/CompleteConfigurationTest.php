@@ -11,12 +11,13 @@
 
 namespace Symfony\Bundle\SecurityBundle\Tests\DependencyInjection;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Bundle\SecurityBundle\DependencyInjection\SecurityExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-abstract class CompleteConfigurationTest extends \PHPUnit_Framework_TestCase
+abstract class CompleteConfigurationTest extends TestCase
 {
     private static $containerCache = array();
 
@@ -71,7 +72,7 @@ abstract class CompleteConfigurationTest extends \PHPUnit_Framework_TestCase
         foreach (array_keys($arguments[1]) as $contextId) {
             $contextDef = $container->getDefinition($contextId);
             $arguments = $contextDef->getArguments();
-            $listeners[] = array_map(function ($ref) { return (string) $ref; }, $arguments['index_0']);
+            $listeners[] = array_map('strval', $arguments['index_0']);
 
             $configDef = $container->getDefinition((string) $arguments['index_2']);
             $configs[] = array_values($configDef->getArguments());

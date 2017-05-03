@@ -14,8 +14,9 @@ namespace Symfony\Component\Form\Tests;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\Extension\Csrf\CsrfExtension;
+use Symfony\Component\Form\Test\FormIntegrationTestCase;
 
-abstract class AbstractLayoutTest extends \Symfony\Component\Form\Test\FormIntegrationTestCase
+abstract class AbstractLayoutTest extends FormIntegrationTestCase
 {
     protected $csrfTokenManager;
     protected $testableFeatures = array();
@@ -82,6 +83,8 @@ abstract class AbstractLayoutTest extends \Symfony\Component\Form\Test\FormInteg
                 // strip away <root> and </root>
                 substr($dom->saveHTML(), 6, -8)
             ));
+        } else {
+            $this->addToAssertionCount(1);
         }
     }
 

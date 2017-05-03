@@ -18,13 +18,13 @@
 
 namespace JMS\SerializerBundle\DependencyInjection;
 
-use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
-use Symfony\Component\DependencyInjection\Alias;
 use JMS\Serializer\Exception\RuntimeException;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Alias;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
 class JMSSerializerExtension extends ConfigurableExtension
 {
@@ -47,6 +47,11 @@ class JMSSerializerExtension extends ConfigurableExtension
             ->addArgument($config['property_naming']['separator'])
             ->addArgument($config['property_naming']['lower_case'])
         ;
+
+        if (!empty($config['property_naming']['id'])) {
+            $container->setAlias('jms_serializer.naming_strategy', $config['property_naming']['id']);
+        }
+
         if ($config['property_naming']['enable_cache']) {
             $container
                 ->getDefinition('jms_serializer.cache_naming_strategy')
@@ -56,6 +61,19 @@ class JMSSerializerExtension extends ConfigurableExtension
         }
 
         $bundles = $container->getParameter('kernel.bundles');
+
+        if (!empty($config['expression_evaluator']['id'])) {
+            $container
+                ->getDefinition('jms_serializer.serializer')
+                ->replaceArgument(7, new Reference($config['expression_evaluator']['id']));
+
+            $container
+                ->setAlias('jms_serializer.accessor_strategy', 'jms_serializer.accessor_strategy.expression');
+
+        } else {
+            $container->removeDefinition('jms_serializer.expression_evaluator');
+            $container->removeDefinition('jms_serializer.accessor_strategy.expression');
+        }
 
         // metadata
         if ('none' === $config['metadata']['cache']) {
@@ -67,10 +85,8 @@ class JMSSerializerExtension extends ConfigurableExtension
             ;
 
             $dir = $container->getParameterBag()->resolveValue($config['metadata']['file_cache']['dir']);
-            if (!file_exists($dir)) {
-                if (!$rs = @mkdir($dir, 0777, true)) {
-                    throw new RuntimeException(sprintf('Could not create cache directory "%s".', $dir));
-                }
+            if (!is_dir($dir) && !@mkdir($dir, 0777, true) && !is_dir($dir)) {
+                throw new RuntimeException(sprintf('Could not create cache directory "%s".', $dir));
             }
         } else {
             $container->setAlias('jms_serializer.metadata.cache', new Alias($config['metadata']['cache'], false));
@@ -98,7 +114,8 @@ class JMSSerializerExtension extends ConfigurableExtension
             $directory['path'] = rtrim(str_replace('\\', '/', $directory['path']), '/');
 
             if ('@' === $directory['path'][0]) {
-                $bundleName = substr($directory['path'], 1, strpos($directory['path'], '/') - 1);
+                $pathParts = explode('/', $directory['path']);
+                $bundleName = substr($pathParts[0], 1);
 
                 if (!isset($bundles[$bundleName])) {
                     throw new RuntimeException(sprintf('The bundle "%s" has not been registered with AppKernel. Available bundles: %s', $bundleName, implode(', ', array_keys($bundles))));
@@ -116,6 +133,7 @@ class JMSSerializerExtension extends ConfigurableExtension
         ;
 
         $container->setParameter('jms_serializer.xml_deserialization_visitor.doctype_whitelist', $config['visitors']['xml']['doctype_whitelist']);
+        $container->setParameter('jms_serializer.xml_serialization_visitor.format_output', $config['visitors']['xml']['format_output']);
         $container->setParameter('jms_serializer.json_serialization_visitor.options', $config['visitors']['json']['options']);
 
         if ( ! $config['enable_short_alias']) {
@@ -124,6 +142,34 @@ class JMSSerializerExtension extends ConfigurableExtension
 
         if ( ! $container->getParameter('kernel.debug')) {
             $container->removeDefinition('jms_serializer.stopwatch_subscriber');
+        }
+
+        // context factories
+        $services = [
+            'serialization' => 'jms_serializer.configured_serialization_context_factory',
+            'deserialization' => 'jms_serializer.configured_deserialization_context_factory',
+        ];
+        foreach ($services as $configKey => $serviceId) {
+            $contextFactory = $container->getDefinition($serviceId);
+
+            if (isset($config['default_context'][$configKey]['id'])) {
+                $container->setAlias('jms_serializer.' . $configKey . '_context_factory', $config['default_context'][$configKey]['id']);
+                $container->removeDefinition($serviceId);
+                continue;
+            }
+
+            if (isset($config['default_context'][$configKey]['version'])) {
+                $contextFactory->addMethodCall('setVersion', [$config['default_context'][$configKey]['version']]);
+            }
+            if (isset($config['default_context'][$configKey]['serialize_null'])) {
+                $contextFactory->addMethodCall('setSerializeNulls', [$config['default_context'][$configKey]['serialize_null']]);
+            }
+            if (!empty($config['default_context'][$configKey]['attributes'])) {
+                $contextFactory->addMethodCall('setAttributes', [$config['default_context'][$configKey]['attributes']]);
+            }
+            if (!empty($config['default_context'][$configKey]['groups'])) {
+                $contextFactory->addMethodCall('setGroups', [$config['default_context'][$configKey]['groups']]);
+            }
         }
     }
 

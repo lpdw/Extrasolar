@@ -22,7 +22,7 @@ use JMS\Serializer\Exception\RuntimeException;
 
 /**
  * @Annotation
- * @Target({"PROPERTY","METHOD"})
+ * @Target({"PROPERTY","METHOD", "ANNOTATION"})
  */
 final class SerializedName
 {
@@ -30,7 +30,7 @@ final class SerializedName
 
     public function __construct(array $values)
     {
-        if ( ! is_string($values['value'])) {
+        if (!isset($values['value']) || !is_string($values['value'])) {
             throw new RuntimeException(sprintf('"value" must be a string.'));
         }
 

@@ -13,11 +13,13 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "jms/serializer": "^1.0.0",
+        "jms/serializer": "^1.6",
         "phpoption/phpoption": "^1.1.0",
         "symfony/framework-bundle": "~2.3|~3.0"
     },
     "require-dev": {
+        "phpunit/phpunit": "^4.2|^5.0",
+        "symfony/expression-language": "~2.6|~3.0",
         "symfony/yaml": "*",
         "symfony/browser-kit": "*",
         "symfony/class-loader": "*",
@@ -37,12 +39,10 @@
     "autoload": {
         "psr-0": { "JMS\\SerializerBundle": "" }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "target-dir": "JMS/SerializerBundle",
     "extra": {
         "branch-alias": {
-            "dev-master": "1.1-dev"
+            "dev-master": "1.4-dev"
         }
     }
 }
