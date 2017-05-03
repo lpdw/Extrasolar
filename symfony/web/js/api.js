@@ -3,6 +3,7 @@ $(document).ready(function() {
 
   // hide defaults items
   $("#generate-infos").hide();
+  $("#generated-html").hide();
 
   /**
    * OPTIONS
@@ -35,8 +36,10 @@ $(document).ready(function() {
    * SELECTORS
    */
   $("#custom-search-input button").click(function() {
-    // console.log($("#custom-search-input input").val());
-    var spinner = new Spinner(opts).spin(target);
+    // reset planete lit
+    resetPlaneteList();
+
+    var spinner = new Spinner(opts).spin(target); // start spinner
 
     //get all results from input search
     var planete_name = $("#custom-search-input input").val();
@@ -49,17 +52,13 @@ $(document).ready(function() {
         var data = JSON.parse(resp);
         console.log(data);
 
-        for (var i = 0; i < data.length; i++) {
-          console.log(data[i].name);
+        for (var i = 0; i < data.length; i++)
           $("#list_planete").append("<li value="+data[i].id+" style='cursor:pointer'>"+data[i].name+"</li>");
-        }
 
 
         //settings on click each planete
         $("#list_planete li").each(function() {
           $(this).on('click', function() {
-
-            console.log($(this).val());
 
             if($(this).val() != '') {
               var spinner = new Spinner(opts).spin(target);
@@ -71,25 +70,10 @@ $(document).ready(function() {
                   var data = JSON.parse(resp);
 
                   // clear planete list
-                  $("#list_planete li").each(function() {
-                    $(this).remove();
-                  });
+                  resetPlaneteList();
 
                   // show generate view
-                  $("#generate-infos").show();
-                  $("#generate-infos .planete-name").text(data[0].name);
-
-                  // for each categories generate input type checkbox
-                  for (var properties in data[0]) {
-                    if (data[0].hasOwnProperty(properties)) {
-                      console.log(properties);
-                      if(properties == "id" || properties == "type_id" || properties == "update_at") continue;
-                      if(properties == "satellites")
-                        console.log(properties);
-                      $("#generate-infos form").append("<label><input type='checkbox' value='"+properties+"'>"+properties+"</label> ");
-                    }
-                  }
-
+                  showGeneratePlanete(data);
 
               }, function(err) {
                 console.log(err);
@@ -99,6 +83,7 @@ $(document).ready(function() {
 
           });
         });
+
 
       }, function(err) {
         console.log(err);
@@ -114,6 +99,52 @@ $(document).ready(function() {
   /**
    * FUNCTIONS
    */
+
+   function resetPlaneteList() {
+     $("#list_planete li").each(function() {
+       $(this).remove();
+     });
+   }
+
+   function showGeneratePlanete(planete) {
+     $("#generate-infos").show();
+     $("#generate-infos .planete-name").text(planete[0].name);
+
+     // for each categories generate input type checkbox
+     for (var properties in planete[0]) {
+
+       if (planete[0].hasOwnProperty(properties)) {
+         console.log(properties);
+         if(properties == "id" || properties == "type_id" || properties == "update_at") continue;
+         if(properties == "satellites") console.log(planete[0].satellites);
+
+        $("#generate-infos form").append("<div class='input-group'><label><input type='checkbox' value='"+properties+"'>&nbsp;"+properties+"</label></div>");
+       }
+     }
+
+     $("#generate-infos form").append("<div class='col-lg-8'><button type='button' class='btn btn-primary' id='btn-generate'>GENERER</button></div>");
+
+     $("#btn-generate").click(function() {
+       var props = getAllProperties();
+
+       // for each properties get values
+       
+
+     });
+   }
+
+
+   function getAllProperties() {
+     var props = new Array();
+
+     $("#generate-infos form input").each(function() {
+       if($(this).prop("checked")) {
+         props.push($(this).val());
+       }
+     });
+
+     return props;
+   }
 
   function ajaxGetListPlanete(planete_name, planete_id) {
     return $.ajax({
