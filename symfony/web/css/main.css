@@ -221,7 +221,10 @@ a.buttonLink:hover{
     left: -200%;
     width: 80%;
     height: 3px;
-    background: #FFFFFF;
+    /*background: #FFFFFF;*/
+    background: #20002c !important;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #cbb4d4, #20002c) !important;  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #cbb4d4, #20002c) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     transition: left .8s;
 }
 
