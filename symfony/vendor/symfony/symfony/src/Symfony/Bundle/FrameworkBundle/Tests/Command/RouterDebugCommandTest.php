@@ -11,14 +11,13 @@
 
 namespace Symfony\Bundle\FrameworkBundle\Tests\Command;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Bundle\FrameworkBundle\Command\RouterDebugCommand;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
-class RouterDebugCommandTest extends TestCase
+class RouterDebugCommandTest extends \PHPUnit_Framework_TestCase
 {
     public function testDebugAllRoutes()
     {

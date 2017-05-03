@@ -11,14 +11,13 @@
 
 namespace Symfony\Component\Form\Tests\ChoiceList\Loader;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\ChoiceList\LazyChoiceList;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
 
 /**
  * @author Jules Pietri <jules@heahprod.com>
  */
-class CallbackChoiceLoaderTest extends TestCase
+class CallbackChoiceLoaderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader

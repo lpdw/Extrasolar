@@ -30,11 +30,11 @@ class BodyController extends Controller
         $bodies = $em->getRepository('AppBundle:Body')->findAllBodiesAdmin();
         }
         else{
-        //$bodies = $em->getRepository('AppBundle:Body')->findAllBodies();
+        $bodies = $em->getRepository('AppBundle:Body')->findAllBodies();
         }
 
         return $this->render('body/index.html.twig', array(
-            //'bodies' => $bodies,
+            'bodies' => $bodies,
             'title' => 'Catalogue'
         ));
     }
@@ -58,20 +58,6 @@ class BodyController extends Controller
       $reports = $serializer->serialize($bodies, 'json');
 
       return new \Symfony\Component\HttpFoundation\Response($reports);
-    }
-
-    /**
-    * @Route("catalogue/data.json")
-    */
-    public function dataJsonAPI()
-    {
-      $em = $this->getDoctrine()->getManager();
-
-      $bodies = $em->getRepository('AppBundle:Body')->findAllBodiesForAPI();
-      //Better than serialize something, cause Repo return an Array
-      $dataJson = json_encode($bodies);
-
-      return new \Symfony\Component\HttpFoundation\Response($dataJson);
     }
     /**
      *

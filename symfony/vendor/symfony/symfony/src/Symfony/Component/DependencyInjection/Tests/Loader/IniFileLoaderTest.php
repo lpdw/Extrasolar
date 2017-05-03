@@ -11,12 +11,11 @@
 
 namespace Symfony\Component\DependencyInjection\Tests\Loader;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\IniFileLoader;
 use Symfony\Component\Config\FileLocator;
 
-class IniFileLoaderTest extends TestCase
+class IniFileLoaderTest extends \PHPUnit_Framework_TestCase
 {
     protected $container;
     protected $loader;
@@ -55,7 +54,7 @@ class IniFileLoaderTest extends TestCase
         }
 
         if (!$supported) {
-            $this->markTestSkipped(sprintf('Converting the value "%s" to "%s" is not supported by the IniFileLoader.', $key, $value));
+            return;
         }
 
         $this->loader->load('types.ini');

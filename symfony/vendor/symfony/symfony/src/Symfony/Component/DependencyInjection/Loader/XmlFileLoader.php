@@ -182,7 +182,7 @@ class XmlFileLoader extends FileLoader
                 if (isset($factoryService[0])) {
                     $class = $this->parseDefinition($factoryService[0], $file);
                 } elseif ($childService = $factory->getAttribute('service')) {
-                    $class = new Reference($childService, ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE);
+                    $class = new Reference($childService, ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, false);
                 } else {
                     $class = $factory->getAttribute('class');
                 }
@@ -201,7 +201,7 @@ class XmlFileLoader extends FileLoader
                 if (isset($configuratorService[0])) {
                     $class = $this->parseDefinition($configuratorService[0], $file);
                 } elseif ($childService = $configurator->getAttribute('service')) {
-                    $class = new Reference($childService, ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE);
+                    $class = new Reference($childService, ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, false);
                 } else {
                     $class = $configurator->getAttribute('class');
                 }
@@ -374,7 +374,13 @@ class XmlFileLoader extends FileLoader
                         $invalidBehavior = ContainerInterface::NULL_ON_INVALID_REFERENCE;
                     }
 
-                    $arguments[$key] = new Reference($arg->getAttribute('id'), $invalidBehavior);
+                    if ($strict = $arg->getAttribute('strict')) {
+                        $strict = XmlUtils::phpize($strict);
+                    } else {
+                        $strict = true;
+                    }
+
+                    $arguments[$key] = new Reference($arg->getAttribute('id'), $invalidBehavior, $strict);
                     break;
                 case 'expression':
                     $arguments[$key] = new Expression($arg->nodeValue);

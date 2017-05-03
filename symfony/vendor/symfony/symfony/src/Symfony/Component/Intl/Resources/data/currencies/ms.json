@@ -1,5 +1,5 @@
 {
-    "Version": "2.1.28.79",
+    "Version": "2.1.24.16",
     "Names": {
         "AED": [
             "AED",
@@ -93,13 +93,9 @@
             "BWP",
             "Pula Botswana"
         ],
-        "BYN": [
-            "BYN",
-            "Rubel Belarus"
-        ],
         "BYR": [
             "BYR",
-            "Rubel Belarus (2000–2016)"
+            "Ruble Belarus"
         ],
         "BZD": [
             "BZD",
@@ -471,7 +467,7 @@
         ],
         "RUB": [
             "RUB",
-            "Rubel Rusia"
+            "Ruble Rusia"
         ],
         "RWF": [
             "RWF",

@@ -18,11 +18,9 @@
 
 namespace JMS\Serializer;
 
-use JMS\Serializer\Accessor\AccessorStrategyInterface;
 use JMS\Serializer\Exception\RuntimeException;
 use JMS\Serializer\Metadata\ClassMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
-use JMS\Serializer\Naming\PropertyNamingStrategyInterface;
 
 /**
  * XmlSerializationVisitor.
@@ -49,9 +47,9 @@ class XmlSerializationVisitor extends AbstractVisitor
     /** @var boolean */
     private $formatOutput;
 
-    public function __construct(PropertyNamingStrategyInterface $namingStrategy, AccessorStrategyInterface $accessorStrategy = null)
+    public function __construct($namingStrategy)
     {
-        parent::__construct($namingStrategy, $accessorStrategy);
+        parent::__construct($namingStrategy);
         $this->objectMetadataStack = new \SplStack;
         $this->formatOutput = true;
     }
@@ -230,7 +228,7 @@ class XmlSerializationVisitor extends AbstractVisitor
 
     public function visitProperty(PropertyMetadata $metadata, $object, Context $context)
     {
-        $v = $this->accessor->getValue($object, $metadata);
+        $v = $metadata->getValue($object);
 
         if (null === $v && $context->shouldSerializeNull() !== true) {
             return;
@@ -291,15 +289,15 @@ class XmlSerializationVisitor extends AbstractVisitor
             return;
         }
 
-        if ($addEnclosingElement = !$this->isInLineCollection($metadata) && ! $metadata->inline) {
+        if ($addEnclosingElement = ( ! $metadata->xmlCollection || ! $metadata->xmlCollectionInline) && ! $metadata->inline) {
             $elementName = $this->namingStrategy->translateName($metadata);
 
-            $namespace = null !== $metadata->xmlNamespace
-                ? $metadata->xmlNamespace
-                : $this->getClassDefaultNamespace($this->objectMetadataStack->top());
-
-            $element = $this->createElement($elementName, $namespace);
-            $this->currentNode->appendChild($element);
+            if (null !== $metadata->xmlNamespace) {
+                $element = $this->createElement($elementName, $metadata->xmlNamespace);
+            } else {
+                $defaultNamespace = $this->getClassDefaultNamespace($this->objectMetadataStack->top());
+                $element = $this->createElement($elementName, $defaultNamespace);
+            }
             $this->setCurrentNode($element);
         }
 
@@ -314,37 +312,17 @@ class XmlSerializationVisitor extends AbstractVisitor
         if ($addEnclosingElement) {
             $this->revertCurrentNode();
 
-            if ($this->isElementEmpty($element) && ($v === null || $this->isSkippableCollection($metadata) || $this->isEmptyObject($node, $metadata) || $this->isCircularRef($context, $v))) {
-                $this->currentNode->removeChild($element);
+            if ($this->nodeNotEmpty($element) || ((!$metadata->xmlCollection || !$metadata->xmlCollectionSkipWhenEmpty) && $node === null && $v !== null && !$context->isVisiting($v))) {
+                $this->currentNode->appendChild($element);
             }
         }
 
         $this->hasValue = false;
     }
 
-    private function isInLineCollection(PropertyMetadata $metadata)
+    private function nodeNotEmpty(\DOMElement $element)
     {
-        return $metadata->xmlCollection && $metadata->xmlCollectionInline;
-    }
-
-    private function isCircularRef(SerializationContext $context, $v)
-    {
-        return $context->isVisiting($v);
-    }
-
-    private function isEmptyObject($node, PropertyMetadata $metadata)
-    {
-        return $node === null && !$metadata->xmlCollection;
-    }
-
-    private function isSkippableCollection(PropertyMetadata $metadata)
-    {
-        return $metadata->xmlCollection && $metadata->xmlCollectionSkipWhenEmpty;
-    }
-
-    private function isElementEmpty(\DOMElement $element)
-    {
-        return !$element->hasChildNodes() && !$element->hasAttributes();
+        return $element->hasChildNodes() || $element->hasAttributes();
     }
 
     public function endVisitingObject(ClassMetadata $metadata, $data, array $type, Context $context)
@@ -484,8 +462,9 @@ class XmlSerializationVisitor extends AbstractVisitor
         }
         if (!($prefix = $this->currentNode->lookupPrefix($namespace)) && !($prefix = $this->document->lookupPrefix($namespace))) {
             $prefix = 'ns-'.  substr(sha1($namespace), 0, 8);
+            return $this->document->createElementNS($namespace, $prefix . ':' . $tagName);
         }
-        return $this->document->createElementNS($namespace, $prefix . ':' . $tagName);
+        return $this->document->createElement($prefix . ':' . $tagName);
     }
 
     private function setAttributeOnNode(\DOMElement $node, $name, $value, $namespace = null)

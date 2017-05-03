@@ -101,10 +101,10 @@ final class PhpDocTypeHelper
                 $collectionValueType = null;
             } else {
                 $collectionKeyType = new Type(Type::BUILTIN_TYPE_INT);
-                $collectionValueType = new Type($phpType, $nullable, $class);
+                $collectionValueType = new Type($phpType, false, $class);
             }
 
-            return new Type(Type::BUILTIN_TYPE_ARRAY, $nullable, null, true, $collectionKeyType, $collectionValueType);
+            return new Type(Type::BUILTIN_TYPE_ARRAY, false, null, true, $collectionKeyType, $collectionValueType);
         }
 
         return new Type($phpType, $nullable, $class);

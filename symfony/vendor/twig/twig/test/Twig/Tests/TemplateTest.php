@@ -83,14 +83,10 @@ class Twig_Tests_TemplateTest extends PHPUnit_Framework_TestCase
 
             if (!$allowed) {
                 $this->fail();
-            } else {
-                $this->addToAssertionCount(1);
             }
         } catch (Twig_Sandbox_SecurityError $e) {
             if ($allowed) {
                 $this->fail();
-            } else {
-                $this->addToAssertionCount(1);
             }
 
             $this->assertContains('is not allowed', $e->getMessage());
@@ -259,15 +255,15 @@ class Twig_Tests_TemplateTest extends PHPUnit_Framework_TestCase
         if ($defined) {
             $this->assertEquals($value, $template->getAttribute($object, $item, $arguments, $type));
         } else {
-            if (method_exists($this, 'expectException')) {
-                $this->expectException('Twig_Error_Runtime');
+            try {
+                $this->assertEquals($value, $template->getAttribute($object, $item, $arguments, $type));
+
+                throw new Exception('Expected Twig_Error_Runtime exception.');
+            } catch (Twig_Error_Runtime $e) {
                 if (null !== $exceptionMessage) {
-                    $this->expectExceptionMessage($exceptionMessage);
+                    $this->assertSame($exceptionMessage, $e->getMessage());
                 }
-            } else {
-                $this->setExpectedException('Twig_Error_Runtime', $exceptionMessage);
             }
-            $this->assertEquals($value, $template->getAttribute($object, $item, $arguments, $type));
         }
     }
 
@@ -423,19 +419,6 @@ class Twig_Tests_TemplateTest extends PHPUnit_Framework_TestCase
         ));
 
         return $tests;
-    }
-
-    /**
-     * @expectedException Twig_Error_Runtime
-     */
-    public function testGetIsMethods()
-    {
-        $getIsObject = new Twig_TemplateGetIsMethods();
-        $template = new Twig_TemplateTest(new Twig_Environment($this->getMockBuilder('Twig_LoaderInterface')->getMock(), array('strict_variables' => true)));
-        // first time should not create a cache for "get"
-        $this->assertNull($template->getAttribute($getIsObject, 'get'));
-        // 0 should be in the method cache now, so this should fail
-        $this->assertNull($template->getAttribute($getIsObject, 0));
     }
 }
 
@@ -593,13 +576,7 @@ class Twig_TemplatePropertyObjectAndIterator extends Twig_TemplatePropertyObject
 
 class Twig_TemplatePropertyObjectAndArrayAccess extends Twig_TemplatePropertyObject implements ArrayAccess
 {
-    private $data = array(
-        'defined' => 'defined',
-        'zero' => 0,
-        'null' => null,
-        'bar' => true,
-        'baz' => 'baz',
-    );
+    private $data = array();
 
     public function offsetExists($offset)
     {
@@ -679,17 +656,6 @@ class Twig_TemplateMethodObject
     public static function getStatic()
     {
         return 'static';
-    }
-}
-
-class Twig_TemplateGetIsMethods
-{
-    public function get()
-    {
-    }
-
-    public function is()
-    {
     }
 }
 

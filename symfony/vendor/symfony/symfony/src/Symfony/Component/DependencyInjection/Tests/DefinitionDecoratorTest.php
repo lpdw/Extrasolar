@@ -11,10 +11,9 @@
 
 namespace Symfony\Component\DependencyInjection\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
 
-class DefinitionDecoratorTest extends TestCase
+class DefinitionDecoratorTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {

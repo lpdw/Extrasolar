@@ -11,10 +11,9 @@
 
 namespace Symfony\Bundle\FrameworkBundle\Tests\DependencyInjection\Compiler;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\LoggingTranslatorPass;
 
-class LoggingTranslatorPassTest extends TestCase
+class LoggingTranslatorPassTest extends \PHPUnit_Framework_TestCase
 {
     public function testProcess()
     {

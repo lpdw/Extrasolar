@@ -32,9 +32,6 @@ class ProjectServiceContainer extends Container
     /**
      * Gets the 'foo' service.
      *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
      * This service is autowired.
      *
      * @return \Foo A Foo instance

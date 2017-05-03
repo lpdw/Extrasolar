@@ -11,12 +11,11 @@
 
 namespace Symfony\Bridge\Twig\Tests\Translation;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Bridge\Twig\Translation\TwigExtractor;
 use Symfony\Component\Translation\MessageCatalogue;
 
-class TwigExtractorTest extends TestCase
+class TwigExtractorTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider getExtractData

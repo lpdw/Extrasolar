@@ -49,7 +49,6 @@ class ClassMetadata extends MergeableClassMetadata
     public $xmlNamespaces = array();
     public $accessorOrder;
     public $customOrder;
-    public $usingExpression = false;
     public $handlerCallbacks = array();
 
     public $discriminatorDisabled = false;
@@ -57,12 +56,8 @@ class ClassMetadata extends MergeableClassMetadata
     public $discriminatorFieldName;
     public $discriminatorValue;
     public $discriminatorMap = array();
-    public $discriminatorGroups = array();
 
-    public $xmlDiscriminatorAttribute = false;
-    public $xmlDiscriminatorCData = true;
-
-    public function setDiscriminator($fieldName, array $map, array $groups = array())
+    public function setDiscriminator($fieldName, array $map)
     {
         if (empty($fieldName)) {
             throw new \InvalidArgumentException('The $fieldName cannot be empty.');
@@ -75,7 +70,6 @@ class ClassMetadata extends MergeableClassMetadata
         $this->discriminatorBaseClass = $this->name;
         $this->discriminatorFieldName = $fieldName;
         $this->discriminatorMap = $map;
-        $this->discriminatorGroups = $groups;
     }
 
     /**
@@ -108,9 +102,6 @@ class ClassMetadata extends MergeableClassMetadata
     {
         parent::addPropertyMetadata($metadata);
         $this->sortProperties();
-        if ($metadata instanceof PropertyMetadata && $metadata->excludeIf) {
-            $this->usingExpression = true;
-        }
     }
 
     public function addPreSerializeMethod(MethodMetadata $method)
@@ -206,12 +197,9 @@ class ClassMetadata extends MergeableClassMetadata
             $discriminatorProperty = new StaticPropertyMetadata(
                 $this->name,
                 $this->discriminatorFieldName,
-                $typeValue,
-                $this->discriminatorGroups
+                $typeValue
             );
             $discriminatorProperty->serializedName = $this->discriminatorFieldName;
-            $discriminatorProperty->xmlAttribute = $this->xmlDiscriminatorAttribute;
-            $discriminatorProperty->xmlElementCData = $this->xmlDiscriminatorCData;
             $this->propertyMetadata[$this->discriminatorFieldName] = $discriminatorProperty;
         }
 
@@ -255,19 +243,12 @@ class ClassMetadata extends MergeableClassMetadata
             $this->discriminatorFieldName,
             $this->discriminatorValue,
             $this->discriminatorMap,
-            $this->discriminatorGroups,
             parent::serialize(),
-            'discriminatorGroups' => $this->discriminatorGroups,
-            'xmlDiscriminatorAttribute' => $this->xmlDiscriminatorAttribute,
-            'xmlDiscriminatorCData' => $this->xmlDiscriminatorCData,
-            'usingExpression' => $this->usingExpression,
         ));
     }
 
     public function unserialize($str)
     {
-        $unserialized = unserialize($str);
-
         list(
             $this->preSerializeMethods,
             $this->postSerializeMethods,
@@ -283,24 +264,8 @@ class ClassMetadata extends MergeableClassMetadata
             $this->discriminatorFieldName,
             $this->discriminatorValue,
             $this->discriminatorMap,
-            $this->discriminatorGroups,
             $parentStr
-        ) = $unserialized;
-
-        if (isset($unserialized['discriminatorGroups'])) {
-            $this->discriminatorGroups = $unserialized['discriminatorGroups'];
-        }
-        if (isset($unserialized['usingExpression'])) {
-            $this->usingExpression = $unserialized['usingExpression'];
-        }
-
-        if (isset($deserializedData['xmlDiscriminatorAttribute'])) {
-            $this->xmlDiscriminatorAttribute = $deserializedData['xmlDiscriminatorAttribute'];
-        }
-
-        if (isset($deserializedData['xmlDiscriminatorCData'])) {
-            $this->xmlDiscriminatorCData = $deserializedData['xmlDiscriminatorCData'];
-        }
+        ) = unserialize($str);
 
         parent::unserialize($parentStr);
     }

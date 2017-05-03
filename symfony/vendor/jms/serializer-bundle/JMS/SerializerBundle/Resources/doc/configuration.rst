@@ -72,19 +72,12 @@ default constructor uses the `unserialize` function to construct objects. Other
 constructors are configured as services. You can set the constructor by changing
 the service alias:
 
-.. configuration-block ::
+.. code-block :: yaml
 
-    .. code-block :: yaml
-        services:
-            jms_serializer.object_constructor:
-                alias: jms_serializer.doctrine_object_constructor
-                public: false
-
-    .. code-block :: xml
-        <services>
-            <service id="jms_serializer.object_constructor" alias="jms_serializer.doctrine_object_constructor" public="false">
-            </service>
-        </services>
+    services:
+        jms_serializer.object_constructor:
+            alias: jms_serializer.doctrine_object_constructor
+            public: false
 
 Extension Reference
 -------------------
@@ -105,10 +98,8 @@ values:
                     default_timezone: "UTC" # defaults to whatever timezone set in php.ini or via date_default_timezone_set
 
             property_naming:
-                id: ~
                 separator:  _
                 lower_case: true
-                enable_cache: true
 
             metadata:
                 cache: file
@@ -134,16 +125,12 @@ values:
                         namespace_prefix: "My\\BarBundle"
                         path: "@MyBarBundle/Resources/config/serializer"
 
-            expression_evaluator:
-                id: jms_serializer.expression_evaluator # auto detected
-
             visitors:
                 json:
                     options: 0 # json_encode options bitmask
                 xml:
                     doctype_whitelist:
                         - '<!DOCTYPE authorized SYSTEM "http://some_url">' # an authorized document type for xml deserialization
-                    format_output: true
 
     .. code-block :: xml
 

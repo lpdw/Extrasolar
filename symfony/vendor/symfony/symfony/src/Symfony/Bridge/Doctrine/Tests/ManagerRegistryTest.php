@@ -11,17 +11,13 @@
 
 namespace Symfony\Bridge\Doctrine\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Bridge\ProxyManager\Tests\LazyProxy\Dumper\PhpDumperTest;
 
-class ManagerRegistryTest extends TestCase
+class ManagerRegistryTest extends \PHPUnit_Framework_TestCase
 {
     public static function setUpBeforeClass()
     {
-        if (!class_exists('PHPUnit_Framework_TestCase')) {
-            self::markTestSkipped('proxy-manager-bridge is not yet compatible with namespaced phpunit versions.');
-        }
         $test = new PhpDumperTest();
         $test->testDumpContainerWithProxyServiceWillShareProxies();
     }

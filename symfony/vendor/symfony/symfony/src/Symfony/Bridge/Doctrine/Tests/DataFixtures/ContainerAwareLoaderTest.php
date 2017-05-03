@@ -11,11 +11,10 @@
 
 namespace Symfony\Bridge\Doctrine\Tests\DataFixtures;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
 use Symfony\Bridge\Doctrine\Tests\Fixtures\ContainerAwareFixture;
 
-class ContainerAwareLoaderTest extends TestCase
+class ContainerAwareLoaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testShouldSetContainerOnContainerAwareFixture()
     {

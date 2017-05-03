@@ -11,13 +11,12 @@
 
 namespace Symfony\Bundle\FrameworkBundle\Tests\Translation;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Translation\MessageSelector;
 
-class TranslatorTest extends TestCase
+class TranslatorTest extends \PHPUnit_Framework_TestCase
 {
     protected $tmpDir;
 
@@ -134,17 +133,6 @@ class TranslatorTest extends TestCase
         $translator = new Translator($container, new MessageSelector());
 
         $this->assertSame('en', $translator->getLocale());
-    }
-
-    /**
-     * @expectedException \Symfony\Component\Translation\Exception\InvalidArgumentException
-     * @expectedExceptionMessage The Translator does not support the following options: 'foo'
-     */
-    public function testInvalidOptions()
-    {
-        $container = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerInterface')->getMock();
-
-        (new Translator($container, new MessageSelector(), array(), array('foo' => 'bar')));
     }
 
     protected function getCatalogue($locale, $messages, $resources = array())

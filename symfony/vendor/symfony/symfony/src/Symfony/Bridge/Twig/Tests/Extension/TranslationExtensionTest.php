@@ -11,13 +11,12 @@
 
 namespace Symfony\Bridge\Twig\Tests\Extension;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\MessageSelector;
 use Symfony\Component\Translation\Loader\ArrayLoader;
 
-class TranslationExtensionTest extends TestCase
+class TranslationExtensionTest extends \PHPUnit_Framework_TestCase
 {
     public function testEscaping()
     {

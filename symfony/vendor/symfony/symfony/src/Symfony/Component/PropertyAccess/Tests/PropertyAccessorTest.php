@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\PropertyAccess\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\PropertyAccess\Exception\NoSuchIndexException;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
@@ -23,7 +22,7 @@ use Symfony\Component\PropertyAccess\Tests\Fixtures\TestClassSetValue;
 use Symfony\Component\PropertyAccess\Tests\Fixtures\TestClassIsWritable;
 use Symfony\Component\PropertyAccess\Tests\Fixtures\TypeHinted;
 
-class PropertyAccessorTest extends TestCase
+class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var PropertyAccessor

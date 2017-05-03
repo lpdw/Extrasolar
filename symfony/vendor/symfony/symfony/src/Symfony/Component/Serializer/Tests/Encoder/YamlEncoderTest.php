@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\Serializer\Tests\Encoder;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
 use Symfony\Component\Yaml\Dumper;
 use Symfony\Component\Yaml\Parser;
@@ -20,7 +19,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
-class YamlEncoderTest extends TestCase
+class YamlEncoderTest extends \PHPUnit_Framework_TestCase
 {
     public function testEncode()
     {

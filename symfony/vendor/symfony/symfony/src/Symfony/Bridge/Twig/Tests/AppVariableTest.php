@@ -2,12 +2,11 @@
 
 namespace Symfony\Bridge\Twig\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\AppVariable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class AppVariableTest extends TestCase
+class AppVariableTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var AppVariable

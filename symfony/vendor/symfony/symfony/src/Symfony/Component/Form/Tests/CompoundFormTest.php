@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\Form\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\DataMapper\PropertyPathMapper;
 use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationRequestHandler;
 use Symfony\Component\Form\FormError;
@@ -299,8 +298,6 @@ class CompoundFormTest extends AbstractFormTest
     public function testRemoveIgnoresUnknownName()
     {
         $this->form->remove('notexisting');
-
-        $this->assertCount(0, $this->form);
     }
 
     public function testArrayAccess()
