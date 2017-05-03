@@ -12,12 +12,11 @@
 namespace Symfony\Bridge\Monolog\Tests;
 
 use Monolog\Handler\TestHandler;
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Monolog\Handler\DebugHandler;
 use Symfony\Bridge\Monolog\Processor\DebugProcessor;
 use Symfony\Bridge\Monolog\Logger;
 
-class LoggerTest extends TestCase
+class LoggerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @group legacy

@@ -11,13 +11,12 @@
 
 namespace Symfony\Bridge\Twig\Tests\Node;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\Node\TransNode;
 
 /**
  * @author Asmir Mustafic <goetas@gmail.com>
  */
-class TransNodeTest extends TestCase
+class TransNodeTest extends \PHPUnit_Framework_TestCase
 {
     public function testCompileStrict()
     {

@@ -11,13 +11,12 @@
 
 namespace Symfony\Component\Serializer\Tests\Annotation;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
-class GroupsTest extends TestCase
+class GroupsTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \Symfony\Component\Serializer\Exception\InvalidArgumentException

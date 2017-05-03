@@ -12,7 +12,6 @@
 namespace Symfony\Bridge\Monolog\Tests\Handler;
 
 use Monolog\Logger;
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Monolog\Handler\ConsoleHandler;
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
@@ -27,7 +26,7 @@ use Symfony\Component\Console\Command\Command;
  *
  * @author Tobias Schultze <http://tobion.de>
  */
-class ConsoleHandlerTest extends TestCase
+class ConsoleHandlerTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {

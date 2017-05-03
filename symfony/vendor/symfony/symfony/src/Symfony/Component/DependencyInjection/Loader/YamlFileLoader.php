@@ -385,7 +385,7 @@ class YamlFileLoader extends FileLoader
         }
 
         if (!file_exists($file)) {
-            throw new InvalidArgumentException(sprintf('The file "%s" does not exist.', $file));
+            throw new InvalidArgumentException(sprintf('The service file "%s" is not valid.', $file));
         }
 
         if (null === $this->yamlParser) {
@@ -468,10 +468,13 @@ class YamlFileLoader extends FileLoader
 
             if ('=' === substr($value, -1)) {
                 $value = substr($value, 0, -1);
+                $strict = false;
+            } else {
+                $strict = true;
             }
 
             if (null !== $invalidBehavior) {
-                $value = new Reference($value, $invalidBehavior);
+                $value = new Reference($value, $invalidBehavior, $strict);
             }
         }
 

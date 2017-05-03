@@ -11,13 +11,12 @@
 
 namespace Symfony\Bundle\SecurityBundle\Tests\DependencyInjection\Security\Factory;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\GuardAuthenticationFactory;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-class GuardAuthenticationFactoryTest extends TestCase
+class GuardAuthenticationFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider getValidConfigurationTests

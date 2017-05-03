@@ -22,13 +22,12 @@ class StaticPropertyMetadata extends PropertyMetadata
 {
     private $value;
 
-    public function __construct($className, $fieldName, $fieldValue, array $groups = array())
+    public function __construct($className, $fieldName, $fieldValue)
     {
         $this->class = $className;
         $this->name = $fieldName;
         $this->value = $fieldValue;
         $this->readOnly = true;
-        $this->groups = $groups;
     }
 
     public function getValue($obj)

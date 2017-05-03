@@ -3,7 +3,6 @@
 namespace AppBundle\Repository\Extrasolar;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query;
 
 class BodiesRepository extends EntityRepository
 {
@@ -29,25 +28,12 @@ class BodiesRepository extends EntityRepository
               ;
     }
 
-    public function findAllBodiesForAPI()
-    {
-      return $this->getEntityManager('b')
-              ->createQuery("SELECT b, t FROM AppBundle:Body b JOIN b.type_id t WHERE t.categorie != 'point'")
-              ->getResult(Query::HYDRATE_ARRAY)
-              ;
-    }
-
     public function findAllBodiesAdmin(){
         return $this->createQueryBuilder('b')
               ->getQuery()
               ->getResult()
               ;
     }
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 8888ed9cc35382f064a03d30a3fe447937688801
     public function getHost($host_name)
     {
       return $this->getEntityManager()
@@ -57,6 +43,7 @@ class BodiesRepository extends EntityRepository
                   ;
     }
 
+<<<<<<< HEAD
     public function getListPlaneteByName($name="") {
       if($name != "") {
         return $this->getEntityManager()
@@ -77,4 +64,6 @@ class BodiesRepository extends EntityRepository
     }
 
 
+=======
+>>>>>>> 174c7a5aeca09b9113b2de22055a09994fa04b5c
 }

@@ -11,11 +11,10 @@
 
 namespace Symfony\Bridge\Twig\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\TwigEngine;
 use Symfony\Component\Templating\TemplateReference;
 
-class TwigEngineTest extends TestCase
+class TwigEngineTest extends \PHPUnit_Framework_TestCase
 {
     public function testExistsWithTemplateInstances()
     {

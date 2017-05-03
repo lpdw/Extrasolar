@@ -11,12 +11,11 @@
 
 namespace Symfony\Bundle\FrameworkBundle\Tests\Routing;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
-class RouterTest extends TestCase
+class RouterTest extends \PHPUnit_Framework_TestCase
 {
     public function testGenerateWithServiceParam()
     {

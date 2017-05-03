@@ -307,8 +307,7 @@ class AnnotationReader implements Reader
      */
     private function getIgnoredAnnotationNames(ReflectionClass $class)
     {
-        $name = $class->getName();
-        if (isset($this->ignoredAnnotationNames[$name])) {
+        if (isset($this->ignoredAnnotationNames[$name = $class->getName()])) {
             return $this->ignoredAnnotationNames[$name];
         }
 
@@ -326,8 +325,7 @@ class AnnotationReader implements Reader
      */
     private function getClassImports(ReflectionClass $class)
     {
-        $name = $class->getName();
-        if (isset($this->imports[$name])) {
+        if (isset($this->imports[$name = $class->getName()])) {
             return $this->imports[$name];
         }
 

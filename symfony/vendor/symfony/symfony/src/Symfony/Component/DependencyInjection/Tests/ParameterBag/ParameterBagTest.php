@@ -11,13 +11,12 @@
 
 namespace Symfony\Component\DependencyInjection\Tests\ParameterBag;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 use Symfony\Component\DependencyInjection\Exception\ParameterCircularReferenceException;
 use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 
-class ParameterBagTest extends TestCase
+class ParameterBagTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {
@@ -84,12 +83,7 @@ class ParameterBagTest extends TestCase
             'fiz' => array('bar' => array('boo' => 12)),
         ));
 
-        if (method_exists($this, 'expectException')) {
-            $this->expectException(ParameterNotFoundException::class);
-            $this->expectExceptionMessage($exceptionMessage);
-        } else {
-            $this->setExpectedException(ParameterNotFoundException::class, $exceptionMessage);
-        }
+        $this->setExpectedException('Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException', $exceptionMessage);
 
         $bag->get($parameterKey);
     }

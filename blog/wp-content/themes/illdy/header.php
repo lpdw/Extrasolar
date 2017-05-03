@@ -65,7 +65,7 @@ else: echo 'header-blog'; endif; ?>" style="<?php echo $style ?>">
 						<?php if ( get_option( 'show_on_front' ) == 'page' ) { ?>
 							<a href="<?php echo esc_url( home_url() ); ?>" title="<?php echo esc_attr( $text_logo ); ?>" class="header-logo"><?php echo esc_html( $text_logo ); ?></a>
 						<?php } else { // front-page option ?>
-							<a href="<?php echo esc_url( home_url() ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="header-logo"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
+							<a href="http://extrasolar.fr" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="header-logo"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
 						<?php } ?>
 					<?php } ?>
 

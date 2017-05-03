@@ -11,10 +11,9 @@
 
 namespace Symfony\Bridge\Twig\Tests\Extension;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\Extension\ExpressionExtension;
 
-class ExpressionExtensionTest extends TestCase
+class ExpressionExtensionTest extends \PHPUnit_Framework_TestCase
 {
     protected $helper;
 

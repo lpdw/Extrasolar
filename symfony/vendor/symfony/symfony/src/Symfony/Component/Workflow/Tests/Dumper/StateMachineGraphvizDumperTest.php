@@ -2,18 +2,17 @@
 
 namespace Symfony\Component\Workflow\Tests\Dumper;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Workflow\Dumper\StateMachineGraphvizDumper;
 use Symfony\Component\Workflow\Marking;
 use Symfony\Component\Workflow\Tests\WorkflowBuilderTrait;
 
-class StateMachineGraphvizDumperTest extends TestCase
+class StateMachineGraphvizDumperTest extends \PHPUnit_Framework_TestCase
 {
     use WorkflowBuilderTrait;
 
     private $dumper;
 
-    protected function setUp()
+    public function setUp()
     {
         $this->dumper = new StateMachineGraphvizDumper();
     }

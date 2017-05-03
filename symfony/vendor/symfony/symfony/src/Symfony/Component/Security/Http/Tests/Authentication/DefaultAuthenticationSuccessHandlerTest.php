@@ -11,11 +11,10 @@
 
 namespace Symfony\Component\Security\Http\Tests\Authentication;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler;
 
-class DefaultAuthenticationSuccessHandlerTest extends TestCase
+class DefaultAuthenticationSuccessHandlerTest extends \PHPUnit_Framework_TestCase
 {
     private $httpUtils = null;
 

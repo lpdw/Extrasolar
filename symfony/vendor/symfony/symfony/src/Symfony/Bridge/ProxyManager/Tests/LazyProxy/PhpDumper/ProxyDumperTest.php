@@ -11,7 +11,6 @@
 
 namespace Symfony\Bridge\ProxyManager\Tests\LazyProxy\PhpDumper;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\ProxyManager\LazyProxy\PhpDumper\ProxyDumper;
 use Symfony\Component\DependencyInjection\Definition;
 
@@ -20,7 +19,7 @@ use Symfony\Component\DependencyInjection\Definition;
  *
  * @author Marco Pivetta <ocramius@gmail.com>
  */
-class ProxyDumperTest extends TestCase
+class ProxyDumperTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var ProxyDumper

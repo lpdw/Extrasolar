@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\ExpressionLanguage\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\ParsedExpression;
 use Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheAdapter;
 use Symfony\Component\ExpressionLanguage\Node\Node;
@@ -19,7 +18,7 @@ use Symfony\Component\ExpressionLanguage\Node\Node;
 /**
  * @group legacy
  */
-class ParserCacheAdapterTest extends TestCase
+class ParserCacheAdapterTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetItem()
     {
@@ -75,7 +74,7 @@ class ParserCacheAdapterTest extends TestCase
     {
         $poolMock = $this->getMockBuilder('Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheInterface')->getMock();
         $parserCacheAdapter = new ParserCacheAdapter($poolMock);
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(\BadMethodCallException::class);
+        $this->setExpectedException(\BadMethodCallException::class);
 
         $parserCacheAdapter->getItems();
     }
@@ -85,7 +84,7 @@ class ParserCacheAdapterTest extends TestCase
         $poolMock = $this->getMockBuilder('Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheInterface')->getMock();
         $key = 'key';
         $parserCacheAdapter = new ParserCacheAdapter($poolMock);
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(\BadMethodCallException::class);
+        $this->setExpectedException(\BadMethodCallException::class);
 
         $parserCacheAdapter->hasItem($key);
     }
@@ -94,7 +93,7 @@ class ParserCacheAdapterTest extends TestCase
     {
         $poolMock = $this->getMockBuilder('Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheInterface')->getMock();
         $parserCacheAdapter = new ParserCacheAdapter($poolMock);
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(\BadMethodCallException::class);
+        $this->setExpectedException(\BadMethodCallException::class);
 
         $parserCacheAdapter->clear();
     }
@@ -104,7 +103,7 @@ class ParserCacheAdapterTest extends TestCase
         $poolMock = $this->getMockBuilder('Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheInterface')->getMock();
         $key = 'key';
         $parserCacheAdapter = new ParserCacheAdapter($poolMock);
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(\BadMethodCallException::class);
+        $this->setExpectedException(\BadMethodCallException::class);
 
         $parserCacheAdapter->deleteItem($key);
     }
@@ -114,7 +113,7 @@ class ParserCacheAdapterTest extends TestCase
         $poolMock = $this->getMockBuilder('Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheInterface')->getMock();
         $keys = array('key');
         $parserCacheAdapter = new ParserCacheAdapter($poolMock);
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(\BadMethodCallException::class);
+        $this->setExpectedException(\BadMethodCallException::class);
 
         $parserCacheAdapter->deleteItems($keys);
     }
@@ -124,7 +123,7 @@ class ParserCacheAdapterTest extends TestCase
         $poolMock = $this->getMockBuilder('Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheInterface')->getMock();
         $parserCacheAdapter = new ParserCacheAdapter($poolMock);
         $cacheItemMock = $this->getMockBuilder('Psr\Cache\CacheItemInterface')->getMock();
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(\BadMethodCallException::class);
+        $this->setExpectedException(\BadMethodCallException::class);
 
         $parserCacheAdapter->saveDeferred($cacheItemMock);
     }
@@ -133,7 +132,7 @@ class ParserCacheAdapterTest extends TestCase
     {
         $poolMock = $this->getMockBuilder('Symfony\Component\ExpressionLanguage\ParserCache\ParserCacheInterface')->getMock();
         $parserCacheAdapter = new ParserCacheAdapter($poolMock);
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(\BadMethodCallException::class);
+        $this->setExpectedException(\BadMethodCallException::class);
 
         $parserCacheAdapter->commit();
     }

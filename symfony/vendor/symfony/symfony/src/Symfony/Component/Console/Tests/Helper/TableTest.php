@@ -11,14 +11,13 @@
 
 namespace Symfony\Component\Console\Tests\Helper;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableStyle;
 use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Output\StreamOutput;
 
-class TableTest extends TestCase
+class TableTest extends \PHPUnit_Framework_TestCase
 {
     protected $stream;
 
@@ -34,7 +33,7 @@ class TableTest extends TestCase
     }
 
     /**
-     * @dataProvider renderProvider
+     * @dataProvider testRenderProvider
      */
     public function testRender($headers, $rows, $style, $expected, $decorated = false)
     {
@@ -50,7 +49,7 @@ class TableTest extends TestCase
     }
 
     /**
-     * @dataProvider renderProvider
+     * @dataProvider testRenderProvider
      */
     public function testRenderAddRows($headers, $rows, $style, $expected, $decorated = false)
     {
@@ -66,7 +65,7 @@ class TableTest extends TestCase
     }
 
     /**
-     * @dataProvider renderProvider
+     * @dataProvider testRenderProvider
      */
     public function testRenderAddRowsOneByOne($headers, $rows, $style, $expected, $decorated = false)
     {
@@ -83,7 +82,7 @@ class TableTest extends TestCase
         $this->assertEquals($expected, $this->getOutputContent($output));
     }
 
-    public function renderProvider()
+    public function testRenderProvider()
     {
         $books = array(
             array('99921-58-10-7', 'Divine Comedy', 'Dante Alighieri'),
@@ -299,10 +298,10 @@ TABLE
                 array(
                     array(
                         new TableCell('9971-5-0210-0', array('rowspan' => 3)),
-                        new TableCell('Divine Comedy', array('rowspan' => 2)),
+                        'Divine Comedy',
                         'Dante Alighieri',
                     ),
-                    array(),
+                    array('A Tale of Two Cities', 'Charles Dickens'),
                     array("The Lord of \nthe Rings", "J. R. \nR. Tolkien"),
                     new TableSeparator(),
                     array('80-902734-1-6', new TableCell("And Then \nThere \nWere None", array('rowspan' => 3)), 'Agatha Christie'),
@@ -310,18 +309,18 @@ TABLE
                 ),
                 'default',
 <<<'TABLE'
-+---------------+---------------+-----------------+
-| ISBN          | Title         | Author          |
-+---------------+---------------+-----------------+
-| 9971-5-0210-0 | Divine Comedy | Dante Alighieri |
-|               |               |                 |
-|               | The Lord of   | J. R.           |
-|               | the Rings     | R. Tolkien      |
-+---------------+---------------+-----------------+
-| 80-902734-1-6 | And Then      | Agatha Christie |
-| 80-902734-1-7 | There         | Test            |
-|               | Were None     |                 |
-+---------------+---------------+-----------------+
++---------------+----------------------+-----------------+
+| ISBN          | Title                | Author          |
++---------------+----------------------+-----------------+
+| 9971-5-0210-0 | Divine Comedy        | Dante Alighieri |
+|               | A Tale of Two Cities | Charles Dickens |
+|               | The Lord of          | J. R.           |
+|               | the Rings            | R. Tolkien      |
++---------------+----------------------+-----------------+
+| 80-902734-1-6 | And Then             | Agatha Christie |
+| 80-902734-1-7 | There                | Test            |
+|               | Were None            |                 |
++---------------+----------------------+-----------------+
 
 TABLE
             ),
@@ -510,35 +509,6 @@ TABLE
 +-----------------+------------------+---------+
 | Dante Alighieri | J. R. R. Tolkien | J. R. R |
 +-----------------+------------------+---------+
-
-TABLE
-            ,
-                true,
-            ),
-            'Row with formatted cells containing a newline' => array(
-                array(),
-                array(
-                    array(
-                        new TableCell('<error>Dont break'."\n".'here</error>', array('colspan' => 2)),
-                    ),
-                    new TableSeparator(),
-                    array(
-                        'foo',
-                         new TableCell('<error>Dont break'."\n".'here</error>', array('rowspan' => 2)),
-                    ),
-                    array(
-                        'bar',
-                    ),
-                ),
-                'default',
-                <<<'TABLE'
-+-------+------------+
-[39;49m| [39;49m[37;41mDont break[39;49m[39;49m         |[39;49m
-[39;49m| [39;49m[37;41mhere[39;49m               |
-+-------+------------+
-[39;49m| foo   | [39;49m[37;41mDont break[39;49m[39;49m |[39;49m
-[39;49m| bar   | [39;49m[37;41mhere[39;49m       |
-+-------+------------+
 
 TABLE
             ,

@@ -11,7 +11,6 @@
 
 namespace Symfony\Bundle\FrameworkBundle\Test;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ResettableContainerInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -21,7 +20,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-abstract class KernelTestCase extends TestCase
+abstract class KernelTestCase extends \PHPUnit_Framework_TestCase
 {
     protected static $class;
 

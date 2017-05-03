@@ -11,10 +11,9 @@
 
 namespace Symfony\Component\Config\Tests\Resource;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Resource\ClassExistenceResource;
 
-class ClassExistenceResourceTest extends TestCase
+class ClassExistenceResourceTest extends \PHPUnit_Framework_TestCase
 {
     public function testToString()
     {

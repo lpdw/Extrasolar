@@ -17,8 +17,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
-
-    types:
+	types:
       point: 'Point'
       star: 'Etoile'
       planet: 'Planète'

@@ -11,14 +11,13 @@
 
 namespace Symfony\Bundle\DebugBundle\Tests\DependencyInjection\Compiler;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\DebugBundle\DependencyInjection\Compiler\DumpDataCollectorPass;
 use Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class DumpDataCollectorPassTest extends TestCase
+class DumpDataCollectorPassTest extends \PHPUnit_Framework_TestCase
 {
     public function testProcessWithoutFileLinkFormatParameter()
     {

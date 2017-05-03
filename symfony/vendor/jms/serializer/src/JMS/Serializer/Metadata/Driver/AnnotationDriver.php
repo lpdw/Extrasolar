@@ -19,8 +19,6 @@
 namespace JMS\Serializer\Metadata\Driver;
 
 use JMS\Serializer\Annotation\Discriminator;
-use JMS\Serializer\Annotation\ExcludeIf;
-use JMS\Serializer\Annotation\XmlDiscriminator;
 use JMS\Serializer\GraphNavigator;
 use JMS\Serializer\Annotation\HandlerCallback;
 use JMS\Serializer\Annotation\AccessorOrder;
@@ -38,7 +36,6 @@ use JMS\Serializer\Annotation\PostSerialize;
 use JMS\Serializer\Annotation\PostDeserialize;
 use JMS\Serializer\Annotation\PreSerialize;
 use JMS\Serializer\Annotation\VirtualProperty;
-use JMS\Serializer\Metadata\ExpressionPropertyMetadata;
 use Metadata\MethodMetadata;
 use Doctrine\Common\Annotations\Reader;
 use JMS\Serializer\Annotation\Type;
@@ -100,15 +97,8 @@ class AnnotationDriver implements DriverInterface
                 if ($annot->disabled) {
                     $classMetadata->discriminatorDisabled = true;
                 } else {
-                    $classMetadata->setDiscriminator($annot->field, $annot->map, $annot->groups);
+                    $classMetadata->setDiscriminator($annot->field, $annot->map);
                 }
-            } elseif ($annot instanceof XmlDiscriminator) {
-                $classMetadata->xmlDiscriminatorAttribute = (bool) $annot->attribute;
-                $classMetadata->xmlDiscriminatorCData = (bool) $annot->cdata;
-            } elseif ($annot instanceof VirtualProperty) {
-                $virtualPropertyMetadata = new ExpressionPropertyMetadata($name, $annot->name, $annot->exp);
-                $propertiesMetadata[] = $virtualPropertyMetadata;
-                $propertiesAnnotations[] = $annot->options;
             }
         }
 
@@ -152,8 +142,7 @@ class AnnotationDriver implements DriverInterface
 
             foreach ($propertiesMetadata as $propertyKey => $propertyMetadata) {
                 $isExclude = false;
-                $isExpose = $propertyMetadata instanceof VirtualPropertyMetadata
-                    || $propertyMetadata instanceof ExpressionPropertyMetadata;
+                $isExpose = $propertyMetadata instanceof VirtualPropertyMetadata;
                 $propertyMetadata->readOnly = $propertyMetadata->readOnly || $readOnlyClass;
                 $accessType = $classAccessType;
                 $accessor = array(null, null);
@@ -169,15 +158,8 @@ class AnnotationDriver implements DriverInterface
                         $propertyMetadata->serializedName = $annot->name;
                     } elseif ($annot instanceof Expose) {
                         $isExpose = true;
-                        if (null !== $annot->if) {
-                            $propertyMetadata->excludeIf = "!(" . $annot->if . ")";
-                        }
                     } elseif ($annot instanceof Exclude) {
-                        if (null !== $annot->if) {
-                            $propertyMetadata->excludeIf = $annot->if;
-                        } else {
-                            $isExclude = true;
-                        }
+                        $isExclude = true;
                     } elseif ($annot instanceof Type) {
                         $propertyMetadata->setType($annot->name);
                     } elseif ($annot instanceof XmlElement) {

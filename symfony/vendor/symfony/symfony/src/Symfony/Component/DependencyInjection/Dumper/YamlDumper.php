@@ -93,7 +93,7 @@ class YamlDumper extends Dumper
         }
 
         if ($definition->isSynthetic()) {
-            $code .= "        synthetic: true\n";
+            $code .= sprintf("        synthetic: true\n");
         }
 
         if ($definition->isDeprecated()) {
@@ -113,7 +113,7 @@ class YamlDumper extends Dumper
         }
 
         if ($definition->isLazy()) {
-            $code .= "        lazy: true\n";
+            $code .= sprintf("        lazy: true\n");
         }
 
         if ($definition->getArguments()) {

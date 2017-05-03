@@ -11,14 +11,13 @@
 
 namespace Symfony\Component\Cache\Tests\Adapter;
 
-use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemInterface;
 use Symfony\Component\Cache\Adapter\NullAdapter;
 
 /**
  * @group time-sensitive
  */
-class NullAdapterTest extends TestCase
+class NullAdapterTest extends \PHPUnit_Framework_TestCase
 {
     public function createCachePool()
     {

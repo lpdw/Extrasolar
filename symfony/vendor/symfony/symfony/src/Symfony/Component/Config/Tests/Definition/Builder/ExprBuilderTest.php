@@ -11,10 +11,9 @@
 
 namespace Symfony\Component\Config\Tests\Definition\Builder;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
-class ExprBuilderTest extends TestCase
+class ExprBuilderTest extends \PHPUnit_Framework_TestCase
 {
     public function testAlwaysExpression()
     {

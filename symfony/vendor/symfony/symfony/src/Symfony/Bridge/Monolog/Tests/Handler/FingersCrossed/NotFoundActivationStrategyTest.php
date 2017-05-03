@@ -11,14 +11,13 @@
 
 namespace Symfony\Bridge\Monolog\Tests\Handler\FingersCrossed;
 
-use Monolog\Logger;
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Monolog\Handler\FingersCrossed\NotFoundActivationStrategy;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Monolog\Logger;
 
-class NotFoundActivationStrategyTest extends TestCase
+class NotFoundActivationStrategyTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider isActivatedProvider

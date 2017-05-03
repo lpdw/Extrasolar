@@ -11,12 +11,11 @@
 
 namespace Symfony\Component\DependencyInjection\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
-class ContainerTest extends TestCase
+class ContainerTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {

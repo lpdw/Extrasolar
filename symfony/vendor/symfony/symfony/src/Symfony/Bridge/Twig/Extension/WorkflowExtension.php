@@ -35,31 +35,14 @@ class WorkflowExtension extends \Twig_Extension
         );
     }
 
-    /**
-     * Returns true if the transition is enabled.
-     *
-     * @param object $subject        A subject
-     * @param string $transitionName A transition
-     * @param string $name           A workflow name
-     *
-     * @return bool true if the transition is enabled
-     */
-    public function canTransition($subject, $transitionName, $name = null)
+    public function canTransition($object, $transition, $name = null)
     {
-        return $this->workflowRegistry->get($subject, $name)->can($subject, $transitionName);
+        return $this->workflowRegistry->get($object, $name)->can($object, $transition);
     }
 
-    /**
-     * Returns all enabled transitions.
-     *
-     * @param object $subject A subject
-     * @param string $name    A workflow name
-     *
-     * @return Transition[] All enabled transitions
-     */
-    public function getEnabledTransitions($subject, $name = null)
+    public function getEnabledTransitions($object, $name = null)
     {
-        return $this->workflowRegistry->get($subject, $name)->getEnabledTransitions($subject);
+        return $this->workflowRegistry->get($object, $name)->getEnabledTransitions($object);
     }
 
     public function getName()

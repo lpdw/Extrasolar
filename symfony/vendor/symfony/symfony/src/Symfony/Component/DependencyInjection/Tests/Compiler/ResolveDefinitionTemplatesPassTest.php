@@ -11,12 +11,11 @@
 
 namespace Symfony\Component\DependencyInjection\Tests\Compiler;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Compiler\ResolveDefinitionTemplatesPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class ResolveDefinitionTemplatesPassTest extends TestCase
+class ResolveDefinitionTemplatesPassTest extends \PHPUnit_Framework_TestCase
 {
     public function testProcess()
     {

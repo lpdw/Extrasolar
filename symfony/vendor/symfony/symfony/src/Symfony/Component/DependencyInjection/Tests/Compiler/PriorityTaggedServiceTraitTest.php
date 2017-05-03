@@ -11,12 +11,11 @@
 
 namespace Symfony\Component\DependencyInjection\Tests\Compiler;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Compiler\PriorityTaggedServiceTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-class PriorityTaggedServiceTraitTest extends TestCase
+class PriorityTaggedServiceTraitTest extends \PHPUnit_Framework_TestCase
 {
     public function testThatCacheWarmersAreProcessedInPriorityOrder()
     {

@@ -20,9 +20,8 @@ namespace JMS\Serializer\Annotation;
 
 /**
  * @Annotation
- * @Target({"PROPERTY", "CLASS", "METHOD", "ANNOTATION"})
+ * @Target({"PROPERTY", "CLASS"})
  */
 final class Exclude
 {
-    public $if;
 }

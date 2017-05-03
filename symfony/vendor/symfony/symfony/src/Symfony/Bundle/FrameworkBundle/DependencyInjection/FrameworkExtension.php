@@ -14,7 +14,6 @@ namespace Symfony\Bundle\FrameworkBundle\DependencyInjection;
 use Doctrine\Common\Annotations\Reader;
 use Symfony\Bridge\Monolog\Processor\DebugProcessor;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
-use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -36,6 +35,7 @@ use Symfony\Component\Serializer\Normalizer\DataUriNormalizer;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer;
 use Symfony\Component\Workflow;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * FrameworkExtension.
@@ -111,7 +111,7 @@ class FrameworkExtension extends Extension
                     'macvim' => 'mvim://open?url=file://%%f&line=%%l',
                     'emacs' => 'emacs://open?url=file://%%f&line=%%l',
                     'sublime' => 'subl://open?url=file://%%f&line=%%l',
-                    'phpstorm' => 'phpstorm://open?file=%%f&line=%%l',
+                    'phpstorm' => 'phpstorm://open?url=file://%%f&line=%%l',
                 );
                 $ide = $config['ide'];
 
@@ -395,10 +395,6 @@ class FrameworkExtension extends Extension
     {
         if (!$workflows) {
             return;
-        }
-
-        if (!class_exists(Workflow\Workflow::class)) {
-            throw new LogicException('Workflow support cannot be enabled as the Workflow component is not installed.');
         }
 
         $loader->load('workflow.xml');
@@ -768,14 +764,23 @@ class FrameworkExtension extends Extension
             throw new \LogicException('An asset package cannot have base URLs and base paths.');
         }
 
-        $package = new DefinitionDecorator($baseUrls ? 'assets.url_package' : 'assets.path_package');
-        $package
+        if (!$baseUrls) {
+            $package = new DefinitionDecorator('assets.path_package');
+
+            return $package
+                ->setPublic(false)
+                ->replaceArgument(0, $basePath)
+                ->replaceArgument(1, $version)
+            ;
+        }
+
+        $package = new DefinitionDecorator('assets.url_package');
+
+        return $package
             ->setPublic(false)
-            ->replaceArgument(0, $baseUrls ?: $basePath)
+            ->replaceArgument(0, $baseUrls)
             ->replaceArgument(1, $version)
         ;
-
-        return $package;
     }
 
     private function createVersion(ContainerBuilder $container, $version, $format, $name)
@@ -1034,11 +1039,10 @@ class FrameworkExtension extends Extension
 
             $container
                 ->getDefinition('annotations.cached_reader')
+                ->replaceArgument(1, new Reference($cacheService))
                 ->replaceArgument(2, $config['debug'])
-                ->addTag('annotations.cached_reader', array('provider' => $cacheService))
                 ->addAutowiringType(Reader::class)
             ;
-            $container->setAlias('annotation_reader', 'annotations.cached_reader');
         } else {
             $container->removeDefinition('annotations.cached_reader');
         }
@@ -1231,6 +1235,7 @@ class FrameworkExtension extends Extension
     private function registerCacheConfiguration(array $config, ContainerBuilder $container)
     {
         $version = substr(str_replace('/', '-', base64_encode(hash('sha256', uniqid(mt_rand(), true), true))), 0, 22);
+        $container->getDefinition('cache.annotations')->replaceArgument(2, $version);
         $container->getDefinition('cache.adapter.apcu')->replaceArgument(2, $version);
         $container->getDefinition('cache.adapter.system')->replaceArgument(2, $version);
         $container->getDefinition('cache.adapter.filesystem')->replaceArgument(2, $config['directory']);
@@ -1261,16 +1266,10 @@ class FrameworkExtension extends Extension
         if (method_exists(PropertyAccessor::class, 'createCache')) {
             $propertyAccessDefinition = $container->register('cache.property_access', AdapterInterface::class);
             $propertyAccessDefinition->setPublic(false);
-
-            if (!$container->getParameter('kernel.debug')) {
-                $propertyAccessDefinition->setFactory(array(PropertyAccessor::class, 'createCache'));
-                $propertyAccessDefinition->setArguments(array(null, null, $version, new Reference('logger', ContainerInterface::IGNORE_ON_INVALID_REFERENCE)));
-                $propertyAccessDefinition->addTag('cache.pool', array('clearer' => 'cache.default_clearer'));
-                $propertyAccessDefinition->addTag('monolog.logger', array('channel' => 'cache'));
-            } else {
-                $propertyAccessDefinition->setClass(ArrayAdapter::class);
-                $propertyAccessDefinition->setArguments(array(0, false));
-            }
+            $propertyAccessDefinition->setFactory(array(PropertyAccessor::class, 'createCache'));
+            $propertyAccessDefinition->setArguments(array(null, null, $version, new Reference('logger', ContainerInterface::IGNORE_ON_INVALID_REFERENCE)));
+            $propertyAccessDefinition->addTag('cache.pool', array('clearer' => 'cache.default_clearer'));
+            $propertyAccessDefinition->addTag('monolog.logger', array('channel' => 'cache'));
         }
 
         $this->addClassesToCompile(array(

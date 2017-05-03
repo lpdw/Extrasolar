@@ -11,10 +11,9 @@
 
 namespace Symfony\Bridge\Twig\Tests\Extension;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\Extension\StopwatchExtension;
 
-class StopwatchExtensionTest extends TestCase
+class StopwatchExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \Twig_Error_Syntax

@@ -11,13 +11,12 @@
 
 namespace Symfony\Component\Serializer\Tests\Encoder;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 
 /**
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
-class CsvEncoderTest extends TestCase
+class CsvEncoderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var CsvEncoder

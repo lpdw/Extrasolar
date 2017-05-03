@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\BrowserKit\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\BrowserKit\Client;
 use Symfony\Component\BrowserKit\History;
 use Symfony\Component\BrowserKit\CookieJar;
@@ -72,7 +71,7 @@ EOF;
     }
 }
 
-class ClientTest extends TestCase
+class ClientTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetHistory()
     {

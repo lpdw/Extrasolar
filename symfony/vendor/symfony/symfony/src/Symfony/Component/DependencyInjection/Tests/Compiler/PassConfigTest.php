@@ -11,14 +11,13 @@
 
 namespace Symfony\Component\DependencyInjection\Tests\Compiler;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 /**
  * @author Guilhem N <egetick@gmail.com>
  */
-class PassConfigTest extends TestCase
+class PassConfigTest extends \PHPUnit_Framework_TestCase
 {
     public function testPassOrdering()
     {

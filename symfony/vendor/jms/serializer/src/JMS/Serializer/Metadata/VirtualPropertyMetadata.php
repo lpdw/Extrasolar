@@ -67,14 +67,12 @@ class VirtualPropertyMetadata extends PropertyMetadata
             $this->inline,
             $this->readOnly,
             $this->class,
-            $this->name,
-            'excludeIf' => $this->excludeIf,
+            $this->name
         ));
     }
 
     public function unserialize($str)
     {
-        $unserialized = unserialize($str);
         list(
             $this->sinceVersion,
             $this->untilVersion,
@@ -98,10 +96,6 @@ class VirtualPropertyMetadata extends PropertyMetadata
             $this->readOnly,
             $this->class,
             $this->name
-        ) = $unserialized;
-
-        if (isset($unserialized['excludeIf'])){
-            $this->excludeIf = $unserialized['excludeIf'];
-        }
+        ) = unserialize($str);
     }
 }

@@ -20,7 +20,7 @@ namespace JMS\Serializer\Annotation;
 
 /**
  * @Annotation
- * @Target({"PROPERTY","METHOD","ANNOTATION"})
+ * @Target({"PROPERTY","METHOD"})
  */
 final class XmlMap extends XmlCollection
 {

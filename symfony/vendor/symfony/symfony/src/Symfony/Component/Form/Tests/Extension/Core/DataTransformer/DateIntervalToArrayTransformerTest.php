@@ -12,8 +12,6 @@
 namespace Symfony\Component\Form\Tests\Extension\Core\DataTransformer;
 
 use Symfony\Component\Form\Extension\Core\DataTransformer\DateIntervalToArrayTransformer;
-use Symfony\Component\Form\Exception\TransformationFailedException;
-use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
 /**
  * @author Steffen Roßkamp <steffen.rosskamp@gimmickmedia.de>
@@ -161,7 +159,7 @@ class DateIntervalToArrayTransformerTest extends DateIntervalTestCase
     {
         $transformer = new DateIntervalToArrayTransformer();
         $this->assertNull($transformer->reverseTransform(null));
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(UnexpectedTypeException::class);
+        $this->setExpectedException('Symfony\Component\Form\Exception\UnexpectedTypeException');
         $transformer->reverseTransform('12345');
     }
 
@@ -169,7 +167,7 @@ class DateIntervalToArrayTransformerTest extends DateIntervalTestCase
     {
         $transformer = new DateIntervalToArrayTransformer();
         $input = array('years' => '1');
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(TransformationFailedException::class);
+        $this->setExpectedException('Symfony\Component\Form\Exception\TransformationFailedException');
         $transformer->reverseTransform($input);
     }
 
@@ -181,7 +179,7 @@ class DateIntervalToArrayTransformerTest extends DateIntervalTestCase
             'minutes' => '',
             'seconds' => '6',
         );
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(TransformationFailedException::class, 'This amount of "minutes" is invalid');
+        $this->setExpectedException('Symfony\Component\Form\Exception\TransformationFailedException', 'This amount of "minutes" is invalid');
         $transformer->reverseTransform($input);
     }
 
@@ -191,7 +189,7 @@ class DateIntervalToArrayTransformerTest extends DateIntervalTestCase
         $input = array(
             'invert' => '1',
         );
-        $this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}(TransformationFailedException::class, 'The value of "invert" must be boolean');
+        $this->setExpectedException('Symfony\Component\Form\Exception\TransformationFailedException', 'The value of "invert" must be boolean');
         $transformer->reverseTransform($input);
     }
 

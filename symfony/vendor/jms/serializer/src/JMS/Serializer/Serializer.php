@@ -29,7 +29,6 @@ use JMS\Serializer\ContextFactory\DefaultSerializationContextFactory;
 use JMS\Serializer\ContextFactory\DefaultDeserializationContextFactory;
 use Metadata\MetadataFactoryInterface;
 use PhpCollection\MapInterface;
-use JMS\Serializer\Expression\ExpressionEvaluatorInterface;
 
 /**
  * Serializer Implementation.
@@ -72,18 +71,8 @@ class Serializer implements SerializerInterface, ArrayTransformerInterface
      * @param \PhpCollection\MapInterface $deserializationVisitors of VisitorInterface
      * @param EventDispatcher\EventDispatcherInterface $dispatcher
      * @param TypeParser $typeParser
-     * @param ExpressionEvaluatorInterface|null $expressionEvaluator
      */
-    public function __construct(
-        MetadataFactoryInterface $factory,
-        HandlerRegistryInterface $handlerRegistry,
-        ObjectConstructorInterface $objectConstructor,
-        MapInterface $serializationVisitors,
-        MapInterface $deserializationVisitors,
-        EventDispatcherInterface $dispatcher = null,
-        TypeParser $typeParser = null,
-        ExpressionEvaluatorInterface $expressionEvaluator = null
-    )
+    public function __construct(MetadataFactoryInterface $factory, HandlerRegistryInterface $handlerRegistry, ObjectConstructorInterface $objectConstructor, MapInterface $serializationVisitors, MapInterface $deserializationVisitors, EventDispatcherInterface $dispatcher = null, TypeParser $typeParser = null)
     {
         $this->factory = $factory;
         $this->handlerRegistry = $handlerRegistry;
@@ -93,7 +82,7 @@ class Serializer implements SerializerInterface, ArrayTransformerInterface
         $this->serializationVisitors = $serializationVisitors;
         $this->deserializationVisitors = $deserializationVisitors;
 
-        $this->navigator = new GraphNavigator($this->factory, $this->handlerRegistry, $this->objectConstructor, $this->dispatcher, $expressionEvaluator);
+        $this->navigator = new GraphNavigator($this->factory, $this->handlerRegistry, $this->objectConstructor, $this->dispatcher);
 
         $this->serializationContextFactory = new DefaultSerializationContextFactory();
         $this->deserializationContextFactory = new DefaultDeserializationContextFactory();

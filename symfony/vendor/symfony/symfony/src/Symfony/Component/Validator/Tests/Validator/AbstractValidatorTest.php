@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\Validator\Tests\Validator;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\GroupSequence;
 use Symfony\Component\Validator\Constraints\Valid;
@@ -26,7 +25,7 @@ use Symfony\Component\Validator\Tests\Fixtures\Reference;
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-abstract class AbstractValidatorTest extends TestCase
+abstract class AbstractValidatorTest extends \PHPUnit_Framework_TestCase
 {
     const ENTITY_CLASS = 'Symfony\Component\Validator\Tests\Fixtures\Entity';
 
