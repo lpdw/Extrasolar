@@ -72,5 +72,13 @@ class BodiesRepository extends EntityRepository
       }
     }
 
+    public function getValuesPlaneteByNameAndProps($id="", $props= array()) {
+      if($id != "") {
+        return $this->getEntityManager()
+                    ->createQuery('SELECT n FROM AppBundle:Body n WHERE n.id = :id')
+                    ->setParameter('id', (int)$id)
+                    ->getResult();
+      }
+    }
 
 }

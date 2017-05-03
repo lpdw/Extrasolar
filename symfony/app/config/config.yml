@@ -105,6 +105,7 @@ doctrine:
                       #the prefix
                       prefix:  AppBundle\Entity\Extrablog
 
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
