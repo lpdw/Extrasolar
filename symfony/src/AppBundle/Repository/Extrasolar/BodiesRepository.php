@@ -43,11 +43,7 @@ class BodiesRepository extends EntityRepository
               ->getResult()
               ;
     }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 8888ed9cc35382f064a03d30a3fe447937688801
     public function getHost($host_name)
     {
       return $this->getEntityManager()
