@@ -67,8 +67,8 @@ doctrine:
                 driver:   pdo_mysql
                 host:     "%database_host%"
                 port:     "%database_port%"
-                dbname:   extrablog
-                user:     "%database_user%"
+                dbname:   _Extrablog
+                user:     extrablogSite
                 password: "%database_password%"
                 charset:  UTF8
                 # if using pdo_sqlite as your database driver:

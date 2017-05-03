@@ -89,10 +89,7 @@ class FormExtensionDivLayoutTest extends AbstractDivLayoutTest
         ;
 
         $this->renderer->setTheme($view, array('page_dynamic_extends.html.twig'));
-        $this->assertMatchesXpath(
-            $this->renderer->searchAndRenderBlock($view, 'row'),
-            '/div/label[text()="child"]'
-        );
+        $this->renderer->searchAndRenderBlock($view, 'row');
     }
 
     public function isSelectedChoiceProvider()

@@ -28,9 +28,6 @@ use JMS\Serializer\EventDispatcher\EventDispatcherInterface;
 use JMS\Serializer\Metadata\ClassMetadata;
 use Metadata\MetadataFactoryInterface;
 use JMS\Serializer\Exception\InvalidArgumentException;
-use JMS\Serializer\Exception\ExpressionLanguageRequiredException;
-use JMS\Serializer\Exclusion\ExpressionLanguageExclusionStrategy;
-use JMS\Serializer\Expression\ExpressionEvaluatorInterface;
 
 /**
  * Handles traversal along the object graph.
@@ -44,11 +41,6 @@ final class GraphNavigator
 {
     const DIRECTION_SERIALIZATION = 1;
     const DIRECTION_DESERIALIZATION = 2;
-
-    /**
-     * @var ExpressionLanguageExclusionStrategy
-     */
-    private $expressionExclusionStrategy;
 
     private $dispatcher;
     private $metadataFactory;
@@ -76,21 +68,12 @@ final class GraphNavigator
         }
     }
 
-    public function __construct(
-        MetadataFactoryInterface $metadataFactory,
-        HandlerRegistryInterface $handlerRegistry,
-        ObjectConstructorInterface $objectConstructor,
-        EventDispatcherInterface $dispatcher = null,
-        ExpressionEvaluatorInterface $expressionEvaluator = null
-    )
+    public function __construct(MetadataFactoryInterface $metadataFactory, HandlerRegistryInterface $handlerRegistry, ObjectConstructorInterface $objectConstructor, EventDispatcherInterface $dispatcher = null)
     {
         $this->dispatcher = $dispatcher;
         $this->metadataFactory = $metadataFactory;
         $this->handlerRegistry = $handlerRegistry;
         $this->objectConstructor = $objectConstructor;
-        if ($expressionEvaluator) {
-            $this->expressionExclusionStrategy = new ExpressionLanguageExclusionStrategy($expressionEvaluator);
-        }
     }
 
     /**
@@ -98,7 +81,7 @@ final class GraphNavigator
      *
      * @param mixed $data the data depends on the direction, and type of visitor
      * @param null|array $type array has the format ["name" => string, "params" => array]
-     * @param Context $context
+     *
      * @return mixed the return value depends on the direction, and type of visitor
      */
     public function accept($data, array $type = null, Context $context)
@@ -205,10 +188,6 @@ final class GraphNavigator
                 /** @var $metadata ClassMetadata */
                 $metadata = $this->metadataFactory->getMetadataForClass($type['name']);
 
-                if ($metadata->usingExpression && !$this->expressionExclusionStrategy) {
-                    throw new ExpressionLanguageRequiredException("To use conditional exclude/expose in {$metadata->name} you must configure the expression language.");
-                }
-
                 if ($context instanceof DeserializationContext && ! empty($metadata->discriminatorMap) && $type['name'] === $metadata->discriminatorBaseClass) {
                     $metadata = $this->resolveMetadata($data, $metadata);
                 }
@@ -249,10 +228,6 @@ final class GraphNavigator
                         continue;
                     }
 
-                    if (null !== $this->expressionExclusionStrategy && $this->expressionExclusionStrategy->shouldSkipProperty($propertyMetadata, $context)) {
-                        continue;
-                    }
-
                     if ($context instanceof DeserializationContext && $propertyMetadata->readOnly) {
                         continue;
                     }
@@ -279,11 +254,6 @@ final class GraphNavigator
     {
         switch (true) {
             case is_array($data) && isset($data[$metadata->discriminatorFieldName]):
-                $typeValue = (string) $data[$metadata->discriminatorFieldName];
-                break;
-
-            // Check XML attribute for discriminatorFieldName
-            case is_object($data) && $metadata->xmlDiscriminatorAttribute && isset($data[$metadata->discriminatorFieldName]):
                 $typeValue = (string) $data[$metadata->discriminatorFieldName];
                 break;
 

@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\Intl\Tests\DateFormatter;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Intl\DateFormatter\IntlDateFormatter;
 use Symfony\Component\Intl\Globals\IntlGlobals;
 
@@ -20,7 +19,7 @@ use Symfony\Component\Intl\Globals\IntlGlobals;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-abstract class AbstractIntlDateFormatterTest extends TestCase
+abstract class AbstractIntlDateFormatterTest extends \PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {

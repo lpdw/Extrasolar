@@ -11,12 +11,11 @@
 
 namespace Symfony\Component\DependencyInjection\Tests\Dumper;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Dumper\YamlDumper;
 use Symfony\Component\Yaml\Yaml;
 
-class YamlDumperTest extends TestCase
+class YamlDumperTest extends \PHPUnit_Framework_TestCase
 {
     protected static $fixturesPath;
 

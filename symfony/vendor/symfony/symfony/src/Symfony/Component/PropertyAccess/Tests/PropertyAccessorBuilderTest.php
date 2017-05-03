@@ -11,12 +11,11 @@
 
 namespace Symfony\Component\PropertyAccess\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\PropertyAccess\PropertyAccessorBuilder;
 
-class PropertyAccessorBuilderTest extends TestCase
+class PropertyAccessorBuilderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var PropertyAccessorBuilder

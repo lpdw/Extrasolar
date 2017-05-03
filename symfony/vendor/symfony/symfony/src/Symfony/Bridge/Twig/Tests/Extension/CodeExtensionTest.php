@@ -11,11 +11,10 @@
 
 namespace Symfony\Bridge\Twig\Tests\Extension;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\Extension\CodeExtension;
 use Symfony\Component\HttpKernel\Debug\FileLinkFormatter;
 
-class CodeExtensionTest extends TestCase
+class CodeExtensionTest extends \PHPUnit_Framework_TestCase
 {
     protected $helper;
 

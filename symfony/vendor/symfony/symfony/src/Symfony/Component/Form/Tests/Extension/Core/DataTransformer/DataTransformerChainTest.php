@@ -11,10 +11,9 @@
 
 namespace Symfony\Component\Form\Tests\Extension\Core\DataTransformer;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\DataTransformer\DataTransformerChain;
 
-class DataTransformerChainTest extends TestCase
+class DataTransformerChainTest extends \PHPUnit_Framework_TestCase
 {
     public function testTransform()
     {

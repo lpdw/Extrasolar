@@ -9,7 +9,7 @@
 <script type="text/javascript" src="http://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-  var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:1, target: "11 Comae Berenices" });
+  var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:1, target: {{ body.name }} });
 })
 
 </script>

@@ -2,10 +2,9 @@
 
 namespace Symfony\Component\Workflow\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Workflow\Marking;
 
-class MarkingTest extends TestCase
+class MarkingTest extends \PHPUnit_Framework_TestCase
 {
     public function testMarking()
     {

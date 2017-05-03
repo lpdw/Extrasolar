@@ -122,7 +122,7 @@ class RegisterEventListenersAndSubscribersPass implements CompilerPassInterface
                     }
                     $instance['event'] = array($instance['event']);
 
-                    if ($lazy = !empty($instance['lazy'])) {
+                    if (isset($instance['lazy']) && $instance['lazy']) {
                         $this->container->getDefinition($id)->setPublic(true);
                     }
                 }

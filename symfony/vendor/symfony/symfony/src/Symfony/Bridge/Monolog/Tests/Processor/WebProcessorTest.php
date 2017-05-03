@@ -12,11 +12,10 @@
 namespace Symfony\Bridge\Monolog\Tests\Processor;
 
 use Monolog\Logger;
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Monolog\Processor\WebProcessor;
 use Symfony\Component\HttpFoundation\Request;
 
-class WebProcessorTest extends TestCase
+class WebProcessorTest extends \PHPUnit_Framework_TestCase
 {
     public function testUsesRequestServerData()
     {
@@ -36,7 +35,7 @@ class WebProcessorTest extends TestCase
 
     public function testUseRequestClientIp()
     {
-        Request::setTrustedProxies(array('192.168.0.1'), -1);
+        Request::setTrustedProxies(array('192.168.0.1'));
         list($event, $server) = $this->createRequestEvent(array('X_FORWARDED_FOR' => '192.168.0.2'));
 
         $processor = new WebProcessor();

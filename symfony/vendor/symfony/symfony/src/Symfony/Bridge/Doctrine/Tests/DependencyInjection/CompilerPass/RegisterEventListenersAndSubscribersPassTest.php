@@ -11,12 +11,11 @@
 
 namespace Symfony\Bridge\Doctrine\Tests\DependencyInjection\CompilerPass;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Doctrine\DependencyInjection\CompilerPass\RegisterEventListenersAndSubscribersPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
-class RegisterEventListenersAndSubscribersPassTest extends TestCase
+class RegisterEventListenersAndSubscribersPassTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \InvalidArgumentException

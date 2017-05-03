@@ -2,17 +2,16 @@
 
 namespace JMS\SerializerBundle\DependencyInjection\Compiler;
 
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\Reference;
 
 class DoctrinePass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        if ($container->hasParameter('jms_serializer.infer_types_from_doctrine_metadata')
-            && $container->getParameter('jms_serializer.infer_types_from_doctrine_metadata') === false
-        ) {
+        if ($container->hasParameter('jms_serializer.infer_types_from_doctrine_metadata') 
+            && $container->getParameter('jms_serializer.infer_types_from_doctrine_metadata') === false) {
             return;
         }
 
@@ -32,25 +31,25 @@ class DoctrinePass implements CompilerPassInterface
         }
 
         $serviceTemplates = array(
-            'jms_serializer.metadata_driver' => array('template' => 'jms_serializer.metadata.%s_type_driver', 'position' => 0),
-            'jms_serializer.object_constructor' => array('template' => 'jms_serializer.%s_object_constructor', 'position' => 1)
+            'jms_serializer.metadata_driver' => 'jms_serializer.metadata.%s_type_driver',
+            'jms_serializer.object_constructor' => 'jms_serializer.%s_object_constructor',
         );
 
         $registry = array_pop($registries);
         $previousId = array();
-        foreach ($serviceTemplates as $serviceName => $service) {
-            $previousId[$serviceName] = sprintf($service['template'], $registry);
-            $container->setAlias($serviceName, $previousId[$serviceName]);
+        foreach ($serviceTemplates as $service => $serviceTemplate) {
+            $previousId[$service] = sprintf($serviceTemplate, $registry);
+            $container->setAlias($service, $previousId[$service]);
         }
 
         foreach ($registries as $registry) {
-            foreach ($serviceTemplates as $serviceName => $service) {
-                $id = sprintf($service['template'], $registry);
+            foreach ($serviceTemplates as $service => $serviceTemplate) {
+                $id = sprintf($serviceTemplate, $registry);
                 $container
                     ->getDefinition($id)
-                    ->replaceArgument($service['position'], new Reference($previousId[$serviceName]));
-                $previousId[$serviceName] = $id;
-                $container->setAlias($serviceName, $previousId[$serviceName]);
+                    ->replaceArgument(0, new Reference($previousId[$service]))
+                ;
+                $previousId[$service] = $id;
             }
         }
     }

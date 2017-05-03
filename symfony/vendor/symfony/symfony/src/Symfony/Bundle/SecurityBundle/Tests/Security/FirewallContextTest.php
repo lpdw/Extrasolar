@@ -11,13 +11,12 @@
 
 namespace Symfony\Bundle\SecurityBundle\Tests\Security;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\SecurityBundle\Security\FirewallConfig;
 use Symfony\Bundle\SecurityBundle\Security\FirewallContext;
 use Symfony\Component\Security\Http\Firewall\ExceptionListener;
 use Symfony\Component\Security\Http\Firewall\ListenerInterface;
 
-class FirewallContextTest extends TestCase
+class FirewallContextTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetters()
     {

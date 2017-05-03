@@ -2,12 +2,11 @@
 
 namespace Symfony\Component\Workflow\Tests\Validator;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Workflow\Definition;
 use Symfony\Component\Workflow\Transition;
 use Symfony\Component\Workflow\Validator\StateMachineValidator;
 
-class StateMachineValidatorTest extends TestCase
+class StateMachineValidatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \Symfony\Component\Workflow\Exception\InvalidDefinitionException
@@ -93,9 +92,6 @@ class StateMachineValidatorTest extends TestCase
         $definition = new Definition($places, $transitions);
 
         (new StateMachineValidator())->validate($definition, 'foo');
-
-        // the test simply ensures that the validation does not fail (i.e. it does not throw any exceptions)
-        $this->addToAssertionCount(1);
 
         // The graph looks like:
         //

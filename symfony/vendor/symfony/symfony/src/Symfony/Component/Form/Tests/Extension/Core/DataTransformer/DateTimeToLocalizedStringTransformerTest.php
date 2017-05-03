@@ -24,7 +24,7 @@ class DateTimeToLocalizedStringTransformerTest extends DateTimeTestCase
         parent::setUp();
 
         // Since we test against "de_AT", we need the full implementation
-        IntlTestHelper::requireFullIntl($this, '57.1');
+        IntlTestHelper::requireFullIntl($this);
 
         \Locale::setDefault('de_AT');
 
@@ -187,7 +187,7 @@ class DateTimeToLocalizedStringTransformerTest extends DateTimeTestCase
 
         // HOW TO REPRODUCE?
 
-        //$this->{method_exists($this, $_ = 'expectException') ? $_ : 'setExpectedException'}('Symfony\Component\Form\Extension\Core\DataTransformer\TransformationFailedException');
+        //$this->setExpectedException('Symfony\Component\Form\Extension\Core\DataTransformer\TransformationFailedException');
 
         //$transformer->transform(1.5);
     }

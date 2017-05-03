@@ -1,5 +1,5 @@
 JMS\Serializer\Tests\Fixtures\Price:
     properties:
         price:
-            type: float
+            type: double
             xml_value: true

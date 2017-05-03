@@ -11,10 +11,9 @@
 
 namespace Symfony\Bridge\Twig\Tests\Node;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\Node\DumpNode;
 
-class DumpNodeTest extends TestCase
+class DumpNodeTest extends \PHPUnit_Framework_TestCase
 {
     public function testNoVar()
     {

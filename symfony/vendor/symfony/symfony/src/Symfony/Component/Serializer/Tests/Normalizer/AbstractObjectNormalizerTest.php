@@ -11,10 +11,9 @@
 
 namespace Symfony\Component\Serializer\Tests\Normalizer;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 
-class AbstractObjectNormalizerTest extends TestCase
+class AbstractObjectNormalizerTest extends \PHPUnit_Framework_TestCase
 {
     public function testDenormalize()
     {
@@ -36,8 +35,7 @@ class AbstractObjectNormalizerTest extends TestCase
         $context = array();
 
         $normalizer = new AbstractObjectNormalizerDummy();
-
-        $this->assertInstanceOf(__NAMESPACE__.'\Dummy', $normalizer->instantiateObject($data, $class, $context, new \ReflectionClass($class), array()));
+        $normalizer->instantiateObject($data, $class, $context, new \ReflectionClass($class), array());
     }
 }
 

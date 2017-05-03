@@ -2,10 +2,9 @@
 
 namespace Symfony\Component\Workflow\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Workflow\StateMachine;
 
-class StateMachineTest extends TestCase
+class StateMachineTest extends \PHPUnit_Framework_TestCase
 {
     use WorkflowBuilderTrait;
 

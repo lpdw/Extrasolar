@@ -11,10 +11,9 @@
 
 namespace Symfony\Bridge\Twig\Tests\Extension;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\Extension\RoutingExtension;
 
-class RoutingExtensionTest extends TestCase
+class RoutingExtensionTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider getEscapingTemplates

@@ -116,4 +116,14 @@ class SecurityRoutingIntegrationTest extends WebTestCase
     {
         return array(array('config.yml'), array('routes_as_path.yml'));
     }
+
+    public static function setUpBeforeClass()
+    {
+        parent::deleteTmpDir('StandardFormLogin');
+    }
+
+    public static function tearDownAfterClass()
+    {
+        parent::deleteTmpDir('StandardFormLogin');
+    }
 }

@@ -100,12 +100,6 @@ class DoctrineDriverTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($plainMetadata, $doctrineMetadata);
     }
 
-    public function testVirtualPropertiesAreNotModified()
-    {
-        $doctrineMetadata = $this->getMetadata();
-        $this->assertNull($doctrineMetadata->propertyMetadata['ref']->type);
-    }
-
     protected function getEntityManager()
     {
         $config = new Configuration();

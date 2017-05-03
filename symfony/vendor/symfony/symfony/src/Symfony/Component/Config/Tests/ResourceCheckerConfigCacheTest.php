@@ -11,12 +11,11 @@
 
 namespace Symfony\Component\Config\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Tests\Resource\ResourceStub;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Config\ResourceCheckerConfigCache;
 
-class ResourceCheckerConfigCacheTest extends TestCase
+class ResourceCheckerConfigCacheTest extends \PHPUnit_Framework_TestCase
 {
     private $cacheFile = null;
 

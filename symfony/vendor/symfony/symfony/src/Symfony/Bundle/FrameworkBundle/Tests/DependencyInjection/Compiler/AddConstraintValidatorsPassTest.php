@@ -9,12 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Bundle\FrameworkBundle\Tests\DependencyInjection\Compiler;
-
-use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddConstraintValidatorsPass;
 
-class AddConstraintValidatorsPassTest extends TestCase
+class AddConstraintValidatorsPassTest extends \PHPUnit_Framework_TestCase
 {
     public function testThatConstraintValidatorServicesAreProcessed()
     {
