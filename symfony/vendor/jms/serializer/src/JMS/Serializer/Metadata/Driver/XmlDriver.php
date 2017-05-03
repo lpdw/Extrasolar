@@ -22,6 +22,7 @@ use JMS\Serializer\GraphNavigator;
 use JMS\Serializer\Exception\RuntimeException;
 use JMS\Serializer\Exception\XmlErrorException;
 use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Metadata\ExpressionPropertyMetadata;
 use JMS\Serializer\Metadata\PropertyMetadata;
 use JMS\Serializer\Metadata\VirtualPropertyMetadata;
 use Metadata\MethodMetadata;
@@ -33,6 +34,8 @@ class XmlDriver extends AbstractFileDriver
     protected function loadMetadataFromFile(\ReflectionClass $class, $path)
     {
         $previous = libxml_use_internal_errors(true);
+        libxml_clear_errors();
+
         $elem = simplexml_load_file($path);
         libxml_use_internal_errors($previous);
 
@@ -82,7 +85,12 @@ class XmlDriver extends AbstractFileDriver
         if ('true' === (string) $elem->attributes()->{'discriminator-disabled'}) {
             $metadata->discriminatorDisabled = true;
         } elseif ( ! empty($discriminatorFieldName) || ! empty($discriminatorMap)) {
-            $metadata->setDiscriminator($discriminatorFieldName, $discriminatorMap);
+
+            $discriminatorGroups = array();
+            foreach ($elem->xpath('./discriminator-groups/group') as $entry) {
+                $discriminatorGroups[] = (string) $entry;
+            }
+            $metadata->setDiscriminator($discriminatorFieldName, $discriminatorMap, $discriminatorGroups);
         }
 
         foreach ($elem->xpath('./xml-namespace') as $xmlNamespace) {
@@ -99,12 +107,25 @@ class XmlDriver extends AbstractFileDriver
             $metadata->registerNamespace((string) $xmlNamespace->attributes()->uri, $prefix);
         }
 
-        foreach ($elem->xpath('./virtual-property') as $method) {
-            if ( ! isset($method->attributes()->method)) {
-                throw new RuntimeException('The method attribute must be set for all virtual-property elements.');
+        foreach ($elem->xpath('./xml-discriminator') as $xmlDiscriminator) {
+            if (isset($xmlDiscriminator->attributes()->attribute)) {
+                $metadata->xmlDiscriminatorAttribute = (string) $xmlDiscriminator->attributes()->attribute === 'true';
             }
+            if (isset($xmlDiscriminator->attributes()->cdata)) {
+                $metadata->xmlDiscriminatorCData = (string) $xmlDiscriminator->attributes()->cdata === 'true';
+            }
+        }
 
-            $virtualPropertyMetadata = new VirtualPropertyMetadata($name, (string) $method->attributes()->method);
+        foreach ($elem->xpath('./virtual-property') as $method) {
+
+            if (isset($method->attributes()->expression)) {
+                $virtualPropertyMetadata = new ExpressionPropertyMetadata($name, (string)$method->attributes()->name, (string)$method->attributes()->expression);
+            } else {
+                if ( ! isset($method->attributes()->method)) {
+                    throw new RuntimeException('The method attribute must be set for all virtual-property elements.');
+                }
+                $virtualPropertyMetadata = new VirtualPropertyMetadata($name, (string) $method->attributes()->method);
+            }
 
             $propertiesMetadata[] = $virtualPropertyMetadata;
             $propertiesNodes[] = $method;
@@ -126,7 +147,8 @@ class XmlDriver extends AbstractFileDriver
             foreach ($propertiesMetadata as $propertyKey => $pMetadata) {
 
                 $isExclude = false;
-                $isExpose = $pMetadata instanceof VirtualPropertyMetadata;
+                $isExpose = $pMetadata instanceof VirtualPropertyMetadata
+                    || $pMetadata instanceof ExpressionPropertyMetadata;
 
                 $pElem = $propertiesNodes[$propertyKey];
                 if ( ! empty($pElem)) {
@@ -137,6 +159,15 @@ class XmlDriver extends AbstractFileDriver
 
                     if (null !== $expose = $pElem->attributes()->expose) {
                         $isExpose = 'true' === strtolower($expose);
+                    }
+
+                    if (null !== $excludeIf = $pElem->attributes()->{'exclude-if'}) {
+                        $pMetadata->excludeIf =$excludeIf;
+                    }
+
+                    if (null !== $excludeIf = $pElem->attributes()->{'expose-if'}) {
+                        $pMetadata->excludeIf = "!(" . $excludeIf .")";
+                        $isExpose = true;
                     }
 
                     if (null !== $version = $pElem->attributes()->{'since-version'}) {

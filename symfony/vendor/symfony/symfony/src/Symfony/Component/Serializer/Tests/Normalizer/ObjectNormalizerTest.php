@@ -12,6 +12,7 @@
 namespace Symfony\Component\Serializer\Tests\Normalizer;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
@@ -32,7 +33,7 @@ use Symfony\Component\Serializer\Tests\Fixtures\GroupDummy;
 /**
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
-class ObjectNormalizerTest extends \PHPUnit_Framework_TestCase
+class ObjectNormalizerTest extends TestCase
 {
     /**
      * @var ObjectNormalizer
@@ -508,6 +509,11 @@ class ObjectNormalizerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array('foo' => 'K'), $this->normalizer->normalize(new ObjectWithStaticPropertiesAndMethods()));
     }
 
+    public function testNormalizeUpperCaseAttributes()
+    {
+        $this->assertEquals(array('Foo' => 'Foo', 'Bar' => 'BarBar'), $this->normalizer->normalize(new ObjectWithUpperCaseAttributeNames()));
+    }
+
     public function testNormalizeNotSerializableContext()
     {
         $objectDummy = new ObjectDummy();
@@ -909,4 +915,15 @@ class JsonNumber
      * @var float
      */
     public $number;
+}
+
+class ObjectWithUpperCaseAttributeNames
+{
+    private $Foo = 'Foo';
+    public $Bar = 'BarBar';
+
+    public function getFoo()
+    {
+        return $this->Foo;
+    }
 }

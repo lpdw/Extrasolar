@@ -11,12 +11,13 @@
 
 namespace Symfony\Bundle\WebProfilerBundle\Tests\Controller;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController;
 use Symfony\Bundle\WebProfilerBundle\Csp\ContentSecurityPolicyHandler;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use Symfony\Component\HttpFoundation\Request;
 
-class ProfilerControllerTest extends \PHPUnit_Framework_TestCase
+class ProfilerControllerTest extends TestCase
 {
     /**
      * @dataProvider getEmptyTokenCases
@@ -156,9 +157,9 @@ class ProfilerControllerTest extends \PHPUnit_Framework_TestCase
         if ($withCSP) {
             $nonceGenerator = $this->getMockBuilder('Symfony\Bundle\WebProfilerBundle\Csp\NonceGenerator')->getMock();
 
-            return new ProfilerController($urlGenerator, $profiler, $twig, array(), 'normal', new ContentSecurityPolicyHandler($nonceGenerator));
+            return new ProfilerController($urlGenerator, $profiler, $twig, array(), 'bottom', new ContentSecurityPolicyHandler($nonceGenerator));
         }
 
-        return new ProfilerController($urlGenerator, $profiler, $twig, array(), 'normal');
+        return new ProfilerController($urlGenerator, $profiler, $twig, array());
     }
 }

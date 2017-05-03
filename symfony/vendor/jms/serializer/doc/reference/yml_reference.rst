@@ -14,10 +14,19 @@ YAML Reference
         custom_accessor_order: [propertyName1, propertyName2, ..., propertyNameN]
         discriminator:
             field_name: type
+            disabled: false
             map:
                 some-value: ClassName
+            groups: [foo, bar]
+            xml_attribute: true
+            xml_element:
+                cdata: false
         virtual_properties:
             getSomeProperty:
+                serialized_name: foo
+                type: integer
+            expression_prop:
+                exp: object.getName()
                 serialized_name: foo
                 type: integer
         xml_namespaces:
@@ -27,6 +36,8 @@ YAML Reference
             some-property:
                 exclude: true
                 expose: true
+                exclude_if: expr
+                expose_if: expr
                 access_type: public_method # defaults to property
                 accessor: # access_type must be set to public_method
                     getter: getSomeOtherProperty

@@ -20,8 +20,9 @@ namespace JMS\Serializer\Annotation;
 
 /**
  * @Annotation
- * @Target("PROPERTY")
+ * @Target({"PROPERTY", "METHOD","ANNOTATION"})
  */
 final class Expose
 {
+    public $if;
 }

@@ -24,44 +24,27 @@
     {% endif %}
     <table id="table"
     data-toggle="table"
+    data-search="true"
     data-pagination="true"
     data-search="true"
     data-advanced-search="true"
     data-id-table="advancedTable"
     data-show-columns="true"
-    data-expanded="true">
+    data-expanded="true"
+    data-url="{{app.request.getBaseURL()}}/catalogue/data.json">
     <thead>
         <tr>
             <th class="text-center" data-field="name" data-sortable="true">Nom</th>
-            <th data-field="categorie" data-sortable="true">Catégorie</th>
-            <th data-field="Spectral_type" data-sortable="true">Type de spectre</th>
-            <th data-field="Masse" data-sortable="true">Masse</th>
-            <th data-field="Radius" data-sortable="true">Rayon</th>
-            <th data-field="Period" data-sortable="true">Période</th>
-            <th data-field="Axis" data-sortable="true">Axe</th>
-            <th data-field="Excentricity" data-sortable="true">Excenticité</th>
+            <th class="text-center" data-field="type_id.name" data-sortable="true">Catégorie</th>
+            <th class="text-center" data-field="spectral_type" data-sortable="true">Type de spectre</th>
+            <th class="text-center" data-field="masse" data-sortable="true">Masse</th>
+            <th class="text-center" data-field="radius" data-sortable="true">Rayon</th>
+            <th class="text-center" data-field="period" data-sortable="true">Période</th>
+            <th class="text-center" data-field="axis" data-sortable="true">Axe</th>
+            <th class="text-center" data-field="excentricity" data-sortable="true">Excenticité</th>
             {% if app.user %}<th data-sortable="false">Actions</th>{% endif %}
         </tr>
     </thead>
-    <tbody>
-      {% for body in bodies %}
-        <tr>
-            <td class="titleBootstrap"><a href="{{ path('catalogue_show', { 'id': body.id }) }}">{{ body.name }}</a></td>
-            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.TypeId.name }}</span></td>
-            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.spectraltype }}</span></td>
-            <td class="titleBootstrap"><span class="posTdBootstrap">{{ ChooseUnitMass(body.masse) }}</span></td>
-            <td class="titleBootstrap"><span class="posTdBootstrap">{{ ChooseUnitRadius(body.radius) }}</span></td>
-            <td class="titleBootstrap"><span class="posTdBootstrap">{{ ChooseUnitPeriod(body.period) }}</span></td>
-            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.axis}}</span></td>
-            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.excentricity }}</span></td>
-            {% if app.user %}
-              <td class="titleBootstrap">
-                <a class="posTdBootstrap" href="{{ path('catalogue_edit', { 'id': body.id }) }}">Modifier</a>
-              </td>
-            {% endif %}
-        </tr>
-      {% endfor %}
-    </tbody>
   </table>
   <!--- PUB -->
   {% if getPub(1) %}

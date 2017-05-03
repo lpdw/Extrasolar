@@ -15,6 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\ChoiceList\Loader\ChoiceLoaderInterface;
 use Symfony\Component\Intl\Intl;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LanguageType extends AbstractType implements ChoiceLoaderInterface
@@ -36,7 +37,9 @@ class LanguageType extends AbstractType implements ChoiceLoaderInterface
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'choice_loader' => $this,
+            'choice_loader' => function (Options $options) {
+                return $options['choices'] ? null : $this;
+            },
             'choice_translation_domain' => false,
         ));
     }
@@ -75,6 +78,7 @@ class LanguageType extends AbstractType implements ChoiceLoaderInterface
     public function loadChoicesForValues(array $values, $value = null)
     {
         // Optimize
+        $values = array_filter($values);
         if (empty($values)) {
             return array();
         }
@@ -93,6 +97,7 @@ class LanguageType extends AbstractType implements ChoiceLoaderInterface
     public function loadValuesForChoices(array $choices, $value = null)
     {
         // Optimize
+        $choices = array_filter($choices);
         if (empty($choices)) {
             return array();
         }

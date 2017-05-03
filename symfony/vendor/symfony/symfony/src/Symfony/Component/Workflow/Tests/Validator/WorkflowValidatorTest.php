@@ -2,12 +2,13 @@
 
 namespace Symfony\Component\Workflow\Tests\Validator;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Workflow\Definition;
 use Symfony\Component\Workflow\Tests\WorkflowBuilderTrait;
 use Symfony\Component\Workflow\Transition;
 use Symfony\Component\Workflow\Validator\WorkflowValidator;
 
-class WorkflowValidatorTest extends \PHPUnit_Framework_TestCase
+class WorkflowValidatorTest extends TestCase
 {
     use WorkflowBuilderTrait;
 
@@ -27,6 +28,9 @@ class WorkflowValidatorTest extends \PHPUnit_Framework_TestCase
         $definition = $this->createSimpleWorkflowDefinition();
 
         (new WorkflowValidator(true))->validate($definition, 'foo');
+
+        // the test simply ensures that the validation does not fail (i.e. it does not throw any exceptions)
+        $this->addToAssertionCount(1);
     }
 
     /**
@@ -59,5 +63,8 @@ class WorkflowValidatorTest extends \PHPUnit_Framework_TestCase
         $definition = new Definition($places, $transitions);
 
         (new WorkflowValidator())->validate($definition, 'foo');
+
+        // the test simply ensures that the validation does not fail (i.e. it does not throw any exceptions)
+        $this->addToAssertionCount(1);
     }
 }

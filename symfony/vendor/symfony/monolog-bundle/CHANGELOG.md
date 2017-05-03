@@ -1,3 +1,11 @@
+## 3.1.0 (2017-03-26)
+
+* Added support for server_log handler
+* Allow configuring VERBOSITY_QUIET in console handlers
+* Fixed autowiring
+* Fixed slackbot handler not escaping channel names properly
+* Fixed slackbot handler requiring `slack_team` instead of `team` to be configured
+
 ## 3.0.3 (2017-01-10)
 
 * Fixed deprecation notices when using Symfony 3.3+ and PHP7+
