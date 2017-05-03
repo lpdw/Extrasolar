@@ -74,6 +74,7 @@
             </div><!--/.bottom-header.blog-->
         </header><!--/#header-->
 
+        <div id="spinner"></div>
 
         <div class="container-fluid">
           <div class="row">
@@ -99,7 +100,15 @@
           </div>
 
           <div class="row">
-            <ul id="list_planete"></ul>
+            <ul id="list_planete" class="col-lg-7 col-lg-offset-2"></ul>
+          </div>
+
+          <div class="row" id="generate-infos" class="col-lg-7 col-lg-offset-2">
+              <h2 class="planete-name col-lg-8 col-md-10 col-lg-offset-1"></h2>
+
+              <form class="col-lg-5 col-lg-offset-2">
+              </form>
+
           </div>
         </div>
         </body>
@@ -107,71 +116,9 @@
       {% endblock %}
         {% block javascripts %}
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="http://spin.js.org/spin.min.js"></script>
+        <script src="js/api.js"></script>
 
-        <script>
-          $(document).ready(function() {
-
-            /**
-             * SELECTORS
-             */
-            $("#custom-search-input button").click(function() {
-              console.log($("#custom-search-input input").val());
-
-
-              //get all results from input search
-              var planete_name = $("#custom-search-input input").val();
-
-              if(planete_name != '') {
-                ajaxGetListPlanete(planete_name, null).then(resp => {
-                  var data = JSON.parse(resp);
-                  console.log(data);
-
-                  for (var i = 0; i < data.length; i++) {
-                    console.log(data[i].name);
-                    $("#list_planete").append("<li value="+data[i].id+" style='cursor:pointer'>"+data[i].name+"</li>");
-                  }
-
-
-                  //settings on click each planete
-                  $("#list_planete li").each(function() {
-                    $(this).on('click', function() {
-                      console.log($(this).val());
-
-                      if($(this).val() != '') {
-                        var planete_id = $(this).val();
-                        ajaxGetListPlanete(null, planete_id).then(resp => {
-                            console.log(resp);
-                        }, function(err) {
-                          console.log(err)
-                        });
-                      }
-
-                    });
-                  });
-
-                }, function(err) {
-                  console.log(err);
-                });
-              }
-
-            });
-
-
-
-
-            /**
-             * FUNCTIONS
-             */
-
-            function ajaxGetListPlanete(planete_name, planete_id) {
-              return $.ajax({
-                method: "GET",
-                url: "/api/api_get_list_planete",
-                data: {name: planete_name, id: planete_id}
-              });
-            }
-          });
-        </script>
       {% endblock %}
     </body>
 </html>
