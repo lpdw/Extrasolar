@@ -3,7 +3,6 @@
 namespace AppBundle\Repository\Extrasolar;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query;
 
 class BodiesRepository extends EntityRepository
 {
@@ -26,14 +25,6 @@ class BodiesRepository extends EntityRepository
               ->Where('t.categorie != \'point\'')
               ->getQuery()
               ->getResult()
-              ;
-    }
-
-    public function findAllBodiesForAPI()
-    {
-      return $this->getEntityManager('b')
-              ->createQuery("SELECT b, t FROM AppBundle:Body b JOIN b.type_id t WHERE t.categorie != 'point'")
-              ->getResult(Query::HYDRATE_ARRAY)
               ;
     }
 
@@ -93,4 +84,6 @@ class BodiesRepository extends EntityRepository
       }
     }
 
+=======
+>>>>>>> 174c7a5aeca09b9113b2de22055a09994fa04b5c
 }

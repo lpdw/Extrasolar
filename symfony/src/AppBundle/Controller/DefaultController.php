@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Extrasolar\Body;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +41,7 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
-
+    
     /**
      * @Route("/api", name="api")
      */
@@ -103,4 +102,6 @@ class DefaultController extends Controller
        }
        return new Response("Erreur : ce n'est pas une requete ajax");
      }
+=======
+>>>>>>> 6acb5a91fdb125eb10fdb9d0be38abb82bb35913
 }

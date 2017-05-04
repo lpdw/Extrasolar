@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Type controller.
@@ -88,7 +89,7 @@ class TypeController extends Controller
         $deleteForm = $this->createDeleteForm($type);
         if ($type->getPicture()){
           $type->setPicture(
-            new File($this->getParameter('pictures_directory').'/'.$type->getPicture())
+            new File($this->getParameter('pictures_directory').'/Type/'.$type->getPicture())
           );
         }
         $editForm = $this->createForm('AppBundle\Form\TypeType', $type, ['types' => $this->getParameter('types')]);

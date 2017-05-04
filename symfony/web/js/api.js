@@ -106,6 +106,7 @@ $(document).ready(function() {
    }
 
    function showGeneratePlanete(planete) {
+     
      var planete_name = JSON.parse(planete.name)[0].name;
      var props = JSON.parse(planete.props);
 
@@ -118,6 +119,17 @@ $(document).ready(function() {
       //  if(props[i] == "satellites") console.log(props[i].satellites);
        $("#generate-infos form").append("<div class='input-group'><label><input type='checkbox' value='"+props[i]+"'>&nbsp;"+props[i]+"</label></div>");
 
+
+     // for each categories generate input type checkbox
+     for (var properties in planete[0]) {
+
+       if (planete[0].hasOwnProperty(properties)) {
+         console.log(properties);
+         if(properties == "id" || properties == "type_id" || properties == "update_at") continue;
+         if(properties == "satellites") console.log(planete[0].satellites);
+
+        $("#generate-infos form").append("<div class='input-group'><label><input type='checkbox' value='"+properties+"'>&nbsp;"+properties+"</label></div>");
+       }
      }
 
      $("#generate-infos form").append("<div class='col-lg-8'><button type='button' class='btn btn-primary' id='btn-generate'>GENERER</button></div>");
@@ -139,7 +151,6 @@ $(document).ready(function() {
 
      });
    }
-
 
    function constructApiHtml(resp) {
      $("#html-generated").show();
