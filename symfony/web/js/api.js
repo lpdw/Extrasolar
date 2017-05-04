@@ -145,7 +145,7 @@ $(document).ready(function() {
      $("#html-generated").show();
      $("#html-generated").find("code").remove();
 
-     var html = "<code> &lt;table class='table'&gt; &lt;tbody&gt;";
+     var html = "&lt;table class='table'&gt; &lt;tbody&gt;";
 
      for (var prop in resp[0]) {
        if (resp[0].hasOwnProperty(prop)) {
@@ -153,9 +153,10 @@ $(document).ready(function() {
        }
      }
 
-     html += " &lt;/tbody&gt; &lt;/table&gt; </code>";
+     html += " &lt;/tbody&gt; &lt;/table&gt;";
 
      console.log("html to add => ", html);
+     $("#html-generated").append("<code>"+html+"</code>");
      $("#html-generated").append(html);
    }
 
