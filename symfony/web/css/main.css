@@ -331,3 +331,15 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
 .dropdown-menu input[type="checkbox"]:checked > label {
     color: #000 !important;
 }
+
+#html-generated code {
+    display: block;
+    background-color: #f5f5ff;
+    border-color : #7f7fbf;
+    border-style : dashed;
+    border-width : 1px;
+    font-family  : courier new;
+    padding      : 14px;
+    color: grey;
+    white-space  : pre;
+}

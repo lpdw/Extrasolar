@@ -77,7 +77,7 @@ class BodiesRepository extends EntityRepository
       // echo count($props);die();
 
       if($name != "" && count($props) > 0) {
-        $queries = "SELECT ";
+        $queries = "SELECT n.name , ";
 
         for ($i=0; $i < count($props); $i++) {
           $queries .= "n." . $props[$i] .",";

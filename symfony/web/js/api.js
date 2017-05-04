@@ -3,7 +3,7 @@ $(document).ready(function() {
 
   // hide defaults items
   $("#generate-infos").hide();
-  $("#generated-html").hide();
+  $("#html-generated").hide();
 
   /**
    * OPTIONS
@@ -130,6 +130,9 @@ $(document).ready(function() {
        // for each properties get values => send request to get information
        ajaxGetDataByProps(planete_name, props_checked).then(resp => {
          console.log(resp);
+
+         constructApiHtml(resp);
+
        }, function(err) {
          console.log(err);
        });
@@ -137,6 +140,24 @@ $(document).ready(function() {
      });
    }
 
+
+   function constructApiHtml(resp) {
+     $("#html-generated").show();
+     $("#html-generated").find("code").remove();
+
+     var html = "<code> &lt;table class='table'&gt; &lt;tbody&gt;";
+
+     for (var prop in resp[0]) {
+       if (resp[0].hasOwnProperty(prop)) {
+         html += "&lt;tr&gt; &lt;td&gt; &lt;b&gt;"+prop+"&lt;/b&gt; &lt;/td&gt; &lt;td&gt;"+resp[0][prop]+"&lt;/td&gt; &lt;/tr&gt;";
+       }
+     }
+
+     html += " &lt;/tbody&gt; &lt;/table&gt; </code>";
+
+     console.log("html to add => ", html);
+     $("#html-generated").append(html);
+   }
 
    function getAllPropertiesChecked() {
      var props = new Array();
