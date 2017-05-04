@@ -18,6 +18,7 @@
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
       <parameter key="JMSSerializerBundle">JMS\SerializerBundle\JMSSerializerBundle</parameter>
       <parameter key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</parameter>
+      <parameter key="NelmioCorsBundle">Nelmio\CorsBundle\NelmioCorsBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -73,6 +74,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/symfony/assetic-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\AsseticBundle</parameter>
+      </parameter>
+      <parameter key="NelmioCorsBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/nelmio/cors-bundle</parameter>
+        <parameter key="namespace">Nelmio\CorsBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -419,6 +425,7 @@
       <parameter>AppBundle</parameter>
       <parameter>JMSSerializerBundle</parameter>
       <parameter>AsseticBundle</parameter>
+      <parameter>NelmioCorsBundle</parameter>
       <parameter>DebugBundle</parameter>
       <parameter>WebProfilerBundle</parameter>
       <parameter>SensioDistributionBundle</parameter>
@@ -446,6 +453,33 @@
     <parameter key="assetic.cache.class">Assetic\Cache\FilesystemCache</parameter>
     <parameter key="assetic.use_controller_worker.class">Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker</parameter>
     <parameter key="assetic.request_listener.class">Symfony\Bundle\AsseticBundle\EventListener\RequestListener</parameter>
+    <parameter key="nelmio_cors.map" type="collection">
+      <parameter key="^/api/*" type="collection">
+        <parameter key="allow_origin">true</parameter>
+        <parameter key="allow_headers">true</parameter>
+        <parameter key="allow_methods" type="collection">
+          <parameter>POST</parameter>
+          <parameter>PUT</parameter>
+          <parameter>GET</parameter>
+          <parameter>DELETE</parameter>
+        </parameter>
+        <parameter key="max_age">3600</parameter>
+      </parameter>
+    </parameter>
+    <parameter key="nelmio_cors.defaults" type="collection">
+      <parameter key="allow_origin" type="collection"/>
+      <parameter key="allow_credentials">false</parameter>
+      <parameter key="allow_headers" type="collection"/>
+      <parameter key="expose_headers" type="collection"/>
+      <parameter key="allow_methods" type="collection"/>
+      <parameter key="max_age">0</parameter>
+      <parameter key="hosts" type="collection"/>
+      <parameter key="origin_regex">false</parameter>
+      <parameter key="forced_allow_origin_value">null</parameter>
+    </parameter>
+    <parameter key="nelmio_cors.cors_listener.class">Nelmio\CorsBundle\EventListener\CorsListener</parameter>
+    <parameter key="nelmio_cors.options_resolver.class">Nelmio\CorsBundle\Options\Resolver</parameter>
+    <parameter key="nelmio_cors.options_provider.config.class">Nelmio\CorsBundle\Options\ConfigProvider</parameter>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
@@ -606,7 +640,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>keVUakPh+l</argument>
                 <argument>0</argument>
-                <argument>sA8FFJgf8nAo3eEmhB2lou</argument>
+                <argument>yF2ZvT3OVpizJNPsL+4mD3</argument>
                 <argument>/Users/lpdw/Desktop/Extrasolar/symfony/var/cache/dev/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -789,7 +823,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>6UG+Z2VnUG</argument>
       <argument>0</argument>
-      <argument>sA8FFJgf8nAo3eEmhB2lou</argument>
+      <argument>yF2ZvT3OVpizJNPsL+4mD3</argument>
       <argument>/Users/lpdw/Desktop/Extrasolar/symfony/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -799,7 +833,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>XKd2+K3t93</argument>
       <argument>0</argument>
-      <argument>sA8FFJgf8nAo3eEmhB2lou</argument>
+      <argument>yF2ZvT3OVpizJNPsL+4mD3</argument>
       <argument>/Users/lpdw/Desktop/Extrasolar/symfony/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1544,6 +1578,14 @@
         </argument>
         <argument>0</argument>
       </call>
+      <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>nelmio_cors.cors_listener</argument>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>250</argument>
+      </call>
       <call method="addSubscriberService">
         <argument>response_listener</argument>
         <argument>Symfony\Component\HttpKernel\EventListener\ResponseListener</argument>
@@ -1825,7 +1867,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>590b23ac038354.43289961</argument>
+            <argument>590b331f5d62f2.82866601</argument>
           </service>
         </argument>
       </argument>
@@ -2119,7 +2161,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>590b23ac038354.43289961</argument>
+            <argument>590b331f5d62f2.82866601</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2377,6 +2419,7 @@
               <argument>AppBundle</argument>
               <argument>JMSSerializerBundle</argument>
               <argument>AsseticBundle</argument>
+              <argument>NelmioCorsBundle</argument>
               <argument>DebugBundle</argument>
               <argument>WebProfilerBundle</argument>
               <argument>SensioDistributionBundle</argument>
@@ -3667,6 +3710,33 @@
               <argument type="service">
                 <service class="%assetic.directory_resource.class%" public="false">
                   <argument type="service" id="templating.loader"/>
+                  <argument>NelmioCorsBundle</argument>
+                  <argument>/Users/lpdw/Desktop/Extrasolar/symfony/app/Resources/NelmioCorsBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>NelmioCorsBundle</argument>
+                  <argument>/Users/lpdw/Desktop/Extrasolar/symfony/vendor/nelmio/cors-bundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
                   <argument>DebugBundle</argument>
                   <argument>/Users/lpdw/Desktop/Extrasolar/symfony/app/Resources/DebugBundle/views</argument>
                   <argument>/\.[^.]+\.twig$/</argument>
@@ -3810,6 +3880,44 @@
     </service>
     <service id="assetic.request_listener" class="Symfony\Bundle\AsseticBundle\EventListener\RequestListener">
       <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+    </service>
+    <service id="nelmio_cors.cors_listener" class="Nelmio\CorsBundle\EventListener\CorsListener">
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="250"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service">
+        <service class="Nelmio\CorsBundle\Options\Resolver" public="false">
+          <argument type="collection">
+            <argument type="service" id="nelmio_cors.options_provider.config"/>
+          </argument>
+        </service>
+      </argument>
+    </service>
+    <service id="nelmio_cors.options_provider.config" class="Nelmio\CorsBundle\Options\ConfigProvider">
+      <tag name="nelmio_cors.options_provider" priority="-1"/>
+      <argument type="collection">
+        <argument key="^/api/*" type="collection">
+          <argument key="allow_origin">true</argument>
+          <argument key="allow_headers">true</argument>
+          <argument key="allow_methods" type="collection">
+            <argument>POST</argument>
+            <argument>PUT</argument>
+            <argument>GET</argument>
+            <argument>DELETE</argument>
+          </argument>
+          <argument key="max_age">3600</argument>
+        </argument>
+      </argument>
+      <argument type="collection">
+        <argument key="allow_origin" type="collection"/>
+        <argument key="allow_credentials">false</argument>
+        <argument key="allow_headers" type="collection"/>
+        <argument key="expose_headers" type="collection"/>
+        <argument key="allow_methods" type="collection"/>
+        <argument key="max_age">0</argument>
+        <argument key="hosts" type="collection"/>
+        <argument key="origin_regex">false</argument>
+        <argument key="forced_allow_origin_value">null</argument>
+      </argument>
     </service>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig" priority="240"/>
@@ -4231,6 +4339,7 @@
                       <argument key="AppBundle">/Users/lpdw/Desktop/Extrasolar/symfony/src/AppBundle/Resources/config/serializer</argument>
                       <argument key="JMS\SerializerBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\AsseticBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/symfony/assetic-bundle/Resources/config/serializer</argument>
+                      <argument key="Nelmio\CorsBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/nelmio/cors-bundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\WebProfilerBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
                       <argument key="Sensio\Bundle\DistributionBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/sensio/distribution-bundle/Resources/config/serializer</argument>
@@ -4255,6 +4364,7 @@
                       <argument key="AppBundle">/Users/lpdw/Desktop/Extrasolar/symfony/src/AppBundle/Resources/config/serializer</argument>
                       <argument key="JMS\SerializerBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\AsseticBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/symfony/assetic-bundle/Resources/config/serializer</argument>
+                      <argument key="Nelmio\CorsBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/nelmio/cors-bundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\WebProfilerBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
                       <argument key="Sensio\Bundle\DistributionBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/sensio/distribution-bundle/Resources/config/serializer</argument>
@@ -4279,6 +4389,7 @@
                       <argument key="AppBundle">/Users/lpdw/Desktop/Extrasolar/symfony/src/AppBundle/Resources/config/serializer</argument>
                       <argument key="JMS\SerializerBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\AsseticBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/symfony/assetic-bundle/Resources/config/serializer</argument>
+                      <argument key="Nelmio\CorsBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/nelmio/cors-bundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\WebProfilerBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
                       <argument key="Sensio\Bundle\DistributionBundle">/Users/lpdw/Desktop/Extrasolar/symfony/vendor/sensio/distribution-bundle/Resources/config/serializer</argument>

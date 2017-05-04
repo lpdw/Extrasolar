@@ -64,11 +64,15 @@ class DefaultController extends Controller
 
        $em = $this->getDoctrine()->getManager();
 
+      //  var_dump($request->server);
+
        //accept text/html and if is xhr request
        if ($request->isXmlHttpRequest()) {
+
           $planete_name = trim(strip_tags($request->query->get('name')));
           $get_planete_list = trim(strip_tags($request->query->get('get_planete_list')));
           $planete_id = trim(strip_tags($request->query->get('id')));
+          $type_generated = trim(strip_tags($request->query->get('type')));
           $get_props = trim(strip_tags($request->query->get('get_props')));
           $props = $request->query->get('props');
 
@@ -84,6 +88,22 @@ class DefaultController extends Controller
           else if( isset($planete_name) && !empty($planete_name) && isset($props) && !empty($props) ) { // try to get data by name and props => return props values
 
             $planete = $em->getRepository('AppBundle:Body')->getValuesPlaneteByNameAndProps($planete_name, $props);
+
+            if(isset($type_generated) && !empty($type_generated)) {
+              if(strtolower($type_generated) == "html") {
+
+                $number = mt_rand(0, 100);
+                $html = $this->generateHtml($planete);
+                return new Response($html);
+
+              }
+              else {
+                // defaut generate JSON
+                return new JsonResponse($planete);
+              }
+            }
+
+            // defaut generate JSON
             return new JsonResponse($planete);
 
           }
@@ -100,6 +120,17 @@ class DefaultController extends Controller
             // return new \Symfony\Component\HttpFoundation\Response(json_encode());
           }
        }
-       return new Response("Erreur : ce n'est pas une requete ajax");
+       return new Response("Erreur : ce n'est pas une requete xhr");
+     }
+
+     private function generateHtml($planete) {
+       $html = "<table><tbody>";
+
+       foreach ($planete[0] as $key => $value) {
+        $html .= "<tr><td>".$key."</td><td>".$value."</td></tr>";
+       }
+
+       $html .= "</tbody></table>";
+       return $html;
      }
 }
