@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\AcceptHeader;
+use Symfony\Component\HttpFoundation\Accept;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Extrablog\WpPosts;
 
@@ -41,7 +41,7 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
-    
+
     /**
      * @Route("/api", name="api")
      */
@@ -87,7 +87,7 @@ class DefaultController extends Controller
             return new JsonResponse($planete);
 
           }
-          else if(isset($get_props) && !empty($get_props) && $get_props == 'true' && isset($planete_id) && !empty($planete_id)) { // try to get
+          else if(isset($get_props) && !empty($get_props) && $get_props == "true" && isset($planete_id) && !empty($planete_id)) { // try to get
 
             $planete_props = $em->getClassMetadata('AppBundle:Body')->getFieldNames();
             $planete_name = $em->getRepository('AppBundle:Body')->getPlaneteById($planete_id);
@@ -102,6 +102,4 @@ class DefaultController extends Controller
        }
        return new Response("Erreur : ce n'est pas une requete ajax");
      }
-=======
->>>>>>> 6acb5a91fdb125eb10fdb9d0be38abb82bb35913
 }

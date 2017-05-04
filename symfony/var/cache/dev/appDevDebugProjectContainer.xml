@@ -101,7 +101,7 @@
     <parameter key="database_port">3306</parameter>
     <parameter key="database_name">extrasolar</parameter>
     <parameter key="database_user">root</parameter>
-    <parameter key="database_password">root</parameter>
+    <parameter key="database_password">null</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">null</parameter>
@@ -606,7 +606,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>keVUakPh+l</argument>
                 <argument>0</argument>
-                <argument>3Qc-ivtcfLen-ARkqr0rXB</argument>
+                <argument>sA8FFJgf8nAo3eEmhB2lou</argument>
                 <argument>/Users/lpdw/Desktop/Extrasolar/symfony/var/cache/dev/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -789,7 +789,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>6UG+Z2VnUG</argument>
       <argument>0</argument>
-      <argument>3Qc-ivtcfLen-ARkqr0rXB</argument>
+      <argument>sA8FFJgf8nAo3eEmhB2lou</argument>
       <argument>/Users/lpdw/Desktop/Extrasolar/symfony/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -799,7 +799,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>XKd2+K3t93</argument>
       <argument>0</argument>
-      <argument>3Qc-ivtcfLen-ARkqr0rXB</argument>
+      <argument>sA8FFJgf8nAo3eEmhB2lou</argument>
       <argument>/Users/lpdw/Desktop/Extrasolar/symfony/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1825,7 +1825,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>590ae26c87f012.72502890</argument>
+            <argument>590b23ac038354.43289961</argument>
           </service>
         </argument>
       </argument>
@@ -2119,7 +2119,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>590ae26c87f012.72502890</argument>
+            <argument>590b23ac038354.43289961</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2581,7 +2581,7 @@
         <argument key="port">3306</argument>
         <argument key="dbname">extrasolar</argument>
         <argument key="user">root</argument>
-        <argument key="password">root</argument>
+        <argument key="password">null</argument>
         <argument key="charset">UTF8</argument>
         <argument key="driverOptions" type="collection"/>
         <argument key="defaultTableOptions" type="collection"/>
@@ -2632,7 +2632,7 @@
         <argument key="port">3306</argument>
         <argument key="dbname">extrablog</argument>
         <argument key="user">root</argument>
-        <argument key="password">root</argument>
+        <argument key="password">null</argument>
         <argument key="charset">UTF8</argument>
         <argument key="driverOptions" type="collection"/>
         <argument key="defaultTableOptions" type="collection"/>
@@ -3293,7 +3293,7 @@
     <service id="jms_serializer.datetime_handler" class="JMS\Serializer\Handler\DateHandler">
       <tag name="jms_serializer.subscribing_handler"/>
       <argument>Y-m-d\TH:i:sO</argument>
-      <argument>Europe/Zurich</argument>
+      <argument>Europe/Paris</argument>
       <argument>true</argument>
     </service>
     <service id="jms_serializer.array_collection_handler" class="JMS\Serializer\Handler\ArrayCollectionHandler">

@@ -106,7 +106,7 @@ $(document).ready(function() {
    }
 
    function showGeneratePlanete(planete) {
-     
+
      var planete_name = JSON.parse(planete.name)[0].name;
      var props = JSON.parse(planete.props);
 
@@ -118,7 +118,7 @@ $(document).ready(function() {
        if(props[i] == "id" || props[i] == "type_id" || props[i] == "update_at") continue;
       //  if(props[i] == "satellites") console.log(props[i].satellites);
        $("#generate-infos form").append("<div class='input-group'><label><input type='checkbox' value='"+props[i]+"'>&nbsp;"+props[i]+"</label></div>");
-
+     }
 
      // for each categories generate input type checkbox
      for (var properties in planete[0]) {
@@ -150,6 +150,7 @@ $(document).ready(function() {
        });
 
      });
+
    }
 
    function constructApiHtml(resp) {

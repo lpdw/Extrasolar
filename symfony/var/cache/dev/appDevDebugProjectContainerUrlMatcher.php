@@ -120,27 +120,25 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_catalogue_index:
 
-        // bodyjson
-        if (0 === strpos($pathinfo, '/admin/catalogue/body.json') && preg_match('#^/admin/catalogue/body\\.json/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'bodyjson')), array (  '_controller' => 'AppBundle\\Controller\\BodyController::listejson',));
-        }
-
-        // app_body_datajsonapi
-        if ($pathinfo === '/catalogue/data.json') {
-            return array (  '_controller' => 'AppBundle\\Controller\\BodyController::dataJsonAPI',  '_route' => 'app_body_datajsonapi',);
-        }
-
         if (0 === strpos($pathinfo, '/admin/catalogue')) {
-            // calculSeff
-            if (0 === strpos($pathinfo, '/admin/catalogue/body.json/seff') && preg_match('#^/admin/catalogue/body\\.json/seff/(?P<host>[^/]++)/(?P<typeID>[^/]++)/(?P<axis>[^/]++)$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_calculSeff;
+            if (0 === strpos($pathinfo, '/admin/catalogue/body.json')) {
+                // bodyjson
+                if (preg_match('#^/admin/catalogue/body\\.json/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'bodyjson')), array (  '_controller' => 'AppBundle\\Controller\\BodyController::listejson',));
                 }
 
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'calculSeff')), array (  '_controller' => 'AppBundle\\Controller\\BodyController::calculSeff',));
+                // calculSeff
+                if (0 === strpos($pathinfo, '/admin/catalogue/body.json/seff') && preg_match('#^/admin/catalogue/body\\.json/seff/(?P<host>[^/]++)/(?P<typeID>[^/]++)/(?P<axis>[^/]++)$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_calculSeff;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'calculSeff')), array (  '_controller' => 'AppBundle\\Controller\\BodyController::calculSeff',));
+                }
+                not_calculSeff:
+
             }
-            not_calculSeff:
 
             // catalogue_new
             if ($pathinfo === '/admin/catalogue/new') {

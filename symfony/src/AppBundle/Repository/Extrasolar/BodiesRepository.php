@@ -83,7 +83,4 @@ class BodiesRepository extends EntityRepository
                     ->getResult();
       }
     }
-
-=======
->>>>>>> 174c7a5aeca09b9113b2de22055a09994fa04b5c
 }

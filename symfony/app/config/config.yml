@@ -11,24 +11,24 @@ parameters:
 framework:
     #esi:             ~
     #translator:      { fallbacks: ["%locale%"] }
-    secret:          "%secret%"
+    secret: "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
-    form:            ~
+    form: ~
     csrf_protection: ~
-    validation:      { enable_annotations: true }
+    validation: { enable_annotations: true }
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale:  "%locale%"
-    trusted_hosts:   ~
+    default_locale: "%locale%"
+    trusted_hosts: ~
     trusted_proxies: ~
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
-        handler_id:  session.handler.native_file
-        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
-    fragments:       ~
+        handler_id: session.handler.native_file
+        save_path: "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments: ~
     http_method_override: true
     assets: ~
     php_errors:
@@ -36,7 +36,7 @@ framework:
 
 # Twig Configuration
 twig:
-    debug:            "%kernel.debug%"
+    debug: "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
         #- 'form/fields.html.twig'
@@ -47,16 +47,16 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        default_connection:   extrasolar
+        default_connection: extrasolar
         connections:
             extrasolar:
-                driver:   pdo_mysql
-                host:     "%database_host%"
-                port:     "%database_port%"
-                dbname:   "%database_name%"
-                user:     "%database_user%"
+                driver: pdo_mysql
+                host: "%database_host%"
+                port: "%database_port%"
+                dbname: "%database_name%"
+                user: "%database_user%"
                 password: "%database_password%"
-                charset:  UTF8
+                charset: UTF8
                 # if using pdo_sqlite as your database driver:
                 #   1. add the path in parameters.yml
                 #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -64,13 +64,13 @@ doctrine:
                 #   3. Uncomment next line:
                 #     path:     "%database_path%"
             extrablog:
-                driver:   pdo_mysql
-                host:     "%database_host%"
-                port:     "%database_port%"
-                dbname:   extrablog
-                user:     "%database_user%"
+                driver: pdo_mysql
+                host: "%database_host%"
+                port: "%database_port%"
+                dbname: extrablog
+                user: "%database_user%"
                 password: "%database_password%"
-                charset:  UTF8
+                charset: UTF8
                 # if using pdo_sqlite as your database driver:
                 #   1. add the path in parameters.yml
                 #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -89,31 +89,31 @@ doctrine:
                 mappings:
                     AppBundle:
                       # you must specify the type
-                      type:     "annotation"
+                      type: "annotation"
                       # The directory for entity (relative to bundle path)
-                      dir:      "Entity/Extrasolar"
+                      dir: "Entity/Extrasolar"
                       #the prefix
-                      prefix:   AppBundle\Entity\Extrasolar
+                      prefix: AppBundle\Entity\Extrasolar
             extrablog:
                 connection: extrablog
                 mappings:
                     AppBundle:
                       # you must specify the type
-                      type:     "annotation"
+                      type: "annotation"
                       # The directory for entity (relative to bundle path)
-                      dir:      "Entity/Extrablog"
+                      dir: "Entity/Extrablog"
                       #the prefix
-                      prefix:  AppBundle\Entity\Extrablog
+                      prefix: AppBundle\Entity\Extrablog
 
 
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
-=======
+    host: "%mailer_host%"
+    username: "%mailer_user%"
+    password: "%mailer_password%"
+    spool: { type: memory }
+
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
@@ -127,24 +127,24 @@ parameters:
 framework:
     #esi:             ~
     #translator:      { fallbacks: ["%locale%"] }
-    secret:          "%secret%"
+    secret: "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
-    form:            ~
+    form: ~
     csrf_protection: ~
-    validation:      { enable_annotations: true }
+    validation: { enable_annotations: true }
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale:  "%locale%"
-    trusted_hosts:   ~
+    default_locale: "%locale%"
+    trusted_hosts: ~
     trusted_proxies: ~
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
-        handler_id:  session.handler.native_file
-        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
-    fragments:       ~
+        handler_id: session.handler.native_file
+        save_path: "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments: ~
     http_method_override: true
     assets: ~
     php_errors:
@@ -152,7 +152,7 @@ framework:
 
 # Twig Configuration
 twig:
-    debug:            "%kernel.debug%"
+    debug: "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
         #- 'form/fields.html.twig'
@@ -163,16 +163,16 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        default_connection:   extrasolar
+        default_connection: extrasolar
         connections:
             extrasolar:
-                driver:   pdo_mysql
-                host:     "%database_host%"
-                port:     "%database_port%"
-                dbname:   "%database_name%"
-                user:     "%database_user%"
+                driver: pdo_mysql
+                host: "%database_host%"
+                port: "%database_port%"
+                dbname: "%database_name%"
+                user: "%database_user%"
                 password: "%database_password%"
-                charset:  UTF8
+                charset: UTF8
                 # if using pdo_sqlite as your database driver:
                 #   1. add the path in parameters.yml
                 #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -180,13 +180,13 @@ doctrine:
                 #   3. Uncomment next line:
                 #     path:     "%database_path%"
             extrablog:
-                driver:   pdo_mysql
-                host:     "%database_host%"
-                port:     "%database_port%"
-                dbname:   _Extrablog
-                user:     extrablogSite
+                driver: pdo_mysql
+                host: "%database_host%"
+                port: "%database_port%"
+                dbname: _Extrablog
+                user: extrablogSite
                 password: "%database_password%"
-                charset:  UTF8
+                charset: UTF8
                 # if using pdo_sqlite as your database driver:
                 #   1. add the path in parameters.yml
                 #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -205,27 +205,26 @@ doctrine:
                 mappings:
                     AppBundle:
                       # you must specify the type
-                      type:     "annotation"
+                      type: "annotation"
                       # The directory for entity (relative to bundle path)
-                      dir:      "Entity/Extrasolar"
+                      dir: "Entity/Extrasolar"
                       #the prefix
-                      prefix:   AppBundle\Entity\Extrasolar
+                      prefix: AppBundle\Entity\Extrasolar
             extrablog:
                 connection: extrablog
                 mappings:
                     AppBundle:
                       # you must specify the type
-                      type:     "annotation"
+                      type: "annotation"
                       # The directory for entity (relative to bundle path)
-                      dir:      "Entity/Extrablog"
+                      dir: "Entity/Extrablog"
                       #the prefix
-                      prefix:  AppBundle\Entity\Extrablog
+                      prefix: AppBundle\Entity\Extrablog
 
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
->>>>>>> 6acb5a91fdb125eb10fdb9d0be38abb82bb35913
+    host: "%mailer_host%"
+    username: "%mailer_user%"
+    password: "%mailer_password%"
+    spool: { type: memory }
