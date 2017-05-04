@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\AcceptHeader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Extrablog\WpPosts;
@@ -53,7 +54,7 @@ class DefaultController extends Controller
      }
 
     /**
-     * @Route("/api", name="api_get_list_planete")
+     * @Route("/api", name="api_planete")
      * @Route("/api/{name}")
      * @Route("/api/{id}")
      * @Route("/api/{id}/{props}")
@@ -67,32 +68,37 @@ class DefaultController extends Controller
        //accept text/html and if is xhr request
        if ($request->isXmlHttpRequest()) {
           $planete_name = trim(strip_tags($request->query->get('name')));
+          $get_planete_list = trim(strip_tags($request->query->get('get_planete_list')));
           $planete_id = trim(strip_tags($request->query->get('id')));
           $get_props = trim(strip_tags($request->query->get('get_props')));
-          $props = json_decode($request->query->get('props'));
+          $props = $request->query->get('props');
 
-          if(isset($planete_name) && !empty($planete_name)) { // if try to get only by name -> return list fof planetes
+          if(isset($planete_name) && !empty($planete_name) && isset($get_planete_list) && !empty($get_planete_list) && $get_planete_list == "true") { // if try to get only by name -> return list fof planetes
             $planetes_result = $em->getRepository('AppBundle:Body')->getListPlaneteByName($planete_name);
 
             $serializer = $this->get('serializer');
             $planetes = $serializer->serialize($planetes_result, 'json');
 
             return new \Symfony\Component\HttpFoundation\Response($planetes);
-          }
-          else if( isset($planete_name) && !empty($planete_name) && isset($props) && !empty($props) ) { // trye to get data by name and props => return props values
 
-            // $planete = $em->getRepository('AppBundle:Body')->getValuesPlaneteByNameAndProps($planete_name, $props);
-            return new \Symfony\Component\HttpFoundation\Response(json_encode(123));
+          }
+          else if( isset($planete_name) && !empty($planete_name) && isset($props) && !empty($props) ) { // try to get data by name and props => return props values
+
+            $planete = $em->getRepository('AppBundle:Body')->getValuesPlaneteByNameAndProps($planete_name, $props);
+            return new JsonResponse($planete);
+
           }
           else if(isset($get_props) && !empty($get_props) && $get_props == 'true' && isset($planete_id) && !empty($planete_id)) { // try to get
 
-            $planete_result = $em->getClassMetadata('AppBundle:Body')->getFieldNames();
-            // $planete_result = $em->getRepository('AppBundle:Body')->getPlaneteById($planete_id);
+            $planete_props = $em->getClassMetadata('AppBundle:Body')->getFieldNames();
+            $planete_name = $em->getRepository('AppBundle:Body')->getPlaneteById($planete_id);
 
             $serializer = $this->get('serializer');
-            $planete = $serializer->serialize($planete_result, 'json');
+            $planete_props = $serializer->serialize($planete_props, 'json');
+            $planete_name = $serializer->serialize($planete_name, 'json');
 
-            return new \Symfony\Component\HttpFoundation\Response(json_encode(array('props' => $planete, 'name' => $planete_result)));
+            return new JsonResponse(array('props' => $planete_props, 'name' => $planete_name));
+            // return new \Symfony\Component\HttpFoundation\Response(json_encode());
           }
        }
        return new Response("Erreur : ce n'est pas une requete ajax");

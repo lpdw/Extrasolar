@@ -66,14 +66,13 @@ $(document).ready(function() {
               var planete_id = $(this).val();
               ajaxGetProps(planete_id).then(resp => {
                   spinner.stop();
-                  console.log("columns name:", resp);
-                  var data = JSON.parse(resp);
+                  console.log("props ==> ", resp);
 
                   // clear planete list
                   resetPlaneteList();
 
                   // show generate view
-                  showGeneratePlanete(data);
+                  showGeneratePlanete(resp);
 
               }, function(err) {
                 console.log(err);
@@ -107,27 +106,29 @@ $(document).ready(function() {
    }
 
    function showGeneratePlanete(planete) {
-     console.log(JSON.parse(planete.data));
+     var planete_name = JSON.parse(planete.name)[0].name;
+     var props = JSON.parse(planete.props);
 
      $("#generate-infos").show();
-     $("#generate-infos .planete-name").text(planete[1].name);
+     $("#generate-infos .planete-name").text(planete_name);
 
      // for each categories generate input type checkbox
-     for (var i = 0; i < planete.length; i++) {
-       console.log(planete[i]);
-       if(planete[i] == "id" || planete[i] == "type_id" || planete[i] == "update_at") continue;
-       if(planete[i] == "satellites") console.log(planete[i].satellites);
-       $("#generate-infos form").append("<div class='input-group'><label><input type='checkbox' value='"+planete[i]+"'>&nbsp;"+planete[i]+"</label></div>");
+     for (var i = 0; i < props.length; i++) {
+       if(props[i] == "id" || props[i] == "type_id" || props[i] == "update_at") continue;
+      //  if(props[i] == "satellites") console.log(props[i].satellites);
+       $("#generate-infos form").append("<div class='input-group'><label><input type='checkbox' value='"+props[i]+"'>&nbsp;"+props[i]+"</label></div>");
 
      }
 
      $("#generate-infos form").append("<div class='col-lg-8'><button type='button' class='btn btn-primary' id='btn-generate'>GENERER</button></div>");
 
      $("#btn-generate").click(function() {
-       var props = getAllProperties();
+       var props_checked = getAllPropertiesChecked();
+
+       console.log(props_checked);
 
        // for each properties get values => send request to get information
-       ajaxGetDataByProps(planete.name, JSON.stringify(props)).then(resp => {
+       ajaxGetDataByProps(planete_name, props_checked).then(resp => {
          console.log(resp);
        }, function(err) {
          console.log(err);
@@ -137,7 +138,7 @@ $(document).ready(function() {
    }
 
 
-   function getAllProperties() {
+   function getAllPropertiesChecked() {
      var props = new Array();
 
      $("#generate-infos form input").each(function() {
@@ -152,26 +153,26 @@ $(document).ready(function() {
   function ajaxGetListPlanete(planete_name, planete_id) {
     return $.ajax({
       method: "GET",
-      url: "/api/api_get_list_planete",
-      data: {name: planete_name, id: planete_id}
+      url: "/api/api_planete",
+      data: {name: planete_name, id: planete_id, get_planete_list: 'true'}
     });
   }
 
   function ajaxGetProps(planete_id) {
     return $.ajax({
       method: "GET",
-      url: "api/api_get_list_planete",
+      url: "api/api_planete",
       data: {id: planete_id, get_props: 'true'}
     });
   }
 
   function ajaxGetDataByProps(planete_name, props) {
-    console.log("name", planete_name, "props", props);
+    console.log("name", planete_name, "props => ", props);
 
     return $.ajax({
       method: "GET",
-      url: "api/api_get_list_planete",
-      data: {name: planete_name, props: props, }
+      url: "api/api_planete",
+      data: {name: planete_name, props: props}
     });
   }
 

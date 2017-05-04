@@ -66,17 +66,29 @@ class BodiesRepository extends EntityRepository
     public function getPlaneteById($id="") {
       if($id != "") {
         return $this->getEntityManager()
-                    ->createQuery('SELECT n FROM AppBundle:Body n WHERE n.id = :id')
+                    ->createQuery('SELECT n.name FROM AppBundle:Body n WHERE n.id = :id')
                     ->setParameter('id', (int)$id)
                     ->getResult();
       }
     }
 
-    public function getValuesPlaneteByNameAndProps($id="", $props= array()) {
-      if($id != "") {
+    public function getValuesPlaneteByNameAndProps($name, $props) {
+      // echo trim($name);
+      // echo count($props);die();
+
+      if($name != "" && count($props) > 0) {
+        $queries = "SELECT ";
+
+        for ($i=0; $i < count($props); $i++) {
+          $queries .= "n." . $props[$i] .",";
+        }
+
+        $queries = rtrim($queries,", ");
+        $queries .= " FROM AppBundle:Body n WHERE n.name = :name";
+
         return $this->getEntityManager()
-                    ->createQuery('SELECT n FROM AppBundle:Body n WHERE n.id = :id')
-                    ->setParameter('id', (int)$id)
+                    ->createQuery($queries)
+                    ->setParameter('name', trim($name))
                     ->getResult();
       }
     }
