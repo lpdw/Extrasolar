@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 {{ parent() }}
 
-<div class="container-fluid pTop30 pBottom30 bgBlack">
+<!-- <div class="container-fluid pTop30 pBottom30 bgBlack">
     <div class="row">
         <div class="col-md-12">
             {% if body.rotationId is null %}
@@ -46,6 +46,15 @@ $(document).ready(function(){
               </div>
         </div>
     </div>
+</div> -->
+<div class="systemDisplay">
+    <button type="button" name="fullScreen">change scene</button>
+    <div class="zoom">
+      <button type="button" name="zoom+">+</button>
+      <button type="button" name="zoom-">-</button>
+    </div>
+  <canvas id='system' width='200' height='100'>
+  </canvas>
 </div>
 
 <div class="container">
