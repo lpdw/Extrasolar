@@ -1,3 +1,3 @@
-1525463574
+1525545011
 %255BAppBundle%255CEntity%255CExtrasolar%255CBody%2524satellites%255D%255B1%255D
 a:2:{i:0;O:30:"Doctrine\ORM\Mapping\OneToMany":6:{s:8:"mappedBy";s:11:"rotation_id";s:12:"targetEntity";s:4:"Body";s:7:"cascade";N;s:5:"fetch";s:4:"LAZY";s:13:"orphanRemoval";b:0;s:7:"indexBy";N;}i:1;O:28:"Doctrine\ORM\Mapping\OrderBy":1:{s:5:"value";a:1:{s:4:"axis";s:3:"ASC";}}}

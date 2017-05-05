@@ -89,11 +89,16 @@ class DefaultController extends Controller
              $planete_props = $em->getClassMetadata('AppBundle:Body')->getFieldNames();
              $planete_name = $em->getRepository('AppBundle:Body')->getPlaneteById($planete_id);
 
+             $output = array_merge(
+              $planete_props,
+              $em->getClassMetadata('AppBundle:Body')->getAssociationNames()
+            );
+
              $serializer = $this->get('serializer');
              $planete_props = $serializer->serialize($planete_props, 'json');
              $planete_name = $serializer->serialize($planete_name, 'json');
 
-             return new JsonResponse(array('props' => $planete_props, 'name' => $planete_name));
+             return new JsonResponse(array('props' => $output, 'name' => $planete_name));
              // return new \Symfony\Component\HttpFoundation\Response(json_encode());
            }
 
@@ -109,6 +114,51 @@ class DefaultController extends Controller
            if( isset($planete_name) && !empty($planete_name) && isset($props) && !empty($props) ) { // try to get data by name and props => return props values
 
              $planete = $em->getRepository('AppBundle:Body')->getValuesPlaneteByNameAndProps($planete_name, $props);
+
+            //  echo "<pre>";echo $planete[0]["id"];echo "</pre>";
+
+            $satellites = array();
+
+            if(count($planete["rotation_id"]) > 0) {
+              $id_sub_sat = $planete["rotation_id"]["id"];
+
+              array_push($satellites, array($id_sub_sat => $planete["rotation_id"]));
+
+              while (true) {
+
+                $subSat = $em->getRepository('AppBundle:Body')->getAllInfosPlaneteById($planete["rotation_id"]["id"]);
+
+                // $id_sub_sat = $subSat["rotation_id"]["id"];
+                // array_push($satellites, array($id_sub_sat => $subSat["rotation_id"]));
+
+                if(count($subSat["rotation_id"]) > 0) {
+                  $subSat = $em->getRepository('AppBundle:Body')->getAllInfosPlaneteById($subSat["rotation_id"]["id"]);
+                  $id_sub_sat = $subSat["rotation_id"]["id"];
+                  array_push($satellites, array($id_sub_sat => $subSat["rotation_id"]));
+                }
+                else {
+                  break;
+                }
+              }
+            }
+
+
+
+            print_r($satellites);
+
+            //  try {
+              //  print_r($planete["rotation_id"]);
+               // for the actual satellite try to get subsatellite ...
+              // print_r($subSat);
+              //
+              //  while (true) {
+              //    $subSat = $em->getRepository('AppBundle:Body')->getAllInfosPlaneteById($planete["rotation_id"]["id"]);
+              //    if($subCat)
+              //
+              //
+              //  }
+
+             die();
 
              if(isset($data_type) && !empty($data_type)) {
                if(strtolower($data_type) == "html") {

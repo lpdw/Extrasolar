@@ -3,6 +3,7 @@
 namespace AppBundle\Repository\Extrasolar;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 class BodiesRepository extends EntityRepository
 {
@@ -67,20 +68,36 @@ class BodiesRepository extends EntityRepository
       // echo trim($name);
       // echo count($props);die();
 
+      return $this->getEntityManager('n')
+                  ->createQuery("SELECT n, t FROM AppBundle:Body n JOIN n.rotation_id t WHERE n.name = :name")
+                  ->setParameter('name', $name)
+                  ->getResult(Query::HYDRATE_ARRAY)[0];
+
       if($name != "" && count($props) > 0) {
-        $queries = "SELECT n.name , ";
+        // $queries = "SELECT n.name , ";
+        //
+        // for ($i=0; $i < count($props); $i++) {
+        //   $queries .= "n." . $props[$i] .",";
+        // }
+        //
+        // $queries = rtrim($queries,", ");
+        // $queries .= " FROM AppBundle:Body n WHERE n.name = :name";
 
-        for ($i=0; $i < count($props); $i++) {
-          $queries .= "n." . $props[$i] .",";
-        }
 
-        $queries = rtrim($queries,", ");
-        $queries .= " FROM AppBundle:Body n WHERE n.name = :name";
 
-        return $this->getEntityManager()
-                    ->createQuery($queries)
-                    ->setParameter('name', trim($name))
-                    ->getResult();
+        // return $this->getEntityManager()
+        //             ->createQuery($queries)
+        //             ->setParameter('name', trim($name))
+        //             ->getResult();
+      }
+    }
+
+    public function getAllInfosPlaneteById($id) {
+      if($id != "") {
+        return $this->getEntityManager('n')
+                    ->createQuery('SELECT n, t FROM AppBundle:Body n JOIN n.rotation_id t WHERE n.id = :id')
+                    ->setParameter('id', (int)$id)
+                    ->getResult(Query::HYDRATE_ARRAY)[0];
       }
     }
 }

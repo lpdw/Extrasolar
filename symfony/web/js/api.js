@@ -79,7 +79,7 @@ $(document).ready(function() {
 
                 // show generate view
                 showGeneratePlanete(resp);
-              }).fail(function() {
+              }).fail(function(err) {
                 console.log(err);
                 spinner.stop();
               });
@@ -111,9 +111,12 @@ $(document).ready(function() {
    }
 
    function showGeneratePlanete(planete) {
+     console.log(planete);
 
      var planete_name = JSON.parse(planete.name)[0].name;
-     var props = JSON.parse(planete.props);
+     var props = planete.props;
+
+     console.log(props);
 
      $("#generate-infos").show();
      $("#generate-infos .planete-name").text(planete_name);
