@@ -61,67 +61,79 @@ class DefaultController extends Controller
      */
      public function apiGetListPlaneteAction(Request $request)
      {
-
        $em = $this->getDoctrine()->getManager();
 
       //  var_dump($request->server);
 
        //accept text/html and if is xhr request
-       if ($request->isXmlHttpRequest()) {
+       if ($request->isXmlHttpRequest()) { // sets HEADERS "X-Requested-With: XMLHttpRequest"
 
-          $planete_name = trim(strip_tags($request->query->get('name')));
-          $get_planete_list = trim(strip_tags($request->query->get('get_planete_list')));
-          $planete_id = trim(strip_tags($request->query->get('id')));
-          $type_generated = trim(strip_tags($request->query->get('type')));
-          $get_props = trim(strip_tags($request->query->get('get_props')));
-          $props = $request->query->get('props');
+         if($request->getMethod() == "GET") {
 
-          if(isset($planete_name) && !empty($planete_name) && isset($get_planete_list) && !empty($get_planete_list) && $get_planete_list == "true") { // if try to get only by name -> return list fof planetes
-            $planetes_result = $em->getRepository('AppBundle:Body')->getListPlaneteByName($planete_name);
+           $planete_name = trim(strip_tags($request->query->get('name')));
+           $get_planete_list = trim(strip_tags($request->query->get('get_planete_list')));
+           $planete_id = trim(strip_tags($request->query->get('id')));
+           $get_props = trim(strip_tags($request->query->get('get_props')));
 
-            $serializer = $this->get('serializer');
-            $planetes = $serializer->serialize($planetes_result, 'json');
+           if(isset($planete_name) && !empty($planete_name) && isset($get_planete_list) && !empty($get_planete_list) && $get_planete_list == "true") { // if try to get only by name -> return list fof planetes
+             $planetes_result = $em->getRepository('AppBundle:Body')->getListPlaneteByName($planete_name);
 
-            return new \Symfony\Component\HttpFoundation\Response($planetes);
+             $serializer = $this->get('serializer');
+             $planetes = $serializer->serialize($planetes_result, 'json');
 
-          }
-          else if( isset($planete_name) && !empty($planete_name) && isset($props) && !empty($props) ) { // try to get data by name and props => return props values
+             return new \Symfony\Component\HttpFoundation\Response($planetes);
 
-            $planete = $em->getRepository('AppBundle:Body')->getValuesPlaneteByNameAndProps($planete_name, $props);
+           }
+           else if(isset($get_props) && !empty($get_props) && $get_props == "true" && isset($planete_id) && !empty($planete_id)) { // try to get all props by id
 
-            if(isset($type_generated) && !empty($type_generated)) {
-              if(strtolower($type_generated) == "html") {
+             $planete_props = $em->getClassMetadata('AppBundle:Body')->getFieldNames();
+             $planete_name = $em->getRepository('AppBundle:Body')->getPlaneteById($planete_id);
 
-                $number = mt_rand(0, 100);
-                $html = $this->generateHtml($planete);
-                return new Response($html);
+             $serializer = $this->get('serializer');
+             $planete_props = $serializer->serialize($planete_props, 'json');
+             $planete_name = $serializer->serialize($planete_name, 'json');
 
-              }
-              else {
-                // defaut generate JSON
-                return new JsonResponse($planete);
-              }
-            }
+             return new JsonResponse(array('props' => $planete_props, 'name' => $planete_name));
+             // return new \Symfony\Component\HttpFoundation\Response(json_encode());
+           }
 
-            // defaut generate JSON
-            return new JsonResponse($planete);
+         }
+         else if($request->getMethod() == "POST") { //get all props values from request
 
-          }
-          else if(isset($get_props) && !empty($get_props) && $get_props == "true" && isset($planete_id) && !empty($planete_id)) { // try to get
+           $datas = $request->getContent();
+           $params = json_decode($datas);
+           $planete_name = $params->name;
+           $props = $params->props;
+           $data_type = $params->type;
 
-            $planete_props = $em->getClassMetadata('AppBundle:Body')->getFieldNames();
-            $planete_name = $em->getRepository('AppBundle:Body')->getPlaneteById($planete_id);
+           if( isset($planete_name) && !empty($planete_name) && isset($props) && !empty($props) ) { // try to get data by name and props => return props values
 
-            $serializer = $this->get('serializer');
-            $planete_props = $serializer->serialize($planete_props, 'json');
-            $planete_name = $serializer->serialize($planete_name, 'json');
+             $planete = $em->getRepository('AppBundle:Body')->getValuesPlaneteByNameAndProps($planete_name, $props);
 
-            return new JsonResponse(array('props' => $planete_props, 'name' => $planete_name));
-            // return new \Symfony\Component\HttpFoundation\Response(json_encode());
-          }
+             if(isset($data_type) && !empty($data_type)) {
+               if(strtolower($data_type) == "html") {
+
+                 $number = mt_rand(0, 100);
+                 $html = $this->generateHtml($planete);
+                 return new Response($html);
+
+               }
+               else {
+                 // defaut generate JSON
+                 return new JsonResponse($planete);
+               }
+             }
+
+             // defaut generate JSON
+             return new JsonResponse($planete);
+
+         }
+
        }
-       return new Response("Erreur : ce n'est pas une requete xhr");
+       else
+        return new Response("Erreur : ce n'est pas une requete xhr");
      }
+    }
 
      private function generateHtml($planete) {
        $html = "<table><tbody>";

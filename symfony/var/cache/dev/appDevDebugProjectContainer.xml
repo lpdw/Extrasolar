@@ -454,7 +454,8 @@
     <parameter key="assetic.use_controller_worker.class">Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker</parameter>
     <parameter key="assetic.request_listener.class">Symfony\Bundle\AsseticBundle\EventListener\RequestListener</parameter>
     <parameter key="nelmio_cors.map" type="collection">
-      <parameter key="^/api/*" type="collection">
+      <parameter key="^/api" type="collection">
+        <parameter key="allow_credentials">true</parameter>
         <parameter key="allow_origin">true</parameter>
         <parameter key="allow_headers">true</parameter>
         <parameter key="allow_methods" type="collection">
@@ -462,6 +463,9 @@
           <parameter>PUT</parameter>
           <parameter>GET</parameter>
           <parameter>DELETE</parameter>
+        </parameter>
+        <parameter key="expose_headers" type="collection">
+          <parameter>*</parameter>
         </parameter>
         <parameter key="max_age">3600</parameter>
       </parameter>
@@ -640,7 +644,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>keVUakPh+l</argument>
                 <argument>0</argument>
-                <argument>yF2ZvT3OVpizJNPsL+4mD3</argument>
+                <argument>UQO-yLKjNg59zja23xo6m2</argument>
                 <argument>/Users/lpdw/Desktop/Extrasolar/symfony/var/cache/dev/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -823,7 +827,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>6UG+Z2VnUG</argument>
       <argument>0</argument>
-      <argument>yF2ZvT3OVpizJNPsL+4mD3</argument>
+      <argument>UQO-yLKjNg59zja23xo6m2</argument>
       <argument>/Users/lpdw/Desktop/Extrasolar/symfony/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -833,7 +837,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>XKd2+K3t93</argument>
       <argument>0</argument>
-      <argument>yF2ZvT3OVpizJNPsL+4mD3</argument>
+      <argument>UQO-yLKjNg59zja23xo6m2</argument>
       <argument>/Users/lpdw/Desktop/Extrasolar/symfony/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1867,7 +1871,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>590b331f5d62f2.82866601</argument>
+            <argument>590c4428484601.41543188</argument>
           </service>
         </argument>
       </argument>
@@ -2161,7 +2165,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>590b331f5d62f2.82866601</argument>
+            <argument>590c4428484601.41543188</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3895,7 +3899,8 @@
     <service id="nelmio_cors.options_provider.config" class="Nelmio\CorsBundle\Options\ConfigProvider">
       <tag name="nelmio_cors.options_provider" priority="-1"/>
       <argument type="collection">
-        <argument key="^/api/*" type="collection">
+        <argument key="^/api" type="collection">
+          <argument key="allow_credentials">true</argument>
           <argument key="allow_origin">true</argument>
           <argument key="allow_headers">true</argument>
           <argument key="allow_methods" type="collection">
@@ -3903,6 +3908,9 @@
             <argument>PUT</argument>
             <argument>GET</argument>
             <argument>DELETE</argument>
+          </argument>
+          <argument key="expose_headers" type="collection">
+            <argument>*</argument>
           </argument>
           <argument key="max_age">3600</argument>
         </argument>

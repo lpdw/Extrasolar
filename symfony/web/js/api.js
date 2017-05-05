@@ -68,17 +68,18 @@ $(document).ready(function() {
               var spinner = new Spinner(opts).spin(target);
 
               var planete_id = $(this).val();
-              ajaxGetProps(planete_id).then(resp => {
-                  spinner.stop();
-                  console.log("props ==> ", resp);
 
-                  // clear planete list
-                  resetPlaneteList();
+              $.get("api/api_planete", {id: planete_id, get_props: "true"})
+              .done(function(resp) {
+                spinner.stop();
+                console.log("props ==> ", resp);
 
-                  // show generate view
-                  showGeneratePlanete(resp);
+                // clear planete list
+                resetPlaneteList();
 
-              }, function(err) {
+                // show generate view
+                showGeneratePlanete(resp);
+              }).fail(function() {
                 console.log(err);
                 spinner.stop();
               });
@@ -138,13 +139,15 @@ $(document).ready(function() {
        console.log(props_checked);
 
        // for each properties get values => send request to get information
-       ajaxGetDataByProps(planete_name, props_checked).then(resp => {
+       var datas = { "name": planete_name, "type": "json", "props": props_checked };
+
+       $.post("api/api_planete", JSON.stringify(datas))
+       .done(function(resp) {
          console.log(resp);
 
          constructApiHtml(resp);
-
-       }, function(err) {
-         console.log(err);
+       }).fail(function(err) {
+          console.log(err);
        });
 
      });
@@ -192,24 +195,5 @@ $(document).ready(function() {
       data: {name: planete_name, id: planete_id, get_planete_list: 'true'}
     });
   }
-
-  function ajaxGetProps(planete_id) {
-    return $.ajax({
-      method: "GET",
-      url: "api/api_planete",
-      data: {id: planete_id, get_props: "true"}
-    });
-  }
-
-  function ajaxGetDataByProps(planete_name, props) {
-    console.log("name", planete_name, "props => ", props);
-
-    return $.ajax({
-      method: "GET",
-      url: "api/api_planete",
-      data: {name: planete_name, props: props, type: "html"}
-    });
-  }
-
 
 });
