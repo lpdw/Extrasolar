@@ -97,7 +97,7 @@ class BodiesRepository extends EntityRepository
         return $this->getEntityManager('n')
                     ->createQuery('SELECT n, t FROM AppBundle:Body n JOIN n.rotation_id t WHERE n.id = :id')
                     ->setParameter('id', (int)$id)
-                    ->getResult(Query::HYDRATE_ARRAY)[0];
+                    ->getResult(Query::HYDRATE_ARRAY);
       }
     }
 }

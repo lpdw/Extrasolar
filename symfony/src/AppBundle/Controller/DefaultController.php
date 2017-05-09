@@ -13,6 +13,8 @@ use AppBundle\Entity\Extrablog\WpPosts;
 
 class DefaultController extends Controller
 {
+   private $satellites = array();
+
     /**
      * @Route("/", name="homepage")
      */
@@ -113,69 +115,37 @@ class DefaultController extends Controller
 
            if( isset($planete_name) && !empty($planete_name) && isset($props) && !empty($props) ) { // try to get data by name and props => return props values
 
-             $planete = $em->getRepository('AppBundle:Body')->getValuesPlaneteByNameAndProps($planete_name, $props);
-
-            //  echo "<pre>";echo $planete[0]["id"];echo "</pre>";
+            // get infos about the planete
+            $planete = $em->getRepository('AppBundle:Body')->getValuesPlaneteByNameAndProps($planete_name, $props);
 
             $satellites = array();
 
+            //add it to the array
+
             if(count($planete["rotation_id"]) > 0) {
-              $id_sub_sat = $planete["rotation_id"]["id"];
+              array_push($this->satellites, array("planete" => $planete));
 
-              array_push($satellites, array($id_sub_sat => $planete["rotation_id"]));
+              $this->getSubSat($planete["rotation_id"]);
 
-              while (true) {
+              if(isset($data_type) && !empty($data_type)) {
+                if(strtolower($data_type) == "html") {
 
-                $subSat = $em->getRepository('AppBundle:Body')->getAllInfosPlaneteById($planete["rotation_id"]["id"]);
+                  $html = $this->generateHtml($this->satellites);
+                  return new Response($html);
 
-                // $id_sub_sat = $subSat["rotation_id"]["id"];
-                // array_push($satellites, array($id_sub_sat => $subSat["rotation_id"]));
-
-                if(count($subSat["rotation_id"]) > 0) {
-                  $subSat = $em->getRepository('AppBundle:Body')->getAllInfosPlaneteById($subSat["rotation_id"]["id"]);
-                  $id_sub_sat = $subSat["rotation_id"]["id"];
-                  array_push($satellites, array($id_sub_sat => $subSat["rotation_id"]));
                 }
                 else {
-                  break;
+                   // defaut generate JSON
+                   return new JsonResponse($this->satellites);
                 }
               }
-            }
-
-
-
-            print_r($satellites);
-
-            //  try {
-              //  print_r($planete["rotation_id"]);
-               // for the actual satellite try to get subsatellite ...
-              // print_r($subSat);
-              //
-              //  while (true) {
-              //    $subSat = $em->getRepository('AppBundle:Body')->getAllInfosPlaneteById($planete["rotation_id"]["id"]);
-              //    if($subCat)
-              //
-              //
-              //  }
-
-             die();
-
-             if(isset($data_type) && !empty($data_type)) {
-               if(strtolower($data_type) == "html") {
-
-                 $number = mt_rand(0, 100);
-                 $html = $this->generateHtml($planete);
-                 return new Response($html);
-
-               }
-               else {
-                 // defaut generate JSON
-                 return new JsonResponse($planete);
-               }
-             }
 
              // defaut generate JSON
-             return new JsonResponse($planete);
+             return new JsonResponse($this->satellites);
+            }
+
+            // defaut generate JSON
+            return new JsonResponse($this->satellites);
 
          }
 
@@ -195,4 +165,32 @@ class DefaultController extends Controller
        $html .= "</tbody></table>";
        return $html;
      }
+
+     private function getSubSat($planete) {
+
+       if(count($planete) > 0) {
+
+         array_push($this->satellites, $planete);
+
+         $em = $this->getDoctrine()->getManager();
+         $planete = $em->getRepository('AppBundle:Body')->getAllInfosPlaneteById($planete["id"]);
+
+        if(count($planete) > 0) {
+
+          try {
+            if( count($planete[0]["rotation_id"]) > 0) {
+              $this->getSubSat($planete[0]["rotation_id"]);
+            }
+          } catch (Exception $e) {
+            //if error its the last satellite
+            if(count($planete["rotation_id"]) > 0) {
+              $this->getSubSat($planete["rotation_id"]);
+            }
+          }
+        }
+
+       }
+
+
+   }
 }
