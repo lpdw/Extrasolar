@@ -68,9 +68,12 @@ class BodyController extends Controller
       $em = $this->getDoctrine()->getManager();
 
       $bodies = $em->getRepository('AppBundle:Body')->findAllBodiesForAPI();
-      //Better than serialize something, cause Repo return an Array
+      //$serializer = $this->get('serializer');
       $dataJson = json_encode($bodies);
 
+
+      //$dataJson = $serializer->serialize($bodies,'json');
+      //return $this->json($dataJson);
       return new \Symfony\Component\HttpFoundation\Response($dataJson);
     }
     /**

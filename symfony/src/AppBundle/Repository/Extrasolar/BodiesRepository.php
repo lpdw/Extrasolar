@@ -33,8 +33,7 @@ class BodiesRepository extends EntityRepository
     {
       return $this->getEntityManager('b')
               ->createQuery("SELECT b, t FROM AppBundle:Body b JOIN b.type_id t WHERE t.categorie != 'point'")
-              ->getResult(Query::HYDRATE_ARRAY)
-              ;
+              ->getResult(Query::HYDRATE_ARRAY);
     }
 
     public function findAllBodiesAdmin(){
@@ -43,7 +42,6 @@ class BodiesRepository extends EntityRepository
               ->getResult()
               ;
     }
-
     public function getHost($host_name)
     {
       return $this->getEntityManager()
@@ -52,25 +50,5 @@ class BodiesRepository extends EntityRepository
                   ->getSingleResult()
                   ;
     }
-
-    public function getListPlaneteByName($name="") {
-      if($name != "") {
-        return $this->getEntityManager()
-                    ->createQuery('SELECT n.name, n.id FROM AppBundle:Body n WHERE n.name LIKE :name')
-                    ->setParameter('name', '%' . $name . '%')
-                    ->getResult();
-      }
-
-    }
-
-    public function getPlaneteById($id="") {
-      if($id != "") {
-        return $this->getEntityManager()
-                    ->createQuery('SELECT n FROM AppBundle:Body n WHERE n.id = :id')
-                    ->setParameter('id', (int)$id)
-                    ->getResult();
-      }
-    }
-
 
 }

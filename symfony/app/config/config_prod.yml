@@ -10,12 +10,12 @@ imports:
 monolog:
     handlers:
         main:
-            type:         fingers_crossed
-            action_level: error
-            handler:      nested
+            type: fingers_crossed
+            action_level: cderror
+            handler: nested
         nested:
-            type:  stream
-            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
         console:
-            type:  console
+            type: console

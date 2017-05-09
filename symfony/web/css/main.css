@@ -3,8 +3,12 @@ body {
     font-family: "Source Sans Pro", sans-serif !important;
 }
 
+h1, h2, h3, h4, h5 {
+    font-family: "Source Sans Pro", sans-serif !important;
+}
+
 .homeBg {
-    background-color: #0b1821 !important;
+    background-color: #161a26 !important;
 }
 
 body a {
@@ -41,7 +45,9 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     border-radius: 0 !important !important;
     height: 45px !important;
     line-height: 40px !important;
-    background-color: #0b1821 !important;
+    background: #161a26 !important;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #2f0d4c, #161a26) !important;  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #2f0d4c, #161a26) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     padding: 0 30px !important;
     display: inline-block !important;
     font-weight: 700 !important;
@@ -54,6 +60,13 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     text-transform: uppercase !important;
     cursor: pointer !important;
     font-weight: normal !important;
+}
+
+a.buttonLink:hover{
+    background: #161a26 !important;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #5b37bf, #161a26) !important;  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #5b37bf, #161a26) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .jssocials-share-logo {
@@ -209,7 +222,10 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     left: -200%;
     width: 80%;
     height: 3px;
-    background: #FFFFFF;
+    /*background: #FFFFFF;*/
+    background: #20002c !important;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #cbb4d4, #20002c) !important;  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #cbb4d4, #20002c) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     transition: left .8s;
 }
 
@@ -234,7 +250,7 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     -webkit-animation: fadein 1s forwards;
     -o-animation: fadein 1s forwards;
     z-index: 1;
-    background-color: #0b1821 !important;
+    background-color: #161a26 !important;
 }
 
 @media(max-width: 1450px) {
