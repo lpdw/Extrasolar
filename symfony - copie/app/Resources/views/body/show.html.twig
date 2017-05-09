@@ -1,0 +1,194 @@
+{% extends 'base.html.twig' %}
+{% block title %}Présentation d'astre{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="http://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css" />
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript" src="http://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  var aladin = A.aladin('#aladin-lite-div', {survey: "P/DSS2/color", fov:1, target: {{ body.name }} });
+})
+
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ocanvas/2.8.7/ocanvas.min.js"></script>
+<script type="text/javascript" src="{{ asset('js/system_display.js') }}"></script>
+{% endblock %}
+{% block body %}
+
+{{ parent() }}
+
+<!-- <div class="container-fluid pTop30 pBottom30 bgBlack">
+    <div class="row">
+        <div class="col-md-12">
+            {% if body.rotationId is null %}
+              {% set host = body %}
+            {% else %}
+              {% set host = body.rotationId %}
+            {% endif %}
+              <div class="flexParent">
+                {% if host.typeId.categorie != types.point %}
+                  <a class="flexItem" href="{{  path('catalogue_show', { 'id': host.id }) }}">
+
+                    <img class="displayBlock margin0-auto img-responsive" src="{% if host.typeId.picture %}{{host.typeId.picture}}{% else %}{{ asset('/img/p-mars.png') }}{% endif %}" alt="" />
+
+                    <span class="mTop10 displayBlock text-center whiteColor {% if host == body %} activeClass {% endif %}">{{ host.name }}</span>
+                    <span class="mTop10 displayBlock text-center whiteColor {% if host == body %} activeClass {% endif %}">{{ host.typeId.name }}</span>
+                  </a>
+                {% endif %}
+                {% for item in host.satellites %}
+                      <a class="flexItem" href="{{  path('catalogue_show', { 'id': item.id }) }}">
+                        <img class="displayBlock margin0-auto img-responsive" src="{% if item.typeId.picturePath %}{{  asset(item.typeId.picturePath) }}{% else %}{{ asset('/img/p-mars.png') }}{% endif %}" alt="" />
+                        <span class="mTop10 displayBlock text-center whiteColor {% if item == body %} activeClass {% endif %}">{{ item.name }}</span>
+                        <span class="mTop10 displayBlock text-center whiteColor {% if item == body %} activeClass {% endif %}">{{ item.typeId.name }}</span>
+                      </a>
+                {% endfor %}
+              </div>
+        </div>
+    </div>
+</div> -->
+<div class="systemDisplay">
+    <button type="button" name="fullScreen">change scene</button>
+    <div class="zoom">
+      <button type="button" name="zoom+">+</button>
+      <button type="button" name="zoom-">-</button>
+    </div>
+  <canvas id='system' width='200' height='100'>
+  </canvas>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <h2 class="blackColor">Astre de type {{ body.typeId.name }}{% if body.discovery %}, découverte en {{ body.discovery|date('Y') }}{% endif %}</h2>
+            <div>Partager sur <span id="share"></span></div>
+            <div class="row mTop20">
+                <div class="col-md-12">
+                    <div class="row control">
+                        <div class="col-md-12 mBottom15 bgLightDark whiteColor">
+                            <h3 class="text-center bandeauForm">Coordonnées célestes</h3>
+                        </div>
+                    </div>
+                    <div class="flexParent">
+                        {% if body.ra %}<span class="bgInfos flexItem"><span class="blackColor">RA :</span> {{ body.ra }}</span>{% endif %}
+                        {% if body.decl %}<span class="bgInfos flexItem"><span class="blackColor">DECL :</span> {{ body.decl }}</span>{% endif %}
+                        {% if body.distance %}<span class="bgInfos flexItem"><span class="blackColor">Distance :</span> {{ body.distance }} parsecs</span>{% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              {% if body.typeId.categorie != types.point %}
+                <div class="col-md-5 mTop30">
+                    <div class="row control">
+                        <div class="col-md-12 mBottom15 bgLightDark whiteColor">
+                            <h3 class="text-center bandeauForm">Caractéristiques générales</h3>
+                        </div>
+                    </div>
+                    {% if body.radius %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Rayon :</span> {{ ChooseUnitRadius(body.radius) }}</span>{% endif %}
+                    {% if body.masse %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Masse :</span> {{ ChooseUnitMass(body.masse) }}</span>{% endif %}
+                    {% if body.density %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Densité :</span> {{ body.density }}</span>{% endif %}
+                    {% if body.age %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Age :</span> {{ body.age }}</span>{% endif %}
+                    {% if body.metallicity %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Metallicité :</span> {{ body.metallicity }}</span>{% endif %}
+                    {% if body.temperature %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Température :</span> {{ body.temperature }}</span>{% endif %}
+                    {% if body.spectralType %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Type spectral :</span> {{ body.spectralType }}</span>{% endif %}
+                    {% if body.vari %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Variabilité :</span> {{ body.vari }}</span>{% endif %}
+                </div>
+              {% endif %}
+              {% if body.rotationId %}
+                  <div class="col-md-6 col-md-offset-1 mTop30">
+                      <div class="row control">
+                          <div class="col-md-12 mBottom15 bgLightDark whiteColor">
+                              <h3 class="text-center bandeauForm">Caractéristiques orbitales</h3>
+                          </div>
+                      </div>
+                      <a class="displayBlock bgInfos paddingY5" href="{{  path('catalogue_show', { 'id': body.rotationId.id }) }}"><span class="blackColor">Hôte :</span> {{ body.rotationId }}</a>
+                      {% if body.axis %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Demi-grand-axe :</span> {{ body.axis }}</span>{% endif %}
+                      {% if body.seff %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Seff :</span> {{ body.seff }}</span>{% endif %}
+                      {% if body.period %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Période :</span> {{ ChooseUnitPeriod(body.period) }}</span>{% endif %}
+                      {% if body.excentricity %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Excentricité :</span> {{ body.excentricity }}</span>{% endif %}
+                      {% if body.inclinaison %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Inclinaison :</span> {{ body.inclinaison }}</span>{% endif %}
+                      {% if body.omega %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Omega :</span> {{ body.omega }}</span>{% endif %}
+                      {% if body.tref %}<span class="displayBlock bgInfos paddingY5"><span class="blackColor">Tref :</span> {{ body.tref }}</span>{% endif %}
+                  </div>
+              {% endif %}
+            </div>
+
+            </div>
+            <div class='col-md-3 pTop20'>
+              <div id="aladin-lite-div" style="width:270px;height:270px;"></div>
+            </div>
+          </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-center mTop30 mBottom30">
+        {% if app.user %}
+            <a class="buttonLink mTop30" href="{{ path('catalogue_new') }}">Ajouter un astre</a>
+            <a class="buttonLink" href="{{ path('catalogue_edit', { 'id': body.id }) }}">Editer</a>
+            {{ form_start(delete_form, { 'attr' : { 'class': 'displayInlineBlock' } }) }}
+                <input class="buttonLink" type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+            <a class="buttonLink" href="{{ path('catalogue_index') }}">Retour</a>
+        {% endif %}
+    </div>
+</div>
+{% if articles %}
+<div class="container-fluid pTop15 pBottom30">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+              <div class="col-md-12">
+                  <h2 class="blackColor">Derniers articles liés</h2>
+                  <hr class="hr"/>
+              </div>
+          </div>
+          {% for article in articles %}
+              <div class="row">
+                  <div data-mh="my-group" class="col-md-12 mTop30">
+                      <h4 class="blackColor ft18 text-uppercase"><b>{{ article.postTitle }}</b></h4>
+                      <p><i class="paddingX5 fa fa-user"></i> {{ article.userLogin }} <i class="paddingX5 fa fa-calendar"></i> {{ article.postDate|date("d/m/Y") }}</p>
+                      {% if article.postContent %}
+                          <p>{{ article.postContent|striptags[:300] }}...</p>
+                      {% endif %}
+                      <a href="{{ article.guid }}" class="buttonLink mTop5">Lire l'article</a>
+                  </div>
+              </div>
+          {% endfor %}
+        </div>
+
+        <!--- PUB -->
+        {% if getPub(2) %}
+        <hr class="hr"/>
+        <p class="">Liens sponsorisés:</p>
+        {% endif %}
+        {% for pub in getPub(2) %}
+          <a href="{{ pub.link }}"class="col-md-6 mBottom10">
+            <img class="img-responsive margin0-auto" src="{{asset(pub.picturePath)}}"/>
+          </a>
+        {% endfor %}
+        {% if app.user %}
+          <div class='txtAlign'>
+            <a href="{{ path('publicity_index') }}" class="buttonLink mTop5">Emplacement n°2</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+</div>
+{% endif %}
+
+
+
+<script type="text/javascript">
+    $("#share").jsSocials({
+        shareIn: "popup",
+        showLabel: false,
+        shares: ["email", "facebook", "twitter"]
+    });
+</script>
+
+
+{% endblock %}

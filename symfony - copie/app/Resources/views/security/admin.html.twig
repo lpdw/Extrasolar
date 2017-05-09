@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+{{ parent() }}
+<div class="container">
+  <div class="row">
+    <div class="text-right col-md-4">
+        <a class="buttonLink mTop30" href="{{ path('type_index') }}">Gestion des types</a>
+    </div>
+    <div class="text-right col-md-4 ">
+        <a class="buttonLink mTop30" href="{{ path('catalogue_index') }}">Gestion des planètes</a>
+    </div>
+    <div class="text-right col-md-4">
+        <a class="buttonLink mTop30" href="{{ path('publicity_index') }}">Gestion des publicités</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

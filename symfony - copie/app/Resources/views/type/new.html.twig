@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ajouter un type{% endblock %}
+{% block body %}
+
+    {{ parent() }}
+
+    <div class="container mTop30 blackColor">
+        {{ form_start(form) }}
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    {{ form_row(form.name) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    {{ form_row(form.categorie) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6 ">
+                    {{ form_row(form.description) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6 ">
+                    {{ form_row(form.file) }}
+                </div>
+            </div>
+
+            {{ form_widget(form) }}
+
+            <div class="row">
+                <div class="col-md-12 text-center mTop30">
+                    <input class="buttonLink mBottom20" type="submit" value="Ajouter ce type" /><br />
+                    <a class="ft14 buttonLink mTop15 mBottom30" href="{{ path('type_index') }}">Retour</a>
+                </div>
+            </div>
+
+        {{ form_end(form) }}
+
+
+
+
+    </div>
+
+
+
+
+{% endblock %}

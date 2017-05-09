@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Accept;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Extrablog\WpPosts;
 
@@ -75,11 +77,7 @@ class DefaultController extends Controller
            $planete_id = trim(strip_tags($request->query->get('id')));
            $get_props = trim(strip_tags($request->query->get('get_props')));
 
-           if(isset($planete_name)
-              && !empty($planete_name)
-              && isset($get_planete_list)
-              && !empty($get_planete_list)
-              && $get_planete_list == "true") { // if try to get only by name -> return list fof planetes
+           if(isset($planete_name) && !empty($planete_name) && isset($get_planete_list) && !empty($get_planete_list) && $get_planete_list == "true") { // if try to get only by name -> return list fof planetes
              $planetes_result = $em->getRepository('AppBundle:Body')->getListPlaneteByName($planete_name);
 
              $serializer = $this->get('serializer');
@@ -119,35 +117,37 @@ class DefaultController extends Controller
 
             // get infos about the planete
             $planete = $em->getRepository('AppBundle:Body')->getValuesPlaneteByNameAndProps($planete_name, $props);
-            // print_r($planete);die();
 
             $satellites = array();
 
-            array_push($this->satellites, array("planete" => $planete));
- 
-            try {
-              if(isset($planete[0]["rotation_id"]) || !empty($planete[0]["rotation_id"])) {
-                $this->getSubSat($planete[0]["rotation_id"]);
-              }
-            } catch (Exception $e) {
-              // echo "err".$e;
-            }
+            //add it to the array
 
-            if(isset($data_type) && !empty($data_type)) {
-              if(strtolower($data_type) == "html") {
+            if(count($planete["rotation_id"]) > 0) {
+              array_push($this->satellites, array("planete" => $planete));
 
-                $html = $this->generateHtml($this->satellites);
-                return new Response($html);
+              $this->getSubSat($planete["rotation_id"]);
+
+              if(isset($data_type) && !empty($data_type)) {
+                if(strtolower($data_type) == "html") {
+
+                  $html = $this->generateHtml($this->satellites);
+                  return new Response($html);
+
+                }
+                else {
+                   // defaut generate JSON
+                   return new JsonResponse($this->satellites);
+                }
               }
-              else {
-                 // defaut generate JSON
-                 return new JsonResponse($this->satellites);
-              }
+
+             // defaut generate JSON
+             return new JsonResponse($this->satellites);
             }
 
             // defaut generate JSON
             return new JsonResponse($this->satellites);
-          }
+
+         }
 
        }
        else
@@ -175,8 +175,6 @@ class DefaultController extends Controller
          $em = $this->getDoctrine()->getManager();
          $planete = $em->getRepository('AppBundle:Body')->getAllInfosPlaneteById($planete["id"]);
 
-
-
         if(count($planete) > 0) {
 
           try {
@@ -185,15 +183,14 @@ class DefaultController extends Controller
             }
           } catch (Exception $e) {
             //if error its the last satellite
-
-            try {
-              if(count($planete["rotation_id"]) > 0) {
-                $this->getSubSat($planete["rotation_id"]);
-              }
-            } catch (Exception $e) { }
+            if(count($planete["rotation_id"]) > 0) {
+              $this->getSubSat($planete["rotation_id"]);
+            }
           }
         }
 
        }
+
+
    }
 }
