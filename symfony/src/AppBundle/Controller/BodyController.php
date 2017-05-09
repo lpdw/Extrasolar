@@ -27,7 +27,7 @@ class BodyController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
-        $bodies = $em->getRepository('AppBundle:Body')->findAllBodiesAdmin();
+        //$bodies = $em->getRepository('AppBundle:Body')->findAllBodiesAdmin();
         }
         else{
         //$bodies = $em->getRepository('AppBundle:Body')->findAllBodies();

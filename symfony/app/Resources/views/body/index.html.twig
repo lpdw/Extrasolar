@@ -2,20 +2,22 @@
 {% block title %}Catalogue{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap-table/src/bootstrap-table.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap-table/src/extensions/click-edit-row/bootstrap-table-click-edit-row.css') }}">
 {% endblock %}
-
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
-    <script src="{{ asset('extensions/toolbar/bootstrap-table-toolbar.js') }}"></script>
-    <script src="{{ asset('js/javascript.js') }}"></script>
+    <script src="{{ asset('bootstrap-table/src/bootstrap-table.js') }}"></script>
+    <script src="{{ asset('bootstrap-table/src/extensions/toolbar/bootstrap-table-toolbar.js') }}"></script>
+    <script src="{{ asset('bootstrap-table/src/extensions/key-events/bootstrap-table-key-events.js') }}"></script>
+    <script src="{{ asset('bootstrap-table/src/extensions/click-edit-row/bootstrap-table-click-edit-row.js') }}"></script>
+    <!-- <script src="{{ asset('js/EventBootStrapTable.js') }}"></script> -->
+    <script src="https://code.jquery.com/jquery-1.7.js" integrity="sha256-fBiF7IYg9AoQ0EWUjT+fe4+cT3vS/x3ftIap8n6V4+M="   crossorigin="anonymous"></script>
+    <script src="http://spin.js.org/spin.min.js"></script>
 {% endblock %}
 
 {% block body %}
-
 {{ parent() }}
-
 <div class="container">
     {% if app.user %}
         <div class="text-right">
@@ -31,6 +33,7 @@
     data-id-table="advancedTable"
     data-show-columns="true"
     data-expanded="true"
+    data-show-export="true"
     data-url="{{app.request.getBaseURL()}}/catalogue/data.json">
     <thead>
         <tr>
@@ -42,7 +45,15 @@
             <th class="text-center" data-field="period" data-sortable="true">Période</th>
             <th class="text-center" data-field="axis" data-sortable="true">Axe</th>
             <th class="text-center" data-field="excentricity" data-sortable="true">Excenticité</th>
-            {% if app.user %}<th data-sortable="false">Actions</th>{% endif %}
+            {% if app.user %}
+              <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">
+                Action
+              </th>
+              {% else %}
+              <th data-field="action" data-formatter="actionFormatter2" data-events="actionEvents">
+                Action
+              </th>
+            {% endif %}
         </tr>
     </thead>
   </table>
@@ -63,6 +74,37 @@
     <a href="{{ path('publicity_index') }}" class="buttonLink mTop5">Emplacement n°1</a>
   </div>
   {% endif %}
+  <script>
+    function actionFormatter(value, row, index) {
+        return [
+            '<a class="like" href="'+row.id+'" title="Like">',
+            '<i class="glyphicon glyphicon-eye-open"></i>',
+            '</a>',
+            '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
+            '<i class="glyphicon glyphicon-edit"></i>',
+            '</a>',
+        ].join('');
+}
 
+function actionFormatter2(value, row, index)
+{
+  return [
+      '<a class="like" href="'+row.id+'" title="Like">',
+      '<i class="glyphicon glyphicon-eye-open"></i>',
+      '</a>',
+  ].join('');
+}
+
+
+    window.actionEvents = {
+      'click .like': function (e, value, row, index) {
+      },
+      'click .edit': function (e, value, row, index) {
+          window.location.replace('http://localhost:8000/admin/catalogue/'+row.id+'/edit');
+      },
+      'click .remove': function (e, value, row, index) {
+      }
+  }
+  </script>
 </div>
 {% endblock %}
