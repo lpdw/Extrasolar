@@ -26,7 +26,11 @@ class TypeType extends AbstractType
               'label' => 'Catégorie d\'astre'
               ))
             ->add('picture', HiddenType::class)
-            ->add('description')
+            ->add('description', TextType::class, array(
+              'label' => 'description',
+              'required' => false,
+              'empty_data'  => ' '
+              ))
             ->add('file', FileType::class,array(
               'required' => false,
               'label' => 'Uploader une image'))
