@@ -27,14 +27,14 @@ class BodyController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
-        $bodies = $em->getRepository('AppBundle:Body')->findAllBodiesAdmin();
+        //$bodies = $em->getRepository('AppBundle:Body')->findAllBodiesAdmin();
         }
         else{
-        $bodies = $em->getRepository('AppBundle:Body')->findAllBodies();
+        //$bodies = $em->getRepository('AppBundle:Body')->findAllBodies();
         }
 
         return $this->render('body/index.html.twig', array(
-            'bodies' => $bodies,
+            //'bodies' => $bodies,
             'title' => 'Catalogue'
         ));
     }
@@ -58,6 +58,23 @@ class BodyController extends Controller
       $reports = $serializer->serialize($bodies, 'json');
 
       return new \Symfony\Component\HttpFoundation\Response($reports);
+    }
+
+    /**
+    * @Route("catalogue/data.json")
+    */
+    public function dataJsonAPI()
+    {
+      $em = $this->getDoctrine()->getManager();
+
+      $bodies = $em->getRepository('AppBundle:Body')->findAllBodiesForAPI();
+      //$serializer = $this->get('serializer');
+      $dataJson = json_encode($bodies);
+
+
+      //$dataJson = $serializer->serialize($bodies,'json');
+      //return $this->json($dataJson);
+      return new \Symfony\Component\HttpFoundation\Response($dataJson);
     }
     /**
      *
