@@ -51,4 +51,62 @@ class BodiesRepository extends EntityRepository
                   ;
     }
 
+<<<<<<< HEAD
+=======
+    public function getListPlaneteByName($name="") {
+      if($name != "") {
+        return $this->getEntityManager()
+                    ->createQuery('SELECT n.name, n.id FROM AppBundle:Body n WHERE n.name LIKE :name')
+                    ->setParameter('name', '%' . $name . '%')
+                    ->getResult();
+      }
+
+    }
+
+    public function getPlaneteById($id="") {
+      if($id != "") {
+        return $this->getEntityManager()
+                    ->createQuery('SELECT n.name FROM AppBundle:Body n WHERE n.id = :id')
+                    ->setParameter('id', (int)$id)
+                    ->getResult();
+      }
+    }
+
+    public function getValuesPlaneteByNameAndProps($name, $props) {
+      // echo trim($name);
+      // echo count($props);die();
+
+      return $this->getEntityManager('n')
+                  ->createQuery("SELECT n, t FROM AppBundle:Body n JOIN n.rotation_id t WHERE n.name = :name")
+                  ->setParameter('name', $name)
+                  ->getResult(Query::HYDRATE_ARRAY)[0];
+
+      if($name != "" && count($props) > 0) {
+        // $queries = "SELECT n.name , ";
+        //
+        // for ($i=0; $i < count($props); $i++) {
+        //   $queries .= "n." . $props[$i] .",";
+        // }
+        //
+        // $queries = rtrim($queries,", ");
+        // $queries .= " FROM AppBundle:Body n WHERE n.name = :name";
+
+
+
+        // return $this->getEntityManager()
+        //             ->createQuery($queries)
+        //             ->setParameter('name', trim($name))
+        //             ->getResult();
+      }
+    }
+
+    public function getAllInfosPlaneteById($id) {
+      if($id != "") {
+        return $this->getEntityManager('n')
+                    ->createQuery('SELECT n, t FROM AppBundle:Body n JOIN n.rotation_id t WHERE n.id = :id')
+                    ->setParameter('id', (int)$id)
+                    ->getResult(Query::HYDRATE_ARRAY)[0];
+      }
+    }
+>>>>>>> eef0dcfd9db7d1f88c4e2f152d18718906896ff4
 }

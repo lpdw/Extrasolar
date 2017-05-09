@@ -454,7 +454,8 @@
     <parameter key="assetic.use_controller_worker.class">Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker</parameter>
     <parameter key="assetic.request_listener.class">Symfony\Bundle\AsseticBundle\EventListener\RequestListener</parameter>
     <parameter key="nelmio_cors.map" type="collection">
-      <parameter key="^/api/*" type="collection">
+      <parameter key="^/api" type="collection">
+        <parameter key="allow_credentials">true</parameter>
         <parameter key="allow_origin">true</parameter>
         <parameter key="allow_headers">true</parameter>
         <parameter key="allow_methods" type="collection">
@@ -462,6 +463,9 @@
           <parameter>PUT</parameter>
           <parameter>GET</parameter>
           <parameter>DELETE</parameter>
+        </parameter>
+        <parameter key="expose_headers" type="collection">
+          <parameter>*</parameter>
         </parameter>
         <parameter key="max_age">3600</parameter>
       </parameter>
@@ -640,8 +644,13 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>oIZ27KJiFg</argument>
                 <argument>0</argument>
+<<<<<<< HEAD
                 <argument>OI4dML0b2H51SE8nKM3p4V</argument>
                 <argument>/Users/IntelliJ/ProjectAlexandre/Extrasolar/symfony/var/cache/dev/pools</argument>
+=======
+                <argument>UQO-yLKjNg59zja23xo6m2</argument>
+                <argument>/Users/lpdw/Desktop/Extrasolar/symfony/var/cache/dev/pools</argument>
+>>>>>>> eef0dcfd9db7d1f88c4e2f152d18718906896ff4
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
               </service>
@@ -823,8 +832,13 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>+dHVU9Qugf</argument>
       <argument>0</argument>
+<<<<<<< HEAD
       <argument>OI4dML0b2H51SE8nKM3p4V</argument>
       <argument>/Users/IntelliJ/ProjectAlexandre/Extrasolar/symfony/var/cache/dev/pools</argument>
+=======
+      <argument>UQO-yLKjNg59zja23xo6m2</argument>
+      <argument>/Users/lpdw/Desktop/Extrasolar/symfony/var/cache/dev/pools</argument>
+>>>>>>> eef0dcfd9db7d1f88c4e2f152d18718906896ff4
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -833,8 +847,13 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>fn3bYvzoT4</argument>
       <argument>0</argument>
+<<<<<<< HEAD
       <argument>OI4dML0b2H51SE8nKM3p4V</argument>
       <argument>/Users/IntelliJ/ProjectAlexandre/Extrasolar/symfony/var/cache/dev/pools</argument>
+=======
+      <argument>UQO-yLKjNg59zja23xo6m2</argument>
+      <argument>/Users/lpdw/Desktop/Extrasolar/symfony/var/cache/dev/pools</argument>
+>>>>>>> eef0dcfd9db7d1f88c4e2f152d18718906896ff4
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -1867,7 +1886,11 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
+<<<<<<< HEAD
             <argument>59117fd91248f0.25180134</argument>
+=======
+            <argument>590c4428484601.41543188</argument>
+>>>>>>> eef0dcfd9db7d1f88c4e2f152d18718906896ff4
           </service>
         </argument>
       </argument>
@@ -2161,7 +2184,11 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
+<<<<<<< HEAD
             <argument>59117fd91248f0.25180134</argument>
+=======
+            <argument>590c4428484601.41543188</argument>
+>>>>>>> eef0dcfd9db7d1f88c4e2f152d18718906896ff4
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3895,7 +3922,8 @@
     <service id="nelmio_cors.options_provider.config" class="Nelmio\CorsBundle\Options\ConfigProvider">
       <tag name="nelmio_cors.options_provider" priority="-1"/>
       <argument type="collection">
-        <argument key="^/api/*" type="collection">
+        <argument key="^/api" type="collection">
+          <argument key="allow_credentials">true</argument>
           <argument key="allow_origin">true</argument>
           <argument key="allow_headers">true</argument>
           <argument key="allow_methods" type="collection">
@@ -3903,6 +3931,9 @@
             <argument>PUT</argument>
             <argument>GET</argument>
             <argument>DELETE</argument>
+          </argument>
+          <argument key="expose_headers" type="collection">
+            <argument>*</argument>
           </argument>
           <argument key="max_age">3600</argument>
         </argument>
