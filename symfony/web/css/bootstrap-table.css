@@ -81,7 +81,7 @@
 
 .fixed-table-container thead th .th-inner,
 .fixed-table-container tbody td .th-inner {
-    background-color: #323232;
+    background-color: #161a26;
     color: #FFF;
     padding: 8px;
     line-height: 24px;
@@ -307,6 +307,55 @@
 .pull-right .dropdown-menu {
     right: 0;
     left: auto;
+}
+
+.pagination>.active>a, 
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background: #161a26;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #2f0d4c, #161a26);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #2f0d4c, #161a26); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-color: #161a26;
+}
+
+.pagination>li>a, 
+.pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #2f0d4c;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+td img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fixed-table-toolbar .columns label:hover {
+    cursor: pointer;
+    color: #fff;
+    background: #161a26;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #2f0d4c, #161a26);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #2f0d4c, #161a26); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.form-control:focus {
+    border-color: #2f0d4c;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(47, 13, 76,.075), 0 0 8px rgba(47, 13, 76,.6);
+    box-shadow: inset 0 1px 1px rgba(47, 13, 76,.075), 0 0 8px rgba(47, 13, 76,.6);
 }
 
 /* calculate scrollbar width */

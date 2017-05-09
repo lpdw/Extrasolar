@@ -1,14 +1,11 @@
 <?php
-
 namespace AppBundle\Controller;
-
 use AppBundle\Entity\Extrasolar\Body;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
 /**
  * Body controller.
  *
@@ -25,39 +22,45 @@ class BodyController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
-        $bodies = $em->getRepository('AppBundle:Body')->findAllBodiesAdmin();
+        //$bodies = $em->getRepository('AppBundle:Body')->findAllBodiesAdmin();
         }
         else{
-        $bodies = $em->getRepository('AppBundle:Body')->findAllBodies();
+        //$bodies = $em->getRepository('AppBundle:Body')->findAllBodies();
         }
-
         return $this->render('body/index.html.twig', array(
-            'bodies' => $bodies,
+            //'bodies' => $bodies,
             'title' => 'Catalogue'
         ));
     }
-
     /**
      * @Route("admin/catalogue/body.json/{name}", name="bodyjson")
      */
     public function listejson(Request $request)
     {
       $em = $this->getDoctrine()->getManager();
-
       $term = trim(strip_tags($request->get('name')));
-
       $bodies = $em->getRepository('AppBundle:Body')->createQueryBuilder('c')
          ->where('c.name LIKE :name')
          ->setParameter('name', '%'.$term.'%')
          ->getQuery()
          ->getResult();
-
       $serializer = $this->get('serializer');
       $reports = $serializer->serialize($bodies, 'json');
-
       return new \Symfony\Component\HttpFoundation\Response($reports);
+    }
+    /**
+    * @Route("catalogue/data.json")
+    */
+    public function dataJsonAPI()
+    {
+      $em = $this->getDoctrine()->getManager();
+      $bodies = $em->getRepository('AppBundle:Body')->findAllBodiesForAPI();
+      //$serializer = $this->get('serializer');
+      $dataJson = json_encode($bodies);
+      //$dataJson = $serializer->serialize($bodies,'json');
+      //return $this->json($dataJson);
+      return new \Symfony\Component\HttpFoundation\Response($dataJson);
     }
     /**
      *
@@ -65,10 +68,8 @@ class BodyController extends Controller
      *@Method("GET")
      */
     public function calculSeff(Request $request){
-
       $em = $this->getDoctrine()->getManager();
       $type = $em->getRepository('AppBundle:Type')->find($request->get('typeID'));
-
       $types = $this->getParameter('types');
       if ($request->get('host') || $type->getCategorie() != $types['point'] || $type->getCategorie() != $types['star'] ){
         $host = $em->getRepository('AppBundle:Body')->getHost($request->get('host'));
@@ -87,7 +88,6 @@ class BodyController extends Controller
         return new \Symfony\Component\HttpFoundation\Response($seff);
       }
     }
-
     /**
      * Creates a new body entity.
      *
@@ -100,11 +100,9 @@ class BodyController extends Controller
         $body = new Body();
         $form = $this->createForm('AppBundle\Form\BodyType', $body);
         $form->handleRequest($request);
-
         if($form->isSubmitted() && $form->isValid())
         {
             $em = $this->getDoctrine()->getManager();
-
             $calculs = $this->get('app.calculs');
             //CONVERT DISTANCE
             $distance = null;
@@ -119,7 +117,6 @@ class BodyController extends Controller
                 $axis = $calculs->convertAxis($form['axis']->getData(), $form['UA']->getData(), $distance );
                 $body->setAxis($axis);
             }
-
             //CONVERT RADIUS
             if(!empty($form['radius']->getData()))
             {
@@ -142,19 +139,16 @@ class BodyController extends Controller
             //     $body_2 = $em->getRepository('AppBundle:Body')->find($form['rotation_id']->getData());
             //     $body->setRotationId($body_2);
             // }
-
             $em->persist($body);
             $em->flush($body);
             return $this->redirectToRoute('catalogue_show', array('id' => $body->getId()));
         }
-
         return $this->render('body/new.html.twig', array(
             'body' => $body,
             'form' => $form->createView(),
             'title'=> 'Ajouter un astre'
         ));
     }
-
     /**
      * Finds and displays a body entity.
      *
@@ -173,7 +167,6 @@ class BodyController extends Controller
             'title' => $body->getName()
         ));
     }
-
     /**
      * Displays a form to edit an existing body entity.
      *
@@ -185,10 +178,8 @@ class BodyController extends Controller
         $deleteForm = $this->createDeleteForm($body);
         $editForm = $this->createForm('AppBundle\Form\BodyType', $body);
         $editForm->handleRequest($request);
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
             $calculs = $this->get('app.calculs');
             //CONVERT DISTANCE
             $distance = null;
@@ -203,7 +194,6 @@ class BodyController extends Controller
                 $axis = $calculs->convertAxis($editForm['axis']->getData(), $editForm['UA']->getData(), $distance );
                 $body->setAxis($axis);
             }
-
             //CONVERT RADIUS
             if(!empty($editForm['radius']->getData()))
             {
@@ -221,13 +211,11 @@ class BodyController extends Controller
               $period = $calculs->convertPeriod($editForm['period']->getData(), $editForm['jours']->getData());
               $body->setPeriod($distance);
             }
-
             // if($form['rotation_id']->getData())
             // {
             //     $body_2 = $em->getRepository('AppBundle:Body')->find($form['rotation_id']->getData());
             //     $body->setRotationId($body_2);
             // }
-
             $em->persist($body);
             $em->flush($body);
             return $this->redirectToRoute('catalogue_show', array('id' => $body->getId()));
@@ -239,7 +227,6 @@ class BodyController extends Controller
             'title' => 'Editer un astre'
         ));
     }
-
     /**
      * Deletes a body entity.
      *
@@ -250,16 +237,13 @@ class BodyController extends Controller
     {
         $form = $this->createDeleteForm($body);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($body);
             $em->flush($body);
         }
-
         return $this->redirectToRoute('catalogue_index');
     }
-
     /**
      * Creates a form to delete a body entity.
      *

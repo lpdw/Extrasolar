@@ -62,7 +62,7 @@ a.buttonLink, div.buttonLink, button.buttonLink, input.buttonLink {
     font-weight: normal !important;
 }
 
-a.buttonLink:hover{
+a.buttonLink:hover, div.buttonLink:hover, button.buttonLink:hover, input.buttonLink:hover{
     background: #161a26 !important;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #5b37bf, #161a26) !important;  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #5b37bf, #161a26) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -85,6 +85,14 @@ a.buttonLink:hover{
 #table>tbody>tr>.titleBootstrap{
     text-align: center;
     vertical-align: middle;
+}
+
+.form-control:focus,
+input[type=file]:focus {
+    border-color: #2f0d4c;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(47, 13, 76,.075), 0 0 8px rgba(47, 13, 76,.6);
+    box-shadow: inset 0 1px 1px rgba(47, 13, 76,.075), 0 0 8px rgba(47, 13, 76,.6);
 }
 
 .formCustom input {
@@ -346,4 +354,68 @@ a.buttonLink:hover{
 
 .dropdown-menu input[type="checkbox"]:checked > label {
     color: #000 !important;
+}
+
+/** CHANGE ALADIN **/
+.aladin-maximize:hover {
+    cursor:pointer;
+}
+
+.aladin-layersControl-container {
+    position: absolute;
+    top: 30px;
+    left: 4px;
+    cursor:pointer;
+    z-index: 20;
+    background: #ECECEC !important;
+    border-radius: 2px !important;
+}
+
+.aladin-layersControl-container:hover {
+    background: #D2D7D3 !important;
+}
+
+.aladin-gotoControl-container {
+    position: absolute;
+    top: 68px;
+    left: 4px;
+    cursor:pointer;
+    z-index: 20;
+    background: #ECECEC !important;
+    border-radius: 2px !important;
+}
+
+.aladin-gotoControl-container:hover {
+    background: #D2D7D3 !important;
+}
+
+.aladin-zoomControl a {
+    width: 20px;
+    height:20px;
+    line-height: 18px;
+    display:block;
+    background: #ECECEC !important;
+    margin:1px;
+    text-align:center;
+    border-radius: 2px !important;
+    border:1px solid #aaa;
+    text-decoration:none;
+    color:#222;
+}
+
+.aladin-zoomControl a:hover {
+    background: #D2D7D3 !important;
+}
+
+.aladin-box {
+    display: none;
+    z-index: 30;
+    position: absolute;
+    background: #ECECEC !important;
+    left: 4px;
+    border-radius: 2px !important;
+    font-size: 14px;
+    font-family: Verdana, Lucida, Arial;
+    line-height: 1.3;
+    color: #222;
 }

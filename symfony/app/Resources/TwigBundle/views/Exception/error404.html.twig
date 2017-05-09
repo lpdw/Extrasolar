@@ -1,17 +1,19 @@
 {# app/Resources/TwigBundle/views/Exception/error404.html.twig #}
+
 {% extends 'base.html.twig' %}
 
-
-
 {% block body %}
-    <h1>Page not found</h1>
+{{ parent() }}
+	<div class="text-center">
+		<h1 style="font-size: 7em">404</h1>
+		<h2 style="font-size: 4em">Page non trouvé</h2>
 
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        {# ... #}
-    {% endif %}
+	    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+	        {# ... #}
+	    {% endif %}
 
-    <p>
-        The requested page couldn't be located. Checkout for any URL
-        misspelling or <a href="{{ path('homepage') }}">return to the homepage</a>.
-    </p>
+	    <p>
+	        Vous semblez vous être perdu dans le vaste univers. Redirigez vous à nouveau grâce au menu de navigation ou <a href="{{ path('homepage') }}">retournez à la page d'accueil</a>.
+	    </p>
+	</div>
 {% endblock %}
