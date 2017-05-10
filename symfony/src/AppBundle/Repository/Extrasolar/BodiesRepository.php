@@ -80,30 +80,30 @@ class BodiesRepository extends EntityRepository
                   ->getResult(Query::HYDRATE_ARRAY);
 
       if(count($res) <= 0) {
-        $res = $this->getEntityManager('n')
-                    ->createQuery("SELECT n FROM AppBundle:Body n WHERE n.name = :name")
-                    ->setParameter('name', trim($name))
-                    ->getResult(Query::HYDRATE_ARRAY);
+        // $res = $this->getEntityManager('n')
+        //             ->createQuery("SELECT n FROM AppBundle:Body n WHERE n.name = :name")
+        //             ->setParameter('name', trim($name))
+        //             ->getResult(Query::HYDRATE_ARRAY);
+
+        if($name != "" && count($props) > 0) {
+          $queries = "SELECT n.name , ";
+
+          for ($i=0; $i < count($props); $i++) {
+            $queries .= "n." . $props[$i] .",";
+          }
+
+          $queries = rtrim($queries,", ");
+          $queries .= " FROM AppBundle:Body n WHERE n.name = :name";
+
+          $res = $this->getEntityManager()
+                      ->createQuery($queries)
+                      ->setParameter('name', trim($name))
+                      ->getResult();
+        }
       }
 
       return $res;
-      // if($name != "" && count($props) > 0) {
-        // $queries = "SELECT n.name , ";
-        //
-        // for ($i=0; $i < count($props); $i++) {
-        //   $queries .= "n." . $props[$i] .",";
-        // }
-        //
-        // $queries = rtrim($queries,", ");
-        // $queries .= " FROM AppBundle:Body n WHERE n.name = :name";
 
-
-
-        // return $this->getEntityManager()
-        //             ->createQuery($queries)
-        //             ->setParameter('name', trim($name))
-        //             ->getResult();
-      // }
     }
 
     public function getAllInfosPlaneteById($id) {

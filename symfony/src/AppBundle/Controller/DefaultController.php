@@ -119,12 +119,11 @@ class DefaultController extends Controller
 
             // get infos about the planete
             $planete = $em->getRepository('AppBundle:Body')->getValuesPlaneteByNameAndProps($planete_name, $props);
-            // print_r($planete);die();
 
             $satellites = array();
 
             array_push($this->satellites, array("planete" => $planete));
- 
+
             try {
               if(isset($planete[0]["rotation_id"]) || !empty($planete[0]["rotation_id"])) {
                 $this->getSubSat($planete[0]["rotation_id"]);
