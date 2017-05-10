@@ -134,7 +134,7 @@ $(document).ready(function() {
 
      // for each categories generate input type checkbox
      for (var i = 0; i < props.length; i++) {
-       if(props[i] == "id" || props[i] == "type_id" || props[i] == "update_at") continue;
+       if(props[i] == "id" || props[i] == "type_id" || props[i] == "update_at" || props[i] == "rotation_id") continue;
        $("#generate-infos form").append("<div class='input-group'><label><input type='checkbox' value='"+props[i]+"'>&nbsp;"+props[i]+"</label></div>");
      }
 
