@@ -39,6 +39,8 @@ $(document).ready(function() {
 
     $("#generate-infos").hide();
     $("#html-generated").hide();
+    $("#generated-html").hide();
+    $("#visualisation-html-generated").hide();
 
     // reset planete lit
     resetPlaneteList();
@@ -132,15 +134,30 @@ $(document).ready(function() {
      });
     $("#generate-infos form").find("button").remove();
 
+    $("#generate-infos form").append("<div class='paire col-lg-6'></div><div class='col-lg-6 impaire'></div>");
+
      // for each categories generate input type checkbox
      for (var i = 0; i < props.length; i++) {
-       if(props[i] == "id" || props[i] == "type_id" || props[i] == "update_at" || props[i] == "rotation_id") continue;
-       $("#generate-infos form").append("<div class='input-group'><label><input type='checkbox' value='"+props[i]+"'>&nbsp;"+props[i]+"</label></div>");
+       console.log("paire :", i%2);
+
+       if(props[i] == "id" || props[i] == "type_id" || props[i] == "update_at" || props[i] == "rotation_id" || props[i] == "satellites") continue;
+       else {
+         if((i%2) == 0) {
+           $("#generate-infos form .paire").append("<div class='input-group'><label><input type='checkbox' value='"+props[i]+"'>&nbsp;"+props[i]+"</label></div>");
+         }
+         else {
+           $("#generate-infos form .impaire").append("<div class='input-group'><label><input type='checkbox' value='"+props[i]+"'>&nbsp;"+props[i]+"</label></div>");
+         }
+       }
      }
 
-     $("#generate-infos form").append("<div class='col-lg-8'><button type='button' class='btn btn-primary' id='btn-generate'>GENERER</button></div>");
+     $("#generate-infos form").append("<div class='row'><button type='button' class='btn btn-primary' id='btn-generate'>GENERER</button></div>");
 
      $("#btn-generate").click(function() {
+
+       $("#generated-html").show();
+       $("#visualisation-html-generated").show();
+
        var props_checked = getAllPropertiesChecked();
 
        console.log("props checked => ", props_checked);
