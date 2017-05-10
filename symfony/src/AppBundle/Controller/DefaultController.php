@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Extrablog\WpPosts;
@@ -135,11 +136,13 @@ class DefaultController extends Controller
             if(isset($data_type) && !empty($data_type)) {
               if(strtolower($data_type) == "html") {
 
-                $html = $this->generateHtml($this->satellites);
+                $html = $this->generateHtml($planete, $props);
                 return new Response($html);
               }
               else {
                  // defaut generate JSON
+                 // genereate only all props requested
+                 $this->satellites = $this->removeUnrequestProps($this->satellites, $props);
                  return new JsonResponse($this->satellites);
               }
             }
@@ -154,51 +157,67 @@ class DefaultController extends Controller
      }
     }
 
-     private function generateHtml($planete) {
-       $planete = json_encode($planete, true);
-       $planete = json_decode($planete);
+     private function generateHtml($planete, $props) {
 
-      //  print_r($planete[0]->planete);
-      //  die();
        $html = "<table><tbody>";
 
-       foreach ($planete[0]->planete as $key => $value) {
-         print_r($value->name);die();
-        $html .= "<tr><td>".$key."</td><td>".$value."</td></tr>";
+       foreach ($planete[0] as $key_planete => $value) {
+        //  var_dump($value);die();
+         if( $key_planete == "rotation_id" ) continue;
+
+         foreach ($props as $key => $prop) {
+           if($prop == $key_planete) {
+             $html .= "<tr><td>".$prop."</td><td>".$value."</td></tr>";
+           }
+         }
        }
 
        $html .= "</tbody></table>";
        return $html;
      }
 
-     private function getSubSat($planete) {
+    private function removeUnrequestProps($planete, $props) {
+
+      $new_planete = array();
+
+      foreach ($planete[0]["planete"][0] as $key_planete => $value) {
+
+        foreach ($props as $key => $prop) {
+          if($prop == $key_planete) {
+            //add props for new tab
+            $new_planete[$prop] = $planete[0]["planete"][0][$key_planete];
+          }
+        }
+      }
+
+      $planete[0]["planete"][0] = $new_planete;
+      return $planete;
+
+    }
+
+    private function getSubSat($planete) {
 
        if(count($planete) > 0) {
-
          array_push($this->satellites, $planete);
 
          $em = $this->getDoctrine()->getManager();
          $planete = $em->getRepository('AppBundle:Body')->getAllInfosPlaneteById($planete["id"]);
 
-
-
-        if(count($planete) > 0) {
+         if(count($planete) > 0) {
 
           try {
-            if( count($planete[0]["rotation_id"]) > 0) {
+            if( count($planete[0]["rotation_id"]) > 0)
               $this->getSubSat($planete[0]["rotation_id"]);
-            }
           } catch (Exception $e) {
             //if error its the last satellite
 
-            try {
-              if(count($planete["rotation_id"]) > 0) {
-                $this->getSubSat($planete["rotation_id"]);
-              }
-            } catch (Exception $e) { }
+              try {
+                if(count($planete["rotation_id"]) > 0) {
+                  $this->getSubSat($planete["rotation_id"]);
+                }
+              } catch (Exception $e) { }
+            }
           }
         }
-
-       }
    }
 }
