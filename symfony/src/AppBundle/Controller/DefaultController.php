@@ -155,9 +155,15 @@ class DefaultController extends Controller
     }
 
      private function generateHtml($planete) {
+       $planete = json_encode($planete, true);
+       $planete = json_decode($planete);
+
+      //  print_r($planete[0]->planete);
+      //  die();
        $html = "<table><tbody>";
 
-       foreach ($planete[0] as $key => $value) {
+       foreach ($planete[0]->planete as $key => $value) {
+         print_r($value->name);die();
         $html .= "<tr><td>".$key."</td><td>".$value."</td></tr>";
        }
 

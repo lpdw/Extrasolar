@@ -116,7 +116,7 @@ $(document).ready(function() {
      var planete_name = JSON.parse(planete.name)[0].name;
      var props = planete.props;
 
-     console.log(props);
+    //  console.log(props);
 
      $("#generate-infos").show();
      $("#generate-infos .planete-name").text(planete_name);
@@ -130,7 +130,6 @@ $(document).ready(function() {
      // for each categories generate input type checkbox
      for (var i = 0; i < props.length; i++) {
        if(props[i] == "id" || props[i] == "type_id" || props[i] == "update_at") continue;
-      //  if(props[i] == "satellites") console.log(props[i].satellites);
        $("#generate-infos form").append("<div class='input-group'><label><input type='checkbox' value='"+props[i]+"'>&nbsp;"+props[i]+"</label></div>");
      }
 
@@ -139,7 +138,7 @@ $(document).ready(function() {
      $("#btn-generate").click(function() {
        var props_checked = getAllPropertiesChecked();
 
-       console.log(props_checked);
+       console.log("props checked => ", props_checked);
 
        // for each properties get values => send request to get information
        var datas = { "name": planete_name, "type": "json", "props": props_checked };
