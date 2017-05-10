@@ -38,6 +38,7 @@ $(document).ready(function() {
   $("#custom-search-input button").click(function() {
 
     $("#generate-infos").hide();
+    $("#html-generated").hide();
 
     // reset planete lit
     resetPlaneteList();
@@ -50,7 +51,7 @@ $(document).ready(function() {
     if(planete_name != '') {
       ajaxGetListPlanete(planete_name, null).then(resp => {
         spinner.stop(); //stop the spinner
-        $("#custom-search-input input").val('') // reset value
+        $("#custom-search-input input").val('') // reset value$
 
         var data = JSON.parse(resp);
         console.log(data);
@@ -62,7 +63,11 @@ $(document).ready(function() {
         //settings on click each planete
         $("#list_planete li").each(function() {
           $(this).on('click', function() {
+            $("#html-generated").show();
+            $("#generated-html").find("code").remove();
+            $("#visualisation-html-generated").find("table").remove();
             $("#generate-infos").show();
+
 
             if($(this).val() != '') {
               var spinner = new Spinner(opts).spin(target);
