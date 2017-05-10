@@ -80,11 +80,7 @@ class BodiesRepository extends EntityRepository
                   ->getResult(Query::HYDRATE_ARRAY);
 
       if(count($res) <= 0) {
-        // $res = $this->getEntityManager('n')
-        //             ->createQuery("SELECT n FROM AppBundle:Body n WHERE n.name = :name")
-        //             ->setParameter('name', trim($name))
-        //             ->getResult(Query::HYDRATE_ARRAY);
-
+        // the planete doesn't have a satellite
         if($name != "" && count($props) > 0) {
           $queries = "SELECT n.name , ";
 

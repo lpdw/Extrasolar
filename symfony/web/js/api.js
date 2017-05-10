@@ -164,10 +164,11 @@ $(document).ready(function() {
      var html_to_copy = "&lt;table class='table'&gt; &lt;tbody&gt;";
      var html_visu = "<table class='table'> <tbody>";
 
-     for (var prop in resp[0]) {
-       if (resp[0].hasOwnProperty(prop)) {
-         html_to_copy += "&lt;tr&gt; &lt;td&gt; &lt;b&gt;"+prop+"&lt;/b&gt; &lt;/td&gt; &lt;td&gt;"+resp[0][prop]+"&lt;/td&gt; &lt;/tr&gt;";
-         html_visu += "<tr><td><b>"+prop+"</b></td><td>"+resp[0][prop]+"</td> </tr>";
+     for (var prop in resp[0].planete[0]) {
+       if (resp[0].planete[0].hasOwnProperty(prop)) {
+
+         html_to_copy += "&lt;tr&gt; &lt;td&gt; &lt;b&gt;"+prop+"&lt;/b&gt; &lt;/td&gt; &lt;td&gt;"+resp[0].planete[0][prop]+"&lt;/td&gt; &lt;/tr&gt;";
+         html_visu += "<tr><td><b>"+prop+"</b></td><td>"+resp[0].planete[0][prop]+"</td> </tr>";
        }
      }
 
