@@ -1,40 +1,50 @@
 
 oCanvas.domReady(function () {
   var HTMLcanvas = document.getElementById("system");
-
+  var bodiesNameDisplay = document.getElementsByClassName("bodies-name")[0];
   var star = {
     name: "Kepler-65",
-    radius: 14.11,
-    // radius: 16291.82,
+    radius: 15,
+    //radius: 16291.82,
     satellites:[
     {name: "Kepler-65 b",axis:3,radius:20,eccentricity:0,period:11},
     {name: "Kepler-65 c",axis:5,radius:50,eccentricity:0,period:25},
-    {name: "Kepler-65 d",axis:7,radius:50,eccentricity:0,period:10},
+    {name: "Kepler-65 d",axis:7,radius:50,eccentricity:0.5,period:10},
     {name: "Kepler-65 e",axis:9,radius:25,eccentricity:0,period:30},
     {name: "Kepler-65 f",axis:11,radius:40,eccentricity:0.7,period:10},
-    {name: "Kepler-65 g",axis:13,radius:30,eccentricity:0.9,period:11},
+    {name: "Kepler-65 g",axis:13,radius:30,eccentricity:0,period:11},
     // {name: "HSV-4",axis:160,radius:2,eccentricity:0.1,period:10},
     // {name: "HSV-5",axis:180,radius:8,eccentricity:0.3,period:50},
     // {name: "HSV-6",axis:200,radius:7,eccentricity:0,period:40}
     ]
   }
-  var canvasStar, isSmallScene = false;
-  var canvas = oCanvas.create({
-  	canvas: "#system",
-  	background: "#222"
-  });
 
-  var satelliteProto = canvas.display.ellipse({ fill: "#56a085" }),
-  pathProto = canvas.display.ellipse({ stroke: "1px #fff" }),
-  infosProto = canvas.display.rectangle({ stroke: "2px #999", fill: '#fff' }),
-  textProto = canvas.display.text({ size: 12, fill: "1px #000"}),
-  selectedPlanetProto = canvas.display.ellipse({ fill: 'radial-gradient(center, center, 50% width, rgba(229,229,229,0) 70%, rgba(100,180,180,0.4))' });
-  var selectedPlanet = selectedPlanetProto, currentPlanet = satelliteProto, isPlanetSelected = false;
-  // Set up data
-  var smallSceneSatellites = [], fullSceneSatellites = [];
-  //var satelliteColors = ["#a0aB99", "#BF92C0", "#c7509f","#E2DcFs","#BBBEEE"];
-  var satelliteColor = "#3D5229"
-  var pathColors = ["#666", "#107B99", "#5F92C0"];
+
+var planete_name = HTMLcanvas.dataset.name;
+var datas = { "name": planete_name, "type": "json", "props" : ["name"]};
+// $.post("http://localhost:8888/api", JSON.stringify(datas), function(result){
+//   //star = result;
+//   //console.log(result);
+// });
+
+
+var canvasStar, isSmallScene = false;
+var canvas = oCanvas.create({
+	canvas: "#system",
+	background: "#222"
+});
+
+var satelliteProto = canvas.display.ellipse({ fill: "#56a085" }),
+pathProto = canvas.display.ellipse({ stroke: "1px #fff" }),
+infosProto = canvas.display.rectangle({ stroke: "2px #999", fill: '#fff' }),
+textProto = canvas.display.text({ size: 12, fill: "1px #000"}),
+selectedPlanetProto = canvas.display.ellipse({ fill: 'radial-gradient(center, center, 50% width, rgba(229,229,229,0) 70%, rgba(100,180,180,0.4))' });
+var selectedPlanet = selectedPlanetProto, currentPlanet = satelliteProto, isPlanetSelected = false;
+// Set up data
+var smallSceneSatellites = [], fullSceneSatellites = [];
+//var satelliteColors = ["#a0aB99", "#BF92C0", "#c7509f","#E2DcFs","#BBBEEE"];
+var satelliteColor = "#3D5229"
+var pathColors = ["#666", "#107B99", "#5F92C0"];
 
 
   // Definition for a satellite and its corresponding path
@@ -57,6 +67,18 @@ oCanvas.domReady(function () {
       return false;
     }
   });
+  bodiesNameDisplay.addEventListener('click', function(e){
+    if(e.target.dataset.id)
+      PlanetSelected(canvas.draw.objects.find(findById(e.target.dataset.id)));
+  });
+
+  function findById(id){
+    return function(element){
+      return element.id == id;
+    }
+
+  }
+  // bodiesNameDisplay.addEventListener("")
   function loadCanvas(){
     canvas.timeline.stop();
     canvas.destroy();
@@ -83,7 +105,13 @@ oCanvas.domReady(function () {
 
   function InitSmallScene(){
     HTMLcanvas.width = document.body.clientWidth > 600 ? document.body.clientWidth : 600;
-    HTMLcanvas.height = 200;
+    HTMLcanvas.height = 300;
+
+    while (bodiesNameDisplay.firstChild) {
+        bodiesNameDisplay.removeChild(bodiesNameDisplay.firstChild);
+        console.log("hello");
+    }
+
     isSmallScene = true;
     canvas = oCanvas.create({
       canvas: "#system",
@@ -91,7 +119,7 @@ oCanvas.domReady(function () {
     });
     smallSceneSatellites = [];
     canvasStar = canvas.display.ellipse({
-      x: 0, y: canvas.height/2,
+      x: 0, y: canvas.height/3,
       //radius: Math.log(star.radius) / 19 * canvas.height,
       radius: star.radius,
       fill: "#fB4"
@@ -102,10 +130,11 @@ oCanvas.domReady(function () {
         return b.axis - a.axis;
       })
       var ratio = 0.8 * (canvas.width - canvasStar.radius * 2) / star.satellites[0].axis;
-      // console.log(ratio * star.satellites[0].axis +", width: " + canvas.width);
-      // console.log(canvas.width - smallSceneStar.radius);
-      // console.log(smallSceneStar.radius);
-      // Create seven satellites and paths. Definition is further down.
+
+      star.satellites.sort(function(a,b){
+        return a.axis - b.axis;
+      })
+      addPlanetName(star.name, canvasStar.id);
       star.satellites.forEach(function(satellite, index, array){
         var scaledAxis = canvasStar.radius * 2 + satellite.axis * ratio;
         createSatellite({
@@ -118,18 +147,18 @@ oCanvas.domReady(function () {
         }, smallSceneSatellites);
 
 
-        var text = canvas.display.text({
-          x: scaledAxis - satellite.radius / 2,
-          y: canvas.height - 20,
-          size: 20,
-          text: satellite.name,
-          strokeWidth:0,
-          fill: "#fff",
-          satelliteObj: smallSceneSatellites[smallSceneSatellites.length - 1],
-          satelliteData: satellite
-        });
-        text.bind("click tap", PlanetSelected);
-        text.add();
+        // var text = canvas.display.text({
+        //   x: scaledAxis - satellite.radius / 2,
+        //   y: canvas.height - 20,
+        //   size: 20,
+        //   text: satellite.name,
+        //   strokeWidth:0,
+        //   fill: "#fff",
+        //   satelliteObj: smallSceneSatellites[smallSceneSatellites.length - 1],
+        //   satelliteData: satellite
+        // });
+        // text.bind("click tap", PlanetSelected);
+        // text.add();
       })
       canvas.setLoop(selectedPlanetLoop);
       canvasStar.dragAndDrop();
@@ -137,8 +166,12 @@ oCanvas.domReady(function () {
 
   // Init objetcs for the FullScreen scene with animation
   function InitFullScene(){
-    HTMLcanvas.height = 0.99*window.innerHeight;
-    HTMLcanvas.width =  0.99*window.innerWidth;
+    HTMLcanvas.height = window.innerHeight;
+    HTMLcanvas.width =  window.innerWidth;
+
+    while (bodiesNameDisplay.firstChild) {
+        bodiesNameDisplay.removeChild(bodiesNameDisplay.firstChild);
+    }
 
     canvas = oCanvas.create({
       canvas: "#system",
@@ -146,39 +179,45 @@ oCanvas.domReady(function () {
     });
 
     star.satellites.sort(function(a,b){
-      return b.axis - a.axis;
+      return (b.axis + EccentricityCenter(b.eccentricity, b.axis)) - (a.axis + EccentricityCenter(a.eccentricity, a.axis));
     })
+
     fullSceneSatellites = [];
     canvasStar = canvas.display.ellipse({
       x: canvas.width / 2, y: canvas.height / 2,
       radius: star.radius,
       fill: "#fB4"
     }).add();
-      var limit = canvas.width > canvas.height ? canvas.height : canvas.width;
-      var ratio = (limit / 2 - canvasStar.radius ) / star.satellites[0].axis;
-      star.satellites.forEach(function(satellite, index, array){
-        var scaledAxis = canvasStar.radius * 2 + satellite.axis * ratio;
-        createSatellite({
-          parent: canvasStar,
-          name: satellite.name,
-          axis: scaledAxis,
-          radius: satellite.radius,
-          period: satellite.period,
-          eccentricity: satellite.eccentricity
-        }, fullSceneSatellites);
 
-        var text = canvas.display.text({
-          x: 10,
-          y: 20 + index * 20,
-          text: satellite.name,
-          strokeWidth:0,
-          fill: "#fff",
-          satelliteObj: fullSceneSatellites[fullSceneSatellites.length - 1],
-          satelliteData: satellite,
-          zIndex: "front"
-        });
-        text.bind("click tap", PlanetSelected);
-        text.add();
+    var limit = canvas.width > canvas.height ? canvas.height : canvas.width;
+    var ratio = (limit / 2 - canvasStar.radius ) / (star.satellites[0].axis + EccentricityCenter(star.satellites[0].eccentricity, star.satellites[0].axis));
+
+    // console.log("eccentricity");
+    // console.log(EccentricityCenter(star.satellites[0].eccentricity, star.satellites[0].axis));
+    addPlanetName(star.name, canvasStar.id);
+    star.satellites.forEach(function(satellite, index, array){
+      var scaledAxis = 0.95 * (canvasStar.radius + satellite.axis * ratio);
+      createSatellite({
+        parent: canvasStar,
+        name: satellite.name,
+        axis: scaledAxis,
+        radius: satellite.radius,
+        period: satellite.period,
+        eccentricity: satellite.eccentricity
+      }, fullSceneSatellites);
+
+        // var text = canvas.display.text({
+        //   x: 10,
+        //   y: 20 + index * 20,
+        //   text: satellite.name,
+        //   strokeWidth:0,
+        //   fill: "#fff",
+        //   satelliteObj: fullSceneSatellites[fullSceneSatellites.length - 1],
+        //   satelliteData: satellite,
+        //   zIndex: "front"
+        // });
+        // text.bind("click tap", PlanetSelected);
+        // text.add();
       })
       // fullSceneStar.scalingX = 0.5;
       // fullSceneStar.scalingY = 0.5;
@@ -224,29 +263,20 @@ oCanvas.domReady(function () {
       name: options.name
       /*infoPanel = infos*/
     });
-    console;log(satellite);
     satellite.dragAndDrop();
     options.parent.addChild(satellite);
+    addPlanetName(options.name, satellite.id);
     objectsArray.push(satellite);
     //satellite.bind("click tap",PlanetSelected);
     //path.bind("click tap", PathSelected);
   }
 
-  function PlanetSelected(e){
-    currentPlanet.removeChild(selectedPlanet);
-    if(currentPlanet.path)
-      currentPlanet.path.stroke = "1px #fff";
-    if (this.satelliteObj == currentPlanet){
-      currentPlanet = satelliteProto;
-      if(isSmallScene)
-        canvas.timeline.stop();
-      return;
-    }
-    currentPlanet = this.satelliteObj;
-    HighlightPlanet();
-  }
-
-
+function addPlanetName(name, id){
+  var element = document.createElement("span");
+  element.innerHTML = name;
+  element.dataset.id = id;
+  bodiesNameDisplay.appendChild(element);
+}
   // function PlanetSelected(e){
   //   currentPlanet.removeChild(selectedPlanet);
   //   currentPlanet.path.stroke = "1px #fff";
@@ -259,6 +289,20 @@ oCanvas.domReady(function () {
   //   currentPlanet = this;
   //   HighlightPlanet();
   // }
+  function PlanetSelected(planet){
+    console.log(planet);
+    currentPlanet.removeChild(selectedPlanet);
+    if(currentPlanet.path)
+      currentPlanet.path.stroke = "1px #fff";
+    if (planet.satelliteObj == currentPlanet){
+      currentPlanet = satelliteProto;
+      if(isSmallScene)
+        canvas.timeline.stop();
+      return;
+    }
+    currentPlanet = planet;
+    HighlightPlanet();
+  }
 
   function HighlightPlanet(){
 

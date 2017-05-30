@@ -348,6 +348,46 @@ a.buttonLink:hover{
     color: #000 !important;
 }
 
+<<<<<<< HEAD
+/** Display System **/
+.system-display{
+  position:relative;
+  width:100%;
+}
+.system-display>:not(#system){
+  position:absolute;
+}
+[name="fullScreen"]{
+  bottom:10px;
+  right:10px;
+}
+.zoom{
+  width:25px;
+  height:50px;
+  right:10px;
+  top:10px;
+}
+[name="zoom+"], [name="zoom-"]{
+  width:25px;
+  height:25px;
+  margin:0;padding:0;
+  border: none;
+}
+/*[name="zoom-"]{
+  top:25px;
+}*/
+.system-display .bodies-name{
+  bottom:0;
+  display: flex;
+  justify-content:space-around;
+  width: 90%;
+  color:white;
+}
+.system-display .bodies-name>*{
+  position:relative;
+  font-size: 2em;
+  cursor: pointer;
+=======
 .api ul {
   list-style-type: none;
   margin: 0;
@@ -472,4 +512,5 @@ a.buttonLink:hover{
   opacity: .6;
   cursor:default;
   -webkit-user-select: none;
+>>>>>>> 84e530ee009ac6156ca12035be2e0dd32215c5b3
 }
