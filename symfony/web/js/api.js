@@ -51,7 +51,7 @@ $(document).ready(function() {
     var planete_name = $("#custom-search-input input").val();
 
     if(planete_name != '') {
-      ajaxGetListPlanete(planete_name, null).then(function(resp) {
+      ajaxFindListPlanete(planete_name, null).then(function(resp) {
         spinner.stop(); //stop the spinner
         $("#custom-search-input input").val('') // reset value$
 
@@ -163,7 +163,7 @@ $(document).ready(function() {
        console.log("props checked => ", props_checked);
 
        // for each properties get values => send request to get information
-       var datas = { "name": planete_name, "type": "json", "props": props_checked };
+       var datas = { "planete": planete_name, "type": "json", "props": props_checked };
 
        $.post("/api", JSON.stringify(datas))
        .done(function(resp) {
@@ -213,11 +213,11 @@ $(document).ready(function() {
      return props;
    }
 
-  function ajaxGetListPlanete(planete_name, planete_id) {
+  function ajaxFindListPlanete(planete_name, planete_id) {
     return $.ajax({
       method: "GET",
       url: "/api",
-      data: {name: planete_name, id: planete_id, get_planete_list: 'true'}
+      data: {planete: planete_name}
     });
   }
 

@@ -57,16 +57,12 @@ class DefaultController extends Controller
 
          if($request->getMethod() == "GET") {
 
-           $planete_name = trim(strip_tags($request->query->get('name')));
+           $planete_name = trim(strip_tags($request->query->get('planete')));
            $get_planete_list = trim(strip_tags($request->query->get('get_planete_list')));
            $planete_id = trim(strip_tags($request->query->get('id')));
            $get_props = trim(strip_tags($request->query->get('get_props')));
 
-           if(isset($planete_name)
-              && !empty($planete_name)
-              && isset($get_planete_list)
-              && !empty($get_planete_list)
-              && $get_planete_list == "true") { // if try to get only by name -> return list fof planetes
+           if(isset($planete_name) && !empty($planete_name)) { // if try to get only by name -> return list fof planetes
              $planetes_result = $em->getRepository('AppBundle:Body')->getListPlaneteByName($planete_name);
 
              $serializer = $this->get('serializer');
