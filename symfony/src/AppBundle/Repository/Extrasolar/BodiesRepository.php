@@ -15,8 +15,7 @@ class BodiesRepository extends EntityRepository
               ->Where('t.categorie != \'point\'')
               ->setMaxResults(5)
               ->getQuery()
-              ->getResult()
-              ;
+              ->getResult();
     }
 
     public function findAllBodies()

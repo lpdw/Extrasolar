@@ -9,8 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Extrablog\WpPosts;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -19,19 +17,18 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
-    {
+    public function indexAction(Request $request) {
 
-        $em = $this->getDoctrine()->getManager('extrablog');
-        $articles = $em->getRepository('AppBundle:WpPosts')->findLastPosts();
-        $em = $this->getDoctrine()->getManager();
-        $bodies = $em->getRepository('AppBundle:Body')->findLastBodies();
+      $em = $this->getDoctrine()->getManager('extrablog');
+      $articles = $em->getRepository('AppBundle:WpPosts')->findLastPosts();
+      $em = $this->getDoctrine()->getManager();
+      $bodies = $em->getRepository('AppBundle:Body')->findLastBodies();
 
-        return $this->render('default/index.html.twig', [
-          'bodies' => $bodies,
-          'articles' => $articles,
-          'title' => 'Extrasolar'
-        ]);
+      return $this->render('default/index.html.twig', [
+        'bodies' => $bodies,
+        'articles' => $articles,
+        'title' => 'Extrasolar'
+      ]);
     }
 
     /**
@@ -44,16 +41,6 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
-    //
-    // /**
-    //  * @Route("/api", name="api")
-    //  */
-    //  public function apiAction(Request $request)
-    //  {
-    //    return $this->render('body/api.html.twig', [
-    //      'title' => 'API'
-    //    ]);
-    //  }
 
     /**
      * @Route("/api", name="api")
@@ -66,9 +53,6 @@ class DefaultController extends Controller
      {
        $em = $this->getDoctrine()->getManager();
 
-      //  var_dump($request->server);
-
-       //accept text/html and if is xhr request
        if ($request->isXmlHttpRequest()) { // sets HEADERS "X-Requested-With: XMLHttpRequest"
 
          if($request->getMethod() == "GET") {
@@ -142,8 +126,7 @@ class DefaultController extends Controller
                 return new Response($html);
               }
               else {
-                 // defaut generate JSON
-                 // genereate only all props requested
+                 // defaut generate JSON // genereate only all props requested
                  $this->satellites = $this->removeUnrequestProps($this->satellites, $props);
                  return new JsonResponse($this->satellites);
               }
@@ -158,11 +141,14 @@ class DefaultController extends Controller
         return new Response("Erreur : ce n'est pas une requete xhr");
      }
 
-     return $this->render('body/api.html.twig', [
-       'title' => 'API'
-     ]);
+     return $this->render('body/api.html.twig');
     }
 
+    /**
+     * Generate html
+     * @param($planete, $arrayProps)
+     * @return html
+     */
      private function generateHtml($planete, $props) {
 
        $html = "<table><tbody>";
@@ -182,6 +168,11 @@ class DefaultController extends Controller
        return $html;
      }
 
+    /**
+     * Remove all unrequest properties
+     * @param($planete, $arrayProps)
+     * @return $planete - with right props
+     */
     private function removeUnrequestProps($planete, $props) {
 
       $new_planete = array();
@@ -198,9 +189,12 @@ class DefaultController extends Controller
 
       $planete[0]["planete"][0] = $new_planete;
       return $planete;
-
     }
 
+    /**
+     * Get all sub sattelite by planete
+     * @param($planete)
+     */
     private function getSubSat($planete) {
 
        if(count($planete) > 0) {
