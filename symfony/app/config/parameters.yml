@@ -2,9 +2,9 @@
 parameters:
     database_host: 127.0.0.1
     database_port: 3306
-    database_name: _Extrasolar
-    database_user: extraSite
-    database_password: 1U763NN3V1LL1325
+    database_name: extrasolar
+    database_user: root
+    database_password: null
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
@@ -13,7 +13,7 @@ parameters:
     types:
         point: Point
         star: Etoile
-        planet: Planète
+        planet: Planete
         moon: Lune
         asteroid: Asteroide
         comet: Comète
