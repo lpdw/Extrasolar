@@ -94,7 +94,7 @@ class DefaultController extends Controller
 
            $datas = $request->getContent();
            $params = json_decode($datas);
-           $planete_name = $params->name;
+           $planete_name = $params->planete;
            $props = $params->props;
            $data_type = $params->type;
 
