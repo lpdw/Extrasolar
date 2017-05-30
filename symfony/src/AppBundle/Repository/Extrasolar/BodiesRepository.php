@@ -51,8 +51,6 @@ class BodiesRepository extends EntityRepository
                   ;
     }
 
-<<<<<<< HEAD
-=======
     public function getListPlaneteByName($name="") {
       if($name != "") {
         return $this->getEntityManager()
@@ -108,5 +106,4 @@ class BodiesRepository extends EntityRepository
                     ->getResult(Query::HYDRATE_ARRAY);
       }
     }
->>>>>>> eef0dcfd9db7d1f88c4e2f152d18718906896ff4
 }
