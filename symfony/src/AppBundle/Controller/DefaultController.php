@@ -42,19 +42,19 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
+    //
+    // /**
+    //  * @Route("/api", name="api")
+    //  */
+    //  public function apiAction(Request $request)
+    //  {
+    //    return $this->render('body/api.html.twig', [
+    //      'title' => 'API'
+    //    ]);
+    //  }
 
     /**
      * @Route("/api", name="api")
-     */
-     public function apiAction(Request $request)
-     {
-       return $this->render('body/api.html.twig', [
-         'title' => 'API'
-       ]);
-     }
-
-    /**
-     * @Route("/api", name="api_planete")
      * @Route("/api/{name}")
      * @Route("/api/{id}")
      * @Route("/api/{id}/{props}")
@@ -155,6 +155,10 @@ class DefaultController extends Controller
        else
         return new Response("Erreur : ce n'est pas une requete xhr");
      }
+
+     return $this->render('body/api.html.twig', [
+       'title' => 'API'
+     ]);
     }
 
      private function generateHtml($planete, $props) {
