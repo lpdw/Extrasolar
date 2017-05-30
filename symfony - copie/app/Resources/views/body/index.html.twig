@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+{% block title %}Catalogue{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-table.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
+    <script src="{{ asset('extensions/toolbar/bootstrap-table-toolbar.js') }}"></script>
+    <script src="{{ asset('js/javascript.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+{{ parent() }}
+
+<div class="container">
+    {% if app.user %}
+        <div class="text-right">
+            <a class="buttonLink mTop30" href="{{ path('catalogue_new') }}">Ajouter un astre</a>
+        </div>
+    {% endif %}
+    <table id="table"
+    data-toggle="table"
+    data-pagination="true"
+    data-search="true"
+    data-advanced-search="true"
+    data-id-table="advancedTable"
+    data-show-columns="true"
+    data-expanded="true">
+    <thead>
+        <tr>
+            <th class="text-center" data-field="name" data-sortable="true">Nom</th>
+            <th data-field="categorie" data-sortable="true">Catégorie</th>
+            <th data-field="Spectral_type" data-sortable="true">Type de spectre</th>
+            <th data-field="Masse" data-sortable="true">Masse</th>
+            <th data-field="Radius" data-sortable="true">Rayon</th>
+            <th data-field="Period" data-sortable="true">Période</th>
+            <th data-field="Axis" data-sortable="true">Axe</th>
+            <th data-field="Excentricity" data-sortable="true">Excenticité</th>
+            {% if app.user %}<th data-sortable="false">Actions</th>{% endif %}
+        </tr>
+    </thead>
+    <tbody>
+      {% for body in bodies %}
+        <tr>
+            <td class="titleBootstrap"><a href="{{ path('catalogue_show', { 'id': body.id }) }}">{{ body.name }}</a></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.TypeId.name }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.spectraltype }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ ChooseUnitMass(body.masse) }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ ChooseUnitRadius(body.radius) }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ ChooseUnitPeriod(body.period) }}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.axis}}</span></td>
+            <td class="titleBootstrap"><span class="posTdBootstrap">{{ body.excentricity }}</span></td>
+            {% if app.user %}
+              <td class="titleBootstrap">
+                <a class="posTdBootstrap" href="{{ path('catalogue_edit', { 'id': body.id }) }}">Modifier</a>
+              </td>
+            {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <!--- PUB -->
+  {% if getPub(1) %}
+      <hr class="hr"/>
+      <p class="">Liens sponsorisés:</p>
+  {% endif %}
+  <div class="row">
+    {% for pub in getPub(1) %}
+      <a href="{{ pub.link }}"class="col-md-6 mBottom10">
+        <img class="img-responsive margin0-auto" src="{{asset(pub.picturePath)}}"/>
+      </a>
+    {% endfor %}
+  </div>
+  {% if app.user %}
+  <div class='txtAlign'>
+    <a href="{{ path('publicity_index') }}" class="buttonLink mTop5">Emplacement n°1</a>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

@@ -74,28 +74,32 @@ class BodiesRepository extends EntityRepository
       // echo trim($name);
       // echo count($props);die();
 
-      return $this->getEntityManager('n')
+      $res = $this->getEntityManager('n')
                   ->createQuery("SELECT n, t FROM AppBundle:Body n JOIN n.rotation_id t WHERE n.name = :name")
-                  ->setParameter('name', $name)
-                  ->getResult(Query::HYDRATE_ARRAY)[0];
+                  ->setParameter('name', trim($name))
+                  ->getResult(Query::HYDRATE_ARRAY);
 
-      if($name != "" && count($props) > 0) {
-        // $queries = "SELECT n.name , ";
-        //
-        // for ($i=0; $i < count($props); $i++) {
-        //   $queries .= "n." . $props[$i] .",";
-        // }
-        //
-        // $queries = rtrim($queries,", ");
-        // $queries .= " FROM AppBundle:Body n WHERE n.name = :name";
+      if(count($res) <= 0) {
+        // the planete doesn't have a satellite
+        if($name != "" && count($props) > 0) {
+          $queries = "SELECT n.name , ";
 
+          for ($i=0; $i < count($props); $i++) {
+            $queries .= "n." . $props[$i] .",";
+          }
 
+          $queries = rtrim($queries,", ");
+          $queries .= " FROM AppBundle:Body n WHERE n.name = :name";
 
-        // return $this->getEntityManager()
-        //             ->createQuery($queries)
-        //             ->setParameter('name', trim($name))
-        //             ->getResult();
+          $res = $this->getEntityManager()
+                      ->createQuery($queries)
+                      ->setParameter('name', trim($name))
+                      ->getResult();
+        }
       }
+
+      return $res;
+
     }
 
     public function getAllInfosPlaneteById($id) {

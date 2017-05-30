@@ -1,0 +1,213 @@
+/** FONT SIZE **/
+
+.ft10 {
+    font-size: 10px !important;
+}
+.ft12 {
+    font-size: 12px !important;
+}
+.ft14 {
+    font-size: 14px !important;
+}
+.ft16 {
+    font-size: 16px !important;
+}
+.ft18 {
+    font-size: 18px !important;
+}
+.ft20 {
+    font-size: 20px !important;
+}
+.ft22 {
+    font-size: 22px !important;
+}
+
+/** HR **/
+
+.hr {
+    border-bottom: 1px solid black;
+}
+
+.hr.w80 {
+    width: 80%;
+}
+
+.hr.w100 {
+    width: 100%;
+}
+
+/** COLOR **/
+
+.blackColor {
+    color: #000;
+}
+.whiteColor {
+    color: #FFF;
+}
+.greyColor {
+    color: #DADADA;
+}
+
+/** BACKGROUND **/
+
+.bgBlack {
+    background-color: #000;
+}
+.bgWhite {
+    background-color: #FFF;
+}
+.bgGrey {
+    background-color: #E6EAF2;
+}
+.bgLightDark {
+    background-color: #323232;
+}
+.bgInfos:hover {
+    background-color: #EEE;
+}
+
+/** DIVERS **/
+
+.displayBlock {
+    display: block;
+}
+
+.displayInlineBlock {
+    display: inline-block;
+}
+
+.margin0-auto {
+    margin: 0 auto;
+}
+
+.txtAlign{
+  text-align: center;
+}
+.posAbsolute{
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+/** MARGIN **/
+
+.mTop5 {
+    margin-top: 5px;
+}
+.mTop10 {
+    margin-top: 10px;
+}
+.mTop15 {
+    margin-top: 15px;
+}
+.mTop20 {
+    margin-top: 20px;
+}
+.mTop25 {
+    margin-top: 25px;
+}
+.mTop30 {
+    margin-top: 30px;
+}
+
+.mBottom5 {
+    margin-bottom: 5px;
+}
+.mBottom10 {
+    margin-bottom: 10px;
+}
+.mBottom15 {
+    margin-bottom: 15px;
+}
+.mBottom20 {
+    margin-bottom: 20px;
+}
+.mBottom25 {
+    margin-bottom: 25px;
+}
+.mBottom30 {
+    margin-bottom: 30px;
+}
+
+/** PADDING **/
+
+.pTop5 {
+    padding-top: 5px;
+}
+.pTop10 {
+    padding-top: 10px;
+}
+.pTop15 {
+    padding-top: 15px;
+}
+.pTop20 {
+    padding-top: 20px;
+}
+.pTop25 {
+    padding-top: 25px;
+}
+.pTop30 {
+    padding-top: 30px;
+}
+
+.pBottom5 {
+    padding-bottom: 5px;
+}
+.pBottom10 {
+    padding-bottom: 10px;
+}
+.pBottom15 {
+    padding-bottom: 15px;
+}
+.pBottom20 {
+    padding-bottom: 20px;
+}
+.pBottom25 {
+    padding-bottom: 25px;
+}
+.pBottom30 {
+    padding-bottom: 30px;
+}
+
+.paddingX5 {
+    padding: 0 5px;
+}
+.paddingX10 {
+    padding: 0 10px;
+}
+.paddingX15 {
+    padding: 0 15px;
+}
+.paddingX20 {
+    padding: 0 20px;
+}
+.paddingX25 {
+    padding: 0 25px;
+}
+
+.paddingY5 {
+    padding: 5px 0px;
+}
+.paddingY10 {
+    padding: 10px 0px;
+}
+.paddingY15 {
+    padding: 15px 0px;
+}
+.paddingY20 {
+    padding: 20px 0px;
+}
+.paddingY25 {
+    padding: 25px 0px;
+}
+
+/** INPUT **/
+
+input.w500 {
+    width: 500px;
+    max-width: 80%;
+}
+
+.activeClass {
+    text-decoration: underline !important;
+}

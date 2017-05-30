@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+{% block solarsystem %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <title>{% block title %}API{% endblock %}</title>
+
+        {% block stylesheets %}
+            <!-- Bootstrap Core CSS -->
+            <link rel="stylesheet" type="text/css" href="{{ asset('/css/themesite/bootstrap.min.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('/css/helpers.css') }}">
+            <link rel="stylesheet" href="{{ getRootURL() }}/wp-content/themes/illdy/layout/css/main.css">
+            <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+            <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-minima.css" />
+            <link rel='stylesheet' id='font-awesome-css'  href="{{ getRootURL() }}/wp-content/themes/illdy/layout/css/font-awesome.min.css?ver=4.5.0" type='text/css' media='all' />
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable = no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title dir="ltr">API</title>
+    </head>
+    <body>
+        {% block body %}
+
+        <header id="header" class="header-blog" style="background-image: url({{getBackgroundImageURL()}});background-attachment: fixed;">
+            <div class="top-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-2 col-xs-8">
+
+                            <a href="/" title="Extrasolar" class="header-logo">Extrasolar</a>
+
+                        </div><!--/.col-sm-2-->
+                        <div class="col-sm-10 col-xs-4">
+                            <nav class="header-navigation">
+                                <ul class="clearfix">
+                                    <li id="menu-item-1157" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/"><span>Accueil</span></a></li>
+                                    <li id="menu-item-1156" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/catalogue"><span>Catalogue</span></a></li>
+                                    <li id="menu-item-1146" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home active"><a href="{{ getRootURL() }}"><span>Blog</span></a></li>
+                                    <li id="menu-item-1147" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/communaute/"><span>Communauté</span></a></li>
+                                    <li id="menu-item-1149" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/api"><span>API</span></a></li>
+                                    <li id="menu-item-1148" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/contact/"><span>Contact</span></a></li>
+                                </ul><!--/.clearfix-->
+                            </nav><!--/.header-navigation-->
+                            <button class="open-responsive-menu"><i class="fa fa-bars"></i></button>
+                        </div><!--/.col-sm-10-->
+                    </div><!--/.row-->
+                </div><!--/.container-->
+            </div><!--/.top-header-->
+            <nav class="responsive-menu">
+                <ul>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ getRootURL() }}"><span>Portail</span></a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{{ getRootURL() }}"><span>Catalogue</span></a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home active"><a href="{{ getRootURL() }}/blog/"><span>Blog</span></a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/blog/communaute/"><span>Communauté</span></a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/api"><span>API</span></a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{{ getRootURL() }}/blog/contact/"><span>Contact</span></a></li>
+                </ul>
+            </nav><!--/.responsive-menu-->
+            <div class="bottom-header blog">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2>{{ title }}</h2>
+                        </div><!--/.col-sm-12-->
+                    </div><!--/.row-->
+                </div><!--/.container-->
+            </div><!--/.bottom-header.blog-->
+        </header><!--/#header-->
+
+        <div id="spinner"></div>
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-5 col-md-5 col-xs-9 col-xs-offset-1">
+              <h1>NOM DE LA PLANETE</h1>
+              <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-xs-10 col-xs-offset-1 jumbotron">
+              <div class="row">
+                <h3 class="col-lg-8">INSTRUCTIONS</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <ul id="list_planete" class="col-lg-7 col-lg-offset-2"></ul>
+          </div>
+
+          <div class="row col-lg-7 col-lg-offset-2" id="generate-infos">
+              <h2 class="planete-name col-lg-8 col-md-10 col-lg-offset-1"></h2>
+              <form class="col-lg-5 col-lg-offset-2"> </form>
+          </div>
+
+
+          <div class="row col-lg-7 col-lg-offset-2" id="html-generated">
+              <div class="col-lg-5 col-lg-offset-2">
+                <form class="row"> </form>
+
+                <div id="generated-html" class="row">
+                  <h2>CODE A COPIER</h2>
+                </div>
+
+                <div id="visualisation-html-generated" class="row">
+                  <h2>VISUALISATION</h2>
+                </div>
+              </div>
+
+            <!-- <div class="code-to-copy">
+              <code>&lt;script
+          			&nbsp;&nbsp;<span>src="https://code.jquery.com/jquery-3.2.1.min.js"</span>
+          			&nbsp;&nbsp;<span>integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="</span>
+          			&nbsp;&nbsp;<span>crossorigin="anonymous"&gt;&lt;/script&gt;</span>
+          		</code>
+
+              <button class="sri-modal-copy-btn" data-clipboard-text="<script src=&quot;https://code.jquery.com/jquery-3.2.1.min.js&quot; integrity=&quot;sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=&quot; crossorigin=&quot;anonymous&quot;></script>" title="Copy to clipboard!">
+  			           <i class="fa fa-clipboard" aria-hidden="true"></i>
+  		        </button>
+            </div> -->
+          </div>
+
+        </div>
+        </body>
+
+      {% endblock %}
+        {% block javascripts %}
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="http://spin.js.org/spin.min.js"></script>
+        <script src="js/api.js"></script>
+
+      {% endblock %}
+    </body>
+</html>
+{% endblock %}

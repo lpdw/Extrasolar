@@ -5,6 +5,9 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Extrablog\WpPosts;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -41,19 +44,19 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
+    //
+    // /**
+    //  * @Route("/api", name="api")
+    //  */
+    //  public function apiAction(Request $request)
+    //  {
+    //    return $this->render('body/api.html.twig', [
+    //      'title' => 'API'
+    //    ]);
+    //  }
 
     /**
      * @Route("/api", name="api")
-     */
-     public function apiAction(Request $request)
-     {
-       return $this->render('body/api.html.twig', [
-         'title' => 'API'
-       ]);
-     }
-
-    /**
-     * @Route("/api", name="api_planete")
      * @Route("/api/{name}")
      * @Route("/api/{id}")
      * @Route("/api/{id}/{props}")
@@ -75,7 +78,11 @@ class DefaultController extends Controller
            $planete_id = trim(strip_tags($request->query->get('id')));
            $get_props = trim(strip_tags($request->query->get('get_props')));
 
-           if(isset($planete_name) && !empty($planete_name) && isset($get_planete_list) && !empty($get_planete_list) && $get_planete_list == "true") { // if try to get only by name -> return list fof planetes
+           if(isset($planete_name)
+              && !empty($planete_name)
+              && isset($get_planete_list)
+              && !empty($get_planete_list)
+              && $get_planete_list == "true") { // if try to get only by name -> return list fof planetes
              $planetes_result = $em->getRepository('AppBundle:Body')->getListPlaneteByName($planete_name);
 
              $serializer = $this->get('serializer');
@@ -118,75 +125,105 @@ class DefaultController extends Controller
 
             $satellites = array();
 
-            //add it to the array
+            array_push($this->satellites, array("planete" => $planete));
 
-            if(count($planete["rotation_id"]) > 0) {
-              array_push($this->satellites, array("planete" => $planete));
-
-              $this->getSubSat($planete["rotation_id"]);
-
-              if(isset($data_type) && !empty($data_type)) {
-                if(strtolower($data_type) == "html") {
-
-                  $html = $this->generateHtml($this->satellites);
-                  return new Response($html);
-
-                }
-                else {
-                   // defaut generate JSON
-                   return new JsonResponse($this->satellites);
-                }
+            try {
+              if(isset($planete[0]["rotation_id"]) || !empty($planete[0]["rotation_id"])) {
+                $this->getSubSat($planete[0]["rotation_id"]);
               }
+            } catch (Exception $e) {
+              // echo "err".$e;
+            }
 
-             // defaut generate JSON
-             return new JsonResponse($this->satellites);
+            if(isset($data_type) && !empty($data_type)) {
+              if(strtolower($data_type) == "html") {
+
+                $html = $this->generateHtml($planete, $props);
+                return new Response($html);
+              }
+              else {
+                 // defaut generate JSON
+                 // genereate only all props requested
+                 $this->satellites = $this->removeUnrequestProps($this->satellites, $props);
+                 return new JsonResponse($this->satellites);
+              }
             }
 
             // defaut generate JSON
             return new JsonResponse($this->satellites);
-
-         }
+          }
 
        }
        else
         return new Response("Erreur : ce n'est pas une requete xhr");
      }
+
+     return $this->render('body/api.html.twig', [
+       'title' => 'API'
+     ]);
     }
 
-     private function generateHtml($planete) {
+     private function generateHtml($planete, $props) {
+
        $html = "<table><tbody>";
 
-       foreach ($planete[0] as $key => $value) {
-        $html .= "<tr><td>".$key."</td><td>".$value."</td></tr>";
+       foreach ($planete[0] as $key_planete => $value) {
+        //  var_dump($value);die();
+         if( $key_planete == "rotation_id" ) continue;
+
+         foreach ($props as $key => $prop) {
+           if($prop == $key_planete) {
+             $html .= "<tr><td>".$prop."</td><td>".$value."</td></tr>";
+           }
+         }
        }
 
        $html .= "</tbody></table>";
        return $html;
      }
 
-     private function getSubSat($planete) {
+    private function removeUnrequestProps($planete, $props) {
+
+      $new_planete = array();
+
+      foreach ($planete[0]["planete"][0] as $key_planete => $value) {
+
+        foreach ($props as $key => $prop) {
+          if($prop == $key_planete) {
+            //add props for new tab
+            $new_planete[$prop] = $planete[0]["planete"][0][$key_planete];
+          }
+        }
+      }
+
+      $planete[0]["planete"][0] = $new_planete;
+      return $planete;
+
+    }
+
+    private function getSubSat($planete) {
 
        if(count($planete) > 0) {
-
          array_push($this->satellites, $planete);
 
          $em = $this->getDoctrine()->getManager();
          $planete = $em->getRepository('AppBundle:Body')->getAllInfosPlaneteById($planete["id"]);
 
-        if(count($planete) > 0) {
+         if(count($planete) > 0) {
 
           try {
-            if( count($planete[0]["rotation_id"]) > 0) {
+            if( count($planete[0]["rotation_id"]) > 0)
               $this->getSubSat($planete[0]["rotation_id"]);
-            }
           } catch (Exception $e) {
             //if error its the last satellite
-            if(count($planete["rotation_id"]) > 0) {
-              $this->getSubSat($planete["rotation_id"]);
+
+              try {
+                if(count($planete["rotation_id"]) > 0) {
+                  $this->getSubSat($planete["rotation_id"]);
+                }
+              } catch (Exception $e) { }
             }
           }
         }
-
-       }
    }
 }

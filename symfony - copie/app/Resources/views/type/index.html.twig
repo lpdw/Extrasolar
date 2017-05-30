@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% block title %}Types{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-table.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap-table.js') }}"></script>
+    <script src="{{ asset('extensions/toolbar/bootstrap-table-toolbar.js') }}"></script>
+    <script src="{{ asset('js/javascript.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    {{ parent() }}
+
+<div class="container">
+    {% if app.user %}
+        <div class="text-right">
+            <a class="buttonLink mTop30" href="{{ path('type_new') }}">Ajouter un type</a>
+        </div>
+    {% endif %}
+    <table id="table"
+    data-toggle="table"
+    data-pagination="true"
+    data-search="true"
+    data-advanced-search="true"
+    data-id-table="advancedTable"
+    data-show-columns="true"
+    data-expanded="true">
+    <thead>
+        <tr>
+            <th class="text-center" data-field="image" data-sortable="true">Image</th>
+            <th class="text-center" data-field="name" data-sortable="true">ID</th>
+            <th data-field="Nom" data-sortable="true">Nom</th>
+            <th data-field="Catégorie" data-sortable="true">Catégorie</th>
+            <th data-field="Description" data-sortable="true">Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for type in types %}
+    <tr>
+        <td class="titleBootstrap"><span class="posTdBootstrap">{% if type.picturePath %}<img class="img-responsive displayBlock vignette" src="{{ asset(type.picturePath) }}" alt='Image représentant la catégorie'/>{% endif %}</span></td>
+        <td class="titleBootstrap"><span>{{ type.id }}</span></td>
+        <td class="titleBootstrap"><a class="posTdBootstrap" href="{{ path('type_show', { 'id': type.id }) }}">{{ type.name }}</a></td>
+        <td class="titleBootstrap"><span class="posTdBootstrap">{{ type.categorie }}</span></td>
+        <td class="titleBootstrap"><span class="posTdBootstrap">{{ type.description }}</span></td>
+        <td class="titleBootstrap">
+            {% if app.user %}
+                <a class="posTdBootstrap" href="{{ path('type_edit', { 'id': type.id }) }}">Modifier</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+{% endblock %}
